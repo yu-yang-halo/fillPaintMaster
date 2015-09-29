@@ -28,8 +28,13 @@
 }
 
 -(void)initBeautyItemTableView{
-    self.items=@[@"<离子覆膜精细洗车",@"<漆面深度清洁打蜡",@"<内室普通清洗消毒",@"<内室环保清洗护理"];
+    self.items=@[@">离子覆膜精细洗车         ¥40元",
+                 @">漆面深度清洁打蜡         ¥198元",
+                 @">内室普通清洗消毒         ¥380元",
+                 @">内室环保清洗护理         ¥598元"];
+    
     [self.beautyItemTableView setRowHeight:50];
+    [self.beautyItemTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     self.beautyItemTableView.delegate=self;
     self.beautyItemTableView.dataSource=self;
 }
@@ -142,7 +147,9 @@
     }else{
         NSLog(@"exists...");
     }
+    
     [tableCell.contentLabel setText:[_items objectAtIndex:indexPath.row]];
+    [tableCell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [tableCell.addOrRemoveBtn setTag:indexPath.row];
     [tableCell.addOrRemoveBtn addTarget:self action:@selector(addOrRemoveCart:) forControlEvents:UIControlEventTouchUpInside];
     return tableCell;
