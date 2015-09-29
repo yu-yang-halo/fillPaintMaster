@@ -5,7 +5,7 @@
 //  Created by apple on 15/9/14.
 //  Copyright © 2015年 LZTech. All rights reserved.
 //
-
+#import <UIKit/UIKit.h>
 #import "TDHomeViewController.h"
 #import "TDAdView.h"
 @interface TDHomeViewController ()
@@ -56,9 +56,14 @@
     
 }
 -(void)click:(UIButton *)sender{
+    UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
     switch (sender.tag) {
-        case 0:
+        case 0:{
+            UIViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"beautyVC"];
+            [self.tabBarController.navigationController pushViewController:vc animated:YES];
             
+               }
             break;
         case 1:
             

@@ -19,6 +19,10 @@
 		18B932681BA6A8C50019279E /* fillPaintMasterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B932671BA6A8C50019279E /* fillPaintMasterTests.m */; };
 		18B932731BA6A8C50019279E /* fillPaintMasterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B932721BA6A8C50019279E /* fillPaintMasterUITests.m */; };
 		18B932811BA6A9540019279E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18B932801BA6A9540019279E /* InfoPlist.strings */; };
+		18E8A11B1BBA207800FBD3F4 /* CarBeautyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8A11A1BBA207800FBD3F4 /* CarBeautyViewController.m */; };
+		18E8A11F1BBA399E00FBD3F4 /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8A11E1BBA399E00FBD3F4 /* TimeUtils.m */; };
+		18E8A1231BBA468600FBD3F4 /* TDBeautyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8A1211BBA468600FBD3F4 /* TDBeautyTableViewCell.m */; };
+		18E8A1241BBA468600FBD3F4 /* TDBeautyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E8A1221BBA468600FBD3F4 /* TDBeautyTableViewCell.xib */; };
 		C6FF04885D98EFD277CD0577 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49336F7C7CEF0F6B8C6EC250 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +67,13 @@
 		18B932721BA6A8C50019279E /* fillPaintMasterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fillPaintMasterUITests.m; sourceTree = "<group>"; };
 		18B932741BA6A8C50019279E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B932801BA6A9540019279E /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		18E8A1191BBA207800FBD3F4 /* CarBeautyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarBeautyViewController.h; sourceTree = "<group>"; };
+		18E8A11A1BBA207800FBD3F4 /* CarBeautyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarBeautyViewController.m; sourceTree = "<group>"; };
+		18E8A11D1BBA399E00FBD3F4 /* TimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
+		18E8A11E1BBA399E00FBD3F4 /* TimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
+		18E8A1201BBA468600FBD3F4 /* TDBeautyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBeautyTableViewCell.h; sourceTree = "<group>"; };
+		18E8A1211BBA468600FBD3F4 /* TDBeautyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBeautyTableViewCell.m; sourceTree = "<group>"; };
+		18E8A1221BBA468600FBD3F4 /* TDBeautyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDBeautyTableViewCell.xib; sourceTree = "<group>"; };
 		40FB5D2497535D497A282D1A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		49336F7C7CEF0F6B8C6EC250 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2E5957C845E102A048E030F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +108,7 @@
 		183EAA091BB927480029ED79 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				18E8A1181BBA1FED00FBD3F4 /* CarBeauty */,
 				18B932531BA6A8C50019279E /* TDHomeViewController.h */,
 				18B932541BA6A8C50019279E /* TDHomeViewController.m */,
 				183EAA0D1BB929A00029ED79 /* TDTabViewController.h */,
@@ -112,6 +124,9 @@
 			children = (
 				183EAA141BB94B3E0029ED79 /* TDAdView.h */,
 				183EAA151BB94B3E0029ED79 /* TDAdView.m */,
+				18E8A1201BBA468600FBD3F4 /* TDBeautyTableViewCell.h */,
+				18E8A1211BBA468600FBD3F4 /* TDBeautyTableViewCell.m */,
+				18E8A1221BBA468600FBD3F4 /* TDBeautyTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -141,6 +156,7 @@
 		18B9324C1BA6A8C50019279E /* fillPaintMaster */ = {
 			isa = PBXGroup;
 			children = (
+				18E8A11C1BBA397900FBD3F4 /* Tools */,
 				183EAA091BB927480029ED79 /* UI */,
 				183EAA131BB94AED0029ED79 /* View */,
 				18B932501BA6A8C50019279E /* AppDelegate.h */,
@@ -179,6 +195,24 @@
 				18B932741BA6A8C50019279E /* Info.plist */,
 			);
 			path = fillPaintMasterUITests;
+			sourceTree = "<group>";
+		};
+		18E8A1181BBA1FED00FBD3F4 /* CarBeauty */ = {
+			isa = PBXGroup;
+			children = (
+				18E8A1191BBA207800FBD3F4 /* CarBeautyViewController.h */,
+				18E8A11A1BBA207800FBD3F4 /* CarBeautyViewController.m */,
+			);
+			name = CarBeauty;
+			sourceTree = "<group>";
+		};
+		18E8A11C1BBA397900FBD3F4 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				18E8A11D1BBA399E00FBD3F4 /* TimeUtils.h */,
+				18E8A11E1BBA399E00FBD3F4 /* TimeUtils.m */,
+			);
+			name = Tools;
 			sourceTree = "<group>";
 		};
 		D59418E1BE4B6B94E7F037D6 /* Pods */ = {
@@ -304,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E8A1241BBA468600FBD3F4 /* TDBeautyTableViewCell.xib in Resources */,
 				18B9325D1BA6A8C50019279E /* LaunchScreen.storyboard in Resources */,
 				18B932811BA6A9540019279E /* InfoPlist.strings in Resources */,
 				18B9325A1BA6A8C50019279E /* Assets.xcassets in Resources */,
@@ -380,11 +415,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E8A11B1BBA207800FBD3F4 /* CarBeautyViewController.m in Sources */,
 				18B932551BA6A8C50019279E /* TDHomeViewController.m in Sources */,
 				183EAA161BB94B3E0029ED79 /* TDAdView.m in Sources */,
+				18E8A1231BBA468600FBD3F4 /* TDBeautyTableViewCell.m in Sources */,
 				18B932521BA6A8C50019279E /* AppDelegate.m in Sources */,
 				183EAA121BB92E450029ED79 /* TDNavigationViewController.m in Sources */,
 				183EAA0F1BB929A00029ED79 /* TDTabViewController.m in Sources */,
+				18E8A11F1BBA399E00FBD3F4 /* TimeUtils.m in Sources */,
 				18B9324F1BA6A8C50019279E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
