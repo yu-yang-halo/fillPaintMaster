@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,14 +15,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJf-Nu-ea9">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJf-Nu-ea9">
                         <rect key="frame" x="30" y="21" width="227" height="21"/>
                         <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="d45-5H-5uo"/>
+                            <constraint firstAttribute="width" constant="227" id="jlP-2n-wwF"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3k-Uk-AhM">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3k-Uk-AhM">
                         <rect key="frame" x="259" y="12" width="44" height="40"/>
                         <animations/>
                         <state key="normal" image="addcart"/>
@@ -29,6 +34,12 @@
                     </button>
                 </subviews>
                 <animations/>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="F3k-Uk-AhM" secondAttribute="trailing" constant="9" id="Ei9-se-UnG"/>
+                    <constraint firstItem="F3k-Uk-AhM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Fkz-7k-Y9q"/>
+                    <constraint firstItem="rJf-Nu-ea9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="22" id="bs5-52-pDL"/>
+                    <constraint firstItem="rJf-Nu-ea9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jIc-XC-riK"/>
+                </constraints>
             </tableViewCellContentView>
             <animations/>
             <connections>

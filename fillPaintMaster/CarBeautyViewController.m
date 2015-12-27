@@ -9,11 +9,18 @@
 #import "CarBeautyViewController.h"
 #import "TimeUtils.h"
 #import "TDBeautyTableViewCell.h"
-@interface CarBeautyViewController ()
+@interface CarBeautyViewController (){
+    NSArray *test;
+    NSUInteger totalMoney;
+    NSUInteger totalCount;
+}
 @property (weak, nonatomic) IBOutlet UIView *timeView;
 @property (weak, nonatomic) IBOutlet UITableView *beautyItemTableView;
 
 @property(retain,nonatomic) NSArray *items;
+@property (weak, nonatomic) IBOutlet UIButton *cartBtn;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+@property (weak, nonatomic) IBOutlet UIButton *orderBtn;
 
 @end
 
@@ -22,16 +29,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTitleView];
-    [self initTimeView];
+   
     [self initBeautyItemTableView];
+    
+    [self initOrderBtn];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+     [self initTimeView];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    
+}
+-(void)initOrderBtn{
+    [self.orderBtn setEnabled:NO];
+    [self.orderBtn setBackgroundColor:[UIColor grayColor]];
+    [self.orderBtn.layer setCornerRadius:5.0];
+    test=@[@40,@198,@380,@598];
+
+    [self.orderBtn addTarget:self action:@selector(orderDetail:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)orderDetail:(id)sender{
+    UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    UIViewController *orderVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderVC"];
+    [self.navigationController pushViewController:orderVC animated:YES];
     
 }
 
 -(void)initBeautyItemTableView{
-    self.items=@[@">离子覆膜精细洗车         ¥40元",
+     self.items=@[@">离子覆膜精细洗车         ¥40元",
                  @">漆面深度清洁打蜡         ¥198元",
                  @">内室普通清洗消毒         ¥380元",
                  @">内室环保清洗护理         ¥598元"];
+    
     
     [self.beautyItemTableView setRowHeight:50];
     [self.beautyItemTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
@@ -79,12 +110,12 @@
     NSLog(@"tag %d",sender.tag);
     if(sender.selected){
         [sender setSelected:NO];
-        [sender setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1]];
+        //[sender setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1]];
         
 
     }else{
         [sender setSelected:YES];
-        [sender setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
+        //[sender setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
       
     }
 }
@@ -160,6 +191,36 @@
     }else{
         [sender setSelected:YES];
     }
+    int val=[[test objectAtIndex:sender.tag] integerValue];
+    
+    if(sender.selected){
+       
+        totalMoney+=val;
+        totalCount++;
+        
+    }else{
+        totalMoney-=val;
+        totalCount--;
+    }
+
+    if(totalMoney>0){
+        [self.orderBtn setEnabled:YES];
+        [self.orderBtn setBackgroundColor:[UIColor blueColor]];
+        [self.moneyLabel setTextColor:[UIColor blueColor]];
+        [self.moneyLabel setText:[NSString stringWithFormat:@"¥ %d元",totalMoney]];
+        [self.cartBtn setBackgroundImage:[UIImage imageNamed:@"cartcircle"] forState:UIControlStateNormal];
+        [self.cartBtn setTitle:[NSString stringWithFormat:@"%d",totalCount] forState:UIControlStateNormal];
+    }else{
+        [self.orderBtn setEnabled:NO];
+         [self.orderBtn setBackgroundColor:[UIColor grayColor]];
+        [self.moneyLabel setTextColor:[UIColor grayColor]];
+        [self.moneyLabel setText:@"0元"];
+        [self.cartBtn setBackgroundImage:[UIImage imageNamed:@"cart"] forState:UIControlStateNormal];
+        [self.cartBtn setTitle:@"" forState:UIControlStateNormal];
+        
+    }
+   
+    
     NSLog(@"addOrRemoveCart index %d",sender.tag);
     
 }

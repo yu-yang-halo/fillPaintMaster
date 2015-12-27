@@ -8,6 +8,8 @@
 #import <UIKit/UIKit.h>
 #import "TDHomeViewController.h"
 #import "TDAdView.h"
+const float ICON_WIDTH=130;
+const float ICON_HEIGHT=90;
 @interface TDHomeViewController ()
 @property (retain, nonatomic)  UIScrollView *tdScrollView;
 
@@ -68,7 +70,12 @@
         case 1:
             
             break;
-        case 2:
+        case 2:{
+            
+            UIViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"tdPaintVC"];
+            [self.tabBarController.navigationController pushViewController:vc animated:YES];
+            
+        }
             
             break;
         case 3:
@@ -88,14 +95,18 @@
 }
 
 -(CGRect)createCGRect:(int)row col:(int)col{
-    float hspace=10;
-    float vspace=20;
+    
+    
+    
+    
+    float hspace=15;
+    float vspace=(self.view.frame.size.width-ICON_WIDTH*2-20)/2;
     int ALL_COLUMN=2;
     float width=self.view.frame.size.width;
     if(col==ALL_COLUMN-1){
-        return CGRectMake(width-vspace-130,row*90+hspace*(row+1), 130, 90);
+        return CGRectMake(width-vspace-ICON_WIDTH,row*ICON_HEIGHT+hspace*(row+1), ICON_WIDTH, ICON_HEIGHT);
     }else{
-        return CGRectMake(vspace,row*90+hspace*(row+1), 130, 90);
+        return CGRectMake(vspace,row*90+hspace*(row+1), ICON_WIDTH, ICON_HEIGHT);
     }
     
 }

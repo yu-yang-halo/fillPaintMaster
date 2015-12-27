@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeftCarViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hnq-5f-7ti">
+                    <rect key="frame" x="19" y="178" width="283" height="213"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="car0" translatesAutoresizingMaskIntoConstraints="NO" id="cYm-hk-TYW">
+                            <rect key="frame" x="18" y="47" width="246" height="81"/>
+                            <animations/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1m-Gk-8Ls">
+                            <rect key="frame" x="48" y="8" width="85" height="82"/>
+                            <animations/>
+                            <state key="normal" backgroundImage="e1"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcP-OX-oze">
+                            <rect key="frame" x="167" y="8" width="85" height="82"/>
+                            <animations/>
+                            <state key="normal" backgroundImage="f1"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWJ-uY-0NR">
+                            <rect key="frame" x="36" y="109" width="86" height="86"/>
+                            <animations/>
+                            <state key="normal" backgroundImage="c1"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8b-O1-BNy">
+                            <rect key="frame" x="169" y="107" width="83" height="81"/>
+                            <animations/>
+                            <state key="normal" backgroundImage="d1"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twf-rA-98Q">
+                            <rect key="frame" x="105" y="107" width="70" height="51"/>
+                            <animations/>
+                            <state key="normal" backgroundImage="j1"/>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="283" id="Gqj-9y-2oE"/>
+                        <constraint firstAttribute="height" constant="213" id="JVN-rk-hFL"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Hnq-5f-7ti" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HbH-fd-XiS"/>
+                <constraint firstItem="Hnq-5f-7ti" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="aQl-Wx-jMa"/>
+            </constraints>
+            <point key="canvasLocation" x="366" y="355"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="c1" width="150" height="145"/>
+        <image name="car0" width="300" height="97"/>
+        <image name="d1" width="150" height="133"/>
+        <image name="e1" width="150" height="163"/>
+        <image name="f1" width="150" height="170"/>
+        <image name="j1" width="150" height="109"/>
+    </resources>
+</document>

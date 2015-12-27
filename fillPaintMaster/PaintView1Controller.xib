@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaintView1Controller">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YS6-dG-ae9">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t9W-ZM-Iif">
+                            <rect key="frame" x="28" y="145" width="99" height="75"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="99" id="0zV-j7-6hB"/>
+                                <constraint firstAttribute="height" constant="75" id="Id1-Ao-jgD"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="btn_addpic"/>
+                            <connections>
+                                <action selector="uploadBadCarImage:" destination="-1" eventType="touchUpInside" id="gW9-Gb-5P1"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rect_bg" translatesAutoresizingMaskIntoConstraints="NO" id="x72-PH-GNz">
+                            <rect key="frame" x="19" y="263" width="283" height="154"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="154" id="8aX-vh-CIs"/>
+                                <constraint firstAttribute="width" constant="283" id="ZgU-ZQ-vNs"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13144542888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9Y-mp-td9">
+                            <rect key="frame" x="150" y="20" width="116" height="21"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="116" id="LeE-2K-FsV"/>
+                                <constraint firstAttribute="height" constant="21" id="emf-E7-GZ6"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rect_bg" translatesAutoresizingMaskIntoConstraints="NO" id="puW-Cs-qTL">
+                            <rect key="frame" x="19" y="75" width="283" height="154"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="283" id="780-1u-n5Z"/>
+                                <constraint firstAttribute="height" constant="154" id="kZ1-HU-1se"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请上传车辆受损照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ef-Gw-YZG">
+                            <rect key="frame" x="28" y="97" width="177" height="21"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="EH4-2I-aVF"/>
+                                <constraint firstAttribute="width" constant="177" id="y5H-bu-gHF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vd-ve-j2o">
+                            <rect key="frame" x="28" y="333" width="99" height="75"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="75" id="kRK-xG-1nC"/>
+                                <constraint firstAttribute="width" constant="99" id="x9p-Y4-ULG"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="btn_addpic"/>
+                            <connections>
+                                <action selector="uploadAccidentImage:" destination="-1" eventType="touchUpInside" id="SaX-Fg-4Me"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VnZ-Rf-b1G">
+                            <rect key="frame" x="19" y="435" width="283" height="44"/>
+                            <animations/>
+                            <color key="backgroundColor" red="0.1843137255" green="0.53725490200000003" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="283" id="6M6-Tm-xTj"/>
+                                <constraint firstAttribute="height" constant="44" id="pUI-6Z-bws"/>
+                            </constraints>
+                            <state key="normal" title="预约"/>
+                            <connections>
+                                <action selector="orderCommit:" destination="-1" eventType="touchUpInside" id="HGX-Pl-sMq"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="理赔专员电话" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iUB-GD-e0P">
+                            <rect key="frame" x="19" y="20" width="116" height="21"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="3CS-oD-bJE"/>
+                                <constraint firstAttribute="width" constant="116" id="MYu-QX-Puv"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撞车现场照片（能提供最好）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNd-hy-fqe">
+                            <rect key="frame" x="28" y="285" width="259" height="21"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="259" id="Fwe-Op-PLe"/>
+                                <constraint firstAttribute="height" constant="21" id="Nax-75-lwb"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <animations/>
+                    <constraints>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="baseline" secondItem="A9Y-mp-td9" secondAttribute="baseline" id="3c0-PG-bXF"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="bottom" secondItem="A9Y-mp-td9" secondAttribute="bottom" id="4d1-aa-lvn"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="top" secondItem="YS6-dG-ae9" secondAttribute="top" constant="20" id="6rS-a3-96j"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="firstBaseline" secondItem="A9Y-mp-td9" secondAttribute="firstBaseline" id="8jc-op-lor"/>
+                        <constraint firstItem="cNd-hy-fqe" firstAttribute="leading" secondItem="t9W-ZM-Iif" secondAttribute="leading" id="9b0-Gl-Wdc"/>
+                        <constraint firstItem="A9Y-mp-td9" firstAttribute="leading" secondItem="iUB-GD-e0P" secondAttribute="trailing" constant="15" id="BZs-md-IaV"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="top" secondItem="A9Y-mp-td9" secondAttribute="top" id="C7C-Ea-3sg"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="centerX" secondItem="t9W-ZM-Iif" secondAttribute="centerX" id="Eee-vR-pNI"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="firstBaseline" secondItem="A9Y-mp-td9" secondAttribute="baseline" id="HBU-Sc-u21"/>
+                        <constraint firstItem="puW-Cs-qTL" firstAttribute="top" secondItem="7ef-Gw-YZG" secondAttribute="bottom" constant="-43" id="Hcg-ib-aQ0"/>
+                        <constraint firstItem="puW-Cs-qTL" firstAttribute="top" secondItem="iUB-GD-e0P" secondAttribute="bottom" constant="34" id="ITV-hO-WGa"/>
+                        <constraint firstItem="x72-PH-GNz" firstAttribute="top" secondItem="puW-Cs-qTL" secondAttribute="bottom" constant="34" id="Jfd-Pr-i9J"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="leading" secondItem="puW-Cs-qTL" secondAttribute="leading" id="Kco-aN-38b"/>
+                        <constraint firstItem="x72-PH-GNz" firstAttribute="top" secondItem="cNd-hy-fqe" secondAttribute="bottom" constant="-43" id="NCA-Cd-HZv"/>
+                        <constraint firstItem="t9W-ZM-Iif" firstAttribute="top" secondItem="7ef-Gw-YZG" secondAttribute="bottom" constant="27" id="P8S-h1-GiK"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="leading" secondItem="YS6-dG-ae9" secondAttribute="leading" constant="19" id="PyT-Mo-ciQ"/>
+                        <constraint firstAttribute="trailing" secondItem="iUB-GD-e0P" secondAttribute="trailing" constant="185" id="Qa7-Sw-9TP"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="leading" secondItem="VnZ-Rf-b1G" secondAttribute="leading" id="R9f-ZZ-RH1"/>
+                        <constraint firstItem="VnZ-Rf-b1G" firstAttribute="top" secondItem="x72-PH-GNz" secondAttribute="bottom" constant="18" id="Tii-7P-jxe"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="top" secondItem="YS6-dG-ae9" secondAttribute="top" constant="20" id="WcH-YR-5rY"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="leading" secondItem="YS6-dG-ae9" secondAttribute="leading" constant="19" id="Wj6-gJ-PPb"/>
+                        <constraint firstAttribute="bottom" secondItem="iUB-GD-e0P" secondAttribute="bottom" constant="527" id="XDB-6j-331"/>
+                        <constraint firstItem="7ef-Gw-YZG" firstAttribute="leading" secondItem="t9W-ZM-Iif" secondAttribute="trailing" constant="-99" id="cZF-ki-Gwl"/>
+                        <constraint firstItem="cNd-hy-fqe" firstAttribute="leading" secondItem="7vd-ve-j2o" secondAttribute="leading" id="clk-0d-qpI"/>
+                        <constraint firstItem="puW-Cs-qTL" firstAttribute="leading" secondItem="7ef-Gw-YZG" secondAttribute="trailing" constant="-186" id="dNG-zE-HCi"/>
+                        <constraint firstItem="A9Y-mp-td9" firstAttribute="leading" secondItem="iUB-GD-e0P" secondAttribute="trailing" constant="15" id="eok-tR-wzq"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="top" secondItem="YS6-dG-ae9" secondAttribute="top" constant="20" id="ieA-X5-YbS"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="centerX" secondItem="7vd-ve-j2o" secondAttribute="centerX" id="k4g-4L-N45"/>
+                        <constraint firstItem="x72-PH-GNz" firstAttribute="top" secondItem="cNd-hy-fqe" secondAttribute="bottom" constant="-43" id="kqc-sa-nlg"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="leading" secondItem="x72-PH-GNz" secondAttribute="leading" id="l4w-6i-fns"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="centerY" secondItem="A9Y-mp-td9" secondAttribute="centerY" id="nlY-b7-VgR"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="leading" secondItem="YS6-dG-ae9" secondAttribute="leading" constant="19" id="own-Zb-cz2"/>
+                        <constraint firstItem="puW-Cs-qTL" firstAttribute="top" secondItem="A9Y-mp-td9" secondAttribute="bottom" constant="34" id="qb6-ag-gJ4"/>
+                        <constraint firstItem="7vd-ve-j2o" firstAttribute="top" secondItem="cNd-hy-fqe" secondAttribute="bottom" constant="27" id="qce-Un-eTj"/>
+                        <constraint firstItem="iUB-GD-e0P" firstAttribute="baseline" secondItem="A9Y-mp-td9" secondAttribute="firstBaseline" id="uXQ-7Z-rhg"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="YS6-dG-ae9" secondAttribute="bottom" id="2tO-pl-uSK"/>
+                <constraint firstItem="YS6-dG-ae9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4TY-zf-z5o"/>
+                <constraint firstAttribute="trailing" secondItem="YS6-dG-ae9" secondAttribute="trailing" id="9np-rj-OG8"/>
+                <constraint firstItem="YS6-dG-ae9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NSA-Of-USa"/>
+            </constraints>
+            <point key="canvasLocation" x="356" y="219"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="btn_addpic" width="100" height="91"/>
+        <image name="rect_bg" width="320" height="137"/>
+    </resources>
+</document>
