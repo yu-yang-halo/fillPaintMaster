@@ -26,26 +26,36 @@
                             <rect key="frame" x="42" y="35" width="85" height="82"/>
                             <animations/>
                             <state key="normal" backgroundImage="f2"/>
+                            <state key="selected" backgroundImage="f20"/>
+                            <state key="highlighted" backgroundImage="f20"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gf4-T7-Hm3">
                             <rect key="frame" x="152" y="34" width="85" height="82"/>
                             <animations/>
                             <state key="normal" backgroundImage="e2"/>
+                            <state key="selected" backgroundImage="e20"/>
+                            <state key="highlighted" backgroundImage="e20"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCU-iM-nH2">
                             <rect key="frame" x="41" y="128" width="86" height="86"/>
                             <animations/>
                             <state key="normal" backgroundImage="d2"/>
+                            <state key="selected" backgroundImage="d20"/>
+                            <state key="highlighted" backgroundImage="d20"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1e-gG-TFf">
                             <rect key="frame" x="168" y="130" width="83" height="81"/>
                             <animations/>
                             <state key="normal" backgroundImage="c2"/>
+                            <state key="selected" backgroundImage="c20"/>
+                            <state key="highlighted" backgroundImage="c20"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sd6-0H-qIH">
                             <rect key="frame" x="107" y="130" width="70" height="51"/>
                             <animations/>
                             <state key="normal" backgroundImage="j2"/>
+                            <state key="selected" backgroundImage="j20"/>
+                            <state key="highlighted" backgroundImage="j20"/>
                         </button>
                     </subviews>
                     <animations/>
@@ -67,10 +77,15 @@
     </objects>
     <resources>
         <image name="c2" width="150" height="146"/>
+        <image name="c20" width="150" height="146"/>
         <image name="car1" width="300" height="86"/>
         <image name="d2" width="150" height="142"/>
+        <image name="d20" width="150" height="142"/>
         <image name="e2" width="150" height="161"/>
+        <image name="e20" width="150" height="161"/>
         <image name="f2" width="150" height="167"/>
+        <image name="f20" width="150" height="167"/>
         <image name="j2" width="150" height="107"/>
+        <image name="j20" width="150" height="107"/>
     </resources>
 </document>

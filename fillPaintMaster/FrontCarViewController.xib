@@ -26,16 +26,22 @@
                             <rect key="frame" x="126" y="33" width="114" height="95"/>
                             <animations/>
                             <state key="normal" backgroundImage="aA"/>
+                            <state key="selected" backgroundImage="aA0"/>
+                            <state key="highlighted" backgroundImage="aA0"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7Z-1A-WSn">
                             <rect key="frame" x="85" y="136" width="86" height="54"/>
                             <animations/>
                             <state key="normal" backgroundImage="a1"/>
+                            <state key="selected" backgroundImage="a10"/>
+                            <state key="highlighted" backgroundImage="a10"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKB-tH-7cg">
                             <rect key="frame" x="101" y="136" width="93" height="37"/>
                             <animations/>
                             <state key="normal" backgroundImage="a2"/>
+                            <state key="selected" backgroundImage="a20"/>
+                            <state key="highlighted" backgroundImage="a20"/>
                         </button>
                     </subviews>
                     <animations/>
@@ -57,8 +63,11 @@
     </objects>
     <resources>
         <image name="a1" width="150" height="128"/>
+        <image name="a10" width="150" height="128"/>
         <image name="a2" width="150" height="77"/>
+        <image name="a20" width="150" height="77"/>
         <image name="aA" width="150" height="192"/>
+        <image name="aA0" width="150" height="192"/>
         <image name="car2" width="200" height="147"/>
     </resources>
 </document>
