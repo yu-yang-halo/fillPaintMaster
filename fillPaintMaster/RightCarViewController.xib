@@ -7,6 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RightCarViewController">
             <connections>
+                <outlet property="c2Btn" destination="n1e-gG-TFf" id="c9k-KH-EZt"/>
+                <outlet property="d2Btn" destination="QCU-iM-nH2" id="lKs-G9-sRn"/>
+                <outlet property="e2Btn" destination="Gf4-T7-Hm3" id="4J4-Br-qpv"/>
+                <outlet property="f2Btn" destination="ENs-Qr-wBb" id="5vJ-XJ-UPf"/>
+                <outlet property="j2Btn" destination="sd6-0H-qIH" id="9dW-TS-BIF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,35 +27,35 @@
                             <rect key="frame" x="8" y="71" width="267" height="81"/>
                             <animations/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENs-Qr-wBb">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENs-Qr-wBb">
                             <rect key="frame" x="42" y="35" width="85" height="82"/>
                             <animations/>
                             <state key="normal" backgroundImage="f2"/>
                             <state key="selected" backgroundImage="f20"/>
                             <state key="highlighted" backgroundImage="f20"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gf4-T7-Hm3">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gf4-T7-Hm3">
                             <rect key="frame" x="152" y="34" width="85" height="82"/>
                             <animations/>
                             <state key="normal" backgroundImage="e2"/>
                             <state key="selected" backgroundImage="e20"/>
                             <state key="highlighted" backgroundImage="e20"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCU-iM-nH2">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCU-iM-nH2">
                             <rect key="frame" x="41" y="128" width="86" height="86"/>
                             <animations/>
                             <state key="normal" backgroundImage="d2"/>
                             <state key="selected" backgroundImage="d20"/>
                             <state key="highlighted" backgroundImage="d20"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1e-gG-TFf">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1e-gG-TFf">
                             <rect key="frame" x="168" y="130" width="83" height="81"/>
                             <animations/>
                             <state key="normal" backgroundImage="c2"/>
                             <state key="selected" backgroundImage="c20"/>
                             <state key="highlighted" backgroundImage="c20"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sd6-0H-qIH">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sd6-0H-qIH">
                             <rect key="frame" x="107" y="130" width="70" height="51"/>
                             <animations/>
                             <state key="normal" backgroundImage="j2"/>

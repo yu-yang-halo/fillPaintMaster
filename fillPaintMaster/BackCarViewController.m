@@ -7,8 +7,11 @@
 //
 
 #import "BackCarViewController.h"
-
+#import "TDConstants.h"
 @interface BackCarViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *bBBtn;
+@property (weak, nonatomic) IBOutlet UIButton *b2Btn;
+@property (weak, nonatomic) IBOutlet UIButton *b1Btn;
 
 @end
 
@@ -16,8 +19,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self initButton];
 }
+
+-(void)initButton{
+    
+    [self.bBBtn setTag:CAR_TYPE_BB];
+    [self.b1Btn setTag:CAR_TYPE_B1];
+    [self.b2Btn setTag:CAR_TYPE_B2];
+    
+    [self.bBBtn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.b1Btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.b2Btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+- (void)clickButton:(UIButton *)sender {
+    if(sender.selected){
+        [sender setSelected:NO];
+    }else{
+        [sender setSelected:YES];
+    }
+    switch (sender.tag) {
+        case 0:
+            /*
+             逻辑处理
+             */
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

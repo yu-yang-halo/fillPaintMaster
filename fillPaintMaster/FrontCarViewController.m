@@ -7,8 +7,11 @@
 //
 
 #import "FrontCarViewController.h"
-
+#import "TDConstants.h"
 @interface FrontCarViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *aABtn;
+@property (weak, nonatomic) IBOutlet UIButton *a1Btn;
+@property (weak, nonatomic) IBOutlet UIButton *a2Btn;
 
 @end
 
@@ -16,7 +19,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self initButton];
+}
+-(void)initButton{
+    
+    [self.aABtn setTag:CAR_TYPE_AA];
+    [self.a1Btn setTag:CAR_TYPE_A1];
+    [self.a2Btn setTag:CAR_TYPE_A2];
+    
+    [self.aABtn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.a1Btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.a2Btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+- (void)clickButton:(UIButton *)sender {
+    if(sender.selected){
+        [sender setSelected:NO];
+    }else{
+        [sender setSelected:YES];
+    }
+    switch (sender.tag) {
+        case 0:
+            /*
+             逻辑处理
+             */
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

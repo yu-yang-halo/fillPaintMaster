@@ -40,6 +40,9 @@
                             <state key="normal" title="预约">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="orderCommit:" destination="-1" eventType="touchUpInside" id="uYL-xj-byc"/>
+                            </connections>
                         </button>
                     </subviews>
                     <animations/>

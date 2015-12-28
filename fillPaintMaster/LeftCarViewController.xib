@@ -7,6 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeftCarViewController">
             <connections>
+                <outlet property="c1Btn" destination="dWJ-uY-0NR" id="GCt-J1-5NF"/>
+                <outlet property="d1Btn" destination="q8b-O1-BNy" id="WhD-Uf-caY"/>
+                <outlet property="e1Btn" destination="u1m-Gk-8Ls" id="eNR-ph-Ymr"/>
+                <outlet property="f1Btn" destination="lcP-OX-oze" id="5Tm-8e-kdG"/>
+                <outlet property="j1Btn" destination="twf-rA-98Q" id="RDQ-20-lGE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,35 +27,35 @@
                             <rect key="frame" x="18" y="47" width="246" height="81"/>
                             <animations/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1m-Gk-8Ls">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1m-Gk-8Ls">
                             <rect key="frame" x="48" y="8" width="85" height="82"/>
                             <animations/>
                             <state key="normal" backgroundImage="e1"/>
                             <state key="selected" backgroundImage="e10"/>
                             <state key="highlighted" backgroundImage="e10"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcP-OX-oze">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcP-OX-oze">
                             <rect key="frame" x="167" y="8" width="85" height="82"/>
                             <animations/>
                             <state key="normal" backgroundImage="f1"/>
                             <state key="selected" backgroundImage="f10"/>
                             <state key="highlighted" backgroundImage="f10"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWJ-uY-0NR">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWJ-uY-0NR">
                             <rect key="frame" x="36" y="109" width="86" height="86"/>
                             <animations/>
                             <state key="normal" backgroundImage="c1"/>
                             <state key="selected" backgroundImage="c10"/>
                             <state key="highlighted" backgroundImage="c10"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8b-O1-BNy">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8b-O1-BNy">
                             <rect key="frame" x="169" y="107" width="83" height="81"/>
                             <animations/>
                             <state key="normal" backgroundImage="d1"/>
                             <state key="selected" backgroundImage="d10"/>
                             <state key="highlighted" backgroundImage="d10"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twf-rA-98Q">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twf-rA-98Q">
                             <rect key="frame" x="105" y="107" width="70" height="51"/>
                             <animations/>
                             <state key="normal" backgroundImage="j1"/>

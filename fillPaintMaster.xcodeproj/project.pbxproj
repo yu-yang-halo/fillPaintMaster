@@ -80,6 +80,7 @@
 		183EAA111BB92E450029ED79 /* TDNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNavigationViewController.m; sourceTree = "<group>"; };
 		183EAA141BB94B3E0029ED79 /* TDAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDAdView.h; sourceTree = "<group>"; };
 		183EAA151BB94B3E0029ED79 /* TDAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDAdView.m; sourceTree = "<group>"; };
+		1842628E1C316DB3004EE482 /* TDConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDConstants.h; sourceTree = "<group>"; };
 		18B9324A1BA6A8C50019279E /* fillPaintMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fillPaintMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B9324E1BA6A8C50019279E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18B932501BA6A8C50019279E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -205,6 +206,13 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		1842628D1C31681D004EE482 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		18B932411BA6A8C50019279E = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +282,7 @@
 		18E809C41BC26F0C00712C43 /* Paint */ = {
 			isa = PBXGroup;
 			children = (
+				1842628D1C31681D004EE482 /* view */,
 				18E8ECFA1C2FC41800968CEB /* scroll */,
 				18E809C51BC28DC600712C43 /* TDPaintViewController.h */,
 				18E809C61BC28DC600712C43 /* TDPaintViewController.m */,
@@ -330,6 +339,7 @@
 				18E8ED141C2FE39700968CEB /* OtherCarViewController.h */,
 				18E8ED151C2FE39700968CEB /* OtherCarViewController.m */,
 				18E8ED161C2FE39700968CEB /* OtherCarViewController.xib */,
+				1842628E1C316DB3004EE482 /* TDConstants.h */,
 			);
 			name = scroll;
 			sourceTree = "<group>";

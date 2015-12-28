@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TopCarViewController">
             <connections>
+                <outlet property="gGBtn" destination="zoS-MZ-GxL" id="jjL-OA-KfV"/>
+                <outlet property="hHBtn" destination="Qn3-6G-bgi" id="QdT-EV-kVU"/>
+                <outlet property="iIBtn" destination="yzO-5x-ce3" id="3h8-91-p5y"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,26 +25,26 @@
                             <rect key="frame" x="18" y="47" width="246" height="95"/>
                             <animations/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qn3-6G-bgi">
-                            <rect key="frame" x="31" y="112" width="95" height="93"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qn3-6G-bgi">
+                            <rect key="frame" x="32" y="114" width="78" height="63"/>
                             <animations/>
                             <state key="normal" backgroundImage="hH"/>
                             <state key="selected" backgroundImage="hH0"/>
                             <state key="highlighted" backgroundImage="hH0"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzO-5x-ce3">
-                            <rect key="frame" x="54" y="10" width="82" height="87"/>
-                            <animations/>
-                            <state key="normal" backgroundImage="iI"/>
-                            <state key="selected" backgroundImage="iI0"/>
-                            <state key="highlighted" backgroundImage="iI0"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoS-MZ-GxL">
-                            <rect key="frame" x="148" y="106" width="88" height="79"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoS-MZ-GxL">
+                            <rect key="frame" x="150" y="115" width="84" height="48"/>
                             <animations/>
                             <state key="normal" backgroundImage="gG"/>
                             <state key="selected" backgroundImage="gG0"/>
                             <state key="highlighted" backgroundImage="gG0"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzO-5x-ce3">
+                            <rect key="frame" x="70" y="22" width="62" height="74"/>
+                            <animations/>
+                            <state key="normal" backgroundImage="iI"/>
+                            <state key="selected" backgroundImage="iI0"/>
+                            <state key="highlighted" backgroundImage="iI0"/>
                         </button>
                     </subviews>
                     <animations/>

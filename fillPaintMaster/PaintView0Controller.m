@@ -13,7 +13,7 @@
 #import "BackCarViewController.h"
 #import "TopCarViewController.h"
 #import "OtherCarViewController.h"
-const int PAGE_SIZE_NUM=5;
+const int PAGE_SIZE_NUM=6;
 
 @interface PaintView0Controller (){
     float offsetStartX;
@@ -23,6 +23,7 @@ const int PAGE_SIZE_NUM=5;
 @property (retain, nonatomic)  UIScrollView *scrollView;
 @property (retain, nonatomic)  UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
+- (IBAction)orderCommit:(id)sender;
 
 @end
 
@@ -47,6 +48,7 @@ const int PAGE_SIZE_NUM=5;
 
     self.pageControl=[[UIPageControl alloc] initWithFrame:CGRectMake(0, self.containerView.frame.size.height-30, self.containerView.frame.size.width,30)];
     [self.pageControl setNumberOfPages:PAGE_SIZE_NUM];
+    [self.pageControl setEnabled:NO];
     
     [self.pageControl setPageIndicatorTintColor:[UIColor grayColor]];
     [self.pageControl setCurrentPageIndicatorTintColor:[UIColor orangeColor]];
@@ -75,6 +77,7 @@ const int PAGE_SIZE_NUM=5;
         switch (i) {
             case 0:{
                 vc=[[LeftCarViewController alloc] init];
+                
             }
                 break;
                 
@@ -91,6 +94,10 @@ const int PAGE_SIZE_NUM=5;
             }
                 break;
             case 4:{
+                vc=[[TopCarViewController alloc] init];
+            }
+                break;
+            case 5:{
                 vc=[[OtherCarViewController alloc] init];
             }
                 break;
@@ -109,6 +116,25 @@ const int PAGE_SIZE_NUM=5;
 }
 
 
+- (void)clickButton:(UIButton *)sender {
+    if(sender.selected){
+        [sender setSelected:NO];
+    }else{
+        [sender setSelected:YES];
+    }
+    NSLog(@"sender tag:%d",sender.tag);
+    
+    switch (sender.tag) {
+        case 0:
+            /*
+             逻辑处理
+             */
+            break;
+            
+        default:
+            break;
+    }
+}
 #pragma mark delegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)_scrollView{
     //NSLog(@"scrollViewWillBeginDragging %@",_scrollView);
@@ -163,4 +189,8 @@ const int PAGE_SIZE_NUM=5;
 }
 
 
+- (IBAction)orderCommit:(id)sender {
+    
+    
+}
 @end
