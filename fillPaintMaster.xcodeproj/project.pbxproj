@@ -18,9 +18,7 @@
 		18B932551BA6A8C50019279E /* TDHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B932541BA6A8C50019279E /* TDHomeViewController.m */; };
 		18B932581BA6A8C50019279E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B932561BA6A8C50019279E /* Main.storyboard */; };
 		18B9325A1BA6A8C50019279E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B932591BA6A8C50019279E /* Assets.xcassets */; };
-		18B9325D1BA6A8C50019279E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B9325B1BA6A8C50019279E /* LaunchScreen.storyboard */; };
 		18B932681BA6A8C50019279E /* fillPaintMasterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B932671BA6A8C50019279E /* fillPaintMasterTests.m */; };
-		18B932731BA6A8C50019279E /* fillPaintMasterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B932721BA6A8C50019279E /* fillPaintMasterUITests.m */; };
 		18B932811BA6A9540019279E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18B932801BA6A9540019279E /* InfoPlist.strings */; };
 		18E809BA1BC230D200712C43 /* TDTableViewCell0.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E809B81BC230D200712C43 /* TDTableViewCell0.m */; };
 		18E809BB1BC230D200712C43 /* TDTableViewCell0.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E809B91BC230D200712C43 /* TDTableViewCell0.xib */; };
@@ -48,18 +46,13 @@
 		18E8ED131C2FE25A00968CEB /* TopCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E8ED111C2FE25A00968CEB /* TopCarViewController.xib */; };
 		18E8ED171C2FE39700968CEB /* OtherCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8ED151C2FE39700968CEB /* OtherCarViewController.m */; };
 		18E8ED181C2FE39700968CEB /* OtherCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E8ED161C2FE39700968CEB /* OtherCarViewController.xib */; };
+		848149081C32643500588564 /* DelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848149071C32643500588564 /* DelegateViewController.m */; };
+		8481490D1C326DFB00588564 /* TDButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481490C1C326DFB00588564 /* TDButtonView.m */; };
 		C6FF04885D98EFD277CD0577 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49336F7C7CEF0F6B8C6EC250 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		18B932641BA6A8C50019279E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 18B932421BA6A8C50019279E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 18B932491BA6A8C50019279E;
-			remoteInfo = fillPaintMaster;
-		};
-		18B9326F1BA6A8C50019279E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18B932421BA6A8C50019279E /* Project object */;
 			proxyType = 1;
@@ -89,12 +82,10 @@
 		18B932541BA6A8C50019279E /* TDHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDHomeViewController.m; sourceTree = "<group>"; };
 		18B932571BA6A8C50019279E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18B932591BA6A8C50019279E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		18B9325C1BA6A8C50019279E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18B9325E1BA6A8C50019279E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B932631BA6A8C50019279E /* fillPaintMasterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fillPaintMasterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B932671BA6A8C50019279E /* fillPaintMasterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fillPaintMasterTests.m; sourceTree = "<group>"; };
 		18B932691BA6A8C50019279E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18B9326E1BA6A8C50019279E /* fillPaintMasterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fillPaintMasterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B932721BA6A8C50019279E /* fillPaintMasterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fillPaintMasterUITests.m; sourceTree = "<group>"; };
 		18B932741BA6A8C50019279E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B932801BA6A9540019279E /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -141,6 +132,10 @@
 		18E8ED161C2FE39700968CEB /* OtherCarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherCarViewController.xib; sourceTree = "<group>"; };
 		40FB5D2497535D497A282D1A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		49336F7C7CEF0F6B8C6EC250 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		848149061C32643500588564 /* DelegateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateViewController.h; sourceTree = "<group>"; };
+		848149071C32643500588564 /* DelegateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateViewController.m; sourceTree = "<group>"; };
+		8481490B1C326DFB00588564 /* TDButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDButtonView.h; sourceTree = "<group>"; };
+		8481490C1C326DFB00588564 /* TDButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDButtonView.m; sourceTree = "<group>"; };
 		E2E5957C845E102A048E030F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,13 +149,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		18B932601BA6A8C50019279E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		18B9326B1BA6A8C50019279E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -209,6 +197,8 @@
 		1842628D1C31681D004EE482 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				8481490B1C326DFB00588564 /* TDButtonView.h */,
+				8481490C1C326DFB00588564 /* TDButtonView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -230,7 +220,6 @@
 			children = (
 				18B9324A1BA6A8C50019279E /* fillPaintMaster.app */,
 				18B932631BA6A8C50019279E /* fillPaintMasterTests.xctest */,
-				18B9326E1BA6A8C50019279E /* fillPaintMasterUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -245,7 +234,6 @@
 				18B932511BA6A8C50019279E /* AppDelegate.m */,
 				18B932561BA6A8C50019279E /* Main.storyboard */,
 				18B932591BA6A8C50019279E /* Assets.xcassets */,
-				18B9325B1BA6A8C50019279E /* LaunchScreen.storyboard */,
 				18B9325E1BA6A8C50019279E /* Info.plist */,
 				18B9324D1BA6A8C50019279E /* Supporting Files */,
 			);
@@ -340,6 +328,8 @@
 				18E8ED151C2FE39700968CEB /* OtherCarViewController.m */,
 				18E8ED161C2FE39700968CEB /* OtherCarViewController.xib */,
 				1842628E1C316DB3004EE482 /* TDConstants.h */,
+				848149061C32643500588564 /* DelegateViewController.h */,
+				848149071C32643500588564 /* DelegateViewController.m */,
 			);
 			name = scroll;
 			sourceTree = "<group>";
@@ -402,24 +392,6 @@
 			productReference = 18B932631BA6A8C50019279E /* fillPaintMasterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		18B9326D1BA6A8C50019279E /* fillPaintMasterUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 18B9327D1BA6A8C50019279E /* Build configuration list for PBXNativeTarget "fillPaintMasterUITests" */;
-			buildPhases = (
-				18B9326A1BA6A8C50019279E /* Sources */,
-				18B9326B1BA6A8C50019279E /* Frameworks */,
-				18B9326C1BA6A8C50019279E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				18B932701BA6A8C50019279E /* PBXTargetDependency */,
-			);
-			name = fillPaintMasterUITests;
-			productName = fillPaintMasterUITests;
-			productReference = 18B9326E1BA6A8C50019279E /* fillPaintMasterUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -433,10 +405,6 @@
 						CreatedOnToolsVersion = 7.1.1;
 					};
 					18B932621BA6A8C50019279E = {
-						CreatedOnToolsVersion = 7.1.1;
-						TestTargetID = 18B932491BA6A8C50019279E;
-					};
-					18B9326D1BA6A8C50019279E = {
 						CreatedOnToolsVersion = 7.1.1;
 						TestTargetID = 18B932491BA6A8C50019279E;
 					};
@@ -457,7 +425,6 @@
 			targets = (
 				18B932491BA6A8C50019279E /* fillPaintMaster */,
 				18B932621BA6A8C50019279E /* fillPaintMasterTests */,
-				18B9326D1BA6A8C50019279E /* fillPaintMasterUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -472,7 +439,6 @@
 				18E8ED181C2FE39700968CEB /* OtherCarViewController.xib in Resources */,
 				18E8ED041C2FDB8100968CEB /* RightCarViewController.xib in Resources */,
 				18E809C01BC248DF00712C43 /* TDTableViewCell1.xib in Resources */,
-				18B9325D1BA6A8C50019279E /* LaunchScreen.storyboard in Resources */,
 				18E809DB1BC2AD2800712C43 /* PaintView1Controller.xib in Resources */,
 				18E8ED0E1C2FE15A00968CEB /* BackCarViewController.xib in Resources */,
 				18E8ED091C2FDD4200968CEB /* FrontCarViewController.xib in Resources */,
@@ -487,13 +453,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		18B932611BA6A8C50019279E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		18B9326C1BA6A8C50019279E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -558,6 +517,7 @@
 				18E8ED0D1C2FE15A00968CEB /* BackCarViewController.m in Sources */,
 				18E8A11B1BBA207800FBD3F4 /* CarBeautyViewController.m in Sources */,
 				18E8ED081C2FDD4200968CEB /* FrontCarViewController.m in Sources */,
+				8481490D1C326DFB00588564 /* TDButtonView.m in Sources */,
 				18E8ED121C2FE25A00968CEB /* TopCarViewController.m in Sources */,
 				18E809C31BC255CD00712C43 /* OrderSuccessViewController.m in Sources */,
 				18B932551BA6A8C50019279E /* TDHomeViewController.m in Sources */,
@@ -568,6 +528,7 @@
 				18E8A1231BBA468600FBD3F4 /* TDBeautyTableViewCell.m in Sources */,
 				18E809DA1BC2AD2800712C43 /* PaintView1Controller.m in Sources */,
 				18B932521BA6A8C50019279E /* AppDelegate.m in Sources */,
+				848149081C32643500588564 /* DelegateViewController.m in Sources */,
 				183EAA121BB92E450029ED79 /* TDNavigationViewController.m in Sources */,
 				18E8ED031C2FDB8100968CEB /* RightCarViewController.m in Sources */,
 				18248FF11BBEB490008D3C36 /* OrderReViewController.m in Sources */,
@@ -589,14 +550,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		18B9326A1BA6A8C50019279E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				18B932731BA6A8C50019279E /* fillPaintMasterUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -604,11 +557,6 @@
 			isa = PBXTargetDependency;
 			target = 18B932491BA6A8C50019279E /* fillPaintMaster */;
 			targetProxy = 18B932641BA6A8C50019279E /* PBXContainerItemProxy */;
-		};
-		18B932701BA6A8C50019279E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 18B932491BA6A8C50019279E /* fillPaintMaster */;
-			targetProxy = 18B9326F1BA6A8C50019279E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -619,14 +567,6 @@
 				18B932571BA6A8C50019279E /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		18B9325B1BA6A8C50019279E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18B9325C1BA6A8C50019279E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -762,30 +702,6 @@
 			};
 			name = Release;
 		};
-		18B9327E1BA6A8C50019279E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = fillPaintMasterUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.yuyang.fillPaintMasterUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = fillPaintMaster;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		18B9327F1BA6A8C50019279E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = fillPaintMasterUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.yuyang.fillPaintMasterUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = fillPaintMaster;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -812,15 +728,6 @@
 			buildConfigurations = (
 				18B9327B1BA6A8C50019279E /* Debug */,
 				18B9327C1BA6A8C50019279E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		18B9327D1BA6A8C50019279E /* Build configuration list for PBXNativeTarget "fillPaintMasterUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				18B9327E1BA6A8C50019279E /* Debug */,
-				18B9327F1BA6A8C50019279E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

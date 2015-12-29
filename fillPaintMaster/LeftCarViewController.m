@@ -37,30 +37,14 @@
     [self.f1Btn setTag:CAR_TYPE_F1];
     [self.j1Btn setTag:CAR_TYPE_J1];
     
-    [self.c1Btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.d1Btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.e1Btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.f1Btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.j1Btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.c1Btn addTarget:self.viewDelegate action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.d1Btn addTarget:self.viewDelegate action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.e1Btn addTarget:self.viewDelegate action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.f1Btn addTarget:self.viewDelegate action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.j1Btn addTarget:self.viewDelegate action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)clickButton:(UIButton *)sender {
-    if(sender.selected){
-        [sender setSelected:NO];
-    }else{
-        [sender setSelected:YES];
-    }
-    switch (sender.tag) {
-        case 0:
-            /*
-             逻辑处理
-             */
-            break;
-            
-        default:
-            break;
-    }
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

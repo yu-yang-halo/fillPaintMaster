@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface RightCarViewController : UIViewController
+#import "DelegateViewController.h"
+@interface RightCarViewController : DelegateViewController
 
 @end

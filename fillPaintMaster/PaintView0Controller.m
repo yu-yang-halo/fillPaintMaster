@@ -15,7 +15,7 @@
 #import "OtherCarViewController.h"
 const int PAGE_SIZE_NUM=6;
 
-@interface PaintView0Controller (){
+@interface PaintView0Controller ()<OutOfViewLoadDelegate>{
     float offsetStartX;
     float offsetEndX;
      int  pageIndex;
@@ -73,10 +73,11 @@ const int PAGE_SIZE_NUM=6;
 - (void)viewDidLayoutSubviews NS_AVAILABLE_IOS(5_0){
     [self initView];
     for (int i=0; i<PAGE_SIZE_NUM; i++) {
-        UIViewController *vc=nil;
+        DelegateViewController *vc=nil;
         switch (i) {
             case 0:{
                 vc=[[LeftCarViewController alloc] init];
+                
                 
             }
                 break;
@@ -103,6 +104,7 @@ const int PAGE_SIZE_NUM=6;
                 break;
         }
         if(vc!=nil){
+            [vc setViewDelegate:self];
             vc.view.frame=CGRectMake(self.scrollView.frame.size.width*i, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
             
             

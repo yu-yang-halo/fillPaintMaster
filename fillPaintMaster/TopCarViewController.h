@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface TopCarViewController : UIViewController
+#import "DelegateViewController.h"
+@interface TopCarViewController : DelegateViewController
 
 @end

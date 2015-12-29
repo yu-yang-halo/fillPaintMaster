@@ -28,30 +28,11 @@
     [self.iIBtn setTag:CAR_TYPE_II];
     
     
-    [self.gGBtn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.hHBtn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.iIBtn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.gGBtn addTarget:self.viewDelegate action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.hHBtn addTarget:self.viewDelegate action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.iIBtn addTarget:self.viewDelegate action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
     
 }
-
-- (void)clickButton:(UIButton *)sender {
-    if(sender.selected){
-        [sender setSelected:NO];
-    }else{
-        [sender setSelected:YES];
-    }
-    switch (sender.tag) {
-        case 0:
-            /*
-             逻辑处理
-             */
-            break;
-            
-        default:
-            break;
-    }
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

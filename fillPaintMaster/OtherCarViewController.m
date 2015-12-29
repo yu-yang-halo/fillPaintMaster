@@ -7,8 +7,9 @@
 //
 
 #import "OtherCarViewController.h"
-
+#import "TDButtonView.h"
 @interface OtherCarViewController ()
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 @end
 
@@ -16,7 +17,50 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    float w=self.containerView.frame.size.width;
+    float h=self.containerView.frame.size.height;
+    float space=(w-100*3)/4.0;
+    
+    
+    for(int i=0;i<3;i++){
+        TDButtonView *tdBtnView=[[TDButtonView alloc] initWithFrame:CGRectMake(space*(i+1)+100*i, (h-90)/2, 100, 90)];
+        [tdBtnView setTag:i];
+        switch(i){
+            case 0:{
+                
+                [tdBtnView.textLabel setText:@"K1-左前反光镜"];
+                [tdBtnView.imageView setImage:[UIImage imageNamed:@"k1"]];
+                [tdBtnView.numbersLabel setText:@"1"];
+                break;
+            }
+                case 1:
+            {
+                [tdBtnView.textLabel setText:@"Q-门把手"];
+                [tdBtnView.imageView setImage:[UIImage imageNamed:@"qQ"]];
+                [tdBtnView.numbersLabel setText:@"2"];
+                
+                break;
+            }
+                case 2:
+            {
+                [tdBtnView.textLabel setText:@"K2-右前反光镜"];
+                [tdBtnView.imageView setImage:[UIImage imageNamed:@"k2"]];
+                [tdBtnView.numbersLabel setText:@"1"];
+                
+                break;
+            }
+        }
+        
+       
+
+        
+        [self.containerView addSubview:tdBtnView];
+    }
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
