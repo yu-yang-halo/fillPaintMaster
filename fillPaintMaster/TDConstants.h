@@ -37,7 +37,12 @@ typedef NS_ENUM(NSUInteger, CAR_TYPE) {
     /* top */
     CAR_TYPE_GG,
     CAR_TYPE_HH,
-    CAR_TYPE_II
+    CAR_TYPE_II,
+    
+    /*  k1 qQ k2  */
+    CAR_TYPE_K1,
+    CAR_TYPE_qQ,
+    CAR_TYPE_K2
     
     
 };

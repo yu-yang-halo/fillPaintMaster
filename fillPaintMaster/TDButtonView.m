@@ -35,7 +35,7 @@
     [self.textLabel setFont:[UIFont systemFontOfSize:13]];
     
     
-    self.imageView=[[UIImageView alloc] initWithFrame:CGRectMake((frame.size.width-40)/2,(frame.size.height-40)/2,40,40)];
+    self.imageView=[[UIImageView alloc] initWithFrame:CGRectMake((frame.size.width-40)/2,(frame.size.height-30)/2,40,30)];
     
     
     self.numbersLabel=[[UILabel alloc] initWithFrame:CGRectMake(0,frame.size.height-25, frame.size.width,25)];

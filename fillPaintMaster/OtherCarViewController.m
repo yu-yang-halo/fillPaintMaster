@@ -8,6 +8,7 @@
 
 #import "OtherCarViewController.h"
 #import "TDButtonView.h"
+#import "TDConstants.h"
 @interface OtherCarViewController ()
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 
@@ -31,14 +32,16 @@
                 
                 [tdBtnView.textLabel setText:@"K1-左前反光镜"];
                 [tdBtnView.imageView setImage:[UIImage imageNamed:@"k1"]];
-                [tdBtnView.numbersLabel setText:@"1"];
+                [tdBtnView.numbersLabel setText:@"0"];
+                [tdBtnView setTag:CAR_TYPE_K1];
                 break;
             }
                 case 1:
             {
                 [tdBtnView.textLabel setText:@"Q-门把手"];
                 [tdBtnView.imageView setImage:[UIImage imageNamed:@"qQ"]];
-                [tdBtnView.numbersLabel setText:@"2"];
+                [tdBtnView.numbersLabel setText:@"0"];
+                [tdBtnView setTag:CAR_TYPE_qQ];
                 
                 break;
             }
@@ -46,13 +49,18 @@
             {
                 [tdBtnView.textLabel setText:@"K2-右前反光镜"];
                 [tdBtnView.imageView setImage:[UIImage imageNamed:@"k2"]];
-                [tdBtnView.numbersLabel setText:@"1"];
+                [tdBtnView.numbersLabel setText:@"0"];
+                [tdBtnView setTag:CAR_TYPE_K2];
                 
                 break;
             }
         }
         
        
+        UITapGestureRecognizer *tapGestureRecognizer=[[UITapGestureRecognizer alloc] initWithTarget:self.viewDelegate action:@selector(clickView:)];
+        [tapGestureRecognizer setNumberOfTapsRequired:1];
+        
+        [tdBtnView addGestureRecognizer:tapGestureRecognizer];
 
         
         [self.containerView addSubview:tdBtnView];

@@ -10,6 +10,7 @@
 @protocol OutOfViewLoadDelegate<NSObject>
 
 - (void)clickButton:(UIButton *)sender;
+- (void)clickView:(id)sender;
 
 @end
 

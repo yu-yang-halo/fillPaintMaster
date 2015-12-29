@@ -13,12 +13,18 @@
 #import "BackCarViewController.h"
 #import "TopCarViewController.h"
 #import "OtherCarViewController.h"
+#import "TDConstants.h"
+#import "TDButtonView.h"
 const int PAGE_SIZE_NUM=6;
 
 @interface PaintView0Controller ()<OutOfViewLoadDelegate>{
     float offsetStartX;
     float offsetEndX;
      int  pageIndex;
+    
+    NSUInteger k1_number;
+    NSUInteger qQ_number;
+    NSUInteger k2_number;
 }
 @property (retain, nonatomic)  UIScrollView *scrollView;
 @property (retain, nonatomic)  UIPageControl *pageControl;
@@ -78,7 +84,6 @@ const int PAGE_SIZE_NUM=6;
             case 0:{
                 vc=[[LeftCarViewController alloc] init];
                 
-                
             }
                 break;
                 
@@ -105,7 +110,7 @@ const int PAGE_SIZE_NUM=6;
         }
         if(vc!=nil){
             [vc setViewDelegate:self];
-            vc.view.frame=CGRectMake(self.scrollView.frame.size.width*i, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+             vc.view.frame=CGRectMake(self.scrollView.frame.size.width*i, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
             
             
             
@@ -117,7 +122,34 @@ const int PAGE_SIZE_NUM=6;
 
 }
 
-
+-(void)clickView:(UITapGestureRecognizer *)sender{
+    NSLog(@"sender.view.tag :%d",sender.view.tag);
+    if([sender.view isKindOfClass:[TDButtonView class]]){
+        TDButtonView *tdBtnView=(TDButtonView *)sender.view;
+        if(sender.view.tag==CAR_TYPE_K1){
+            k1_number++;
+            if(k1_number>2){
+                k1_number=0;
+            }
+            [tdBtnView.numbersLabel setText:[NSString stringWithFormat:@"%d",k1_number]];
+        }else  if(sender.view.tag==CAR_TYPE_K2){
+            k2_number++;
+            if(k2_number>2){
+                k2_number=0;
+            }
+            [tdBtnView.numbersLabel setText:[NSString stringWithFormat:@"%d",k2_number]];
+        }else  if(sender.view.tag==CAR_TYPE_qQ){
+            qQ_number++;
+            if(qQ_number>4){
+                qQ_number=0;
+            }
+            [tdBtnView.numbersLabel setText:[NSString stringWithFormat:@"%d",qQ_number]];
+        }
+        
+    }
+    
+    
+}
 - (void)clickButton:(UIButton *)sender {
     if(sender.selected){
         [sender setSelected:NO];
