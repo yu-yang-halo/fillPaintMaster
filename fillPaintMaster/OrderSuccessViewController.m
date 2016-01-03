@@ -7,7 +7,7 @@
 //
 
 #import "OrderSuccessViewController.h"
-
+#import "OrderDetailViewController.h"
 @interface OrderSuccessViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *contactsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *carInfoLabel;
@@ -84,7 +84,10 @@
 
 
 - (IBAction)bookDetailAction:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+   
+    OrderDetailViewController *orderDetail=[[OrderDetailViewController alloc] init];
+    [self.navigationController pushViewController:orderDetail animated:YES];
+    
 }
 
 - (IBAction)backHomeAction:(id)sender {

@@ -1,20 +1,22 @@
 //
-//  TDPaintViewController.m
+//  TDShopViewController.m
 //  fillPaintMaster
 //
-//  Created by apple on 15/10/5.
-//  Copyright © 2015年 LZTech. All rights reserved.
+//  Created by apple on 16/1/1.
+//  Copyright © 2016年 LZTech. All rights reserved.
 //
 
-#import "TDPaintViewController.h"
-#import "PaintView0Controller.h"
-#import "PaintView1Controller.h"
-@interface TDPaintViewController (){
-    PaintView0Controller *p0;
-    PaintView1Controller *p1;
-    
+#import "TDShopViewController.h"
+#import "ShopView0Controller.h"
+#import "ShopView1Controller.h"
 
+@interface TDShopViewController (){
+    ShopView0Controller *s0;
+    
+    ShopView1Controller *s1;
+    
 }
+
 @property (weak, nonatomic) IBOutlet UIButton *btn0;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 
@@ -23,30 +25,30 @@
 
 @end
 
-@implementation TDPaintViewController
+@implementation TDShopViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
     [self initTitleView];
     [self initButton];
     
-    p0=[[PaintView0Controller alloc] init];
-    [p0 setTdPaintVCDelegate:self];
-    p0.view.frame=self.containerView.bounds;
+    s0=[[ShopView0Controller alloc] init];
+    [s0 setTdShopVCDelegate:self];
+    s0.view.frame=self.containerView.bounds;
     
-    p1=[[PaintView1Controller alloc] init];
-    [p1 setTdPaintVCDelegate:self];
-    p1.view.frame=self.containerView.bounds;
     
-    [self.containerView addSubview:p0.view];
-    [self.containerView addSubview:p1.view];
-    [self.containerView bringSubviewToFront:p0.view];
+    s1=[[ShopView1Controller alloc] init];
+    [s1 setTdShopVCDelegate:self];
+    s1.view.frame=self.containerView.bounds;
+    [s0.view setBackgroundColor:[UIColor purpleColor]];
+    
+    
+    [self.containerView addSubview:s0.view];
+    [self.containerView addSubview:s1.view];
+    [self.containerView bringSubviewToFront:s0.view];
 }
 
-
--(void)viewDidAppear:(BOOL)animated{
-  
-}
 
 -(void)initButton{
     [self.btn0 setSelected:YES];
@@ -63,21 +65,21 @@
         if(sender.selected){
             [sender setSelected:NO];
             [self.btn1 setSelected:YES];
-            [self.containerView bringSubviewToFront:p1.view];
+            [self.containerView bringSubviewToFront:s1.view];
         }else{
             [sender setSelected:YES];
             [self.btn1 setSelected:NO];
-            [self.containerView bringSubviewToFront:p0.view];
+            [self.containerView bringSubviewToFront:s0.view];
         }
     }else{
         if(sender.selected){
             [sender setSelected:NO];
             [self.btn0 setSelected:YES];
-            [self.containerView bringSubviewToFront:p0.view];
+            [self.containerView bringSubviewToFront:s0.view];
         }else{
             [sender setSelected:YES];
             [self.btn0 setSelected:NO];
-            [self.containerView bringSubviewToFront:p1.view];
+            [self.containerView bringSubviewToFront:s1.view];
         }
     }
 }
@@ -101,7 +103,7 @@
     UILabel *cphLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 150, 20)];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [titleLabel setText:@"洗车美容"];
+    [titleLabel setText:@"门店"];
     
     [cphLabel setTextAlignment:NSTextAlignmentCenter];
     [cphLabel setFont:[UIFont systemFontOfSize:10]];
@@ -120,6 +122,7 @@
 -(void)back:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -134,5 +137,6 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 @end

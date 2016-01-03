@@ -19,23 +19,35 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1eB-tk-byT">
                     <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7R-Rv-yse">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7R-Rv-yse">
                             <rect key="frame" x="2" y="1" width="52" height="47"/>
                             <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="47" id="39h-1w-3zE"/>
+                                <constraint firstAttribute="width" constant="52" id="j3V-fB-Bx4"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <state key="normal" backgroundImage="cart"/>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atd-K3-8AW">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atd-K3-8AW">
                             <rect key="frame" x="62" y="7" width="138" height="34"/>
                             <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="138" id="1E7-bM-SDn"/>
+                                <constraint firstAttribute="height" constant="34" id="oOi-aF-e2P"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" red="0.40011452879999998" green="0.40011452879999998" blue="0.40011452879999998" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLh-It-bYz">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLh-It-bYz">
                             <rect key="frame" x="232" y="7" width="80" height="34"/>
                             <animations/>
                             <color key="backgroundColor" red="0.71682453459999995" green="1" blue="0.60469191280000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="hFX-Rn-hY6"/>
+                                <constraint firstAttribute="height" constant="34" id="t3T-0i-kgb"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <state key="normal" title="预约">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,13 +60,18 @@
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="atd-K3-8AW" firstAttribute="leading" secondItem="u7R-Rv-yse" secondAttribute="trailing" constant="8" id="NPY-VD-MaB"/>
                         <constraint firstAttribute="height" constant="49" id="Tv8-YY-AKO"/>
+                        <constraint firstItem="atd-K3-8AW" firstAttribute="top" secondItem="1eB-tk-byT" secondAttribute="top" constant="7" id="VCW-xd-eBM"/>
+                        <constraint firstItem="fLh-It-bYz" firstAttribute="top" secondItem="1eB-tk-byT" secondAttribute="top" constant="7" id="ctN-nO-L0i"/>
+                        <constraint firstAttribute="trailing" secondItem="fLh-It-bYz" secondAttribute="trailing" constant="8" id="prP-i6-EIj"/>
+                        <constraint firstItem="u7R-Rv-yse" firstAttribute="top" secondItem="1eB-tk-byT" secondAttribute="top" constant="1" id="syQ-Ju-VTc"/>
+                        <constraint firstItem="u7R-Rv-yse" firstAttribute="leading" secondItem="1eB-tk-byT" secondAttribute="leading" constant="2" id="z5h-s7-cB0"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBd-0e-l4J">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                     <animations/>
-                    <color key="backgroundColor" red="0.26608883030000002" green="1" blue="0.47942269329999998" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <animations/>

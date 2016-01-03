@@ -10,4 +10,6 @@
 
 @interface PaintView0Controller : UIViewController<UIScrollViewDelegate>
 
+@property(nonatomic,weak) UIViewController *tdPaintVCDelegate;
+
 @end

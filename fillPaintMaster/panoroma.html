@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <style type="text/css">
+            body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";background-color:white;}
+            #panorama {width:100%; height: 100%;}
+            #result {width:100%;font-size:12px;}
+            </style>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7XyNsVGOgouwA8SHBuBu6naQ"></script>
+        <title>添加/删除全景相册控件</title>
+    </head>
+    <body>
+        <div id="panorama"></div>
+    </body>
+</html>
+<script type="text/javascript">
+    var panorama = new BMap.Panorama('panorama', {
+                                     albumsControl: true //默认为不显示相册控件，默认值为false
+                                     });
+                                     panorama.setPosition(new BMap.Point(116.316169, 40.005567));
+                                     panorama.setPov({pitch: 5.04, heading: 343.92});
+                                
+                                     panorama.setOptions({
+                                                             albumsControlOptions: {
+                                                             maxWidth: '100%',
+                                                             imageHeight: 80
+                                                                                                 }
+                                                                                                 });
+                                                                                                 
+                                                            </script>
+

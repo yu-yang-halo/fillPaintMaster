@@ -10,4 +10,7 @@
 
 @interface PaintView1Controller : UIViewController
 
+@property(nonatomic,weak) UIViewController *tdPaintVCDelegate;
+
+
 @end

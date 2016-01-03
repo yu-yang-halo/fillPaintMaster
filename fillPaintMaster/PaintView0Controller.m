@@ -15,6 +15,7 @@
 #import "OtherCarViewController.h"
 #import "TDConstants.h"
 #import "TDButtonView.h"
+#import "OrderReViewController.h"
 const int PAGE_SIZE_NUM=6;
 
 @interface PaintView0Controller ()<OutOfViewLoadDelegate>{
@@ -224,6 +225,10 @@ const int PAGE_SIZE_NUM=6;
 
 
 - (IBAction)orderCommit:(id)sender {
+    
+    UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    UIViewController *orderVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderVC"];
+    [self.tdPaintVCDelegate.navigationController pushViewController:orderVC animated:YES];
     
     
 }

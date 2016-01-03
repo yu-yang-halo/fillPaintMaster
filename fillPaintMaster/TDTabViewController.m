@@ -26,7 +26,7 @@
     UIView *barView=[[UIView alloc] initWithFrame:self.tabBar.frame];
     float width=self.tabBar.frame.size.width;
     float height=self.tabBar.frame.size.height;
-    float BUTTON_W=55;
+    float BUTTON_W=60;
     float BUTTON_H=46;
     
     [barView setBackgroundColor:[UIColor whiteColor]];

@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "TDHomeViewController.h"
 #import "TDAdView.h"
+#import "TDLoginViewController.h"
 const float ICON_WIDTH=130;
 const float ICON_HEIGHT=90;
 @interface TDHomeViewController ()
@@ -62,30 +63,59 @@ const float ICON_HEIGHT=90;
     
     switch (sender.tag) {
         case 0:{
+            /*
+             汽车美容
+             */
             UIViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"beautyVC"];
             [self.tabBarController.navigationController pushViewController:vc animated:YES];
             
                }
             break;
         case 1:
+        {
+            /*
+             换油保养
+             */
+            UIViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"beautyVC"];
+            [self.tabBarController.navigationController pushViewController:vc animated:YES];
             
+        }
             break;
         case 2:{
-            
+            /*
+             钣金喷漆
+             */
             UIViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"tdPaintVC"];
             [self.tabBarController.navigationController pushViewController:vc animated:YES];
             
         }
             
             break;
-        case 3:
+        case 3:{
+            /*
+             手机探店
+             */
+            UIViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"tdShopVC"];
+            [self.tabBarController.navigationController pushViewController:vc animated:YES];
+        }
             
             break;
         case 4:
+            /*
+             车险直销
+             */
             
             break;
         case 5:
-            
+            /*
+             产品超市
+             */
+        {
+            TDLoginViewController *tdLoginVC=[[TDLoginViewController alloc] init];
+            [self presentViewController:tdLoginVC animated:YES completion:^{
+                
+            }];
+        }
             break;
             
     }

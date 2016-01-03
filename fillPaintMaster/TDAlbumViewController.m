@@ -1,85 +1,23 @@
 //
-//  TDPaintViewController.m
+//  TDAlbumViewController.m
 //  fillPaintMaster
 //
-//  Created by apple on 15/10/5.
-//  Copyright © 2015年 LZTech. All rights reserved.
+//  Created by apple on 16/1/2.
+//  Copyright © 2016年 LZTech. All rights reserved.
 //
 
-#import "TDPaintViewController.h"
-#import "PaintView0Controller.h"
-#import "PaintView1Controller.h"
-@interface TDPaintViewController (){
-    PaintView0Controller *p0;
-    PaintView1Controller *p1;
-    
-
-}
-@property (weak, nonatomic) IBOutlet UIButton *btn0;
-@property (weak, nonatomic) IBOutlet UIButton *btn1;
-
-
-@property (weak, nonatomic) IBOutlet UIView *containerView;
-
+#import "TDAlbumViewController.h"
+#import <UIView+Toast.h>
+@interface TDAlbumViewController ()
+@property (retain, nonatomic) UIWebView *webView;
 @end
 
-@implementation TDPaintViewController
+@implementation TDAlbumViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTitleView];
-    [self initButton];
-    
-    p0=[[PaintView0Controller alloc] init];
-    [p0 setTdPaintVCDelegate:self];
-    p0.view.frame=self.containerView.bounds;
-    
-    p1=[[PaintView1Controller alloc] init];
-    [p1 setTdPaintVCDelegate:self];
-    p1.view.frame=self.containerView.bounds;
-    
-    [self.containerView addSubview:p0.view];
-    [self.containerView addSubview:p1.view];
-    [self.containerView bringSubviewToFront:p0.view];
-}
-
-
--(void)viewDidAppear:(BOOL)animated{
-  
-}
-
--(void)initButton{
-    [self.btn0 setSelected:YES];
-    [self.btn0 setTag:0];
-    [self.btn0 addTarget:self action:@selector(switchView:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.btn1 setSelected:NO];
-    [self.btn1 setTag:1];
-    [self.btn1 addTarget:self action:@selector(switchView:) forControlEvents:UIControlEventTouchUpInside];
-    
-}
--(void)switchView:(UIButton *)sender{
-    if(sender.tag==0){
-        if(sender.selected){
-            [sender setSelected:NO];
-            [self.btn1 setSelected:YES];
-            [self.containerView bringSubviewToFront:p1.view];
-        }else{
-            [sender setSelected:YES];
-            [self.btn1 setSelected:NO];
-            [self.containerView bringSubviewToFront:p0.view];
-        }
-    }else{
-        if(sender.selected){
-            [sender setSelected:NO];
-            [self.btn0 setSelected:YES];
-            [self.containerView bringSubviewToFront:p0.view];
-        }else{
-            [sender setSelected:YES];
-            [self.btn0 setSelected:NO];
-            [self.containerView bringSubviewToFront:p1.view];
-        }
-    }
+    [self initMapView];
 }
 
 -(void)initTitleView{
@@ -101,7 +39,7 @@
     UILabel *cphLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 150, 20)];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [titleLabel setText:@"洗车美容"];
+    [titleLabel setText:@"门店"];
     
     [cphLabel setTextAlignment:NSTextAlignmentCenter];
     [cphLabel setFont:[UIFont systemFontOfSize:10]];
@@ -120,6 +58,40 @@
 -(void)back:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+-(void)initMapView{
+    //panoroma.html
+    self.webView=[[UIWebView alloc] initWithFrame:self.view.bounds];
+    self.webView.delegate=self;
+    
+    NSString *path=[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"panoroma.html"];
+    
+    NSString *htmlString=[[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    
+    
+    [self.webView loadHTMLString:htmlString baseURL:[[NSBundle mainBundle] bundleURL]];
+    
+    [self.view addSubview:_webView];
+}
+
+
+-(void)viewDidLayoutSubviews{
+    self.webView.frame=self.view.bounds;
+}
+
+
+
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    NSLog(@"webViewDidStartLoad");
+    [self.view makeToastActivity:CSToastPositionCenter];
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    NSLog(@"webViewDidFinishLoad");
+    [self.view hideToastActivity];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

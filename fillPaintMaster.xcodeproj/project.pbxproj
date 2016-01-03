@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1803C3201C36598D003157F1 /* panoroma.html in Resources */ = {isa = PBXBuildFile; fileRef = 1803C31F1C36598D003157F1 /* panoroma.html */; };
+		1803C3251C36905B003157F1 /* 360.png in Resources */ = {isa = PBXBuildFile; fileRef = 1803C3231C36905B003157F1 /* 360.png */; };
+		1803C3281C36A67F003157F1 /* location.html in Resources */ = {isa = PBXBuildFile; fileRef = 1803C3261C36A67F003157F1 /* location.html */; };
+		1803C3291C36A67F003157F1 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1803C3271C36A67F003157F1 /* arrow.png */; };
+		1803C32B1C36B37F003157F1 /* loc.png in Resources */ = {isa = PBXBuildFile; fileRef = 1803C32A1C36B37F003157F1 /* loc.png */; };
 		18248FF11BBEB490008D3C36 /* OrderReViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18248FF01BBEB490008D3C36 /* OrderReViewController.m */; };
 		18248FF51BBEB851008D3C36 /* TDBeautyTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 18248FF31BBEB851008D3C36 /* TDBeautyTableViewCell2.m */; };
 		18248FF61BBEB851008D3C36 /* TDBeautyTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18248FF41BBEB851008D3C36 /* TDBeautyTableViewCell2.xib */; };
@@ -46,6 +51,21 @@
 		18E8ED131C2FE25A00968CEB /* TopCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E8ED111C2FE25A00968CEB /* TopCarViewController.xib */; };
 		18E8ED171C2FE39700968CEB /* OtherCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8ED151C2FE39700968CEB /* OtherCarViewController.m */; };
 		18E8ED181C2FE39700968CEB /* OtherCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E8ED161C2FE39700968CEB /* OtherCarViewController.xib */; };
+		18EB1AEE1C37759000791849 /* TDAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB1AEC1C37759000791849 /* TDAlbumViewController.m */; };
+		18EB1AEF1C37759000791849 /* TDAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB1AED1C37759000791849 /* TDAlbumViewController.xib */; };
+		18EB1AF41C378A9E00791849 /* TDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB1AF21C378A9E00791849 /* TDLoginViewController.m */; };
+		18EB1AF51C378A9E00791849 /* TDLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB1AF31C378A9E00791849 /* TDLoginViewController.xib */; };
+		18EB1AF91C37934600791849 /* TDIdCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB1AF71C37934600791849 /* TDIdCodeViewController.m */; };
+		18EB1AFA1C37934600791849 /* TDIdCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB1AF81C37934600791849 /* TDIdCodeViewController.xib */; };
+		18EB1AFE1C37985900791849 /* TDPassSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB1AFC1C37985900791849 /* TDPassSetViewController.m */; };
+		18EB1AFF1C37985900791849 /* TDPassSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB1AFD1C37985900791849 /* TDPassSetViewController.xib */; };
+		18ED343D1C3613EB0085B250 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED343B1C3613EB0085B250 /* OrderDetailViewController.m */; };
+		18ED343E1C3613EB0085B250 /* OrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED343C1C3613EB0085B250 /* OrderDetailViewController.xib */; };
+		18ED34421C3627020085B250 /* TDShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED34411C3627020085B250 /* TDShopViewController.m */; };
+		18ED34461C3627B60085B250 /* ShopView0Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED34441C3627B60085B250 /* ShopView0Controller.m */; };
+		18ED34471C3627B60085B250 /* ShopView0Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED34451C3627B60085B250 /* ShopView0Controller.xib */; };
+		18ED344B1C3627C60085B250 /* ShopView1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED34491C3627C60085B250 /* ShopView1Controller.m */; };
+		18ED344C1C3627C60085B250 /* ShopView1Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED344A1C3627C60085B250 /* ShopView1Controller.xib */; };
 		848149081C32643500588564 /* DelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848149071C32643500588564 /* DelegateViewController.m */; };
 		8481490D1C326DFB00588564 /* TDButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481490C1C326DFB00588564 /* TDButtonView.m */; };
 		C6FF04885D98EFD277CD0577 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49336F7C7CEF0F6B8C6EC250 /* libPods.a */; };
@@ -62,6 +82,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1803C31F1C36598D003157F1 /* panoroma.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = panoroma.html; sourceTree = "<group>"; };
+		1803C3231C36905B003157F1 /* 360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 360.png; sourceTree = "<group>"; };
+		1803C3261C36A67F003157F1 /* location.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = location.html; sourceTree = "<group>"; };
+		1803C3271C36A67F003157F1 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		1803C32A1C36B37F003157F1 /* loc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loc.png; sourceTree = "<group>"; };
 		18248FEF1BBEB490008D3C36 /* OrderReViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderReViewController.h; sourceTree = "<group>"; };
 		18248FF01BBEB490008D3C36 /* OrderReViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderReViewController.m; sourceTree = "<group>"; };
 		18248FF21BBEB851008D3C36 /* TDBeautyTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBeautyTableViewCell2.h; sourceTree = "<group>"; };
@@ -130,6 +155,29 @@
 		18E8ED141C2FE39700968CEB /* OtherCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherCarViewController.h; sourceTree = "<group>"; };
 		18E8ED151C2FE39700968CEB /* OtherCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherCarViewController.m; sourceTree = "<group>"; };
 		18E8ED161C2FE39700968CEB /* OtherCarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherCarViewController.xib; sourceTree = "<group>"; };
+		18EB1AEB1C37759000791849 /* TDAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDAlbumViewController.h; sourceTree = "<group>"; };
+		18EB1AEC1C37759000791849 /* TDAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDAlbumViewController.m; sourceTree = "<group>"; };
+		18EB1AED1C37759000791849 /* TDAlbumViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDAlbumViewController.xib; sourceTree = "<group>"; };
+		18EB1AF11C378A9E00791849 /* TDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLoginViewController.h; sourceTree = "<group>"; };
+		18EB1AF21C378A9E00791849 /* TDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLoginViewController.m; sourceTree = "<group>"; };
+		18EB1AF31C378A9E00791849 /* TDLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDLoginViewController.xib; sourceTree = "<group>"; };
+		18EB1AF61C37934600791849 /* TDIdCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDIdCodeViewController.h; sourceTree = "<group>"; };
+		18EB1AF71C37934600791849 /* TDIdCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDIdCodeViewController.m; sourceTree = "<group>"; };
+		18EB1AF81C37934600791849 /* TDIdCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDIdCodeViewController.xib; sourceTree = "<group>"; };
+		18EB1AFB1C37985900791849 /* TDPassSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDPassSetViewController.h; sourceTree = "<group>"; };
+		18EB1AFC1C37985900791849 /* TDPassSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDPassSetViewController.m; sourceTree = "<group>"; };
+		18EB1AFD1C37985900791849 /* TDPassSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDPassSetViewController.xib; sourceTree = "<group>"; };
+		18ED343A1C3613EB0085B250 /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
+		18ED343B1C3613EB0085B250 /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
+		18ED343C1C3613EB0085B250 /* OrderDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailViewController.xib; sourceTree = "<group>"; };
+		18ED34401C3627020085B250 /* TDShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDShopViewController.h; sourceTree = "<group>"; };
+		18ED34411C3627020085B250 /* TDShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDShopViewController.m; sourceTree = "<group>"; };
+		18ED34431C3627B60085B250 /* ShopView0Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopView0Controller.h; sourceTree = "<group>"; };
+		18ED34441C3627B60085B250 /* ShopView0Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopView0Controller.m; sourceTree = "<group>"; };
+		18ED34451C3627B60085B250 /* ShopView0Controller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopView0Controller.xib; sourceTree = "<group>"; };
+		18ED34481C3627C60085B250 /* ShopView1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopView1Controller.h; sourceTree = "<group>"; };
+		18ED34491C3627C60085B250 /* ShopView1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopView1Controller.m; sourceTree = "<group>"; };
+		18ED344A1C3627C60085B250 /* ShopView1Controller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopView1Controller.xib; sourceTree = "<group>"; };
 		40FB5D2497535D497A282D1A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		49336F7C7CEF0F6B8C6EC250 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		848149061C32643500588564 /* DelegateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateViewController.h; sourceTree = "<group>"; };
@@ -158,9 +206,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1803C3211C36903B003157F1 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				1803C32A1C36B37F003157F1 /* loc.png */,
+				1803C3261C36A67F003157F1 /* location.html */,
+				1803C3271C36A67F003157F1 /* arrow.png */,
+				1803C31F1C36598D003157F1 /* panoroma.html */,
+				1803C3231C36905B003157F1 /* 360.png */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
 		183EAA091BB927480029ED79 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				18EB1AF01C378A7500791849 /* account */,
+				18ED343F1C3624930085B250 /* shop */,
+				18ED34391C360A8C0085B250 /* common */,
 				18E809C41BC26F0C00712C43 /* Paint */,
 				18E8A1181BBA1FED00FBD3F4 /* CarBeauty */,
 				18B932531BA6A8C50019279E /* TDHomeViewController.h */,
@@ -227,6 +290,7 @@
 		18B9324C1BA6A8C50019279E /* fillPaintMaster */ = {
 			isa = PBXGroup;
 			children = (
+				1803C3211C36903B003157F1 /* resources */,
 				18E8A11C1BBA397900FBD3F4 /* Tools */,
 				183EAA091BB927480029ED79 /* UI */,
 				183EAA131BB94AED0029ED79 /* View */,
@@ -289,10 +353,6 @@
 			children = (
 				18E8A1191BBA207800FBD3F4 /* CarBeautyViewController.h */,
 				18E8A11A1BBA207800FBD3F4 /* CarBeautyViewController.m */,
-				18248FEF1BBEB490008D3C36 /* OrderReViewController.h */,
-				18248FF01BBEB490008D3C36 /* OrderReViewController.m */,
-				18E809C11BC255CD00712C43 /* OrderSuccessViewController.h */,
-				18E809C21BC255CD00712C43 /* OrderSuccessViewController.m */,
 			);
 			name = CarBeauty;
 			sourceTree = "<group>";
@@ -332,6 +392,54 @@
 				848149071C32643500588564 /* DelegateViewController.m */,
 			);
 			name = scroll;
+			sourceTree = "<group>";
+		};
+		18EB1AF01C378A7500791849 /* account */ = {
+			isa = PBXGroup;
+			children = (
+				18EB1AF11C378A9E00791849 /* TDLoginViewController.h */,
+				18EB1AF21C378A9E00791849 /* TDLoginViewController.m */,
+				18EB1AF31C378A9E00791849 /* TDLoginViewController.xib */,
+				18EB1AF61C37934600791849 /* TDIdCodeViewController.h */,
+				18EB1AF71C37934600791849 /* TDIdCodeViewController.m */,
+				18EB1AF81C37934600791849 /* TDIdCodeViewController.xib */,
+				18EB1AFB1C37985900791849 /* TDPassSetViewController.h */,
+				18EB1AFC1C37985900791849 /* TDPassSetViewController.m */,
+				18EB1AFD1C37985900791849 /* TDPassSetViewController.xib */,
+			);
+			name = account;
+			sourceTree = "<group>";
+		};
+		18ED34391C360A8C0085B250 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				18248FEF1BBEB490008D3C36 /* OrderReViewController.h */,
+				18248FF01BBEB490008D3C36 /* OrderReViewController.m */,
+				18E809C11BC255CD00712C43 /* OrderSuccessViewController.h */,
+				18E809C21BC255CD00712C43 /* OrderSuccessViewController.m */,
+				18ED343A1C3613EB0085B250 /* OrderDetailViewController.h */,
+				18ED343B1C3613EB0085B250 /* OrderDetailViewController.m */,
+				18ED343C1C3613EB0085B250 /* OrderDetailViewController.xib */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		18ED343F1C3624930085B250 /* shop */ = {
+			isa = PBXGroup;
+			children = (
+				18ED34401C3627020085B250 /* TDShopViewController.h */,
+				18ED34411C3627020085B250 /* TDShopViewController.m */,
+				18ED34431C3627B60085B250 /* ShopView0Controller.h */,
+				18ED34441C3627B60085B250 /* ShopView0Controller.m */,
+				18ED34451C3627B60085B250 /* ShopView0Controller.xib */,
+				18ED34481C3627C60085B250 /* ShopView1Controller.h */,
+				18ED34491C3627C60085B250 /* ShopView1Controller.m */,
+				18ED344A1C3627C60085B250 /* ShopView1Controller.xib */,
+				18EB1AEB1C37759000791849 /* TDAlbumViewController.h */,
+				18EB1AEC1C37759000791849 /* TDAlbumViewController.m */,
+				18EB1AED1C37759000791849 /* TDAlbumViewController.xib */,
+			);
+			name = shop;
 			sourceTree = "<group>";
 		};
 		D59418E1BE4B6B94E7F037D6 /* Pods */ = {
@@ -434,10 +542,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18EB1AFA1C37934600791849 /* TDIdCodeViewController.xib in Resources */,
 				18E8ECFF1C2FC43200968CEB /* LeftCarViewController.xib in Resources */,
 				18E8A1241BBA468600FBD3F4 /* TDBeautyTableViewCell.xib in Resources */,
+				18EB1AEF1C37759000791849 /* TDAlbumViewController.xib in Resources */,
+				1803C32B1C36B37F003157F1 /* loc.png in Resources */,
 				18E8ED181C2FE39700968CEB /* OtherCarViewController.xib in Resources */,
 				18E8ED041C2FDB8100968CEB /* RightCarViewController.xib in Resources */,
+				1803C3281C36A67F003157F1 /* location.html in Resources */,
+				18EB1AF51C378A9E00791849 /* TDLoginViewController.xib in Resources */,
+				18ED344C1C3627C60085B250 /* ShopView1Controller.xib in Resources */,
 				18E809C01BC248DF00712C43 /* TDTableViewCell1.xib in Resources */,
 				18E809DB1BC2AD2800712C43 /* PaintView1Controller.xib in Resources */,
 				18E8ED0E1C2FE15A00968CEB /* BackCarViewController.xib in Resources */,
@@ -445,8 +559,14 @@
 				18B932811BA6A9540019279E /* InfoPlist.strings in Resources */,
 				18E809BB1BC230D200712C43 /* TDTableViewCell0.xib in Resources */,
 				18E809D61BC2A9C900712C43 /* PaintView0Controller.xib in Resources */,
+				1803C3291C36A67F003157F1 /* arrow.png in Resources */,
 				18B9325A1BA6A8C50019279E /* Assets.xcassets in Resources */,
+				18ED34471C3627B60085B250 /* ShopView0Controller.xib in Resources */,
+				1803C3201C36598D003157F1 /* panoroma.html in Resources */,
+				18ED343E1C3613EB0085B250 /* OrderDetailViewController.xib in Resources */,
+				18EB1AFF1C37985900791849 /* TDPassSetViewController.xib in Resources */,
 				18E8ED131C2FE25A00968CEB /* TopCarViewController.xib in Resources */,
+				1803C3251C36905B003157F1 /* 360.png in Resources */,
 				18248FF61BBEB851008D3C36 /* TDBeautyTableViewCell2.xib in Resources */,
 				18B932581BA6A8C50019279E /* Main.storyboard in Resources */,
 			);
@@ -518,16 +638,23 @@
 				18E8A11B1BBA207800FBD3F4 /* CarBeautyViewController.m in Sources */,
 				18E8ED081C2FDD4200968CEB /* FrontCarViewController.m in Sources */,
 				8481490D1C326DFB00588564 /* TDButtonView.m in Sources */,
+				18EB1AFE1C37985900791849 /* TDPassSetViewController.m in Sources */,
+				18ED343D1C3613EB0085B250 /* OrderDetailViewController.m in Sources */,
+				18ED34461C3627B60085B250 /* ShopView0Controller.m in Sources */,
+				18EB1AF41C378A9E00791849 /* TDLoginViewController.m in Sources */,
 				18E8ED121C2FE25A00968CEB /* TopCarViewController.m in Sources */,
 				18E809C31BC255CD00712C43 /* OrderSuccessViewController.m in Sources */,
 				18B932551BA6A8C50019279E /* TDHomeViewController.m in Sources */,
 				18E8ED171C2FE39700968CEB /* OtherCarViewController.m in Sources */,
+				18ED34421C3627020085B250 /* TDShopViewController.m in Sources */,
 				18248FF51BBEB851008D3C36 /* TDBeautyTableViewCell2.m in Sources */,
 				183EAA161BB94B3E0029ED79 /* TDAdView.m in Sources */,
 				18E809BA1BC230D200712C43 /* TDTableViewCell0.m in Sources */,
 				18E8A1231BBA468600FBD3F4 /* TDBeautyTableViewCell.m in Sources */,
 				18E809DA1BC2AD2800712C43 /* PaintView1Controller.m in Sources */,
 				18B932521BA6A8C50019279E /* AppDelegate.m in Sources */,
+				18EB1AF91C37934600791849 /* TDIdCodeViewController.m in Sources */,
+				18ED344B1C3627C60085B250 /* ShopView1Controller.m in Sources */,
 				848149081C32643500588564 /* DelegateViewController.m in Sources */,
 				183EAA121BB92E450029ED79 /* TDNavigationViewController.m in Sources */,
 				18E8ED031C2FDB8100968CEB /* RightCarViewController.m in Sources */,
@@ -538,6 +665,7 @@
 				18E8A11F1BBA399E00FBD3F4 /* TimeUtils.m in Sources */,
 				18B9324F1BA6A8C50019279E /* main.m in Sources */,
 				18E8ECFE1C2FC43200968CEB /* LeftCarViewController.m in Sources */,
+				18EB1AEE1C37759000791849 /* TDAlbumViewController.m in Sources */,
 				18E809C71BC28DC600712C43 /* TDPaintViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
