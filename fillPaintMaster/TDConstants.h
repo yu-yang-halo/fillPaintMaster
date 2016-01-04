@@ -12,7 +12,7 @@
 
 typedef NS_ENUM(NSUInteger, CAR_TYPE) {
     /* left */
-    CAR_TYPE_C1,
+    CAR_TYPE_C1=1001,
     CAR_TYPE_D1,
     CAR_TYPE_E1,
     CAR_TYPE_F1,

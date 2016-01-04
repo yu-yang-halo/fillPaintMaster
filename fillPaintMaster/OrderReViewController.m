@@ -10,14 +10,19 @@
 #import "TDBeautyTableViewCell2.h"
 #import "TDTableViewCell0.h"
 #import "TDTableViewCell1.h"
+#import "OrderSuccessViewController.h"
+#import "TDBaseItem.h"
+#import "TDPaintItem.h"
+#import "TDConstants.h"
 const float ROW_HEIGHT=50;
 const float ROW_HEIGHT_SECTION10=100;
 const float ROW_HEIGHT_SECTION11=60;
 @interface OrderReViewController (){
     NSArray *test;
+    NSString *titleName;
 }
 @property (weak, nonatomic) IBOutlet UITableView *beautyItemTableView;
-@property(retain,nonatomic) NSArray *items;
+
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *favourableLabel;
 @property (weak, nonatomic) IBOutlet UIButton *commitOrderBtn;
@@ -29,9 +34,18 @@ const float ROW_HEIGHT_SECTION11=60;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if(_carBeautyType==CarBeautyType_beauty){
+        titleName=@"洗车美容";
+    }else if(_carBeautyType==CarBeautyType_oil){
+        titleName=@"换油保养";
+    }else{
+        titleName=@"钣金喷漆";
+    }
+    
     [self initTitleView];
     [self initBeautyItemTableView];
     [self initButton];
+    [self updateLabelView];
     
 }
 -(void)initButton{
@@ -40,14 +54,11 @@ const float ROW_HEIGHT_SECTION11=60;
     
 }
 -(void)initBeautyItemTableView{
-    self.items=@[@">离子覆膜精细洗车         ¥40元",
-                 @">漆面深度清洁打蜡         ¥198元",
-                 @">内室普通清洗消毒         ¥380元",
-                 @">内室环保清洗护理         ¥598元"];
+    
     
     
     UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 25)];
-    [label setText:@"汽车美容"];
+    [label setText:titleName];
     [label setFont:[UIFont systemFontOfSize:20]];
     
     [self.beautyItemTableView setTableHeaderView:label];
@@ -56,6 +67,23 @@ const float ROW_HEIGHT_SECTION11=60;
     self.beautyItemTableView.dataSource=self;
     
     
+    
+}
+-(void)updateLabelView{
+    float total=0.0;
+    if(_carBeautyType==CarBeautyType_paint){
+        for (TDPaintItem  *item in _items) {
+            total+=item.totalPrice;
+        }
+    }else{
+        for (TDBaseItem  *item in _items) {
+            
+            total+=item.itemPrice;
+        }
+    }
+   
+    
+    [self.totalLabel setText:[NSString stringWithFormat:@"%.f元",total]];
     
 }
 
@@ -77,7 +105,7 @@ const float ROW_HEIGHT_SECTION11=60;
     UILabel *cphLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 150, 20)];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [titleLabel setText:@"洗车美容"];
+    [titleLabel setText:titleName];
     
     [cphLabel setTextAlignment:NSTextAlignmentCenter];
     [cphLabel setFont:[UIFont systemFontOfSize:10]];
@@ -101,7 +129,8 @@ const float ROW_HEIGHT_SECTION11=60;
     //立即下单
     
     UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    UIViewController *orderSucVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderSucVC"];
+    OrderSuccessViewController *orderSucVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderSucVC"];
+    [orderSucVC setCarBeautyType:_carBeautyType];
     [self.navigationController pushViewController:orderSucVC animated:YES];
     
 }
@@ -152,8 +181,24 @@ const float ROW_HEIGHT_SECTION11=60;
         }else{
             NSLog(@"exists...");
         }
+        TDBaseItem *baseItem=[_items objectAtIndex:indexPath.row];
         
-        [tableCell.itemLabel setText:[_items objectAtIndex:indexPath.row]];
+        
+       
+        
+        if([baseItem isKindOfClass:[TDPaintItem class]]){
+             TDPaintItem *itm=(TDPaintItem *)baseItem;
+            if(itm.carPositionType>=CAR_TYPE_K1){
+                 [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %.f元 数量 %d",itm.itemName,itm.totalPrice,itm.nums]];
+            }else{
+                 [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %.f元",itm.itemName,itm.totalPrice]];
+            }
+            
+            
+        }else{
+             [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %.f元",baseItem.itemName,baseItem.itemPrice]];
+        }
+        
         [tableCell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [tableCell.delBtn setTag:indexPath.row];
         [tableCell.delBtn addTarget:self action:@selector(delItem:) forControlEvents:UIControlEventTouchUpInside];
@@ -216,6 +261,8 @@ const float ROW_HEIGHT_SECTION11=60;
     
 }
 -(void)delItem:(UIButton *)sender{
-    
+    [_items removeObjectAtIndex:sender.tag];
+     [self updateLabelView];
+    [_beautyItemTableView reloadData];
 }
 @end

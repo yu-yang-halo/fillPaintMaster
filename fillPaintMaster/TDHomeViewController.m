@@ -9,6 +9,7 @@
 #import "TDHomeViewController.h"
 #import "TDAdView.h"
 #import "TDLoginViewController.h"
+#import "CarBeautyViewController.h"
 const float ICON_WIDTH=130;
 const float ICON_HEIGHT=90;
 @interface TDHomeViewController ()
@@ -66,7 +67,8 @@ const float ICON_HEIGHT=90;
             /*
              汽车美容
              */
-            UIViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"beautyVC"];
+            CarBeautyViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"beautyVC"];
+            [vc setCarBeautyType:CarBeautyType_beauty];
             [self.tabBarController.navigationController pushViewController:vc animated:YES];
             
                }
@@ -76,7 +78,8 @@ const float ICON_HEIGHT=90;
             /*
              换油保养
              */
-            UIViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"beautyVC"];
+            CarBeautyViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"beautyVC"];
+            [vc setCarBeautyType:CarBeautyType_oil];
             [self.tabBarController.navigationController pushViewController:vc animated:YES];
             
         }

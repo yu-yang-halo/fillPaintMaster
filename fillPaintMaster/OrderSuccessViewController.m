@@ -8,7 +8,10 @@
 
 #import "OrderSuccessViewController.h"
 #import "OrderDetailViewController.h"
-@interface OrderSuccessViewController ()
+@interface OrderSuccessViewController (){
+    NSString *titleName;
+}
+
 @property (weak, nonatomic) IBOutlet UILabel *contactsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *carInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
@@ -24,6 +27,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if(_carBeautyType==CarBeautyType_beauty){
+        titleName=@"洗车美容";
+    }else if(_carBeautyType==CarBeautyType_oil){
+        titleName=@"换油保养";
+    }else{
+        titleName=@"钣金喷漆";
+    }
     [self initTitleView];
     [self initButton];
 }
@@ -62,7 +72,7 @@
     UILabel *cphLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 150, 20)];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [titleLabel setText:@"洗车美容"];
+    [titleLabel setText:titleName];
     
     [cphLabel setTextAlignment:NSTextAlignmentCenter];
     [cphLabel setFont:[UIFont systemFontOfSize:10]];
@@ -86,6 +96,7 @@
 - (IBAction)bookDetailAction:(id)sender {
    
     OrderDetailViewController *orderDetail=[[OrderDetailViewController alloc] init];
+    [orderDetail setCarBeautyType:_carBeautyType];
     [self.navigationController pushViewController:orderDetail animated:YES];
     
 }

@@ -16,6 +16,9 @@
 #import "TDConstants.h"
 #import "TDButtonView.h"
 #import "OrderReViewController.h"
+#import "TDHttpDataService.h"
+#import "TDPaintItem.h"
+#import "OrderReViewController.h"
 const int PAGE_SIZE_NUM=6;
 
 @interface PaintView0Controller ()<OutOfViewLoadDelegate>{
@@ -26,11 +29,16 @@ const int PAGE_SIZE_NUM=6;
     NSUInteger k1_number;
     NSUInteger qQ_number;
     NSUInteger k2_number;
+    
+    TDHttpDataService *httpServer;
+    NSArray *paintArrs;
 }
 @property (retain, nonatomic)  UIScrollView *scrollView;
 @property (retain, nonatomic)  UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 - (IBAction)orderCommit:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *orderButton;
+@property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 
 @end
 
@@ -39,7 +47,11 @@ const int PAGE_SIZE_NUM=6;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    httpServer=[[TDHttpDataService alloc] init];
     
+    paintArrs=[httpServer fetchAllPaintItems];
+    
+    [self updateLabelView];
 
 }
 -(void)initView{
@@ -65,8 +77,59 @@ const int PAGE_SIZE_NUM=6;
     [self.containerView addSubview:_pageControl];
     
     
+}
+
+-(void)setPaintItem:(int)posTag numbers:(int)nums{
+    for (TDPaintItem *item in paintArrs){
+        if(item.carPositionType==posTag){
+            if(nums>0){
+                [item setIsAddYN:YES];
+                [item setNums:nums];
+            }else{
+                [item setIsAddYN:NO];
+                [item setNums:0];
+            }
+            
+            break;
+        }
+    }
     
 }
+-(void)setPaintItem:(int)posTag selected:(BOOL)selected{
+    for (TDPaintItem *item in paintArrs){
+        if(item.carPositionType==posTag){
+            [item setIsAddYN:selected];
+            break;
+        }
+    }
+}
+
+-(NSMutableArray *)selectedItems{
+    NSMutableArray *items=[[NSMutableArray alloc] init];
+    for (TDPaintItem *item in paintArrs){
+        if(item.isAddYN){
+            [items addObject:item];
+        }
+    }
+    return items;
+}
+
+-(void)updateLabelView{
+    float total=0.0;
+    for (TDPaintItem *item in paintArrs){
+        if(item.isAddYN){
+            total+=item.totalPrice;
+        }
+    }
+
+    [self.totalLabel setText:[NSString stringWithFormat:@"%.f元",total]];
+    if(total<=0){
+        [self.orderButton setEnabled:NO];
+    }else{
+        [self.orderButton setEnabled:YES];
+    }
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     
 }
@@ -132,22 +195,28 @@ const int PAGE_SIZE_NUM=6;
             if(k1_number>2){
                 k1_number=0;
             }
+            [self setPaintItem:sender.view.tag numbers:k1_number];
             [tdBtnView.numbersLabel setText:[NSString stringWithFormat:@"%d",k1_number]];
         }else  if(sender.view.tag==CAR_TYPE_K2){
             k2_number++;
             if(k2_number>2){
                 k2_number=0;
             }
+             [self setPaintItem:sender.view.tag numbers:k2_number];
             [tdBtnView.numbersLabel setText:[NSString stringWithFormat:@"%d",k2_number]];
         }else  if(sender.view.tag==CAR_TYPE_qQ){
             qQ_number++;
             if(qQ_number>4){
                 qQ_number=0;
             }
+            [self setPaintItem:sender.view.tag numbers:qQ_number];
             [tdBtnView.numbersLabel setText:[NSString stringWithFormat:@"%d",qQ_number]];
         }
         
     }
+    
+    
+    [self updateLabelView];
     
     
 }
@@ -157,6 +226,9 @@ const int PAGE_SIZE_NUM=6;
     }else{
         [sender setSelected:YES];
     }
+    
+    [self setPaintItem:sender.tag selected:sender.selected];
+    [self updateLabelView];
     NSLog(@"sender tag:%d",sender.tag);
     
     switch (sender.tag) {
@@ -227,7 +299,10 @@ const int PAGE_SIZE_NUM=6;
 - (IBAction)orderCommit:(id)sender {
     
     UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    UIViewController *orderVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderVC"];
+    OrderReViewController *orderVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderVC"];
+    [orderVC setCarBeautyType:CarBeautyType_paint];
+    [orderVC setItems:[self selectedItems]];
+    
     [self.tdPaintVCDelegate.navigationController pushViewController:orderVC animated:YES];
     
     

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CarBeautyViewController.h"
 @interface OrderReViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
-
+@property(nonatomic,assign) CarBeautyType carBeautyType;
+@property(retain,nonatomic) NSMutableArray *items;
 @end

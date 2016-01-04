@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CarBeautyViewController.h"
 @interface OrderSuccessViewController : UIViewController
-
+@property(nonatomic,assign) CarBeautyType carBeautyType;
 @end

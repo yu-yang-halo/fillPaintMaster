@@ -8,7 +8,9 @@
 
 #import "OrderDetailViewController.h"
 
-@interface OrderDetailViewController ()
+@interface OrderDetailViewController (){
+    NSString *titleName;
+}
 @property (weak, nonatomic) IBOutlet UILabel *txtLabel;
 @property (weak, nonatomic) IBOutlet UIView *itemsView;
 @property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
@@ -21,6 +23,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if(_carBeautyType==CarBeautyType_beauty){
+        titleName=@"洗车美容";
+    }else if(_carBeautyType==CarBeautyType_oil){
+        titleName=@"换油保养";
+    }else{
+        titleName=@"钣金喷漆";
+    }
     [self initTitleView];
     [self initContentView];
     
@@ -61,7 +70,7 @@
     UILabel *cphLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 150, 20)];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [titleLabel setText:@"洗车美容"];
+    [titleLabel setText:titleName];
     
     [cphLabel setTextAlignment:NSTextAlignmentCenter];
     [cphLabel setFont:[UIFont systemFontOfSize:10]];

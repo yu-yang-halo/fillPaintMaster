@@ -101,7 +101,7 @@
     UILabel *cphLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 150, 20)];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [titleLabel setText:@"洗车美容"];
+    [titleLabel setText:@"钣金喷漆"];
     
     [cphLabel setTextAlignment:NSTextAlignmentCenter];
     [cphLabel setFont:[UIFont systemFontOfSize:10]];
