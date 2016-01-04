@@ -32,6 +32,14 @@ const int PAGE_SIZE_NUM=6;
     
     TDHttpDataService *httpServer;
     NSArray *paintArrs;
+    
+    UIView *leftCarView;
+    UIView *rightCarView;
+    UIView *frontCarView;
+    UIView *backCarView;
+    UIView *topCarView;
+    UIView *otherCarView;
+    
 }
 @property (retain, nonatomic)  UIScrollView *scrollView;
 @property (retain, nonatomic)  UIPageControl *pageControl;
@@ -52,20 +60,42 @@ const int PAGE_SIZE_NUM=6;
     paintArrs=[httpServer fetchAllPaintItems];
     
     [self updateLabelView];
+    
+    [self initView];
+    
 
+}
+-(void)initViewLayout{
+    self.scrollView.frame=self.containerView.bounds;
+    [self.scrollView setContentSize:CGSizeMake(self.containerView.frame.size.width*PAGE_SIZE_NUM, self.containerView.frame.size.height)];
+    self.pageControl.frame=CGRectMake(0, self.containerView.frame.size.height-30, self.containerView.frame.size.width,30);
+    
+    
+    leftCarView.frame=CGRectMake(self.scrollView.frame.size.width*0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    rightCarView.frame=CGRectMake(self.scrollView.frame.size.width*1, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    frontCarView.frame=CGRectMake(self.scrollView.frame.size.width*2, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    backCarView.frame=CGRectMake(self.scrollView.frame.size.width*3, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    topCarView.frame=CGRectMake(self.scrollView.frame.size.width*4, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    otherCarView.frame=CGRectMake(self.scrollView.frame.size.width*5, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    
 }
 -(void)initView{
     
     self.scrollView=[[UIScrollView alloc] initWithFrame:self.containerView.bounds];
+    
+    
     self.scrollView.delegate=self;
     
-    [self.scrollView setContentSize:CGSizeMake(self.containerView.frame.size.width*PAGE_SIZE_NUM, self.containerView.frame.size.height)];
+    
     [self.scrollView setBounces:NO];
     [self.scrollView setShowsHorizontalScrollIndicator:NO];
     [self.scrollView setShowsVerticalScrollIndicator:NO];
 
 
     self.pageControl=[[UIPageControl alloc] initWithFrame:CGRectMake(0, self.containerView.frame.size.height-30, self.containerView.frame.size.width,30)];
+    
+    
+    
     [self.pageControl setNumberOfPages:PAGE_SIZE_NUM];
     [self.pageControl setEnabled:NO];
     
@@ -75,6 +105,35 @@ const int PAGE_SIZE_NUM=6;
     
     [self.containerView addSubview:_scrollView];
     [self.containerView addSubview:_pageControl];
+    
+    
+    DelegateViewController *v0=[[LeftCarViewController alloc] init];
+    DelegateViewController *v1=[[RightCarViewController alloc] init];
+    DelegateViewController *v2=[[FrontCarViewController alloc] init];
+    DelegateViewController *v3=[[BackCarViewController alloc] init];
+    DelegateViewController *v4=[[TopCarViewController alloc] init];
+    DelegateViewController *v5=[[OtherCarViewController alloc] init];
+    [v0 setViewDelegate:self];
+    [v1 setViewDelegate:self];
+    [v2 setViewDelegate:self];
+    [v3 setViewDelegate:self];
+    [v4 setViewDelegate:self];
+    [v5 setViewDelegate:self];
+    
+    
+    leftCarView=v0.view;
+    rightCarView=v1.view;
+    frontCarView=v2.view;
+    backCarView=v3.view;
+    topCarView=v4.view;
+    otherCarView=v5.view;
+    
+    [self.scrollView addSubview:leftCarView];
+    [self.scrollView addSubview:rightCarView];
+    [self.scrollView addSubview:frontCarView];
+    [self.scrollView addSubview:backCarView];
+    [self.scrollView addSubview:topCarView];
+    [self.scrollView addSubview:otherCarView];
     
     
 }
@@ -130,61 +189,11 @@ const int PAGE_SIZE_NUM=6;
     }
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    
+-(void)viewDidLayoutSubviews{
+    [self initViewLayout];
 }
--(void)viewWillAppear:(BOOL)animated{
-    
-}
--(void)viewWillLayoutSubviews{
-    
 
-}
-- (void)viewDidLayoutSubviews NS_AVAILABLE_IOS(5_0){
-    [self initView];
-    for (int i=0; i<PAGE_SIZE_NUM; i++) {
-        DelegateViewController *vc=nil;
-        switch (i) {
-            case 0:{
-                vc=[[LeftCarViewController alloc] init];
-                
-            }
-                break;
-                
-            case 1:{
-                vc=[[RightCarViewController alloc] init];
-            }
-                break;
-            case 2:{
-                vc=[[FrontCarViewController alloc] init];
-            }
-                break;
-            case 3:{
-                vc=[[BackCarViewController alloc] init];
-            }
-                break;
-            case 4:{
-                vc=[[TopCarViewController alloc] init];
-            }
-                break;
-            case 5:{
-                vc=[[OtherCarViewController alloc] init];
-            }
-                break;
-        }
-        if(vc!=nil){
-            [vc setViewDelegate:self];
-             vc.view.frame=CGRectMake(self.scrollView.frame.size.width*i, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-            
-            
-            
-            [self.scrollView addSubview:vc.view];
 
-        }
-        
-    }
-
-}
 
 -(void)clickView:(UITapGestureRecognizer *)sender{
     NSLog(@"sender.view.tag :%d",sender.view.tag);
@@ -230,17 +239,6 @@ const int PAGE_SIZE_NUM=6;
     [self setPaintItem:sender.tag selected:sender.selected];
     [self updateLabelView];
     NSLog(@"sender tag:%d",sender.tag);
-    
-    switch (sender.tag) {
-        case 0:
-            /*
-             逻辑处理
-             */
-            break;
-            
-        default:
-            break;
-    }
 }
 #pragma mark delegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)_scrollView{

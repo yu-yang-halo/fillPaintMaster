@@ -34,13 +34,6 @@
                             <state key="selected" backgroundImage="e10"/>
                             <state key="highlighted" backgroundImage="e10"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcP-OX-oze">
-                            <rect key="frame" x="167" y="8" width="85" height="82"/>
-                            <animations/>
-                            <state key="normal" backgroundImage="f1"/>
-                            <state key="selected" backgroundImage="f10"/>
-                            <state key="highlighted" backgroundImage="f10"/>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWJ-uY-0NR">
                             <rect key="frame" x="36" y="109" width="86" height="86"/>
                             <animations/>
@@ -61,6 +54,13 @@
                             <state key="normal" backgroundImage="j1"/>
                             <state key="selected" backgroundImage="j10"/>
                             <state key="highlighted" backgroundImage="j10"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcP-OX-oze">
+                            <rect key="frame" x="167" y="8" width="85" height="82"/>
+                            <animations/>
+                            <state key="normal" backgroundImage="f1"/>
+                            <state key="selected" backgroundImage="f10"/>
+                            <state key="highlighted" backgroundImage="f10"/>
                         </button>
                     </subviews>
                     <animations/>
