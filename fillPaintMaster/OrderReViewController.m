@@ -57,9 +57,9 @@ const float ROW_HEIGHT_SECTION11=60;
     
     
     
-    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 25)];
+    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 35)];
     [label setText:titleName];
-    [label setFont:[UIFont systemFontOfSize:20]];
+    [label setFont:[UIFont systemFontOfSize:18]];
     
     [self.beautyItemTableView setTableHeaderView:label];
     [self.beautyItemTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
