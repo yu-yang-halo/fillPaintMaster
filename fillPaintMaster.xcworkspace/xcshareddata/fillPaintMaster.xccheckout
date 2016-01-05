@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F1F717B1-5B53-43B2-9084-994E42CEFCF8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>fillPaintMaster</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E88495019ADD98040B09E0E6C35CC947758AA999</key>
+		<string>github.com:yu-yang-halo/fillPaintMaster.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>fillPaintMaster.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E88495019ADD98040B09E0E6C35CC947758AA999</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:yu-yang-halo/fillPaintMaster.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E88495019ADD98040B09E0E6C35CC947758AA999</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E88495019ADD98040B09E0E6C35CC947758AA999</string>
+			<key>IDESourceControlWCCName</key>
+			<string>fillPaintMaster</string>
+		</dict>
+	</array>
+</dict>
+</plist>

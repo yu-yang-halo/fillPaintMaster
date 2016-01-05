@@ -36,6 +36,7 @@
     scrollView=[[UIScrollView alloc] initWithFrame:self.bounds];
     [scrollView setShowsHorizontalScrollIndicator:NO];
     [scrollView setBounces:NO];
+    [scrollView setPagingEnabled:YES];
     [self addSubview:scrollView];
     self.imageNames=imgNames;
     scrollView.delegate=self;

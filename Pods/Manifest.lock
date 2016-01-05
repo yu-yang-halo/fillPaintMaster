@@ -1,10 +1,15 @@
 PODS:
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
   - Toast (3.0)
 
 DEPENDENCIES:
+  - SDWebImage
   - Toast (~> 3.0)
 
 SPEC CHECKSUMS:
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   Toast: 32c59229abfcf41850162b83bb9259dc84372473
 
-COCOAPODS: 0.39.0
+COCOAPODS: 0.36.0

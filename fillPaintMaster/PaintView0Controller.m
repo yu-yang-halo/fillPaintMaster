@@ -88,6 +88,7 @@ const int PAGE_SIZE_NUM=6;
     
     
     [self.scrollView setBounces:NO];
+    [self.scrollView setPagingEnabled:YES];
     [self.scrollView setShowsHorizontalScrollIndicator:NO];
     [self.scrollView setShowsVerticalScrollIndicator:NO];
 

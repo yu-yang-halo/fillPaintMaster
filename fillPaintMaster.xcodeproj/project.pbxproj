@@ -75,6 +75,8 @@
 		84345A8A1C3A404E0089DB45 /* TDOilItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A891C3A404E0089DB45 /* TDOilItem.m */; };
 		84345A8D1C3A40950089DB45 /* TDBaseTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A8C1C3A40950089DB45 /* TDBaseTime.m */; };
 		84345A901C3A42780089DB45 /* TDPaintItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A8F1C3A42780089DB45 /* TDPaintItem.m */; };
+		845E484E1C3B589E00AAD5A5 /* TDUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E484D1C3B589E00AAD5A5 /* TDUserCenterViewController.m */; };
+		845E48521C3B94FC00AAD5A5 /* CoolNavi.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E48511C3B94FC00AAD5A5 /* CoolNavi.m */; };
 		848149081C32643500588564 /* DelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848149071C32643500588564 /* DelegateViewController.m */; };
 		8481490D1C326DFB00588564 /* TDButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481490C1C326DFB00588564 /* TDButtonView.m */; };
 		C6FF04885D98EFD277CD0577 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49336F7C7CEF0F6B8C6EC250 /* libPods.a */; };
@@ -207,6 +209,10 @@
 		84345A8C1C3A40950089DB45 /* TDBaseTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBaseTime.m; sourceTree = "<group>"; };
 		84345A8E1C3A42780089DB45 /* TDPaintItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDPaintItem.h; sourceTree = "<group>"; };
 		84345A8F1C3A42780089DB45 /* TDPaintItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDPaintItem.m; sourceTree = "<group>"; };
+		845E484C1C3B589E00AAD5A5 /* TDUserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDUserCenterViewController.h; sourceTree = "<group>"; };
+		845E484D1C3B589E00AAD5A5 /* TDUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDUserCenterViewController.m; sourceTree = "<group>"; };
+		845E48501C3B94FC00AAD5A5 /* CoolNavi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoolNavi.h; sourceTree = "<group>"; };
+		845E48511C3B94FC00AAD5A5 /* CoolNavi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoolNavi.m; sourceTree = "<group>"; };
 		848149061C32643500588564 /* DelegateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateViewController.h; sourceTree = "<group>"; };
 		848149071C32643500588564 /* DelegateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateViewController.m; sourceTree = "<group>"; };
 		8481490B1C326DFB00588564 /* TDButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDButtonView.h; sourceTree = "<group>"; };
@@ -248,17 +254,12 @@
 		183EAA091BB927480029ED79 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				845E484B1C3B580100AAD5A5 /* main */,
 				18EB1AF01C378A7500791849 /* account */,
 				18ED343F1C3624930085B250 /* shop */,
 				18ED34391C360A8C0085B250 /* common */,
 				18E809C41BC26F0C00712C43 /* Paint */,
 				18E8A1181BBA1FED00FBD3F4 /* CarBeauty */,
-				18B932531BA6A8C50019279E /* TDHomeViewController.h */,
-				18B932541BA6A8C50019279E /* TDHomeViewController.m */,
-				183EAA0D1BB929A00029ED79 /* TDTabViewController.h */,
-				183EAA0E1BB929A00029ED79 /* TDTabViewController.m */,
-				183EAA101BB92E450029ED79 /* TDNavigationViewController.h */,
-				183EAA111BB92E450029ED79 /* TDNavigationViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -503,6 +504,31 @@
 			name = bean;
 			sourceTree = "<group>";
 		};
+		845E484B1C3B580100AAD5A5 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				845E484F1C3B94C800AAD5A5 /* CoolNavi */,
+				18B932531BA6A8C50019279E /* TDHomeViewController.h */,
+				18B932541BA6A8C50019279E /* TDHomeViewController.m */,
+				183EAA0D1BB929A00029ED79 /* TDTabViewController.h */,
+				183EAA0E1BB929A00029ED79 /* TDTabViewController.m */,
+				183EAA101BB92E450029ED79 /* TDNavigationViewController.h */,
+				183EAA111BB92E450029ED79 /* TDNavigationViewController.m */,
+				845E484C1C3B589E00AAD5A5 /* TDUserCenterViewController.h */,
+				845E484D1C3B589E00AAD5A5 /* TDUserCenterViewController.m */,
+			);
+			name = main;
+			sourceTree = "<group>";
+		};
+		845E484F1C3B94C800AAD5A5 /* CoolNavi */ = {
+			isa = PBXGroup;
+			children = (
+				845E48501C3B94FC00AAD5A5 /* CoolNavi.h */,
+				845E48511C3B94FC00AAD5A5 /* CoolNavi.m */,
+			);
+			name = CoolNavi;
+			sourceTree = "<group>";
+		};
 		D59418E1BE4B6B94E7F037D6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,7 +557,6 @@
 				18B932461BA6A8C50019279E /* Sources */,
 				18B932471BA6A8C50019279E /* Frameworks */,
 				18B932481BA6A8C50019279E /* Resources */,
-				4D0F2FDFCFB0A5CA3FED3E34 /* Embed Pods Frameworks */,
 				8B709E5FED71AD7EAE60A0C8 /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -643,21 +668,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4D0F2FDFCFB0A5CA3FED3E34 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		64C61309B05F22A70D9B5C0B /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -717,7 +727,9 @@
 				18E809BA1BC230D200712C43 /* TDTableViewCell0.m in Sources */,
 				18E8A1231BBA468600FBD3F4 /* TDBeautyTableViewCell.m in Sources */,
 				84345A871C3A3FC80089DB45 /* TDBaseItem.m in Sources */,
+				845E484E1C3B589E00AAD5A5 /* TDUserCenterViewController.m in Sources */,
 				18E809DA1BC2AD2800712C43 /* PaintView1Controller.m in Sources */,
+				845E48521C3B94FC00AAD5A5 /* CoolNavi.m in Sources */,
 				18B932521BA6A8C50019279E /* AppDelegate.m in Sources */,
 				18EB1AF91C37934600791849 /* TDIdCodeViewController.m in Sources */,
 				18ED344B1C3627C60085B250 /* ShopView1Controller.m in Sources */,
