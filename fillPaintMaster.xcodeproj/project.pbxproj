@@ -51,6 +51,14 @@
 		18E8ED131C2FE25A00968CEB /* TopCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E8ED111C2FE25A00968CEB /* TopCarViewController.xib */; };
 		18E8ED171C2FE39700968CEB /* OtherCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8ED151C2FE39700968CEB /* OtherCarViewController.m */; };
 		18E8ED181C2FE39700968CEB /* OtherCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E8ED161C2FE39700968CEB /* OtherCarViewController.xib */; };
+		18E9461D1C40C2C20047ADEA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E9461C1C40C2C20047ADEA /* LaunchScreen.xib */; };
+		18E946211C40FAF20047ADEA /* TDLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E9461F1C40FAF20047ADEA /* TDLocationViewController.m */; };
+		18E946221C40FAF20047ADEA /* TDLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E946201C40FAF20047ADEA /* TDLocationViewController.xib */; };
+		18E946291C40FDE50047ADEA /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18E946271C40FDE50047ADEA /* area.plist */; };
+		18E9462A1C40FDE50047ADEA /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18E946281C40FDE50047ADEA /* city.plist */; };
+		18E9462D1C4119180047ADEA /* search.html in Resources */ = {isa = PBXBuildFile; fileRef = 18E9462C1C4119180047ADEA /* search.html */; };
+		18E946311C41195B0047ADEA /* TDSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E9462F1C41195B0047ADEA /* TDSearchViewController.m */; };
+		18E946321C41195B0047ADEA /* TDSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E946301C41195B0047ADEA /* TDSearchViewController.xib */; };
 		18EB1AEE1C37759000791849 /* TDAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB1AEC1C37759000791849 /* TDAlbumViewController.m */; };
 		18EB1AEF1C37759000791849 /* TDAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB1AED1C37759000791849 /* TDAlbumViewController.xib */; };
 		18EB1AF41C378A9E00791849 /* TDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB1AF21C378A9E00791849 /* TDLoginViewController.m */; };
@@ -66,6 +74,10 @@
 		18ED34471C3627B60085B250 /* ShopView0Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED34451C3627B60085B250 /* ShopView0Controller.xib */; };
 		18ED344B1C3627C60085B250 /* ShopView1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED34491C3627C60085B250 /* ShopView1Controller.m */; };
 		18ED344C1C3627C60085B250 /* ShopView1Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED344A1C3627C60085B250 /* ShopView1Controller.xib */; };
+		18EE557F1C41F4A400A99D50 /* TDCarInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE557D1C41F4A400A99D50 /* TDCarInfoViewController.m */; };
+		18EE55801C41F4A400A99D50 /* TDCarInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE557E1C41F4A400A99D50 /* TDCarInfoViewController.xib */; };
+		18EE55821C41FB1C00A99D50 /* CarInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE55811C41FB1C00A99D50 /* CarInfoView.xib */; };
+		18EE55851C42075A00A99D50 /* TDCarInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE55841C42075A00A99D50 /* TDCarInfoModel.m */; };
 		84345A771C3A3AD90089DB45 /* TDHttpDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A761C3A3AD90089DB45 /* TDHttpDataService.m */; };
 		84345A7B1C3A3CCE0089DB45 /* TDCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A7A1C3A3CCE0089DB45 /* TDCity.m */; };
 		84345A7E1C3A3D8E0089DB45 /* TDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A7D1C3A3D8E0089DB45 /* TDUser.m */; };
@@ -166,6 +178,16 @@
 		18E8ED141C2FE39700968CEB /* OtherCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherCarViewController.h; sourceTree = "<group>"; };
 		18E8ED151C2FE39700968CEB /* OtherCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherCarViewController.m; sourceTree = "<group>"; };
 		18E8ED161C2FE39700968CEB /* OtherCarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherCarViewController.xib; sourceTree = "<group>"; };
+		18E9461C1C40C2C20047ADEA /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		18E9461E1C40FAF20047ADEA /* TDLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLocationViewController.h; sourceTree = "<group>"; };
+		18E9461F1C40FAF20047ADEA /* TDLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLocationViewController.m; sourceTree = "<group>"; };
+		18E946201C40FAF20047ADEA /* TDLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDLocationViewController.xib; sourceTree = "<group>"; };
+		18E946271C40FDE50047ADEA /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		18E946281C40FDE50047ADEA /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
+		18E9462C1C4119180047ADEA /* search.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = search.html; sourceTree = "<group>"; };
+		18E9462E1C41195B0047ADEA /* TDSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDSearchViewController.h; sourceTree = "<group>"; };
+		18E9462F1C41195B0047ADEA /* TDSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDSearchViewController.m; sourceTree = "<group>"; };
+		18E946301C41195B0047ADEA /* TDSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDSearchViewController.xib; sourceTree = "<group>"; };
 		18EB1AEB1C37759000791849 /* TDAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDAlbumViewController.h; sourceTree = "<group>"; };
 		18EB1AEC1C37759000791849 /* TDAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDAlbumViewController.m; sourceTree = "<group>"; };
 		18EB1AED1C37759000791849 /* TDAlbumViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDAlbumViewController.xib; sourceTree = "<group>"; };
@@ -189,6 +211,12 @@
 		18ED34481C3627C60085B250 /* ShopView1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopView1Controller.h; sourceTree = "<group>"; };
 		18ED34491C3627C60085B250 /* ShopView1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopView1Controller.m; sourceTree = "<group>"; };
 		18ED344A1C3627C60085B250 /* ShopView1Controller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopView1Controller.xib; sourceTree = "<group>"; };
+		18EE557C1C41F4A400A99D50 /* TDCarInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCarInfoViewController.h; sourceTree = "<group>"; };
+		18EE557D1C41F4A400A99D50 /* TDCarInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCarInfoViewController.m; sourceTree = "<group>"; };
+		18EE557E1C41F4A400A99D50 /* TDCarInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDCarInfoViewController.xib; sourceTree = "<group>"; };
+		18EE55811C41FB1C00A99D50 /* CarInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarInfoView.xib; sourceTree = "<group>"; };
+		18EE55831C42075A00A99D50 /* TDCarInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCarInfoModel.h; sourceTree = "<group>"; };
+		18EE55841C42075A00A99D50 /* TDCarInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCarInfoModel.m; sourceTree = "<group>"; };
 		40FB5D2497535D497A282D1A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		49336F7C7CEF0F6B8C6EC250 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		84345A751C3A3AD90089DB45 /* TDHttpDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDHttpDataService.h; sourceTree = "<group>"; };
@@ -242,6 +270,7 @@
 		1803C3211C36903B003157F1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				18E9462C1C4119180047ADEA /* search.html */,
 				1803C32A1C36B37F003157F1 /* loc.png */,
 				1803C3261C36A67F003157F1 /* location.html */,
 				1803C3271C36A67F003157F1 /* arrow.png */,
@@ -329,6 +358,7 @@
 				18B932591BA6A8C50019279E /* Assets.xcassets */,
 				18B9325E1BA6A8C50019279E /* Info.plist */,
 				18B9324D1BA6A8C50019279E /* Supporting Files */,
+				18E9461C1C40C2C20047ADEA /* LaunchScreen.xib */,
 			);
 			path = fillPaintMaster;
 			sourceTree = "<group>";
@@ -336,6 +366,8 @@
 		18B9324D1BA6A8C50019279E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18E946271C40FDE50047ADEA /* area.plist */,
+				18E946281C40FDE50047ADEA /* city.plist */,
 				18B9324E1BA6A8C50019279E /* main.m */,
 				18B932801BA6A9540019279E /* InfoPlist.strings */,
 			);
@@ -420,6 +452,19 @@
 				848149071C32643500588564 /* DelegateViewController.m */,
 			);
 			name = scroll;
+			sourceTree = "<group>";
+		};
+		18E9462B1C4118D80047ADEA /* selector */ = {
+			isa = PBXGroup;
+			children = (
+				18E9461E1C40FAF20047ADEA /* TDLocationViewController.h */,
+				18E9461F1C40FAF20047ADEA /* TDLocationViewController.m */,
+				18E946201C40FAF20047ADEA /* TDLocationViewController.xib */,
+				18E9462E1C41195B0047ADEA /* TDSearchViewController.h */,
+				18E9462F1C41195B0047ADEA /* TDSearchViewController.m */,
+				18E946301C41195B0047ADEA /* TDSearchViewController.xib */,
+			);
+			name = selector;
 			sourceTree = "<group>";
 		};
 		18EB1AF01C378A7500791849 /* account */ = {
@@ -507,6 +552,7 @@
 		845E484B1C3B580100AAD5A5 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				18E9462B1C4118D80047ADEA /* selector */,
 				845E484F1C3B94C800AAD5A5 /* CoolNavi */,
 				18B932531BA6A8C50019279E /* TDHomeViewController.h */,
 				18B932541BA6A8C50019279E /* TDHomeViewController.m */,
@@ -516,6 +562,12 @@
 				183EAA111BB92E450029ED79 /* TDNavigationViewController.m */,
 				845E484C1C3B589E00AAD5A5 /* TDUserCenterViewController.h */,
 				845E484D1C3B589E00AAD5A5 /* TDUserCenterViewController.m */,
+				18EE557C1C41F4A400A99D50 /* TDCarInfoViewController.h */,
+				18EE557D1C41F4A400A99D50 /* TDCarInfoViewController.m */,
+				18EE557E1C41F4A400A99D50 /* TDCarInfoViewController.xib */,
+				18EE55811C41FB1C00A99D50 /* CarInfoView.xib */,
+				18EE55831C42075A00A99D50 /* TDCarInfoModel.h */,
+				18EE55841C42075A00A99D50 /* TDCarInfoModel.m */,
 			);
 			name = main;
 			sourceTree = "<group>";
@@ -558,6 +610,7 @@
 				18B932471BA6A8C50019279E /* Frameworks */,
 				18B932481BA6A8C50019279E /* Resources */,
 				8B709E5FED71AD7EAE60A0C8 /* Copy Pods Resources */,
+				C4F8109E6D633175F7E5149D /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -632,6 +685,7 @@
 				18E8ECFF1C2FC43200968CEB /* LeftCarViewController.xib in Resources */,
 				18E8A1241BBA468600FBD3F4 /* TDBeautyTableViewCell.xib in Resources */,
 				18EB1AEF1C37759000791849 /* TDAlbumViewController.xib in Resources */,
+				18E9462D1C4119180047ADEA /* search.html in Resources */,
 				1803C32B1C36B37F003157F1 /* loc.png in Resources */,
 				18E8ED181C2FE39700968CEB /* OtherCarViewController.xib in Resources */,
 				18E8ED041C2FDB8100968CEB /* RightCarViewController.xib in Resources */,
@@ -639,19 +693,26 @@
 				18EB1AF51C378A9E00791849 /* TDLoginViewController.xib in Resources */,
 				18ED344C1C3627C60085B250 /* ShopView1Controller.xib in Resources */,
 				18E809C01BC248DF00712C43 /* TDTableViewCell1.xib in Resources */,
+				18E946291C40FDE50047ADEA /* area.plist in Resources */,
+				18E946321C41195B0047ADEA /* TDSearchViewController.xib in Resources */,
 				18E809DB1BC2AD2800712C43 /* PaintView1Controller.xib in Resources */,
+				18E946221C40FAF20047ADEA /* TDLocationViewController.xib in Resources */,
 				18E8ED0E1C2FE15A00968CEB /* BackCarViewController.xib in Resources */,
+				18EE55801C41F4A400A99D50 /* TDCarInfoViewController.xib in Resources */,
 				18E8ED091C2FDD4200968CEB /* FrontCarViewController.xib in Resources */,
 				18B932811BA6A9540019279E /* InfoPlist.strings in Resources */,
 				18E809BB1BC230D200712C43 /* TDTableViewCell0.xib in Resources */,
+				18E9461D1C40C2C20047ADEA /* LaunchScreen.xib in Resources */,
 				18E809D61BC2A9C900712C43 /* PaintView0Controller.xib in Resources */,
 				1803C3291C36A67F003157F1 /* arrow.png in Resources */,
 				18B9325A1BA6A8C50019279E /* Assets.xcassets in Resources */,
+				18EE55821C41FB1C00A99D50 /* CarInfoView.xib in Resources */,
 				18ED34471C3627B60085B250 /* ShopView0Controller.xib in Resources */,
 				1803C3201C36598D003157F1 /* panoroma.html in Resources */,
 				18ED343E1C3613EB0085B250 /* OrderDetailViewController.xib in Resources */,
 				18EB1AFF1C37985900791849 /* TDPassSetViewController.xib in Resources */,
 				18E8ED131C2FE25A00968CEB /* TopCarViewController.xib in Resources */,
+				18E9462A1C40FDE50047ADEA /* city.plist in Resources */,
 				1803C3251C36905B003157F1 /* 360.png in Resources */,
 				18248FF61BBEB851008D3C36 /* TDBeautyTableViewCell2.xib in Resources */,
 				18B932581BA6A8C50019279E /* Main.storyboard in Resources */,
@@ -698,6 +759,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C4F8109E6D633175F7E5149D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -711,6 +787,7 @@
 				8481490D1C326DFB00588564 /* TDButtonView.m in Sources */,
 				18EB1AFE1C37985900791849 /* TDPassSetViewController.m in Sources */,
 				18ED343D1C3613EB0085B250 /* OrderDetailViewController.m in Sources */,
+				18EE55851C42075A00A99D50 /* TDCarInfoModel.m in Sources */,
 				18ED34461C3627B60085B250 /* ShopView0Controller.m in Sources */,
 				18EB1AF41C378A9E00791849 /* TDLoginViewController.m in Sources */,
 				84345A8D1C3A40950089DB45 /* TDBaseTime.m in Sources */,
@@ -725,6 +802,7 @@
 				18248FF51BBEB851008D3C36 /* TDBeautyTableViewCell2.m in Sources */,
 				183EAA161BB94B3E0029ED79 /* TDAdView.m in Sources */,
 				18E809BA1BC230D200712C43 /* TDTableViewCell0.m in Sources */,
+				18E946311C41195B0047ADEA /* TDSearchViewController.m in Sources */,
 				18E8A1231BBA468600FBD3F4 /* TDBeautyTableViewCell.m in Sources */,
 				84345A871C3A3FC80089DB45 /* TDBaseItem.m in Sources */,
 				845E484E1C3B589E00AAD5A5 /* TDUserCenterViewController.m in Sources */,
@@ -741,6 +819,8 @@
 				183EAA0F1BB929A00029ED79 /* TDTabViewController.m in Sources */,
 				18E809BF1BC248DF00712C43 /* TDTableViewCell1.m in Sources */,
 				18E809D51BC2A9C900712C43 /* PaintView0Controller.m in Sources */,
+				18EE557F1C41F4A400A99D50 /* TDCarInfoViewController.m in Sources */,
+				18E946211C40FAF20047ADEA /* TDLocationViewController.m in Sources */,
 				18E8A11F1BBA399E00FBD3F4 /* TimeUtils.m in Sources */,
 				84345A8A1C3A404E0089DB45 /* TDOilItem.m in Sources */,
 				18B9324F1BA6A8C50019279E /* main.m in Sources */,
@@ -867,8 +947,9 @@
 			baseConfigurationReference = E2E5957C845E102A048E030F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = fillPaintMaster/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.yuyang.fillPaintMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -880,8 +961,9 @@
 			baseConfigurationReference = 40FB5D2497535D497A282D1A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = fillPaintMaster/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.yuyang.fillPaintMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";

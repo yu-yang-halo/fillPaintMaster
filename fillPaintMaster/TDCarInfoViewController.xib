@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TDCarInfoViewController">
+            <connections>
+                <outlet property="tableView" destination="aav-P2-G8V" id="WWf-cd-vNm"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5oM-5G-Yrh">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fra-V4-teu">
+                            <rect key="frame" x="0.0" y="20" width="41" height="44"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="41" id="KFK-BB-eb5"/>
+                                <constraint firstAttribute="height" constant="44" id="bEM-b8-wCh"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="back"/>
+                            <connections>
+                                <action selector="back:" destination="-1" eventType="touchUpInside" id="OI7-Bs-hiK"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车管家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUb-aM-7Vj">
+                            <rect key="frame" x="109" y="31" width="102" height="21"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="BmD-rm-fWD"/>
+                                <constraint firstAttribute="width" constant="102" id="Ixh-cs-MKr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XF2-Vx-nso">
+                            <rect key="frame" x="274" y="27" width="46" height="30"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="R7b-YB-Nc5"/>
+                                <constraint firstAttribute="width" constant="46" id="ivS-YK-gcy"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                            <state key="normal" title="＋">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="add:" destination="-1" eventType="touchUpInside" id="Yj1-Hm-Xaj"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" red="0.3294117647" green="0.75294117650000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="XF2-Vx-nso" secondAttribute="bottom" constant="7" id="15u-mb-vpd"/>
+                        <constraint firstAttribute="height" constant="64" id="1H7-ks-Ega"/>
+                        <constraint firstAttribute="bottom" secondItem="AUb-aM-7Vj" secondAttribute="bottom" constant="12" id="b96-nZ-gsl"/>
+                        <constraint firstItem="fra-V4-teu" firstAttribute="leading" secondItem="5oM-5G-Yrh" secondAttribute="leading" id="de1-kS-5fe"/>
+                        <constraint firstItem="AUb-aM-7Vj" firstAttribute="centerX" secondItem="5oM-5G-Yrh" secondAttribute="centerX" id="eqf-nl-GNn"/>
+                        <constraint firstAttribute="bottom" secondItem="fra-V4-teu" secondAttribute="bottom" id="n0w-A8-adJ"/>
+                        <constraint firstAttribute="trailing" secondItem="XF2-Vx-nso" secondAttribute="trailing" id="uW8-id-3FC"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您可以添加多个车辆信息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTX-Mr-taP">
+                    <rect key="frame" x="0.0" y="64" width="320" height="30"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.41176470590000003" green="0.94117647059999998" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="OSJ-vh-0ns"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aav-P2-G8V">
+                    <rect key="frame" x="0.0" y="94" width="320" height="474"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="aav-P2-G8V" secondAttribute="bottom" id="8HM-cf-6kq"/>
+                <constraint firstItem="5oM-5G-Yrh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="RSQ-o0-z7o"/>
+                <constraint firstItem="5oM-5G-Yrh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="abt-yb-pxj"/>
+                <constraint firstAttribute="trailing" secondItem="5oM-5G-Yrh" secondAttribute="trailing" id="cm3-CY-1mR"/>
+                <constraint firstItem="aav-P2-G8V" firstAttribute="top" secondItem="GTX-Mr-taP" secondAttribute="bottom" id="dmj-1b-ZIx"/>
+                <constraint firstItem="aav-P2-G8V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lCo-dq-qtS"/>
+                <constraint firstItem="GTX-Mr-taP" firstAttribute="top" secondItem="5oM-5G-Yrh" secondAttribute="bottom" id="p3i-Ll-jcM"/>
+                <constraint firstAttribute="trailing" secondItem="aav-P2-G8V" secondAttribute="trailing" id="roq-hF-h0T"/>
+                <constraint firstAttribute="trailing" secondItem="GTX-Mr-taP" secondAttribute="trailing" id="wda-NR-3l3"/>
+                <constraint firstItem="GTX-Mr-taP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zJh-ex-tlA"/>
+            </constraints>
+            <point key="canvasLocation" x="314" y="229"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="back" width="46" height="44"/>
+    </resources>
+</document>

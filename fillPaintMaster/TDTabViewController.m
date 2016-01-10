@@ -7,7 +7,8 @@
 //
 
 #import "TDTabViewController.h"
-
+#import "TDLocationViewController.h"
+#import "TDCarInfoViewController.h"
 @interface TDTabViewController ()
 
 @end
@@ -19,7 +20,7 @@
 
     [self initTDTabBar];
     
-    [self initCustomView];
+    [self initCustomView:0];
     
 }
 -(void)initTDTabBar{
@@ -60,26 +61,57 @@
 -(void)click:(UIButton *)sender{
     long tag=sender.tag;
     NSLog(@"tag %ld",tag);
+    if(tag==1){
+        TDCarInfoViewController *tdCarInfo=[[TDCarInfoViewController alloc] init];
+        [self presentViewController:tdCarInfo animated:YES completion:^{
+            
+        }];
+        return;
+    }
     [self setSelectedIndex:tag];
+    [self initCustomView:tag];
 }
 
--(void)initCustomView{
-
-    UIButton *locBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,(44-40)/2, 60, 40)];
-    [locBtn setImage:[UIImage imageNamed:@"loc"] forState:UIControlStateNormal];
-    [locBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:locBtn];
-    
-    UIButton *portraitBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 60, 44)];
-    [portraitBtn setImage:[UIImage imageNamed:@"portrait"] forState:UIControlStateNormal];
-    [portraitBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -30)];
-    
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:portraitBtn];
-    
-    self.navigationItem.titleView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+-(void)initCustomView:(NSUInteger)tagId{
+    if(tagId==0||tagId==1){
+        [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
+        UIButton *locBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,(44-40)/2, 60, 40)];
+        [locBtn setImage:[UIImage imageNamed:@"loc"] forState:UIControlStateNormal];
+        [locBtn addTarget:self action:@selector(location:) forControlEvents:UIControlEventTouchUpInside];
+        [locBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
+        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:locBtn];
+        
+        UIButton *portraitBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 60, 44)];
+        [portraitBtn setEnabled:NO];
+        [portraitBtn setImage:[UIImage imageNamed:@"portrait"] forState:UIControlStateNormal];
+        [portraitBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -30)];
+        
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:portraitBtn];
+        
+        self.navigationItem.titleView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    }else{
+        UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [titleLabel setFont:[UIFont systemFontOfSize:20]];
+        [titleLabel setText:@"个人中心"];
+        self.navigationItem.titleView=titleLabel;
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+        
+    }
+   
     
 }
-
+-(void)location:(UIButton *)sender{
+    NSLog(@"location...");
+    
+    TDLocationViewController *locationVC=[[TDLocationViewController alloc] init];
+    [self presentViewController:locationVC animated:YES completion:^{
+        
+    }];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

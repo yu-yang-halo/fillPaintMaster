@@ -139,7 +139,7 @@ const float ICON_HEIGHT=90;
     if(col==ALL_COLUMN-1){
         return CGRectMake(width-vspace-ICON_WIDTH,row*ICON_HEIGHT+hspace*(row+1), ICON_WIDTH, ICON_HEIGHT);
     }else{
-        return CGRectMake(vspace,row*90+hspace*(row+1), ICON_WIDTH, ICON_HEIGHT);
+        return CGRectMake(vspace,row*ICON_HEIGHT+hspace*(row+1), ICON_WIDTH, ICON_HEIGHT);
     }
     
 }

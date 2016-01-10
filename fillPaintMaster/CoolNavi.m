@@ -32,7 +32,7 @@
         _backImageView.image = [UIImage imageNamed:backImageName];
         _backImageView.contentMode = UIViewContentModeScaleAspectFill;
         
-        _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width*0.5-70*0.5, 0.27*frame.size.height, 70, 70)];
+        _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(frame.size.width*0.5-70*0.5, 0.2*frame.size.height, 70, 70)];
         [_headerImageView sd_setImageWithURL:[NSURL URLWithString:headerImageURL]];
         [_headerImageView.layer setMasksToBounds:YES];
         _headerImageView.layer.cornerRadius = _headerImageView.frame.size.width/2.0f;
