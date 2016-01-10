@@ -26,6 +26,8 @@
     
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
+    ///[self.tableView setEditing:YES animated:YES];
+    
     
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
@@ -40,6 +42,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [carInfos count];
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"commitEditingStyle....");
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [carInfos removeObjectAtIndex:indexPath.row];
+        // Delete the row from the data source.
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        //[self.tableView reloadData];
+    }
     
 }
 
