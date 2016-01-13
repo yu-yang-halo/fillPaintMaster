@@ -78,6 +78,7 @@
 		18EE55801C41F4A400A99D50 /* TDCarInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE557E1C41F4A400A99D50 /* TDCarInfoViewController.xib */; };
 		18EE55821C41FB1C00A99D50 /* CarInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE55811C41FB1C00A99D50 /* CarInfoView.xib */; };
 		18EE55851C42075A00A99D50 /* TDCarInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE55841C42075A00A99D50 /* TDCarInfoModel.m */; };
+		18EFC0071C4689F90068DA68 /* TDStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC0061C4689F90068DA68 /* TDStoreViewController.m */; };
 		84345A771C3A3AD90089DB45 /* TDHttpDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A761C3A3AD90089DB45 /* TDHttpDataService.m */; };
 		84345A7B1C3A3CCE0089DB45 /* TDCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A7A1C3A3CCE0089DB45 /* TDCity.m */; };
 		84345A7E1C3A3D8E0089DB45 /* TDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A7D1C3A3D8E0089DB45 /* TDUser.m */; };
@@ -217,6 +218,8 @@
 		18EE55811C41FB1C00A99D50 /* CarInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarInfoView.xib; sourceTree = "<group>"; };
 		18EE55831C42075A00A99D50 /* TDCarInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCarInfoModel.h; sourceTree = "<group>"; };
 		18EE55841C42075A00A99D50 /* TDCarInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCarInfoModel.m; sourceTree = "<group>"; };
+		18EFC0051C4689F90068DA68 /* TDStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDStoreViewController.h; sourceTree = "<group>"; };
+		18EFC0061C4689F90068DA68 /* TDStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDStoreViewController.m; sourceTree = "<group>"; };
 		40FB5D2497535D497A282D1A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		49336F7C7CEF0F6B8C6EC250 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		84345A751C3A3AD90089DB45 /* TDHttpDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDHttpDataService.h; sourceTree = "<group>"; };
@@ -568,6 +571,8 @@
 				18EE55811C41FB1C00A99D50 /* CarInfoView.xib */,
 				18EE55831C42075A00A99D50 /* TDCarInfoModel.h */,
 				18EE55841C42075A00A99D50 /* TDCarInfoModel.m */,
+				18EFC0051C4689F90068DA68 /* TDStoreViewController.h */,
+				18EFC0061C4689F90068DA68 /* TDStoreViewController.m */,
 			);
 			name = main;
 			sourceTree = "<group>";
@@ -781,6 +786,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18EFC0071C4689F90068DA68 /* TDStoreViewController.m in Sources */,
 				18E8ED0D1C2FE15A00968CEB /* BackCarViewController.m in Sources */,
 				18E8A11B1BBA207800FBD3F4 /* CarBeautyViewController.m in Sources */,
 				18E8ED081C2FDD4200968CEB /* FrontCarViewController.m in Sources */,

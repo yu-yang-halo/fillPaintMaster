@@ -10,7 +10,7 @@
 /*
    Home 界面
  */
-@interface TDHomeViewController : UIViewController
+@interface TDHomeViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 
 @end
