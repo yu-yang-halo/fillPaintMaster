@@ -67,6 +67,9 @@
 		18EB1AFA1C37934600791849 /* TDIdCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB1AF81C37934600791849 /* TDIdCodeViewController.xib */; };
 		18EB1AFE1C37985900791849 /* TDPassSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB1AFC1C37985900791849 /* TDPassSetViewController.m */; };
 		18EB1AFF1C37985900791849 /* TDPassSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB1AFD1C37985900791849 /* TDPassSetViewController.xib */; };
+		18EBC4A21C47BC5F00AFFC1A /* TDActiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC4A11C47BC5F00AFFC1A /* TDActiveViewController.m */; };
+		18EBC4A71C47BEB100AFFC1A /* TDActiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC4A51C47BEB100AFFC1A /* TDActiveTableViewCell.m */; };
+		18EBC4A81C47BEB100AFFC1A /* TDActiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EBC4A61C47BEB100AFFC1A /* TDActiveTableViewCell.xib */; };
 		18ED343D1C3613EB0085B250 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED343B1C3613EB0085B250 /* OrderDetailViewController.m */; };
 		18ED343E1C3613EB0085B250 /* OrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED343C1C3613EB0085B250 /* OrderDetailViewController.xib */; };
 		18ED34421C3627020085B250 /* TDShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED34411C3627020085B250 /* TDShopViewController.m */; };
@@ -201,6 +204,11 @@
 		18EB1AFB1C37985900791849 /* TDPassSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDPassSetViewController.h; sourceTree = "<group>"; };
 		18EB1AFC1C37985900791849 /* TDPassSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDPassSetViewController.m; sourceTree = "<group>"; };
 		18EB1AFD1C37985900791849 /* TDPassSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDPassSetViewController.xib; sourceTree = "<group>"; };
+		18EBC4A01C47BC5F00AFFC1A /* TDActiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDActiveViewController.h; sourceTree = "<group>"; };
+		18EBC4A11C47BC5F00AFFC1A /* TDActiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDActiveViewController.m; sourceTree = "<group>"; };
+		18EBC4A41C47BEB100AFFC1A /* TDActiveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDActiveTableViewCell.h; sourceTree = "<group>"; };
+		18EBC4A51C47BEB100AFFC1A /* TDActiveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDActiveTableViewCell.m; sourceTree = "<group>"; };
+		18EBC4A61C47BEB100AFFC1A /* TDActiveTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDActiveTableViewCell.xib; sourceTree = "<group>"; };
 		18ED343A1C3613EB0085B250 /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
 		18ED343B1C3613EB0085B250 /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
 		18ED343C1C3613EB0085B250 /* OrderDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailViewController.xib; sourceTree = "<group>"; };
@@ -486,6 +494,16 @@
 			name = account;
 			sourceTree = "<group>";
 		};
+		18EBC4A31C47BE8500AFFC1A /* activeCell */ = {
+			isa = PBXGroup;
+			children = (
+				18EBC4A41C47BEB100AFFC1A /* TDActiveTableViewCell.h */,
+				18EBC4A51C47BEB100AFFC1A /* TDActiveTableViewCell.m */,
+				18EBC4A61C47BEB100AFFC1A /* TDActiveTableViewCell.xib */,
+			);
+			name = activeCell;
+			sourceTree = "<group>";
+		};
 		18ED34391C360A8C0085B250 /* common */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,6 +573,7 @@
 		845E484B1C3B580100AAD5A5 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				18EBC4A31C47BE8500AFFC1A /* activeCell */,
 				18E9462B1C4118D80047ADEA /* selector */,
 				845E484F1C3B94C800AAD5A5 /* CoolNavi */,
 				18B932531BA6A8C50019279E /* TDHomeViewController.h */,
@@ -573,6 +592,8 @@
 				18EE55841C42075A00A99D50 /* TDCarInfoModel.m */,
 				18EFC0051C4689F90068DA68 /* TDStoreViewController.h */,
 				18EFC0061C4689F90068DA68 /* TDStoreViewController.m */,
+				18EBC4A01C47BC5F00AFFC1A /* TDActiveViewController.h */,
+				18EBC4A11C47BC5F00AFFC1A /* TDActiveViewController.m */,
 			);
 			name = main;
 			sourceTree = "<group>";
@@ -699,6 +720,7 @@
 				18ED344C1C3627C60085B250 /* ShopView1Controller.xib in Resources */,
 				18E809C01BC248DF00712C43 /* TDTableViewCell1.xib in Resources */,
 				18E946291C40FDE50047ADEA /* area.plist in Resources */,
+				18EBC4A81C47BEB100AFFC1A /* TDActiveTableViewCell.xib in Resources */,
 				18E946321C41195B0047ADEA /* TDSearchViewController.xib in Resources */,
 				18E809DB1BC2AD2800712C43 /* PaintView1Controller.xib in Resources */,
 				18E946221C40FAF20047ADEA /* TDLocationViewController.xib in Resources */,
@@ -797,6 +819,7 @@
 				18ED34461C3627B60085B250 /* ShopView0Controller.m in Sources */,
 				18EB1AF41C378A9E00791849 /* TDLoginViewController.m in Sources */,
 				84345A8D1C3A40950089DB45 /* TDBaseTime.m in Sources */,
+				18EBC4A71C47BEB100AFFC1A /* TDActiveTableViewCell.m in Sources */,
 				84345A841C3A3F7F0089DB45 /* TDBeautyItem.m in Sources */,
 				18E8ED121C2FE25A00968CEB /* TopCarViewController.m in Sources */,
 				18E809C31BC255CD00712C43 /* OrderSuccessViewController.m in Sources */,
@@ -812,6 +835,7 @@
 				18E8A1231BBA468600FBD3F4 /* TDBeautyTableViewCell.m in Sources */,
 				84345A871C3A3FC80089DB45 /* TDBaseItem.m in Sources */,
 				845E484E1C3B589E00AAD5A5 /* TDUserCenterViewController.m in Sources */,
+				18EBC4A21C47BC5F00AFFC1A /* TDActiveViewController.m in Sources */,
 				18E809DA1BC2AD2800712C43 /* PaintView1Controller.m in Sources */,
 				845E48521C3B94FC00AAD5A5 /* CoolNavi.m in Sources */,
 				18B932521BA6A8C50019279E /* AppDelegate.m in Sources */,

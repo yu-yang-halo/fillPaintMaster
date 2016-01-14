@@ -23,13 +23,13 @@ static CGFloat const kWindowHeight = 160.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     items=@[@"我的订单",@"我的预约",@"我的服务卡",@"优惠券"];
-    itemsIcons=@[@"myorder",@"wdyy",@"wdfwk",@"wdyhq"];
+    itemsIcons=@[@"my_icon_input",@"my_icon_set",@"my_icon_zixun",@"my_icon_message"];
     
     self.tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64-49)];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     [self.tableView setRowHeight:ROW_HEIGHT];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
@@ -74,6 +74,7 @@ static CGFloat const kWindowHeight = 160.0f;
     [tableCell.textLabel setText:[items objectAtIndex:indexPath.row]];
     
     [tableCell.imageView setImage:[UIImage imageNamed:[itemsIcons objectAtIndex:indexPath.row]]];
+  
     return tableCell;
     
 }

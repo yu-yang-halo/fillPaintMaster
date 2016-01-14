@@ -150,13 +150,6 @@
                         <constraint firstAttribute="width" constant="320" id="CvD-mt-dou"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJY-u9-t27">
-                    <rect key="frame" x="112" y="458" width="88" height="68"/>
-                    <animations/>
-                    <state key="normal" image="home_btn_active_sel">
-                        <color key="titleShadowColor" red="0.2627450980392157" green="0.65098039215686276" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -167,7 +160,4 @@
             <point key="canvasLocation" x="269" y="231"/>
         </view>
     </objects>
-    <resources>
-        <image name="home_btn_active_sel" width="33" height="33"/>
-    </resources>
 </document>

@@ -227,6 +227,7 @@ static const float ROW_HEIGHT=40;
         tableViewCell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"tableViewCell"];
     }
     tableViewCell.textLabel.text=[contentItms objectAtIndex:indexPath.section];
+    [tableViewCell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [tableViewCell.imageView setImage:[UIImage imageNamed:[imgItms objectAtIndex:indexPath.section]]];
     
     
