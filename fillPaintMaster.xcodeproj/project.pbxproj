@@ -67,6 +67,9 @@
 		18EB1AFA1C37934600791849 /* TDIdCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB1AF81C37934600791849 /* TDIdCodeViewController.xib */; };
 		18EB1AFE1C37985900791849 /* TDPassSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB1AFC1C37985900791849 /* TDPassSetViewController.m */; };
 		18EB1AFF1C37985900791849 /* TDPassSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB1AFD1C37985900791849 /* TDPassSetViewController.xib */; };
+		18EB27AC1C4E5C930085EDC4 /* carwsapi.wsdl in Resources */ = {isa = PBXBuildFile; fileRef = 18EB27AB1C4E5C930085EDC4 /* carwsapi.wsdl */; };
+		18EB27B21C4E5E4E0085EDC4 /* ElApiService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB27AD1C4E5E4E0085EDC4 /* ElApiService.m */; };
+		18EB27B31C4E5E4E0085EDC4 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB27B01C4E5E4E0085EDC4 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18EBC4A21C47BC5F00AFFC1A /* TDActiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC4A11C47BC5F00AFFC1A /* TDActiveViewController.m */; };
 		18EBC4A71C47BEB100AFFC1A /* TDActiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC4A51C47BEB100AFFC1A /* TDActiveTableViewCell.m */; };
 		18EBC4A81C47BEB100AFFC1A /* TDActiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EBC4A61C47BEB100AFFC1A /* TDActiveTableViewCell.xib */; };
@@ -204,6 +207,12 @@
 		18EB1AFB1C37985900791849 /* TDPassSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDPassSetViewController.h; sourceTree = "<group>"; };
 		18EB1AFC1C37985900791849 /* TDPassSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDPassSetViewController.m; sourceTree = "<group>"; };
 		18EB1AFD1C37985900791849 /* TDPassSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDPassSetViewController.xib; sourceTree = "<group>"; };
+		18EB27AB1C4E5C930085EDC4 /* carwsapi.wsdl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = carwsapi.wsdl; sourceTree = "<group>"; };
+		18EB27AD1C4E5E4E0085EDC4 /* ElApiService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElApiService.m; sourceTree = "<group>"; };
+		18EB27AE1C4E5E4E0085EDC4 /* ElApiService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElApiService.h; sourceTree = "<group>"; };
+		18EB27AF1C4E5E4E0085EDC4 /* GDataDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataDefines.h; sourceTree = "<group>"; };
+		18EB27B01C4E5E4E0085EDC4 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		18EB27B11C4E5E4E0085EDC4 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		18EBC4A01C47BC5F00AFFC1A /* TDActiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDActiveViewController.h; sourceTree = "<group>"; };
 		18EBC4A11C47BC5F00AFFC1A /* TDActiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDActiveViewController.m; sourceTree = "<group>"; };
 		18EBC4A41C47BEB100AFFC1A /* TDActiveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDActiveTableViewCell.h; sourceTree = "<group>"; };
@@ -539,6 +548,12 @@
 		84345A741C3A3A800089DB45 /* service */ = {
 			isa = PBXGroup;
 			children = (
+				18EB27AD1C4E5E4E0085EDC4 /* ElApiService.m */,
+				18EB27AE1C4E5E4E0085EDC4 /* ElApiService.h */,
+				18EB27AF1C4E5E4E0085EDC4 /* GDataDefines.h */,
+				18EB27B01C4E5E4E0085EDC4 /* GDataXMLNode.m */,
+				18EB27B11C4E5E4E0085EDC4 /* GDataXMLNode.h */,
+				18EB27AB1C4E5C930085EDC4 /* carwsapi.wsdl */,
 				84345A781C3A3B3D0089DB45 /* bean */,
 				84345A751C3A3AD90089DB45 /* TDHttpDataService.h */,
 				84345A761C3A3AD90089DB45 /* TDHttpDataService.m */,
@@ -676,6 +691,7 @@
 				TargetAttributes = {
 					18B932491BA6A8C50019279E = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = HLQ3A9KFRW;
 					};
 					18B932621BA6A8C50019279E = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -727,6 +743,7 @@
 				18E8ED0E1C2FE15A00968CEB /* BackCarViewController.xib in Resources */,
 				18EE55801C41F4A400A99D50 /* TDCarInfoViewController.xib in Resources */,
 				18E8ED091C2FDD4200968CEB /* FrontCarViewController.xib in Resources */,
+				18EB27AC1C4E5C930085EDC4 /* carwsapi.wsdl in Resources */,
 				18B932811BA6A9540019279E /* InfoPlist.strings in Resources */,
 				18E809BB1BC230D200712C43 /* TDTableViewCell0.xib in Resources */,
 				18E9461D1C40C2C20047ADEA /* LaunchScreen.xib in Resources */,
@@ -809,6 +826,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18EFC0071C4689F90068DA68 /* TDStoreViewController.m in Sources */,
+				18EB27B31C4E5E4E0085EDC4 /* GDataXMLNode.m in Sources */,
 				18E8ED0D1C2FE15A00968CEB /* BackCarViewController.m in Sources */,
 				18E8A11B1BBA207800FBD3F4 /* CarBeautyViewController.m in Sources */,
 				18E8ED081C2FDD4200968CEB /* FrontCarViewController.m in Sources */,
@@ -853,6 +871,7 @@
 				18E946211C40FAF20047ADEA /* TDLocationViewController.m in Sources */,
 				18E8A11F1BBA399E00FBD3F4 /* TimeUtils.m in Sources */,
 				84345A8A1C3A404E0089DB45 /* TDOilItem.m in Sources */,
+				18EB27B21C4E5E4E0085EDC4 /* ElApiService.m in Sources */,
 				18B9324F1BA6A8C50019279E /* main.m in Sources */,
 				84345A811C3A3E770089DB45 /* TDCarInfo.m in Sources */,
 				18E8ECFE1C2FC43200968CEB /* LeftCarViewController.m in Sources */,
@@ -978,10 +997,31 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CustomIOSAlertView\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/Toast\"",
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = fillPaintMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.yuyang.fillPaintMaster;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"CustomIOSAlertView\"",
+					"-l\"SDWebImage\"",
+					"-l\"Toast\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-lxml2",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.app.fillPaintMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -992,10 +1032,31 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CustomIOSAlertView\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/Toast\"",
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = fillPaintMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.yuyang.fillPaintMaster;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"CustomIOSAlertView\"",
+					"-l\"SDWebImage\"",
+					"-l\"Toast\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-lxml2",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.app.fillPaintMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

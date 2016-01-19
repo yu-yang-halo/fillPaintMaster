@@ -153,15 +153,11 @@ float BUTTON_H=49;
         [locBtn addTarget:self action:@selector(location:) forControlEvents:UIControlEventTouchUpInside];
         [locBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:locBtn];
-        
-        UIButton *portraitBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 60, 44)];
-        [portraitBtn setEnabled:NO];
-        [portraitBtn setImage:[UIImage imageNamed:@"portrait"] forState:UIControlStateNormal];
-        [portraitBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -30)];
-        
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:portraitBtn];
-        
-        self.navigationItem.titleView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+        UIImageView *logo=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+        CGRect framLayout=logo.frame;
+        //framLayout.origin.x=-30;
+        logo.frame=framLayout;
+        self.navigationItem.titleView=logo;
     }else if(tagId==2){
         UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
         
@@ -169,7 +165,7 @@ float BUTTON_H=49;
         [titleLabel setFont:[UIFont systemFontOfSize:20]];
         [titleLabel setText:@"我的"];
         self.navigationItem.titleView=titleLabel;
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+        
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
         
     }else if(tagId==1){
@@ -179,7 +175,7 @@ float BUTTON_H=49;
         [titleLabel setFont:[UIFont systemFontOfSize:20]];
         [titleLabel setText:@"附近门店"];
         self.navigationItem.titleView=titleLabel;
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+        
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
         
     }else if(tagId==3){
@@ -189,7 +185,7 @@ float BUTTON_H=49;
         [titleLabel setFont:[UIFont systemFontOfSize:20]];
         [titleLabel setText:@"活动"];
         self.navigationItem.titleView=titleLabel;
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+        
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
         
     }

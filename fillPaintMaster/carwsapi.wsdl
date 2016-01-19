@@ -1,0 +1,5161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:carws="http://kele.cn/carws/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="carws" targetNamespace="http://kele.cn/carws/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://kele.cn/carws/">
+      <xsd:element name="appUserLogin">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="name" type="xsd:string" maxOccurs="1"
+          		minOccurs="1" />
+          	<xsd:element name="password" type="xsd:string"
+          		maxOccurs="1" minOccurs="1">
+          	</xsd:element>
+          	<xsd:element name="shopId" type="xsd:int" maxOccurs="1"
+          		minOccurs="0">
+          	</xsd:element>
+          	<xsd:element name="clientEnv" type="xsd:string"
+          		maxOccurs="1" minOccurs="1">
+          	</xsd:element>
+          	<xsd:element name="logoutYN" type="xsd:boolean" maxOccurs="1" minOccurs="1"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="appUserLoginResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"/>
+          	<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+          	<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+          	<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+
+          	<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sysUserLogin">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="password" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="logoutYN" type="xsd:boolean" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sysUserLoginResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createUser">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="loginName" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="password" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="realName" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="email" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="phone" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createUserResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updUser">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="loginName" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="password" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="realName" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="email" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="phone" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="wechatId" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updUserResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int"
+      				maxOccurs="1" minOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string"
+      				maxOccurs="1" minOccurs="0">
+      			</xsd:element>
+      			<xsd:element name="userId" type="xsd:int"
+      				maxOccurs="1" minOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="delUser">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="delUserResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int"
+      				maxOccurs="1" minOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserList">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="userIdStart" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="userIdEnd" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserListResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="numOfUsers" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="userList" type="carws:UserInfo" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserInfoById">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserInfoByIdResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="loginName" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="realName" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="email" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="phone" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="wechatId" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="regTime" type="xsd:dateTime" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="UserInfo">
+      	<xsd:sequence>
+      		<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="LoginName" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="realName" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		<xsd:element name="email" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		<xsd:element name="phone" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="wechatId" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		<xsd:element name="regTime" type="xsd:dateTime" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="createStation">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="state" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createStationResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="stationId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="delStation">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="stationId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="delStationResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="stationId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updStation">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="state" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updStationResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="StationId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getStationList">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getStationListResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="numOfStation" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="stationList" type="carws:StationInfo" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="StationInfo">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="state" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      		<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getStationById">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="stationId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getStationByIdResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int"
+      				maxOccurs="1" minOccurs="1">
+      			</xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string"
+      				maxOccurs="1" minOccurs="0">
+      			</xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="state" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createShop">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="longitude" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="latitude" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="cityId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createShopResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="delShop">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="delShopResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updShop">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="longitude" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="latitude" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="cityId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updShopResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getShopList">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getShopListResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="numOfShop" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="shopList" type="carws:ShopInfo" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="ShopInfo">
+      	<xsd:sequence>
+      		<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="longitude" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="latitude" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="cityId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getShopById">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getShopByIdResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="longitude" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="latitude" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="cityId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createOil">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createOilResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="oilId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="delOil">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="delOilResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string"
+      				maxOccurs="1" minOccurs="0">
+      			</xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updOil">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updOilResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getOilList">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getOilListResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="numOfOil" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="oilList" type="carws:OilInfo" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="OilInfo">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getOilById">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getOilByIdResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createMetalplate">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="number" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createMetalplateResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="delMetalplate">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="delMetalplateResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updMetalplate">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="number" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updMetalplateResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getMetalplateList">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getMetalplateListResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="numOfMetalplate"
+      				type="xsd:int" maxOccurs="1" minOccurs="0">
+      			</xsd:element>
+      			<xsd:element name="metalplateList" type="carws:MetalplateInfo" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="MetalplateInfo">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="number" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      	</xsd:sequence>
+
+      </xsd:complexType>
+      <xsd:element name="getMetalplateById">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getMetalplateByIdResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="number" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createDecoration">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createDecorationResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="delDecoration">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="delDecorationResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getDecorationList">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getDecorationListResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="errorMsg" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="numOfDecoration"
+      				type="xsd:int" maxOccurs="1" minOccurs="0">
+      			</xsd:element>
+      			<xsd:element name="decorationList" type="carws:DecorationInfo" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="DecorationInfo">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      		<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="1"></xsd:element>
+      		<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getDecorationById">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getDecorationByIdResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="desc" type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="shopId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createCoupon">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="number" type="xsd:string"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="name" type="xsd:string"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="desc" type="xsd:string"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="shopId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="price" type="xsd:float"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="discount" type="xsd:float"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="type" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="createTime" type="xsd:string"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="endTime" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="createUserId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="useUserId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="isUsed" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="orderType"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createCouponResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="delCoupon">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="delCouponResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getCouponList">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="shopId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getCouponListResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="numOfCoupon"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="couponList"
+            				type="carws:CouponInfo" maxOccurs="unbounded" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+            <xsd:complexType name="CouponInfo">
+            	<xsd:sequence>
+            		<xsd:element name="id" type="xsd:int" maxOccurs="1"
+            			minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="number" type="xsd:string"
+            			maxOccurs="1" minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="name" type="xsd:string"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="desc" type="xsd:string"
+            			maxOccurs="1" minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="shopId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="price" type="xsd:float"
+            			maxOccurs="1" minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="discount" type="xsd:float"
+            			maxOccurs="1" minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="type" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="createTime" type="xsd:dateTime"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="endTime" type="xsd:dateTime"
+            			maxOccurs="1" minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="createUserId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="useUserId" type="xsd:int"
+            			maxOccurs="1" minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="isUsed" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="orderType" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="getCouponById">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getCouponByIdResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="coupon"
+            				type="carws:CouponInfo" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createCity">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="shopNum"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createCityResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="cityId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="delCity">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="cityId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="delCityResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="cityId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="udpCity">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="cityId" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="shopNum"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="udpCityResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="cityId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getCityList">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int"></xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getCityListResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="numOfCity"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="cityList"
+            				type="carws:CityInfo" maxOccurs="unbounded" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getCityById">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getCityByIdResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createCar">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="number" type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="userId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createCarResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+            <xsd:complexType name="CityInfo">
+            	<xsd:sequence>
+            		<xsd:element name="cityId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+            		<xsd:element name="name" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+            		<xsd:element name="shopNum" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="delCar">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="delCarResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updCar">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="number" type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="userId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updCarResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getCarByUserId">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="userId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getCarByUserIdResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="carList"
+            				type="carws:CarInfo" maxOccurs="unbounded" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+            <xsd:complexType name="CarInfo">
+            	<xsd:sequence>
+            		<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+            		<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+            		<xsd:element name="number" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+            		<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+          
+            <xsd:element name="delGood">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+           
+            <xsd:element name="createGoods">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="name" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="desc" type="xsd:string"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="isShow" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="isChange" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="price" type="xsd:float"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="src"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="shopId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createGoodsResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="delGoodResponse2">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updGood">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="name" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="desc" type="xsd:string"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="isShow" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="isChange" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="price" type="xsd:float"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="src"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="shopId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updGoodResponse2">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getGoodsList">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="shopId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getGoodsListResponse2">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="numOfGoods"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="goodsList"
+            				type="carws:GoodInfo" maxOccurs="unbounded" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+            <xsd:complexType name="GoodInfo">
+            	<xsd:sequence>
+            		<xsd:element name="id" type="xsd:int" maxOccurs="1"
+            			minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="name" type="xsd:string"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="desc" type="xsd:string"
+            			maxOccurs="1" minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="isShow" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="isChange" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="price" type="xsd:float"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="src" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+            		<xsd:element name="shopId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+           
+            
+            <xsd:element name="createOilOrder">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="type" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+
+
+            			<xsd:element name="state" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="payState" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="userId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="carId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="shopId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="stationId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="orderTime" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+
+            			<xsd:element name="price" type="xsd:float"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="couponId"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createOilOrderResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+
+            			<xsd:element name="errorMsg" type="xsd:string"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="createTime"
+            				type="xsd:dateTime" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+           
+           
+            <xsd:element name="delOilOrder">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="delOilOrderResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updOilOrder">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="state" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="payState"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="carId" type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="stationId"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updOilOrderResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getOilOrderList">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="searchType" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="shopId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="userId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="carId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="stationId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="startTime"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="maxNum"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getOilOrderListResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="numOfOilOrder"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="oilOrderList"
+            				type="carws:OilOrderInfo" maxOccurs="unbounded" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getOilOrderListById">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getOilOrderListByIdResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="oilOrder"
+            				type="carws:OilOrderInfo" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createOilOrderNumber">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="oilOrderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="oilId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createOilOrderNumberResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createMetaOrder">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="type" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+
+
+            			<xsd:element name="state" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="payState" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="userId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="carId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="shopId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="stationId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="price" type="xsd:float"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="couponId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="orderTime"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createMetaOrderResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="delMetaOrder">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="delMetaOrderResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+            <xsd:complexType name="OilOrderInfo">
+            	<xsd:sequence>
+            		<xsd:element name="id" type="xsd:int" maxOccurs="1"
+            			minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="type" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="createTime" type="xsd:dateTime"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="finishTime" type="xsd:dateTime"
+            			maxOccurs="1" minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="state" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="payState" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="userId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="carId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="shopId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="stationId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="price" type="xsd:float"
+            			maxOccurs="1" minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="couponId" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+            		<xsd:element name="oilOrderNumber"
+            			type="carws:OilOrderNumberInfo" maxOccurs="unbounded"
+            			minOccurs="0">
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+          
+            <xsd:element name="updMetaOrder">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="state" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="payState" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="userId" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="carId" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="stationId" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updMetaOrderResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getMetaOrderList">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="searchType" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="userId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="carId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="shopId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="stationId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="startTime"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="maxNum"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getMetaOrderListResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="numofMetaOrder"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="metaOrderList"
+            				type="carws:MetaOrderInfo" maxOccurs="unbounded" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getMetaOrderById">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getMetaOrderByIdResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string">
+            			</xsd:element>
+            			<xsd:element name="metaOrder"
+            				type="carws:MetaOrderInfo">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createMetaOrderNumber">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="metaOrderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="metaId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createMetaOrderNumberResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createMetaOrderImg">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="metaOrderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="imgName"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createMetaOrderImgResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createDecoOrder">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="type" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+
+
+            			<xsd:element name="state" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="payState" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="userId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="carId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="shopId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="stationId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="orderTime"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="price" type="xsd:float"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="couponId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createDecoOrderResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg" type="xsd:string"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="createTime"
+            				type="xsd:dateTime" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="delDecoOrder">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="delDecoOrderResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+            <xsd:complexType name="MetaOrderInfo">
+            	<xsd:sequence>
+            		<xsd:element name="id" type="xsd:int" maxOccurs="1"
+            			minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="type" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="createTime" type="xsd:dateTime"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="finishTime" type="xsd:dateTime"
+            			maxOccurs="1" minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="state" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="payState" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="userId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="carId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="shopId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="stationId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="0"></xsd:element>
+            		<xsd:element name="couponId" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+            		<xsd:element name="metaOrderNumber"
+            			type="carws:MetaOrderNumber" maxOccurs="unbounded"
+            			minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="metaOrderImg"
+            			type="carws:MetaOrderImg" maxOccurs="unbounded"
+            			minOccurs="0">
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="MetaOrderNumber">
+            	<xsd:sequence>
+            		<xsd:element name="id" type="xsd:string"></xsd:element>
+            		<xsd:element name="metaId" type="xsd:string"></xsd:element>
+            		<xsd:element name="metaOrderId" type="xsd:string"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="OilOrderNumberInfo">
+            	<xsd:sequence>
+            		<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+            		<xsd:element name="oilId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+            		<xsd:element name="oilOrderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="MetaOrderImg">
+            	<xsd:sequence>
+            		<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+            		<xsd:element name="metaOrderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+            		<xsd:element name="imgName" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+           
+            <xsd:element name="updDecoOrder">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="id" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="type" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="state" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="payState" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="userId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="carId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="shopId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="stationId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="couponId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="orderTime"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updDecoOrderResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getDecoOrderList">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken" type="xsd:string"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="searchType" type="xsd:int"
+            				maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="userId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="carId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="shopId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="stationId" type="xsd:int"
+            				maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="startTime"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="maxNum"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getDecoOrderListResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="numOfDecoOrder"
+            				type="xsd:int" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="decoOrderList"
+            				type="carws:DecoOrderInfo" maxOccurs="unbounded" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getDecoOrderById">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+                        <xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+                    </xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getDecoOrderByIdResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="decoOrder"
+            				type="carws:DecoOrderInfo" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createDecoOrderNumber">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="decoId" type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="decoOrderId"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createDecoOrderNumberResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string" maxOccurs="1" minOccurs="0">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int" maxOccurs="1" minOccurs="1">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+        
+    
+            <xsd:complexType name="DecoOrderInfo">
+            	<xsd:sequence>
+            		<xsd:element name="id" type="xsd:int" maxOccurs="1"
+            			minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="type" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="createTime" type="xsd:dateTime"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="finishTime" type="xsd:dateTime"
+            			maxOccurs="1" minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="state" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="payState" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="userId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="carId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="shopId" type="xsd:int"
+            			maxOccurs="1" minOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="stationId" type="xsd:int"
+            			maxOccurs="1" minOccurs="0">
+            		</xsd:element>
+            		<xsd:element name="price" type="xsd:float" maxOccurs="1" minOccurs="0"></xsd:element>
+            		<xsd:element name="couponId" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+            		<xsd:element name="decoOrderNumber"
+            			type="carws:DecoOrderNumber" maxOccurs="unbounded"
+            			minOccurs="0">
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="DecoOrderNumber">
+            	<xsd:sequence>
+            		<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+            		<xsd:element name="decoOrderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+            		<xsd:element name="decoId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+   
+            <xsd:element name="updDecoration">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="senderId"
+            				type="xsd:int">
+            			</xsd:element>
+            			<xsd:element name="secToken"
+            				type="xsd:string">
+            			</xsd:element>
+            			<xsd:element name="id" type="xsd:int">
+            			</xsd:element>
+            			<xsd:element name="name" type="xsd:string">
+            			</xsd:element>
+            			<xsd:element name="desc" type="xsd:string">
+            			</xsd:element>
+            			<xsd:element name="price" type="xsd:float">
+            			</xsd:element>
+            			<xsd:element name="shopId"
+            				type="xsd:int">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updDecorationResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="errorCode" type="xsd:int">
+            			</xsd:element>
+            			<xsd:element name="errorMsg"
+            				type="xsd:string">
+            			</xsd:element>
+            			<xsd:element name="id"
+            				type="xsd:int">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updCoupon">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updCouponResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createBanner">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createBannerResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="deleteBanner">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="deleteBannerResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createAssess">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createAssessResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="deleteAssess">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="deleteAssessResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getBannerList">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getBannerListResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getAssessListByShopId">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getAssessListByShopIdResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getAssessListById">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getAssessListByIdResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getDayOrderStateList">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getDayOrderStateListResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="appUserLoginRequest">
+    <wsdl:part element="carws:appUserLogin" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="appUserLoginResponse">
+    <wsdl:part element="carws:appUserLoginResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="sysUserLoginRequest">
+  	<wsdl:part name="parameters" element="carws:sysUserLogin"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sysUserLoginResponse">
+  	<wsdl:part name="parameters" element="carws:sysUserLoginResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createUserRequest">
+  	<wsdl:part name="parameters" element="carws:createUser"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createUserResponse">
+  	<wsdl:part name="parameters" element="carws:createUserResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updUserRequest">
+  	<wsdl:part name="parameters" element="carws:updUser"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updUserResponse">
+  	<wsdl:part name="parameters" element="carws:updUserResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delUserRequest">
+  	<wsdl:part name="parameters" element="carws:delUser"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delUserResponse">
+  	<wsdl:part name="parameters" element="carws:delUserResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserListRequest">
+  	<wsdl:part name="parameters" element="carws:getUserList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserListResponse">
+  	<wsdl:part name="parameters" element="carws:getUserListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserInfoByIdRequest">
+  	<wsdl:part name="parameters" element="carws:getUserInfoById"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserInfoByIdResponse">
+  	<wsdl:part name="parameters" element="carws:getUserInfoByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createStationRequest">
+  	<wsdl:part name="parameters" element="carws:createStation"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createStationResponse">
+  	<wsdl:part name="parameters" element="carws:createStationResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delStationRequest">
+  	<wsdl:part name="parameters" element="carws:delStation"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delStationResponse">
+  	<wsdl:part name="parameters" element="carws:delStationResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updStationRequest">
+  	<wsdl:part name="parameters" element="carws:updStation"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updStationResponse">
+  	<wsdl:part name="parameters" element="carws:updStationResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStationListRequest">
+  	<wsdl:part name="parameters" element="carws:getStationList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStationListResponse">
+  	<wsdl:part name="parameters" element="carws:getStationListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStationByIdRequest">
+  	<wsdl:part name="parameters" element="carws:getStationById"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStationByIdResponse">
+  	<wsdl:part name="parameters" element="carws:getStationByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createShopRequest">
+  	<wsdl:part name="parameters" element="carws:createShop"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createShopResponse">
+  	<wsdl:part name="parameters" element="carws:createShopResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delShopRequest">
+  	<wsdl:part name="parameters" element="carws:delShop"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delShopResponse">
+  	<wsdl:part name="parameters" element="carws:delShopResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updShopRequest">
+  	<wsdl:part name="parameters" element="carws:updShop"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updShopResponse">
+  	<wsdl:part name="parameters" element="carws:updShopResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getShopListRequest">
+  	<wsdl:part name="parameters" element="carws:getShopList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getShopListResponse">
+  	<wsdl:part name="parameters" element="carws:getShopListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getShopByIdRequest">
+  	<wsdl:part name="parameters" element="carws:getShopById"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getShopByIdResponse">
+  	<wsdl:part name="parameters" element="carws:getShopByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOilRequest">
+  	<wsdl:part name="parameters" element="carws:createOil"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOilResponse">
+  	<wsdl:part name="parameters" element="carws:createOilResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delOilRequest">
+  	<wsdl:part name="parameters" element="carws:delOil"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delOilResponse">
+  	<wsdl:part name="parameters" element="carws:delOilResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updOilRequest">
+  	<wsdl:part name="parameters" element="carws:updOil"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updOilResponse">
+  	<wsdl:part name="parameters" element="carws:updOilResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOilListRequest">
+  	<wsdl:part name="parameters" element="carws:getOilList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOilListResponse">
+  	<wsdl:part name="parameters" element="carws:getOilListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOilByIdRequest">
+  	<wsdl:part name="parameters" element="carws:getOilById"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOilByIdResponse">
+  	<wsdl:part name="parameters" element="carws:getOilByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createMetalplateRequest">
+  	<wsdl:part name="parameters" element="carws:createMetalplate"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createMetalplateResponse">
+  	<wsdl:part name="parameters" element="carws:createMetalplateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delMetalplateRequest">
+  	<wsdl:part name="parameters" element="carws:delMetalplate"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delMetalplateResponse">
+  	<wsdl:part name="parameters" element="carws:delMetalplateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updMetalplateRequest">
+  	<wsdl:part name="parameters" element="carws:updMetalplate"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updMetalplateResponse">
+  	<wsdl:part name="parameters" element="carws:updMetalplateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetalplateListRequest">
+  	<wsdl:part name="parameters" element="carws:getMetalplateList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetalplateListResponse">
+  	<wsdl:part name="parameters" element="carws:getMetalplateListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetalplateByIdRequest">
+  	<wsdl:part name="parameters" element="carws:getMetalplateById"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetalplateByIdResponse">
+  	<wsdl:part name="parameters" element="carws:getMetalplateByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createDecorationRequest">
+  	<wsdl:part name="parameters" element="carws:createDecoration"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createDecorationResponse">
+  	<wsdl:part name="parameters" element="carws:createDecorationResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delDecorationRequest">
+  	<wsdl:part name="parameters" element="carws:delDecoration"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delDecorationResponse">
+  	<wsdl:part name="parameters" element="carws:delDecorationResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDecorationListRequest">
+  	<wsdl:part name="parameters" element="carws:getDecorationList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDecorationListResponse">
+  	<wsdl:part name="parameters" element="carws:getDecorationListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDecorationByIdRequest">
+  	<wsdl:part name="parameters" element="carws:getDecorationById"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDecorationByIdResponse">
+  	<wsdl:part name="parameters" element="carws:getDecorationByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createCouponRequest">
+  	<wsdl:part name="parameters" element="carws:createCoupon"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createCouponResponse">
+  	<wsdl:part name="parameters" element="carws:createCouponResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delCouponRequest">
+  	<wsdl:part name="parameters" element="carws:delCoupon"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delCouponResponse">
+  	<wsdl:part name="parameters" element="carws:delCouponResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCouponListRequest">
+  	<wsdl:part name="parameters" element="carws:getCouponList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCouponListResponse">
+  	<wsdl:part name="parameters" element="carws:getCouponListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCouponByIdRequest">
+  	<wsdl:part name="parameters" element="carws:getCouponById"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCouponByIdResponse">
+  	<wsdl:part name="parameters" element="carws:getCouponByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createCityRequest">
+  	<wsdl:part name="parameters" element="carws:createCity"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createCityResponse">
+  	<wsdl:part name="parameters" element="carws:createCityResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delCityRequest">
+  	<wsdl:part name="parameters" element="carws:delCity"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delCityResponse">
+  	<wsdl:part name="parameters" element="carws:delCityResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="udpCityRequest">
+  	<wsdl:part name="parameters" element="carws:udpCity"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="udpCityResponse">
+  	<wsdl:part name="parameters" element="carws:udpCityResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCityListRequest">
+  	<wsdl:part name="parameters" element="carws:getCityList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCityListResponse">
+  	<wsdl:part name="parameters" element="carws:getCityListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCityByIdRequest">
+  	<wsdl:part name="parameters" element="carws:getCityById"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCityByIdResponse">
+  	<wsdl:part name="parameters" element="carws:getCityByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createCarRequest">
+  	<wsdl:part name="parameters" element="carws:createCar"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createCarResponse">
+  	<wsdl:part name="parameters" element="carws:createCarResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delCarRequest">
+  	<wsdl:part name="parameters" element="carws:delCar"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delCarResponse">
+  	<wsdl:part name="parameters" element="carws:delCarResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updCarRequest">
+  	<wsdl:part name="parameters" element="carws:updCar"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updCarResponse">
+  	<wsdl:part name="parameters" element="carws:updCarResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCarByUserIdRequest">
+  	<wsdl:part name="parameters" element="carws:getCarByUserId"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCarByUserIdResponse">
+  	<wsdl:part name="parameters" element="carws:getCarByUserIdResponse"></wsdl:part>
+  </wsdl:message>
+
+  <wsdl:message name="delGoodRequest">
+  	<wsdl:part name="parameters" element="carws:delGood"></wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:message name="createGoodsRequest">
+  	<wsdl:part name="parameters" element="carws:createGoods"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createGoodsResponse">
+  	<wsdl:part name="parameters" element="carws:createGoodsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delGoodResponse2">
+  	<wsdl:part name="parameters" element="carws:delGoodResponse2"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updGoodRequest">
+  	<wsdl:part name="parameters" element="carws:updGood"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updGoodResponse2">
+  	<wsdl:part name="parameters" element="carws:updGoodResponse2"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGoodsListRequest">
+  	<wsdl:part name="parameters" element="carws:getGoodsList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGoodsListResponse2">
+  	<wsdl:part name="parameters" element="carws:getGoodsListResponse2"></wsdl:part>
+  </wsdl:message>
+ 
+ 
+  <wsdl:message name="createOilOrderRequest">
+  	<wsdl:part name="parameters" element="carws:createOilOrder"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOilOrderResponse">
+  	<wsdl:part name="parameters" element="carws:createOilOrderResponse"></wsdl:part>
+  </wsdl:message>
+ 
+  
+  <wsdl:message name="delOilOrderRequest">
+  	<wsdl:part name="parameters" element="carws:delOilOrder"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delOilOrderResponse">
+  	<wsdl:part name="parameters" element="carws:delOilOrderResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updOilOrderRequest">
+  	<wsdl:part name="parameters" element="carws:updOilOrder"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updOilOrderResponse">
+  	<wsdl:part name="parameters" element="carws:updOilOrderResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOilOrderListRequest">
+  	<wsdl:part name="parameters" element="carws:getOilOrderList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOilOrderListResponse">
+  	<wsdl:part name="parameters" element="carws:getOilOrderListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOilOrderListByIdRequest">
+  	<wsdl:part name="parameters" element="carws:getOilOrderListById"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOilOrderListByIdResponse">
+  	<wsdl:part name="parameters" element="carws:getOilOrderListByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOilOrderNumberRequest">
+  	<wsdl:part name="parameters" element="carws:createOilOrderNumber"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOilOrderNumberResponse">
+  	<wsdl:part name="parameters" element="carws:createOilOrderNumberResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createMetaOrderRequest">
+  	<wsdl:part name="parameters" element="carws:createMetaOrder"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createMetaOrderResponse">
+  	<wsdl:part name="parameters" element="carws:createMetaOrderResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delMetaOrderRequest">
+  	<wsdl:part name="parameters" element="carws:delMetaOrder"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delMetaOrderResponse">
+  	<wsdl:part name="parameters" element="carws:delMetaOrderResponse"></wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:message name="updMetaOrderRequest">
+  	<wsdl:part name="parameters" element="carws:updMetaOrder"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updMetaOrderResponse">
+  	<wsdl:part name="parameters" element="carws:updMetaOrderResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetaOrderListRequest">
+  	<wsdl:part name="parameters" element="carws:getMetaOrderList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetaOrderListResponse">
+  	<wsdl:part name="parameters" element="carws:getMetaOrderListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetaOrderByIdRequest">
+  	<wsdl:part name="parameters" element="carws:getMetaOrderById"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMetaOrderByIdResponse">
+  	<wsdl:part name="parameters" element="carws:getMetaOrderByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createMetaOrderNumberRequest">
+  	<wsdl:part name="parameters" element="carws:createMetaOrderNumber"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createMetaOrderNumberResponse">
+  	<wsdl:part name="parameters" element="carws:createMetaOrderNumberResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createMetaOrderImgRequest">
+  	<wsdl:part name="parameters" element="carws:createMetaOrderImg"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createMetaOrderImgResponse">
+  	<wsdl:part name="parameters" element="carws:createMetaOrderImgResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createDecoOrderRequest">
+  	<wsdl:part name="parameters" element="carws:createDecoOrder"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createDecoOrderResponse">
+  	<wsdl:part name="parameters" element="carws:createDecoOrderResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delDecoOrderRequest">
+  	<wsdl:part name="parameters" element="carws:delDecoOrder"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delDecoOrderResponse">
+  	<wsdl:part name="parameters" element="carws:delDecoOrderResponse"></wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:message name="updDecoOrderRequest">
+  	<wsdl:part name="parameters" element="carws:updDecoOrder"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updDecoOrderResponse">
+  	<wsdl:part name="parameters" element="carws:updDecoOrderResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDecoOrderListRequest">
+  	<wsdl:part name="parameters" element="carws:getDecoOrderList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDecoOrderListResponse">
+  	<wsdl:part name="parameters" element="carws:getDecoOrderListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDecoOrderByIdRequest">
+  	<wsdl:part name="parameters" element="carws:getDecoOrderById"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDecoOrderByIdResponse">
+  	<wsdl:part name="parameters" element="carws:getDecoOrderByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createDecoOrderNumberRequest">
+  	<wsdl:part name="parameters" element="carws:createDecoOrderNumber"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createDecoOrderNumberResponse">
+  	<wsdl:part name="parameters" element="carws:createDecoOrderNumberResponse"></wsdl:part>
+  </wsdl:message>
+
+  <wsdl:message name="updDecorationRequest">
+  	<wsdl:part name="parameters" element="carws:updDecoration"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updDecorationResponse">
+  	<wsdl:part name="parameters" element="carws:updDecorationResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updCouponRequest">
+  	<wsdl:part name="parameters" element="carws:updCoupon"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updCouponResponse">
+  	<wsdl:part name="parameters" element="carws:updCouponResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createBannerRequest">
+  	<wsdl:part name="parameters" element="carws:createBanner"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createBannerResponse">
+  	<wsdl:part name="parameters" element="carws:createBannerResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteBannerRequest">
+  	<wsdl:part name="parameters" element="carws:deleteBanner"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteBannerResponse">
+  	<wsdl:part name="parameters" element="carws:deleteBannerResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createAssessRequest">
+  	<wsdl:part name="parameters" element="carws:createAssess"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createAssessResponse">
+  	<wsdl:part name="parameters" element="carws:createAssessResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteAssessRequest">
+  	<wsdl:part name="parameters" element="carws:deleteAssess"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteAssessResponse">
+  	<wsdl:part name="parameters" element="carws:deleteAssessResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBannerListRequest">
+  	<wsdl:part name="parameters" element="carws:getBannerList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBannerListResponse">
+  	<wsdl:part name="parameters" element="carws:getBannerListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAssessListByShopIdRequest">
+  	<wsdl:part name="parameters" element="carws:getAssessListByShopId"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAssessListByShopIdResponse">
+  	<wsdl:part name="parameters" element="carws:getAssessListByShopIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAssessListByIdRequest">
+  	<wsdl:part name="parameters" element="carws:getAssessListById"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAssessListByIdResponse">
+  	<wsdl:part name="parameters" element="carws:getAssessListByIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDayOrderStateListRequest">
+  	<wsdl:part name="parameters" element="carws:getDayOrderStateList"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDayOrderStateListResponse">
+  	<wsdl:part name="parameters" element="carws:getDayOrderStateListResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="carwsapi">
+    <wsdl:operation name="appUserLogin">
+      <wsdl:input message="carws:appUserLoginRequest"/>
+      <wsdl:output message="carws:appUserLoginResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="sysUserLogin">
+    	<wsdl:input message="carws:sysUserLoginRequest"></wsdl:input>
+    	<wsdl:output message="carws:sysUserLoginResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+    	<wsdl:input message="carws:createUserRequest"></wsdl:input>
+    	<wsdl:output message="carws:createUserResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updUser">
+    	<wsdl:input message="carws:updUserRequest"></wsdl:input>
+    	<wsdl:output message="carws:updUserResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delUser">
+    	<wsdl:input message="carws:delUserRequest"></wsdl:input>
+    	<wsdl:output message="carws:delUserResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserList">
+    	<wsdl:input message="carws:getUserListRequest"></wsdl:input>
+    	<wsdl:output message="carws:getUserListResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserInfoById">
+    	<wsdl:input message="carws:getUserInfoByIdRequest"></wsdl:input>
+    	<wsdl:output message="carws:getUserInfoByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createStation">
+    	<wsdl:input message="carws:createStationRequest"></wsdl:input>
+    	<wsdl:output message="carws:createStationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delStation">
+    	<wsdl:input message="carws:delStationRequest"></wsdl:input>
+    	<wsdl:output message="carws:delStationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updStation">
+    	<wsdl:input message="carws:updStationRequest"></wsdl:input>
+    	<wsdl:output message="carws:updStationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStationList">
+    	<wsdl:input message="carws:getStationListRequest"></wsdl:input>
+    	<wsdl:output message="carws:getStationListResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStationById">
+    	<wsdl:input message="carws:getStationByIdRequest"></wsdl:input>
+    	<wsdl:output message="carws:getStationByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createShop">
+    	<wsdl:input message="carws:createShopRequest"></wsdl:input>
+    	<wsdl:output message="carws:createShopResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delShop">
+    	<wsdl:input message="carws:delShopRequest"></wsdl:input>
+    	<wsdl:output message="carws:delShopResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updShop">
+    	<wsdl:input message="carws:updShopRequest"></wsdl:input>
+    	<wsdl:output message="carws:updShopResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getShopList">
+    	<wsdl:input message="carws:getShopListRequest"></wsdl:input>
+    	<wsdl:output message="carws:getShopListResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getShopById">
+    	<wsdl:input message="carws:getShopByIdRequest"></wsdl:input>
+    	<wsdl:output message="carws:getShopByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createOil">
+    	<wsdl:input message="carws:createOilRequest"></wsdl:input>
+    	<wsdl:output message="carws:createOilResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delOil">
+    	<wsdl:input message="carws:delOilRequest"></wsdl:input>
+    	<wsdl:output message="carws:delOilResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updOil">
+    	<wsdl:input message="carws:updOilRequest"></wsdl:input>
+    	<wsdl:output message="carws:updOilResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOilList">
+    	<wsdl:input message="carws:getOilListRequest"></wsdl:input>
+    	<wsdl:output message="carws:getOilListResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOilById">
+    	<wsdl:input message="carws:getOilByIdRequest"></wsdl:input>
+    	<wsdl:output message="carws:getOilByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createMetalplate">
+    	<wsdl:input message="carws:createMetalplateRequest"></wsdl:input>
+    	<wsdl:output message="carws:createMetalplateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delMetalplate">
+    	<wsdl:input message="carws:delMetalplateRequest"></wsdl:input>
+    	<wsdl:output message="carws:delMetalplateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updMetalplate">
+    	<wsdl:input message="carws:updMetalplateRequest"></wsdl:input>
+    	<wsdl:output message="carws:updMetalplateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMetalplateList">
+    	<wsdl:input message="carws:getMetalplateListRequest"></wsdl:input>
+    	<wsdl:output message="carws:getMetalplateListResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMetalplateById">
+    	<wsdl:input message="carws:getMetalplateByIdRequest"></wsdl:input>
+    	<wsdl:output message="carws:getMetalplateByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createDecoration">
+    	<wsdl:input message="carws:createDecorationRequest"></wsdl:input>
+    	<wsdl:output message="carws:createDecorationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delDecoration">
+    	<wsdl:input message="carws:delDecorationRequest"></wsdl:input>
+    	<wsdl:output message="carws:delDecorationResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDecorationList">
+    	<wsdl:input message="carws:getDecorationListRequest"></wsdl:input>
+    	<wsdl:output message="carws:getDecorationListResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDecorationById">
+    	<wsdl:input message="carws:getDecorationByIdRequest"></wsdl:input>
+    	<wsdl:output message="carws:getDecorationByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createCoupon">
+    	<wsdl:input message="carws:createCouponRequest"></wsdl:input>
+    	<wsdl:output message="carws:createCouponResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delCoupon">
+    	<wsdl:input message="carws:delCouponRequest"></wsdl:input>
+    	<wsdl:output message="carws:delCouponResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCouponList">
+    	<wsdl:input message="carws:getCouponListRequest"></wsdl:input>
+    	<wsdl:output message="carws:getCouponListResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCouponById">
+    	<wsdl:input message="carws:getCouponByIdRequest"></wsdl:input>
+    	<wsdl:output message="carws:getCouponByIdResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createCity">
+    	<wsdl:input message="carws:createCityRequest"></wsdl:input>
+    	<wsdl:output message="carws:createCityResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delCity">
+    	<wsdl:input message="carws:delCityRequest"></wsdl:input>
+    	<wsdl:output message="carws:delCityResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="udpCity">
+    	<wsdl:input message="carws:udpCityRequest"></wsdl:input>
+    	<wsdl:output message="carws:udpCityResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCityList">
+    	<wsdl:input message="carws:getCityListRequest"></wsdl:input>
+    	<wsdl:output message="carws:getCityListResponse"></wsdl:output>
+    </wsdl:operation>    <wsdl:operation name="createCar">    	<wsdl:input message="carws:createCarRequest"></wsdl:input>    	<wsdl:output message="carws:createCarResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delCar">
+    	<wsdl:input message="carws:delCarRequest"></wsdl:input>
+    	<wsdl:output message="carws:delCarResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updCar">
+    	<wsdl:input message="carws:updCarRequest"></wsdl:input>
+    	<wsdl:output message="carws:updCarResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCarByUserId">
+    	<wsdl:input message="carws:getCarByUserIdRequest"></wsdl:input>
+    	<wsdl:output message="carws:getCarByUserIdResponse"></wsdl:output>
+    </wsdl:operation>    <wsdl:operation name="createGoods">
+    	<wsdl:input message="carws:createGoodsRequest"></wsdl:input>
+    	<wsdl:output message="carws:createGoodsResponse"></wsdl:output>
+    </wsdl:operation>
+        <wsdl:operation name="delGood">
+        	<wsdl:input message="carws:delGoodRequest"></wsdl:input>
+        	<wsdl:output message="carws:delGoodResponse2"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updGood">
+        	<wsdl:input message="carws:updGoodRequest"></wsdl:input>
+        	<wsdl:output message="carws:updGoodResponse2"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getGoodsList">
+        	<wsdl:input message="carws:getGoodsListRequest"></wsdl:input>
+        	<wsdl:output message="carws:getGoodsListResponse2"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createOilOrder">
+        	<wsdl:input message="carws:createOilOrderRequest"></wsdl:input>
+        	<wsdl:output message="carws:createOilOrderResponse"></wsdl:output>
+        </wsdl:operation>                <wsdl:operation name="delOilOrder">
+        	<wsdl:input message="carws:delOilOrderRequest"></wsdl:input>
+        	<wsdl:output message="carws:delOilOrderResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updOilOrder">
+        	<wsdl:input message="carws:updOilOrderRequest"></wsdl:input>
+        	<wsdl:output message="carws:updOilOrderResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getOilOrderList">
+        	<wsdl:input message="carws:getOilOrderListRequest"></wsdl:input>
+        	<wsdl:output message="carws:getOilOrderListResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getOilOrderListById">
+        	<wsdl:input message="carws:getOilOrderListByIdRequest"></wsdl:input>
+        	<wsdl:output message="carws:getOilOrderListByIdResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createOilOrderNumber">
+        	<wsdl:input message="carws:createOilOrderNumberRequest"></wsdl:input>
+        	<wsdl:output message="carws:createOilOrderNumberResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createMetaOrder">
+        	<wsdl:input message="carws:createMetaOrderRequest"></wsdl:input>
+        	<wsdl:output message="carws:createMetaOrderResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="delMetaOrder">
+        	<wsdl:input message="carws:delMetaOrderRequest"></wsdl:input>
+        	<wsdl:output message="carws:delMetaOrderResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updMetaOrder">
+        	<wsdl:input message="carws:updMetaOrderRequest"></wsdl:input>
+        	<wsdl:output message="carws:updMetaOrderResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getMetaOrderList">
+        	<wsdl:input message="carws:getMetaOrderListRequest"></wsdl:input>
+        	<wsdl:output message="carws:getMetaOrderListResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getMetaOrderById">
+        	<wsdl:input message="carws:getMetaOrderByIdRequest"></wsdl:input>
+        	<wsdl:output message="carws:getMetaOrderByIdResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createMetaOrderNumber">
+        	<wsdl:input message="carws:createMetaOrderNumberRequest"></wsdl:input>
+        	<wsdl:output message="carws:createMetaOrderNumberResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createMetaOrderImg">
+        	<wsdl:input message="carws:createMetaOrderImgRequest"></wsdl:input>
+        	<wsdl:output message="carws:createMetaOrderImgResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createDecoOrder">
+        	<wsdl:input message="carws:createDecoOrderRequest"></wsdl:input>
+        	<wsdl:output message="carws:createDecoOrderResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="delDecoOrder">
+        	<wsdl:input message="carws:delDecoOrderRequest"></wsdl:input>
+        	<wsdl:output message="carws:delDecoOrderResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updDecoOrder">
+        	<wsdl:input message="carws:updDecoOrderRequest"></wsdl:input>
+        	<wsdl:output message="carws:updDecoOrderResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDecoOrderList">
+        	<wsdl:input message="carws:getDecoOrderListRequest"></wsdl:input>
+        	<wsdl:output message="carws:getDecoOrderListResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDecoOrderById">
+        	<wsdl:input message="carws:getDecoOrderByIdRequest"></wsdl:input>
+        	<wsdl:output message="carws:getDecoOrderByIdResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createDecoOrderNumber">
+        	<wsdl:input message="carws:createDecoOrderNumberRequest"></wsdl:input>
+        	<wsdl:output message="carws:createDecoOrderNumberResponse"></wsdl:output>
+        </wsdl:operation>        <wsdl:operation name="updDecoration">        	<wsdl:input message="carws:updDecorationRequest"></wsdl:input>        	<wsdl:output message="carws:updDecorationResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updCoupon">
+        	<wsdl:input message="carws:updCouponRequest"></wsdl:input>
+        	<wsdl:output message="carws:updCouponResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createBanner">
+        	<wsdl:input message="carws:createBannerRequest"></wsdl:input>
+        	<wsdl:output message="carws:createBannerResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteBanner">
+        	<wsdl:input message="carws:deleteBannerRequest"></wsdl:input>
+        	<wsdl:output message="carws:deleteBannerResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createAssess">
+        	<wsdl:input message="carws:createAssessRequest"></wsdl:input>
+        	<wsdl:output message="carws:createAssessResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteAssess">
+        	<wsdl:input message="carws:deleteAssessRequest"></wsdl:input>
+        	<wsdl:output message="carws:deleteAssessResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBannerList">
+        	<wsdl:input message="carws:getBannerListRequest"></wsdl:input>
+        	<wsdl:output message="carws:getBannerListResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAssessListByShopId">
+        	<wsdl:input message="carws:getAssessListByShopIdRequest"></wsdl:input>
+        	<wsdl:output message="carws:getAssessListByShopIdResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAssessListById">
+        	<wsdl:input message="carws:getAssessListByIdRequest"></wsdl:input>
+        	<wsdl:output message="carws:getAssessListByIdResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDayOrderStateList">
+        	<wsdl:input message="carws:getDayOrderStateListRequest"></wsdl:input>
+        	<wsdl:output message="carws:getDayOrderStateListResponse"></wsdl:output>
+        </wsdl:operation></wsdl:portType>
+  <wsdl:binding name="carapiSOAP" type="carws:carwsapi">
+
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="appUserLogin">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/appUserLogin" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="sysUserLogin">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/sysUserLogin" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createUser">
+
+  		<soap:operation soapAction="http://kele.cn/carws/createUser" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updUser">
+
+  		<soap:operation soapAction="http://kele.cn/carws/updUser" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delUser">
+
+  		<soap:operation soapAction="http://kele.cn/carws/delUser" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getUserList">
+
+  		<soap:operation soapAction="http://kele.cn/carws/getUserList" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getUserInfoById">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getUserInfoById" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createStation">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/createStation" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delStation">
+
+  		<soap:operation soapAction="http://kele.cn/carws/delStation" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updStation">
+
+  		<soap:operation soapAction="http://kele.cn/carws/updStation" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getStationList">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getStationList" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getStationById">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getStationById" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createShop">
+
+  		<soap:operation soapAction="http://kele.cn/carws/createShop" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delShop">
+
+  		<soap:operation soapAction="http://kele.cn/carws/delShop" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updShop">
+
+  		<soap:operation soapAction="http://kele.cn/carws/updShop" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getShopList">
+
+  		<soap:operation soapAction="http://kele.cn/carws/getShopList" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getShopById">
+
+  		<soap:operation soapAction="http://kele.cn/carws/getShopById" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createOil">
+
+  		<soap:operation soapAction="http://kele.cn/carws/createOil" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delOil">
+
+  		<soap:operation soapAction="http://kele.cn/carws/delOil" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updOil">
+
+  		<soap:operation soapAction="http://kele.cn/carws/updOil" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getOilList">
+
+  		<soap:operation soapAction="http://kele.cn/carws/getOilList" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getOilById">
+
+  		<soap:operation soapAction="http://kele.cn/carws/getOilById" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createMetalplate">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/createMetalplate" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delMetalplate">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/delMetalplate" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updMetalplate">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/updMetalplate" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getMetalplateList">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getMetalplateList" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getMetalplateById">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getMetalplateById" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createDecoration">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/createDecoration" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delDecoration">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/delDecoration" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getDecorationList">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getDecorationList" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getDecorationById">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getDecorationById" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createCoupon">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/createCoupon" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delCoupon">
+
+  		<soap:operation soapAction="http://kele.cn/carws/delCoupon" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getCouponList">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getCouponList" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getCouponById">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getCouponById" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createCity">
+
+  		<soap:operation soapAction="http://kele.cn/carws/createCity" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delCity">
+
+  		<soap:operation soapAction="http://kele.cn/carws/delCity" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="udpCity">
+
+  		<soap:operation soapAction="http://kele.cn/carws/udpCity" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getCityList">
+
+  		<soap:operation soapAction="http://kele.cn/carws/getCityList" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createCar">
+
+  		<soap:operation soapAction="http://kele.cn/carws/createCar" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delCar">
+
+  		<soap:operation soapAction="http://kele.cn/carws/delCar" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updCar">
+
+  		<soap:operation soapAction="http://kele.cn/carws/updCar" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getCarByUserId">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getCarByUserId" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createGoods">
+
+  		<soap:operation soapAction="http://kele.cn/carws/createGoods" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delGood">
+
+  		<soap:operation soapAction="http://kele.cn/carws/delGood" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updGood">
+
+  		<soap:operation soapAction="http://kele.cn/carws/updGood" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getGoodsList">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getGoodsList" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createOilOrder">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/createOilOrder" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delOilOrder">
+
+  		<soap:operation soapAction="http://kele.cn/carws/delOilOrder" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updOilOrder">
+
+  		<soap:operation soapAction="http://kele.cn/carws/updOilOrder" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getOilOrderList">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getOilOrderList" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getOilOrderListById">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getOilOrderListById" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createOilOrderNumber">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/createOilOrderNumber" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createMetaOrder">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/createMetaOrder" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delMetaOrder">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/delMetaOrder" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updMetaOrder">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/updMetaOrder" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getMetaOrderList">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getMetaOrderList" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getMetaOrderById">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getMetaOrderById" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createMetaOrderNumber">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/createMetaOrderNumber" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createMetaOrderImg">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/createMetaOrderImg" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createDecoOrder">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/createDecoOrder" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delDecoOrder">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/delDecoOrder" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updDecoOrder">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/updDecoOrder" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getDecoOrderList">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getDecoOrderList" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getDecoOrderById">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/getDecoOrderById" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createDecoOrderNumber">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/createDecoOrderNumber" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updDecoration">
+
+  		<soap:operation
+  			soapAction="http://kele.cn/carws/updDecoration" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:binding name="carapiHTTP" type="carws:carwsapi">
+
+  	<http:binding verb="GET" />
+  	<wsdl:operation name="appUserLogin">
+
+  		<http:operation location="/appUserLogin" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="sysUserLogin">
+
+  		<http:operation location="/sysUserLogin" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createUser">
+
+  		<http:operation location="/createUser" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updUser">
+
+  		<http:operation location="/updUser" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delUser">
+
+  		<http:operation location="/delUser" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getUserList">
+
+  		<http:operation location="/getUserList" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getUserInfoById">
+
+  		<http:operation location="/getUserInfoById" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createStation">
+
+  		<http:operation location="/createStation" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delStation">
+
+  		<http:operation location="/delStation" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updStation">
+
+  		<http:operation location="/updStation" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getStationList">
+
+  		<http:operation location="/getStationList" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getStationById">
+
+  		<http:operation location="/getStationById" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createShop">
+
+  		<http:operation location="/createShop" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delShop">
+
+  		<http:operation location="/delShop" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updShop">
+
+  		<http:operation location="/updShop" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getShopList">
+
+  		<http:operation location="/getShopList" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getShopById">
+
+  		<http:operation location="/getShopById" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createOil">
+
+  		<http:operation location="/createOil" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delOil">
+
+  		<http:operation location="/delOil" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updOil">
+
+  		<http:operation location="/updOil" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getOilList">
+
+  		<http:operation location="/getOilList" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getOilById">
+
+  		<http:operation location="/getOilById" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createMetalplate">
+
+  		<http:operation location="/createMetalplate" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delMetalplate">
+
+  		<http:operation location="/delMetalplate" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updMetalplate">
+
+  		<http:operation location="/updMetalplate" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getMetalplateList">
+
+  		<http:operation location="/getMetalplateList" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getMetalplateById">
+
+  		<http:operation location="/getMetalplateById" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createDecoration">
+
+  		<http:operation location="/createDecoration" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delDecoration">
+
+  		<http:operation location="/delDecoration" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getDecorationList">
+
+  		<http:operation location="/getDecorationList" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getDecorationById">
+
+  		<http:operation location="/getDecorationById" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createCoupon">
+
+  		<http:operation location="/createCoupon" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delCoupon">
+
+  		<http:operation location="/delCoupon" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getCouponList">
+
+  		<http:operation location="/getCouponList" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getCouponById">
+
+  		<http:operation location="/getCouponById" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createCity">
+
+  		<http:operation location="/createCity" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delCity">
+
+  		<http:operation location="/delCity" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="udpCity">
+
+  		<http:operation location="/udpCity" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getCityList">
+
+  		<http:operation location="/getCityList" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createCar">
+
+  		<http:operation location="/createCar" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delCar">
+
+  		<http:operation location="/delCar" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updCar">
+
+  		<http:operation location="/updCar" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getCarByUserId">
+
+  		<http:operation location="/getCarByUserId" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createGoods">
+
+  		<http:operation location="/createGoods" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delGood">
+
+  		<http:operation location="/delGood" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updGood">
+
+  		<http:operation location="/updGood" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getGoodsList">
+
+  		<http:operation location="/getGoodsList" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createOilOrder">
+
+  		<http:operation location="/createOilOrder" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delOilOrder">
+
+  		<http:operation location="/delOilOrder" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updOilOrder">
+
+  		<http:operation location="/updOilOrder" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getOilOrderList">
+
+  		<http:operation location="/getOilOrderList" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getOilOrderListById">
+
+  		<http:operation location="/getOilOrderListById" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createOilOrderNumber">
+
+  		<http:operation location="/createOilOrderNumber" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createMetaOrder">
+
+  		<http:operation location="/createMetaOrder" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delMetaOrder">
+
+  		<http:operation location="/delMetaOrder" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updMetaOrder">
+
+  		<http:operation location="/updMetaOrder" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getMetaOrderList">
+
+  		<http:operation location="/getMetaOrderList" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getMetaOrderById">
+
+  		<http:operation location="/getMetaOrderById" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createMetaOrderNumber">
+
+  		<http:operation location="/createMetaOrderNumber" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createMetaOrderImg">
+
+  		<http:operation location="/createMetaOrderImg" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createDecoOrder">
+
+  		<http:operation location="/createDecoOrder" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="delDecoOrder">
+
+  		<http:operation location="/delDecoOrder" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updDecoOrder">
+
+  		<http:operation location="/updDecoOrder" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getDecoOrderList">
+
+  		<http:operation location="/getDecoOrderList" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getDecoOrderById">
+
+  		<http:operation location="/getDecoOrderById" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createDecoOrderNumber">
+
+  		<http:operation location="/createDecoOrderNumber" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="updDecoration">
+
+  		<http:operation location="/updDecoration" />
+  		<wsdl:input>
+
+  			<http:urlEncoded />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<mime:content type="text/xml" />
+
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="carwsapi">
+    <wsdl:port binding="carws:carapiSOAP" name="carwsapiSOAP">
+      <soap:address location="http://api.kele.cn"/>
+    </wsdl:port>
+    <wsdl:port name="carwsapiHTTP" binding="carws:carapiHTTP">
+    	<http:address location="http://api.kele.cn" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

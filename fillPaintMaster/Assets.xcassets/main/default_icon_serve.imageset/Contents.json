@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "portrait.png",
+      "filename" : "default_icon_serve.png",
       "scale" : "1x"
     },
     {

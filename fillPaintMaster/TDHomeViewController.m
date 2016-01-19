@@ -10,7 +10,7 @@
 #import "TDAdView.h"
 #import "TDLoginViewController.h"
 #import "CarBeautyViewController.h"
-static const float ICON_WIDTH=60;
+static const float ICON_WIDTH=70;
 static const float ICON_HEIGHT=80;
 static const float AD_HEIGHT=120;
 static const float TOP_SPACE=5;
@@ -35,7 +35,7 @@ static const float ROW_HEIGHT=40;
     [super viewDidLoad];
     
      self.adView=[[TDAdView alloc] initADViewWithFrame:CGRectMake(0,64, self.view.frame.size.width, AD_HEIGHT) adImageNames:@[@"ad",@"ad",@"ad"]];
-    self.serviceItems=@[@"洗车美容",@"换油保养",@"钣金喷漆",@"手机探店",@"车险直销",@"产品超市"];
+    self.serviceItems=@[@"洗车美容",@"换油保养",@"钣金喷漆",@"手机探店",@"车险直销",@"产品超市",@"即将上线",@"即将上线"];
     imgItms=@[@"home_icon_hongbao",@"home_icon_recommend"];
     contentItms=@[@"领取优惠券和红包",@"热门推荐"];
     //home_icon_hongbao 领取优惠券和红包
@@ -75,7 +75,7 @@ static const float ROW_HEIGHT=40;
      2 3
      4 5
      */
-    for (int i=0; i<6; i++) {
+    for (int i=0; i<8; i++) {
         
         int col=i%4;
         int row=i/4;
@@ -96,12 +96,12 @@ static const float ROW_HEIGHT=40;
 }
 -(void)initButtonProperties:(UIButton *)button{
    
-    button.imageEdgeInsets = UIEdgeInsetsMake(5,10,35,10);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
+    button.imageEdgeInsets = UIEdgeInsetsMake(5,15,35,15);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
     
     button.titleLabel.font = [UIFont systemFontOfSize:10];//title字体大小
     button.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
     
-     button.titleEdgeInsets = UIEdgeInsetsMake(33,-button.titleLabel.frame.origin.x,0,10);
+     button.titleEdgeInsets = UIEdgeInsetsMake(33,-button.titleLabel.frame.origin.x+5,0,10);
     
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
@@ -203,6 +203,12 @@ static const float ROW_HEIGHT=40;
             break;
         case 5:
             imageName=@"homepage_gridview_1";
+            break;
+        case 6:
+            imageName=@"default_icon_serve";
+            break;
+        case 7:
+            imageName=@"default_icon_serve";
             break;
     }
     return imageName;
