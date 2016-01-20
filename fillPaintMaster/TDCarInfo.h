@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface TDCarInfo : NSObject
-@property(nonatomic,retain) NSString *plateNumber;
-@property(nonatomic,retain) NSString *plateNumberOwner;
+@property(nonatomic,assign) int carId;
+@property(nonatomic,assign) int type;
+@property(nonatomic,retain) NSString *number;
+@property(nonatomic,assign) int userId;
 @end

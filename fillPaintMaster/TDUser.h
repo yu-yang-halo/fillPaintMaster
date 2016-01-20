@@ -10,10 +10,13 @@
 
 @interface TDUser : NSObject
 
-@property(nonatomic,retain) NSString* accoutName;//一般为手机号 唯一
-@property(nonatomic,retain) NSString* realName;//用户的真实姓名
-@property(nonatomic,retain) NSString* aliasName;//用户的别名
-
-@property(nonatomic,retain) NSArray *relativeCarInfos;//TDCarInfo
+@property(nonatomic,retain) NSString* loginName;
+@property(nonatomic,retain) NSString* password;
+@property(nonatomic,retain) NSString* email;
+@property(nonatomic,retain) NSString* phone;
+@property(nonatomic,retain) NSString* wechatId;
+@property(nonatomic,retain) NSString* regTime;
+@property(nonatomic,assign) int type;
+@property(nonatomic,assign) int shopId;
 
 @end

@@ -15,6 +15,14 @@
 		18248FF11BBEB490008D3C36 /* OrderReViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18248FF01BBEB490008D3C36 /* OrderReViewController.m */; };
 		18248FF51BBEB851008D3C36 /* TDBeautyTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 18248FF31BBEB851008D3C36 /* TDBeautyTableViewCell2.m */; };
 		18248FF61BBEB851008D3C36 /* TDBeautyTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18248FF41BBEB851008D3C36 /* TDBeautyTableViewCell2.xib */; };
+		182FC6FB1C4FACCD001978F5 /* TDStationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC6FA1C4FACCD001978F5 /* TDStationInfo.m */; };
+		182FC6FE1C4FAE93001978F5 /* TDShopInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC6FD1C4FAE93001978F5 /* TDShopInfo.m */; };
+		182FC7011C4FB532001978F5 /* TDOilInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC7001C4FB532001978F5 /* TDOilInfo.m */; };
+		182FC7041C4FB822001978F5 /* TDMetalplateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC7031C4FB822001978F5 /* TDMetalplateInfo.m */; };
+		182FC7071C4FBA0A001978F5 /* TDDecorationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC7061C4FBA0A001978F5 /* TDDecorationInfo.m */; };
+		182FC70A1C4FBB84001978F5 /* TDCouponInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC7091C4FBB84001978F5 /* TDCouponInfo.m */; };
+		182FC70D1C4FBE5E001978F5 /* TDCityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC70C1C4FBE5E001978F5 /* TDCityInfo.m */; };
+		182FC7101C4FC200001978F5 /* TDGoodInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC70F1C4FC200001978F5 /* TDGoodInfo.m */; };
 		183EAA0F1BB929A00029ED79 /* TDTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183EAA0E1BB929A00029ED79 /* TDTabViewController.m */; };
 		183EAA121BB92E450029ED79 /* TDNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183EAA111BB92E450029ED79 /* TDNavigationViewController.m */; };
 		183EAA161BB94B3E0029ED79 /* TDAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183EAA151BB94B3E0029ED79 /* TDAdView.m */; };
@@ -122,6 +130,22 @@
 		18248FF21BBEB851008D3C36 /* TDBeautyTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBeautyTableViewCell2.h; sourceTree = "<group>"; };
 		18248FF31BBEB851008D3C36 /* TDBeautyTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBeautyTableViewCell2.m; sourceTree = "<group>"; };
 		18248FF41BBEB851008D3C36 /* TDBeautyTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDBeautyTableViewCell2.xib; sourceTree = "<group>"; };
+		182FC6F91C4FACCD001978F5 /* TDStationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDStationInfo.h; sourceTree = "<group>"; };
+		182FC6FA1C4FACCD001978F5 /* TDStationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDStationInfo.m; sourceTree = "<group>"; };
+		182FC6FC1C4FAE93001978F5 /* TDShopInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDShopInfo.h; sourceTree = "<group>"; };
+		182FC6FD1C4FAE93001978F5 /* TDShopInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDShopInfo.m; sourceTree = "<group>"; };
+		182FC6FF1C4FB532001978F5 /* TDOilInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDOilInfo.h; sourceTree = "<group>"; };
+		182FC7001C4FB532001978F5 /* TDOilInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDOilInfo.m; sourceTree = "<group>"; };
+		182FC7021C4FB822001978F5 /* TDMetalplateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDMetalplateInfo.h; sourceTree = "<group>"; };
+		182FC7031C4FB822001978F5 /* TDMetalplateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDMetalplateInfo.m; sourceTree = "<group>"; };
+		182FC7051C4FBA0A001978F5 /* TDDecorationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDecorationInfo.h; sourceTree = "<group>"; };
+		182FC7061C4FBA0A001978F5 /* TDDecorationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDecorationInfo.m; sourceTree = "<group>"; };
+		182FC7081C4FBB84001978F5 /* TDCouponInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCouponInfo.h; sourceTree = "<group>"; };
+		182FC7091C4FBB84001978F5 /* TDCouponInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCouponInfo.m; sourceTree = "<group>"; };
+		182FC70B1C4FBE5E001978F5 /* TDCityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCityInfo.h; sourceTree = "<group>"; };
+		182FC70C1C4FBE5E001978F5 /* TDCityInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCityInfo.m; sourceTree = "<group>"; };
+		182FC70E1C4FC200001978F5 /* TDGoodInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDGoodInfo.h; sourceTree = "<group>"; };
+		182FC70F1C4FC200001978F5 /* TDGoodInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDGoodInfo.m; sourceTree = "<group>"; };
 		183EAA0D1BB929A00029ED79 /* TDTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTabViewController.h; sourceTree = "<group>"; };
 		183EAA0E1BB929A00029ED79 /* TDTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTabViewController.m; sourceTree = "<group>"; };
 		183EAA101BB92E450029ED79 /* TDNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNavigationViewController.h; sourceTree = "<group>"; };
@@ -298,6 +322,33 @@
 				1803C3231C36905B003157F1 /* 360.png */,
 			);
 			name = resources;
+			sourceTree = "<group>";
+		};
+		182FC6F81C4FAC9E001978F5 /* new */ = {
+			isa = PBXGroup;
+			children = (
+				84345A7F1C3A3E770089DB45 /* TDCarInfo.h */,
+				84345A801C3A3E770089DB45 /* TDCarInfo.m */,
+				84345A7C1C3A3D8E0089DB45 /* TDUser.h */,
+				84345A7D1C3A3D8E0089DB45 /* TDUser.m */,
+				182FC6F91C4FACCD001978F5 /* TDStationInfo.h */,
+				182FC6FA1C4FACCD001978F5 /* TDStationInfo.m */,
+				182FC6FC1C4FAE93001978F5 /* TDShopInfo.h */,
+				182FC6FD1C4FAE93001978F5 /* TDShopInfo.m */,
+				182FC6FF1C4FB532001978F5 /* TDOilInfo.h */,
+				182FC7001C4FB532001978F5 /* TDOilInfo.m */,
+				182FC7021C4FB822001978F5 /* TDMetalplateInfo.h */,
+				182FC7031C4FB822001978F5 /* TDMetalplateInfo.m */,
+				182FC7051C4FBA0A001978F5 /* TDDecorationInfo.h */,
+				182FC7061C4FBA0A001978F5 /* TDDecorationInfo.m */,
+				182FC7081C4FBB84001978F5 /* TDCouponInfo.h */,
+				182FC7091C4FBB84001978F5 /* TDCouponInfo.m */,
+				182FC70B1C4FBE5E001978F5 /* TDCityInfo.h */,
+				182FC70C1C4FBE5E001978F5 /* TDCityInfo.m */,
+				182FC70E1C4FC200001978F5 /* TDGoodInfo.h */,
+				182FC70F1C4FC200001978F5 /* TDGoodInfo.m */,
+			);
+			name = new;
 			sourceTree = "<group>";
 		};
 		183EAA091BB927480029ED79 /* UI */ = {
@@ -564,12 +615,9 @@
 		84345A781C3A3B3D0089DB45 /* bean */ = {
 			isa = PBXGroup;
 			children = (
+				182FC6F81C4FAC9E001978F5 /* new */,
 				84345A791C3A3CCE0089DB45 /* TDCity.h */,
 				84345A7A1C3A3CCE0089DB45 /* TDCity.m */,
-				84345A7C1C3A3D8E0089DB45 /* TDUser.h */,
-				84345A7D1C3A3D8E0089DB45 /* TDUser.m */,
-				84345A7F1C3A3E770089DB45 /* TDCarInfo.h */,
-				84345A801C3A3E770089DB45 /* TDCarInfo.m */,
 				84345A821C3A3F7F0089DB45 /* TDBeautyItem.h */,
 				84345A831C3A3F7F0089DB45 /* TDBeautyItem.m */,
 				84345A851C3A3FC80089DB45 /* TDBaseItem.h */,
@@ -826,6 +874,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18EFC0071C4689F90068DA68 /* TDStoreViewController.m in Sources */,
+				182FC7071C4FBA0A001978F5 /* TDDecorationInfo.m in Sources */,
 				18EB27B31C4E5E4E0085EDC4 /* GDataXMLNode.m in Sources */,
 				18E8ED0D1C2FE15A00968CEB /* BackCarViewController.m in Sources */,
 				18E8A11B1BBA207800FBD3F4 /* CarBeautyViewController.m in Sources */,
@@ -844,8 +893,10 @@
 				84345A7B1C3A3CCE0089DB45 /* TDCity.m in Sources */,
 				18B932551BA6A8C50019279E /* TDHomeViewController.m in Sources */,
 				84345A771C3A3AD90089DB45 /* TDHttpDataService.m in Sources */,
+				182FC70D1C4FBE5E001978F5 /* TDCityInfo.m in Sources */,
 				18E8ED171C2FE39700968CEB /* OtherCarViewController.m in Sources */,
 				18ED34421C3627020085B250 /* TDShopViewController.m in Sources */,
+				182FC6FE1C4FAE93001978F5 /* TDShopInfo.m in Sources */,
 				18248FF51BBEB851008D3C36 /* TDBeautyTableViewCell2.m in Sources */,
 				183EAA161BB94B3E0029ED79 /* TDAdView.m in Sources */,
 				18E809BA1BC230D200712C43 /* TDTableViewCell0.m in Sources */,
@@ -854,6 +905,7 @@
 				84345A871C3A3FC80089DB45 /* TDBaseItem.m in Sources */,
 				845E484E1C3B589E00AAD5A5 /* TDUserCenterViewController.m in Sources */,
 				18EBC4A21C47BC5F00AFFC1A /* TDActiveViewController.m in Sources */,
+				182FC7011C4FB532001978F5 /* TDOilInfo.m in Sources */,
 				18E809DA1BC2AD2800712C43 /* PaintView1Controller.m in Sources */,
 				845E48521C3B94FC00AAD5A5 /* CoolNavi.m in Sources */,
 				18B932521BA6A8C50019279E /* AppDelegate.m in Sources */,
@@ -869,10 +921,14 @@
 				18E809D51BC2A9C900712C43 /* PaintView0Controller.m in Sources */,
 				18EE557F1C41F4A400A99D50 /* TDCarInfoViewController.m in Sources */,
 				18E946211C40FAF20047ADEA /* TDLocationViewController.m in Sources */,
+				182FC6FB1C4FACCD001978F5 /* TDStationInfo.m in Sources */,
+				182FC70A1C4FBB84001978F5 /* TDCouponInfo.m in Sources */,
 				18E8A11F1BBA399E00FBD3F4 /* TimeUtils.m in Sources */,
 				84345A8A1C3A404E0089DB45 /* TDOilItem.m in Sources */,
+				182FC7041C4FB822001978F5 /* TDMetalplateInfo.m in Sources */,
 				18EB27B21C4E5E4E0085EDC4 /* ElApiService.m in Sources */,
 				18B9324F1BA6A8C50019279E /* main.m in Sources */,
+				182FC7101C4FC200001978F5 /* TDGoodInfo.m in Sources */,
 				84345A811C3A3E770089DB45 /* TDCarInfo.m in Sources */,
 				18E8ECFE1C2FC43200968CEB /* LeftCarViewController.m in Sources */,
 				18EB1AEE1C37759000791849 /* TDAlbumViewController.m in Sources */,
