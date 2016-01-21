@@ -78,6 +78,7 @@
 		18EB27AC1C4E5C930085EDC4 /* carwsapi.wsdl in Resources */ = {isa = PBXBuildFile; fileRef = 18EB27AB1C4E5C930085EDC4 /* carwsapi.wsdl */; };
 		18EB27B21C4E5E4E0085EDC4 /* ElApiService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB27AD1C4E5E4E0085EDC4 /* ElApiService.m */; };
 		18EB27B31C4E5E4E0085EDC4 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB27B01C4E5E4E0085EDC4 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		18EB79F51C51072200BA0C26 /* YYButtonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB79F41C51072200BA0C26 /* YYButtonUtils.m */; };
 		18EBC4A21C47BC5F00AFFC1A /* TDActiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC4A11C47BC5F00AFFC1A /* TDActiveViewController.m */; };
 		18EBC4A71C47BEB100AFFC1A /* TDActiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC4A51C47BEB100AFFC1A /* TDActiveTableViewCell.m */; };
 		18EBC4A81C47BEB100AFFC1A /* TDActiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EBC4A61C47BEB100AFFC1A /* TDActiveTableViewCell.xib */; };
@@ -242,6 +243,8 @@
 		18EB27AF1C4E5E4E0085EDC4 /* GDataDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataDefines.h; sourceTree = "<group>"; };
 		18EB27B01C4E5E4E0085EDC4 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		18EB27B11C4E5E4E0085EDC4 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		18EB79F31C51072200BA0C26 /* YYButtonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYButtonUtils.h; sourceTree = "<group>"; };
+		18EB79F41C51072200BA0C26 /* YYButtonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYButtonUtils.m; sourceTree = "<group>"; };
 		18EBC4A01C47BC5F00AFFC1A /* TDActiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDActiveViewController.h; sourceTree = "<group>"; };
 		18EBC4A11C47BC5F00AFFC1A /* TDActiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDActiveViewController.m; sourceTree = "<group>"; };
 		18EBC4A41C47BEB100AFFC1A /* TDActiveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDActiveTableViewCell.h; sourceTree = "<group>"; };
@@ -511,6 +514,8 @@
 			children = (
 				18E8A11D1BBA399E00FBD3F4 /* TimeUtils.h */,
 				18E8A11E1BBA399E00FBD3F4 /* TimeUtils.m */,
+				18EB79F31C51072200BA0C26 /* YYButtonUtils.h */,
+				18EB79F41C51072200BA0C26 /* YYButtonUtils.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -948,6 +953,7 @@
 				845E48521C3B94FC00AAD5A5 /* CoolNavi.m in Sources */,
 				18B932521BA6A8C50019279E /* AppDelegate.m in Sources */,
 				18EB1AF91C37934600791849 /* TDIdCodeViewController.m in Sources */,
+				18EB79F51C51072200BA0C26 /* YYButtonUtils.m in Sources */,
 				18ED344B1C3627C60085B250 /* ShopView1Controller.m in Sources */,
 				848149081C32643500588564 /* DelegateViewController.m in Sources */,
 				183EAA121BB92E450029ED79 /* TDNavigationViewController.m in Sources */,

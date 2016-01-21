@@ -9,6 +9,8 @@
 #import "TDTabViewController.h"
 #import "TDLocationViewController.h"
 #import "TDCarInfoViewController.h"
+
+#import "YYButtonUtils.h"
 float BUTTON_W=20;
 float BUTTON_H=49;
 
@@ -32,21 +34,6 @@ float BUTTON_H=49;
     
 }
 
--(void)initButtonProperties:(UIButton *)button{
-
-    button.imageEdgeInsets = UIEdgeInsetsMake(5,0,20,button.titleLabel.bounds.size.width);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
-    
-    button.titleLabel.font = [UIFont systemFontOfSize:10];//title字体大小
-    button.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
-    [button setTitleColor:[UIColor colorWithRed:67/255.0 green:166/255.0 blue:194/255.0 alpha:1.0] forState:UIControlStateHighlighted];
-    [button setTitleColor:[UIColor colorWithRed:67/255.0 green:166/255.0 blue:194/255.0 alpha:1.0] forState:UIControlStateSelected];
-    
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    button.titleEdgeInsets = UIEdgeInsetsMake(33,-button.imageView.frame.size.width-button.titleLabel.frame.size.width,0,0);
-    
-    
-}
-
 -(void)initTDTabBar{
     UIView *barView=[[UIView alloc] initWithFrame:self.tabBar.frame];
     float width=self.tabBar.frame.size.width;
@@ -63,7 +50,7 @@ float BUTTON_H=49;
     [homeBtn setImage:[UIImage imageNamed:@"home_btn_home"] forState:UIControlStateNormal];
     [homeBtn setImage:[UIImage imageNamed:@"home_btn_home_sel"] forState:UIControlStateHighlighted];
     [homeBtn setImage:[UIImage imageNamed:@"home_btn_home_sel"] forState:UIControlStateSelected];
-    [self initButtonProperties:homeBtn];
+    [YYButtonUtils imageTopTextBottom:homeBtn];
     
     
     doorBtn=[[UIButton alloc] initWithFrame:CGRectMake(homeBtn.frame.origin.x+homeBtn.frame.size.width+m_space, (height-BUTTON_H)/2, BUTTON_W, BUTTON_H)];
@@ -72,7 +59,7 @@ float BUTTON_H=49;
     [doorBtn setImage:[UIImage imageNamed:@"home_btn_shop"] forState:UIControlStateNormal];
     [doorBtn setImage:[UIImage imageNamed:@"home_btn_shop_sel"] forState:UIControlStateHighlighted];
     [doorBtn setImage:[UIImage imageNamed:@"home_btn_shop_sel"] forState:UIControlStateSelected];
-     [self initButtonProperties:doorBtn];
+     [YYButtonUtils imageTopTextBottom:doorBtn];
     
     activeBtn=[[UIButton alloc] initWithFrame:CGRectMake(doorBtn.frame.origin.x+doorBtn.frame.size.width+m_space, (height-BUTTON_H)/2, BUTTON_W, BUTTON_H)];
     [activeBtn setTag:3];
@@ -80,7 +67,7 @@ float BUTTON_H=49;
     [activeBtn setImage:[UIImage imageNamed:@"home_btn_active"] forState:UIControlStateNormal];
     [activeBtn setImage:[UIImage imageNamed:@"home_btn_active_sel"] forState:UIControlStateHighlighted];
     [activeBtn setImage:[UIImage imageNamed:@"home_btn_active_sel"] forState:UIControlStateSelected];
-     [self initButtonProperties:activeBtn];
+     [YYButtonUtils imageTopTextBottom:activeBtn];
     
     myBtn=[[UIButton alloc] initWithFrame:CGRectMake(activeBtn.frame.origin.x+activeBtn.frame.size.width+m_space, (height-BUTTON_H)/2, BUTTON_W, BUTTON_H)];
     [myBtn setTag:2];
@@ -88,7 +75,7 @@ float BUTTON_H=49;
     [myBtn setImage:[UIImage imageNamed:@"home_btn_my"] forState:UIControlStateNormal];
     [myBtn setImage:[UIImage imageNamed:@"home_btn_my_sel"] forState:UIControlStateHighlighted];
     [myBtn setImage:[UIImage imageNamed:@"home_btn_my_sel"] forState:UIControlStateSelected];
-    [self initButtonProperties:myBtn];
+    [YYButtonUtils imageTopTextBottom:myBtn];
     
 
     
@@ -149,7 +136,7 @@ float BUTTON_H=49;
     if(tagId==0){
         [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
         UIButton *locBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,(44-40)/2, 60, 40)];
-        [locBtn setImage:[UIImage imageNamed:@"loc"] forState:UIControlStateNormal];
+        [locBtn setImage:[UIImage imageNamed:@"city_icon_location"] forState:UIControlStateNormal];
         [locBtn addTarget:self action:@selector(location:) forControlEvents:UIControlEventTouchUpInside];
         [locBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:locBtn];

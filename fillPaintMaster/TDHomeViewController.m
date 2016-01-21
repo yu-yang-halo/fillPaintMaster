@@ -65,6 +65,11 @@ static const float ROW_HEIGHT=40;
     
     
     [self initHomeView];
+    
+    TDLoginViewController *tdLoginVC=[[TDLoginViewController alloc] init];
+    [self presentViewController:tdLoginVC animated:YES completion:^{
+        
+    }];
 
 }
 -(void)initHomeView{
@@ -161,10 +166,7 @@ static const float ROW_HEIGHT=40;
              产品超市
              */
         {
-            TDLoginViewController *tdLoginVC=[[TDLoginViewController alloc] init];
-            [self presentViewController:tdLoginVC animated:YES completion:^{
-                
-            }];
+           
         }
             break;
             
