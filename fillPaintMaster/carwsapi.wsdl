@@ -410,7 +410,9 @@
       		<xsd:sequence>
 
       			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
-      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+      			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+
+
       		</xsd:sequence>
       	</xsd:complexType>
       </xsd:element>
@@ -442,7 +444,12 @@
 
       			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
       			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
-      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="shopId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+
+
+
+
+
       		</xsd:sequence>
       	</xsd:complexType>
       </xsd:element>
@@ -695,7 +702,12 @@
 
       			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
       			<xsd:element name="secToken" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
-      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+      			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1"></xsd:element>
+
+
+
+
+
       		</xsd:sequence>
       	</xsd:complexType>
       </xsd:element>
@@ -1656,7 +1668,9 @@
             			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1">
             			</xsd:element>
             			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="0">
-            			</xsd:element>
+            			</xsd:element>
+
+
             			<xsd:element name="state" type="xsd:int" maxOccurs="1" minOccurs="1">
             			</xsd:element>
             			<xsd:element name="payState"
@@ -1952,14 +1966,17 @@
             		<xsd:sequence>
 
             			<xsd:element name="senderId" type="xsd:int" maxOccurs="1" minOccurs="1">
-            			</xsd:element>
+            			</xsd:element>
+
             			<xsd:element name="secToken"
             				type="xsd:string" maxOccurs="1" minOccurs="1">
             			</xsd:element>
             			<xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1">
             			</xsd:element>
             			<xsd:element name="type" type="xsd:int" maxOccurs="1" minOccurs="1">
-            			</xsd:element>
+            			</xsd:element>
+
+
             			<xsd:element name="state" type="xsd:int" maxOccurs="1" minOccurs="1">
             			</xsd:element>
             			<xsd:element name="payState" type="xsd:int" maxOccurs="1" minOccurs="1">
@@ -2210,7 +2227,7 @@
             		</xsd:sequence>
             	</xsd:complexType>
             </xsd:element>
-            <xsd:element name="delDecoOrder">
+            <xsd:elemµent name="delDecoOrder">
             	<xsd:complexType>
             		<xsd:sequence>
 
@@ -2433,7 +2450,8 @@
             			</xsd:element>
             			<xsd:element name="secToken"
             				type="xsd:string" maxOccurs="1" minOccurs="1">
-            			</xsd:element>
+            			</xsd:element>
+
                         <xsd:element name="id" type="xsd:int" maxOccurs="1" minOccurs="1">
             			</xsd:element>
                     </xsd:sequence>
@@ -3352,7 +3370,11 @@
     <wsdl:operation name="getCityList">
     	<wsdl:input message="carws:getCityListRequest"></wsdl:input>
     	<wsdl:output message="carws:getCityListResponse"></wsdl:output>
-    </wsdl:operation>    <wsdl:operation name="createCar">    	<wsdl:input message="carws:createCarRequest"></wsdl:input>    	<wsdl:output message="carws:createCarResponse"></wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="createCar">
+    	<wsdl:input message="carws:createCarRequest"></wsdl:input>
+    	<wsdl:output message="carws:createCarResponse"></wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="delCar">
     	<wsdl:input message="carws:delCarRequest"></wsdl:input>
@@ -3365,7 +3387,9 @@
     <wsdl:operation name="getCarByUserId">
     	<wsdl:input message="carws:getCarByUserIdRequest"></wsdl:input>
     	<wsdl:output message="carws:getCarByUserIdResponse"></wsdl:output>
-    </wsdl:operation>    <wsdl:operation name="createGoods">
+    </wsdl:operation>
+
+    <wsdl:operation name="createGoods">
     	<wsdl:input message="carws:createGoodsRequest"></wsdl:input>
     	<wsdl:output message="carws:createGoodsResponse"></wsdl:output>
     </wsdl:operation>
@@ -3380,11 +3404,13 @@
         <wsdl:operation name="getGoodsList">
         	<wsdl:input message="carws:getGoodsListRequest"></wsdl:input>
         	<wsdl:output message="carws:getGoodsListResponse2"></wsdl:output>
-        </wsdl:operation>
+        </wsdl:operation>
+
         <wsdl:operation name="createOilOrder">
         	<wsdl:input message="carws:createOilOrderRequest"></wsdl:input>
         	<wsdl:output message="carws:createOilOrderResponse"></wsdl:output>
-        </wsdl:operation>                <wsdl:operation name="delOilOrder">
+        </wsdl:operation>
+                <wsdl:operation name="delOilOrder">
         	<wsdl:input message="carws:delOilOrderRequest"></wsdl:input>
         	<wsdl:output message="carws:delOilOrderResponse"></wsdl:output>
         </wsdl:operation>
@@ -3411,7 +3437,8 @@
         <wsdl:operation name="delMetaOrder">
         	<wsdl:input message="carws:delMetaOrderRequest"></wsdl:input>
         	<wsdl:output message="carws:delMetaOrderResponse"></wsdl:output>
-        </wsdl:operation>
+        </wsdl:operation>
+
         <wsdl:operation name="updMetaOrder">
         	<wsdl:input message="carws:updMetaOrderRequest"></wsdl:input>
         	<wsdl:output message="carws:updMetaOrderResponse"></wsdl:output>
@@ -3439,7 +3466,8 @@
         <wsdl:operation name="delDecoOrder">
         	<wsdl:input message="carws:delDecoOrderRequest"></wsdl:input>
         	<wsdl:output message="carws:delDecoOrderResponse"></wsdl:output>
-        </wsdl:operation>
+        </wsdl:operation>
+
         <wsdl:operation name="updDecoOrder">
         	<wsdl:input message="carws:updDecoOrderRequest"></wsdl:input>
         	<wsdl:output message="carws:updDecoOrderResponse"></wsdl:output>
@@ -3455,7 +3483,10 @@
         <wsdl:operation name="createDecoOrderNumber">
         	<wsdl:input message="carws:createDecoOrderNumberRequest"></wsdl:input>
         	<wsdl:output message="carws:createDecoOrderNumberResponse"></wsdl:output>
-        </wsdl:operation>        <wsdl:operation name="updDecoration">        	<wsdl:input message="carws:updDecorationRequest"></wsdl:input>        	<wsdl:output message="carws:updDecorationResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updDecoration">
+        	<wsdl:input message="carws:updDecorationRequest"></wsdl:input>
+        	<wsdl:output message="carws:updDecorationResponse"></wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="updCoupon">
         	<wsdl:input message="carws:updCouponRequest"></wsdl:input>
@@ -5157,5 +5188,6 @@
     <wsdl:port name="carwsapiHTTP" binding="carws:carapiHTTP">
     	<http:address location="http://api.kele.cn" />
     </wsdl:port>
-  </wsdl:service>
+  </wsdl:service>
+
 </wsdl:definitions>

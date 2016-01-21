@@ -104,6 +104,11 @@
 		84345A901C3A42780089DB45 /* TDPaintItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A8F1C3A42780089DB45 /* TDPaintItem.m */; };
 		845E484E1C3B589E00AAD5A5 /* TDUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E484D1C3B589E00AAD5A5 /* TDUserCenterViewController.m */; };
 		845E48521C3B94FC00AAD5A5 /* CoolNavi.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E48511C3B94FC00AAD5A5 /* CoolNavi.m */; };
+		847F9D0D1C5067D7005ED278 /* TDOilOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F9D0C1C5067D7005ED278 /* TDOilOrder.m */; };
+		847F9D101C507174005ED278 /* TDOrderSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F9D0F1C507174005ED278 /* TDOrderSearch.m */; };
+		847F9D131C507CF3005ED278 /* TDMetaOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F9D121C507CF3005ED278 /* TDMetaOrder.m */; };
+		847F9D161C50877D005ED278 /* TDDecoOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F9D151C50877D005ED278 /* TDDecoOrder.m */; };
+		847F9D1B1C50BBD8005ED278 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F9D191C50ACB5005ED278 /* libxml2.dylib */; };
 		848149081C32643500588564 /* DelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848149071C32643500588564 /* DelegateViewController.m */; };
 		8481490D1C326DFB00588564 /* TDButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481490C1C326DFB00588564 /* TDButtonView.m */; };
 		C6FF04885D98EFD277CD0577 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49336F7C7CEF0F6B8C6EC250 /* libPods.a */; };
@@ -285,6 +290,16 @@
 		845E484D1C3B589E00AAD5A5 /* TDUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDUserCenterViewController.m; sourceTree = "<group>"; };
 		845E48501C3B94FC00AAD5A5 /* CoolNavi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoolNavi.h; sourceTree = "<group>"; };
 		845E48511C3B94FC00AAD5A5 /* CoolNavi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoolNavi.m; sourceTree = "<group>"; };
+		847F9D0B1C5067D7005ED278 /* TDOilOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDOilOrder.h; sourceTree = "<group>"; };
+		847F9D0C1C5067D7005ED278 /* TDOilOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDOilOrder.m; sourceTree = "<group>"; };
+		847F9D0E1C507174005ED278 /* TDOrderSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDOrderSearch.h; sourceTree = "<group>"; };
+		847F9D0F1C507174005ED278 /* TDOrderSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDOrderSearch.m; sourceTree = "<group>"; };
+		847F9D111C507CF3005ED278 /* TDMetaOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDMetaOrder.h; sourceTree = "<group>"; };
+		847F9D121C507CF3005ED278 /* TDMetaOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDMetaOrder.m; sourceTree = "<group>"; };
+		847F9D141C50877D005ED278 /* TDDecoOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDecoOrder.h; sourceTree = "<group>"; };
+		847F9D151C50877D005ED278 /* TDDecoOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDecoOrder.m; sourceTree = "<group>"; };
+		847F9D171C50AA78005ED278 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		847F9D191C50ACB5005ED278 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		848149061C32643500588564 /* DelegateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateViewController.h; sourceTree = "<group>"; };
 		848149071C32643500588564 /* DelegateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateViewController.m; sourceTree = "<group>"; };
 		8481490B1C326DFB00588564 /* TDButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDButtonView.h; sourceTree = "<group>"; };
@@ -297,6 +312,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847F9D1B1C50BBD8005ED278 /* libxml2.dylib in Frameworks */,
 				C6FF04885D98EFD277CD0577 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,6 +343,7 @@
 		182FC6F81C4FAC9E001978F5 /* new */ = {
 			isa = PBXGroup;
 			children = (
+				847F9D0A1C506792005ED278 /* order */,
 				84345A7F1C3A3E770089DB45 /* TDCarInfo.h */,
 				84345A801C3A3E770089DB45 /* TDCarInfo.m */,
 				84345A7C1C3A3D8E0089DB45 /* TDUser.h */,
@@ -670,6 +687,21 @@
 			name = CoolNavi;
 			sourceTree = "<group>";
 		};
+		847F9D0A1C506792005ED278 /* order */ = {
+			isa = PBXGroup;
+			children = (
+				847F9D0B1C5067D7005ED278 /* TDOilOrder.h */,
+				847F9D0C1C5067D7005ED278 /* TDOilOrder.m */,
+				847F9D0E1C507174005ED278 /* TDOrderSearch.h */,
+				847F9D0F1C507174005ED278 /* TDOrderSearch.m */,
+				847F9D111C507CF3005ED278 /* TDMetaOrder.h */,
+				847F9D121C507CF3005ED278 /* TDMetaOrder.m */,
+				847F9D141C50877D005ED278 /* TDDecoOrder.h */,
+				847F9D151C50877D005ED278 /* TDDecoOrder.m */,
+			);
+			name = order;
+			sourceTree = "<group>";
+		};
 		D59418E1BE4B6B94E7F037D6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -682,6 +714,8 @@
 		DA468AD83F69F47810361E7D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				847F9D191C50ACB5005ED278 /* libxml2.dylib */,
+				847F9D171C50AA78005ED278 /* libxml2.2.dylib */,
 				49336F7C7CEF0F6B8C6EC250 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -876,6 +910,7 @@
 				18EFC0071C4689F90068DA68 /* TDStoreViewController.m in Sources */,
 				182FC7071C4FBA0A001978F5 /* TDDecorationInfo.m in Sources */,
 				18EB27B31C4E5E4E0085EDC4 /* GDataXMLNode.m in Sources */,
+				847F9D131C507CF3005ED278 /* TDMetaOrder.m in Sources */,
 				18E8ED0D1C2FE15A00968CEB /* BackCarViewController.m in Sources */,
 				18E8A11B1BBA207800FBD3F4 /* CarBeautyViewController.m in Sources */,
 				18E8ED081C2FDD4200968CEB /* FrontCarViewController.m in Sources */,
@@ -890,10 +925,13 @@
 				84345A841C3A3F7F0089DB45 /* TDBeautyItem.m in Sources */,
 				18E8ED121C2FE25A00968CEB /* TopCarViewController.m in Sources */,
 				18E809C31BC255CD00712C43 /* OrderSuccessViewController.m in Sources */,
+				847F9D161C50877D005ED278 /* TDDecoOrder.m in Sources */,
+				847F9D101C507174005ED278 /* TDOrderSearch.m in Sources */,
 				84345A7B1C3A3CCE0089DB45 /* TDCity.m in Sources */,
 				18B932551BA6A8C50019279E /* TDHomeViewController.m in Sources */,
 				84345A771C3A3AD90089DB45 /* TDHttpDataService.m in Sources */,
 				182FC70D1C4FBE5E001978F5 /* TDCityInfo.m in Sources */,
+				847F9D0D1C5067D7005ED278 /* TDOilOrder.m in Sources */,
 				18E8ED171C2FE39700968CEB /* OtherCarViewController.m in Sources */,
 				18ED34421C3627020085B250 /* TDShopViewController.m in Sources */,
 				182FC6FE1C4FAE93001978F5 /* TDShopInfo.m in Sources */,
@@ -1066,6 +1104,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
+					"-lxml2",
 					"$(inherited)",
 					"-ObjC",
 					"-l\"CustomIOSAlertView\"",
@@ -1075,7 +1114,6 @@
 					"\"ImageIO\"",
 					"-framework",
 					"\"QuartzCore\"",
-					"-lxml2",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.app.fillPaintMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1101,6 +1139,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
+					"-lxml2",
 					"$(inherited)",
 					"-ObjC",
 					"-l\"CustomIOSAlertView\"",
@@ -1110,7 +1149,6 @@
 					"\"ImageIO\"",
 					"-framework",
 					"\"QuartzCore\"",
-					"-lxml2",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.app.fillPaintMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";

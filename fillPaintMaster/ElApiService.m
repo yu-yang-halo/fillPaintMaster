@@ -8,18 +8,9 @@
 
 #import "ElApiService.h"
 #import "GDataXMLNode.h"
-#import "TDUser.h"
-#import "TDStationInfo.h"
-#import "TDShopInfo.h"
-#import "TDOilInfo.h"
-#import "TDMetalplateInfo.h"
-#import "TDDecorationInfo.h"
-#import "TDCouponInfo.h"
-#import "TDCityInfo.h"
-#import "TDCarInfo.h"
-#import "TDGoodInfo.h"
+
 const static int DEFAULT_TIME_OUT=11;
-const static NSString* WEBSERVICE_IP=@"192.168.2.1";
+const static NSString* WEBSERVICE_IP=@"192.168.1.107";
 const static int WEBSERVICE_PORT=8080;
 static  NSString* KEY_USERID=@"userID_KEY";
 static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
@@ -38,7 +29,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     @synchronized([ElApiService class]){
         if(shareService==nil){
             shareService=[[ElApiService alloc] init];
-            shareService.connect_header=[NSString stringWithFormat:@"http://%@:%d/elws/services/elwsapi/",WEBSERVICE_IP,WEBSERVICE_PORT];
+            shareService.connect_header=[NSString stringWithFormat:@"http://%@:%d/car/services/carwsapi/",WEBSERVICE_IP,WEBSERVICE_PORT];
         }
         return shareService;
     }
@@ -54,7 +45,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     if(shopId>0){
         [appendHttpStr appendFormat:@"&shopId=%d",shopId];
     }
-    NSString *service=[NSString stringWithFormat:@"%@appUserLogin?name=%@&password=%@clientEnv=ios&logoutYN=0%@",self.connect_header,name,pass,appendHttpStr];
+    NSString *service=[NSString stringWithFormat:@"%@appUserLogin?name=%@&password=%@&clientEnv=ios&logoutYN=0%@",self.connect_header,name,pass,appendHttpStr];
     NSLog(@"appUserLogin service:%@",service);
     NSData *data=[self requestURLSync:service];
     if(data!=nil){
@@ -63,7 +54,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
         NSString* userIdVal=[[[rootElement elementsForName:@"userId"] objectAtIndex:0] stringValue];
         NSString* secTokenVal=[[[rootElement elementsForName:@"secToken"] objectAtIndex:0] stringValue];
-        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* shopIdVal=[[[rootElement elementsForName:@"shopId"] objectAtIndex:0] stringValue];
         
         NSLog(@"errorCode:%@, userId:%@ ,secToken:%@",errorCodeVal,userIdVal,secTokenVal);
         if([errorCodeVal isEqualToString:@"0"]){
@@ -72,7 +63,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:nil];
         }
         
     }
@@ -458,7 +449,702 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     }
     return nil;
 }
+-(BOOL)createOilOrder:(TDOilOrder *)oilOrder{
+    
+    NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
+    if(oilOrder.type>0){
+        [appendHttpStr appendFormat:@"&type=%d",oilOrder.type];
+    }
+    if(oilOrder.state>0){
+        [appendHttpStr appendFormat:@"&state=%d",oilOrder.state];
+    }
+    if(oilOrder.payState>0){
+        [appendHttpStr appendFormat:@"&payState=%d",oilOrder.payState];
+    }
+    if(oilOrder.userId!=nil){
+        [appendHttpStr appendFormat:@"&userId=%@",oilOrder.userId];
+    }
+    if(oilOrder.carId>0){
+        [appendHttpStr appendFormat:@"&carId=%d",oilOrder.carId];
+    }
+    if(oilOrder.shopId>0){
+        [appendHttpStr appendFormat:@"&shopId=%d",oilOrder.shopId];
+    }
+    if(oilOrder.stationId>0){
+        [appendHttpStr appendFormat:@"&stationId=%d",oilOrder.stationId];
+    }
+    if(oilOrder.price>0){
+        [appendHttpStr appendFormat:@"&price=%f",oilOrder.price];
+    }
+    if(oilOrder.couponId>0){
+        [appendHttpStr appendFormat:@"&couponId=%d",oilOrder.couponId];
+    }
+    if(oilOrder.orderTime!=nil){
+        [appendHttpStr appendFormat:@"&orderTime=%@",oilOrder.orderTime];
+    }
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@createOilOrder?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSLog(@"createOilOrder  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* createTimeVal=[[[rootElement elementsForName:@"createTime"] objectAtIndex:0] stringValue];
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
+-(BOOL)delOilOrder:(int)oilOrderId{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@delOilOrder?senderId=%@&secToken=%@&id=%d",self.connect_header,userID,secToken,oilOrderId];
+    NSLog(@"delOilOrder  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+           
+            
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
+-(BOOL)updOilOrder:(TDOilOrder *)oilOrder{
+    
+    NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
+    if(oilOrder.oilOrderId<0){
+        return NO;
+    }
+    
+    [appendHttpStr appendFormat:@"&id=%d",oilOrder.oilOrderId];
+    if(oilOrder.type>0){
+        [appendHttpStr appendFormat:@"&type=%d",oilOrder.type];
+    }
+    if(oilOrder.state>0){
+        [appendHttpStr appendFormat:@"&state=%d",oilOrder.state];
+    }
+    if(oilOrder.payState>0){
+        [appendHttpStr appendFormat:@"&payState=%d",oilOrder.payState];
+    }
+    if(oilOrder.userId!=nil){
+        [appendHttpStr appendFormat:@"&userId=%@",oilOrder.userId];
+    }
+    if(oilOrder.carId>0){
+        [appendHttpStr appendFormat:@"&carId=%d",oilOrder.carId];
+    }
+    if(oilOrder.shopId>0){
+        [appendHttpStr appendFormat:@"&shopId=%d",oilOrder.shopId];
+    }
+    if(oilOrder.stationId>0){
+        [appendHttpStr appendFormat:@"&stationId=%d",oilOrder.stationId];
+    }
+    if(oilOrder.price>0){
+        [appendHttpStr appendFormat:@"&price=%f",oilOrder.price];
+    }
+    if(oilOrder.couponId>0){
+        [appendHttpStr appendFormat:@"&couponId=%d",oilOrder.couponId];
+    }
+    if(oilOrder.orderTime!=nil){
+        [appendHttpStr appendFormat:@"&orderTime=%@",oilOrder.orderTime];
+    }
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@updOilOrder?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSLog(@"updOilOrder  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+      
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
 
+
+-(NSArray *)getOilOrderList:(TDOrderSearch *)orderSearch{
+    NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
+    if(orderSearch.searchType==SEARCH_TYPE_SHOPID){
+        [appendHttpStr appendFormat:@"&shopId=%d",orderSearch.shopId];
+    }else{
+        [appendHttpStr appendFormat:@"&userId=%@",orderSearch.userId];
+    }
+    if(orderSearch.startTime!=nil){
+        [appendHttpStr appendFormat:@"&startTime=%@",orderSearch.startTime];
+    }
+    if(orderSearch.maxNum>0){
+        [appendHttpStr appendFormat:@"&maxNum=%d",orderSearch.maxNum];
+    }
+   
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@getOilOrderList?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSLog(@"getOilOrderList  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* numOfOilOrderVal=[[[rootElement elementsForName:@"numOfOilOrder"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            NSArray *oilOrderListNode=[rootElement elementsForName:@"oilOrderList"];
+            NSMutableArray *oilOrderArr=[[NSMutableArray alloc] init];
+            
+            for (GDataXMLElement *element in oilOrderListNode) {
+                
+                TDOilOrder *tdOilOrder= [self parseTDOilOrderInfoXML:element];
+                
+                [oilOrderArr addObject:tdOilOrder];
+                
+            }
+            
+            return oilOrderArr;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return nil;
+}
+
+-(BOOL)createOilOrderNumber:(int)oilOrderId oilId:(int)oilId{
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@createOilOrderNumber?senderId=%@&secToken=%@&oilOrderId=%d&oilId=%d",self.connect_header,userID,secToken,oilOrderId,oilId];
+    NSLog(@"createOilOrderNumber  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
+
+-(BOOL)createMetaOrder:(TDMetaOrder *)metaOrder{
+    
+    NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
+    if(metaOrder.type>0){
+        [appendHttpStr appendFormat:@"&type=%d",metaOrder.type];
+    }
+    if(metaOrder.state>0){
+        [appendHttpStr appendFormat:@"&state=%d",metaOrder.state];
+    }
+    if(metaOrder.payState>0){
+        [appendHttpStr appendFormat:@"&payState=%d",metaOrder.payState];
+    }
+    if(metaOrder.userId!=nil){
+        [appendHttpStr appendFormat:@"&userId=%@",metaOrder.userId];
+    }
+    if(metaOrder.carId>0){
+        [appendHttpStr appendFormat:@"&carId=%d",metaOrder.carId];
+    }
+    if(metaOrder.shopId>0){
+        [appendHttpStr appendFormat:@"&shopId=%d",metaOrder.shopId];
+    }
+    if(metaOrder.stationId>0){
+        [appendHttpStr appendFormat:@"&stationId=%d",metaOrder.stationId];
+    }
+    if(metaOrder.price>0){
+        [appendHttpStr appendFormat:@"&price=%f",metaOrder.price];
+    }
+    if(metaOrder.couponId>0){
+        [appendHttpStr appendFormat:@"&couponId=%d",metaOrder.couponId];
+    }
+    if(metaOrder.orderTime!=nil){
+        [appendHttpStr appendFormat:@"&orderTime=%@",metaOrder.orderTime];
+    }
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@createMetaOrder?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSLog(@"createMetaOrder  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+       
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
+-(BOOL)delMetaOrder:(int)metaOrderId{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@delMetaOrder?senderId=%@&secToken=%@&id=%d",self.connect_header,userID,secToken,metaOrderId];
+    NSLog(@"delMetaOrder  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            
+            
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
+-(BOOL)updMetaOrder:(TDMetaOrder *)metaOrder{
+    
+    NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
+    if(metaOrder.metaOrderId<0){
+        return NO;
+    }
+    
+    [appendHttpStr appendFormat:@"&id=%d",metaOrder.metaOrderId];
+    if(metaOrder.type>0){
+        [appendHttpStr appendFormat:@"&type=%d",metaOrder.type];
+    }
+    if(metaOrder.state>0){
+        [appendHttpStr appendFormat:@"&state=%d",metaOrder.state];
+    }
+    if(metaOrder.payState>0){
+        [appendHttpStr appendFormat:@"&payState=%d",metaOrder.payState];
+    }
+    if(metaOrder.userId!=nil){
+        [appendHttpStr appendFormat:@"&userId=%@",metaOrder.userId];
+    }
+    if(metaOrder.carId>0){
+        [appendHttpStr appendFormat:@"&carId=%d",metaOrder.carId];
+    }
+    if(metaOrder.shopId>0){
+        [appendHttpStr appendFormat:@"&shopId=%d",metaOrder.shopId];
+    }
+    if(metaOrder.stationId>0){
+        [appendHttpStr appendFormat:@"&stationId=%d",metaOrder.stationId];
+    }
+    if(metaOrder.price>0){
+        [appendHttpStr appendFormat:@"&price=%f",metaOrder.price];
+    }
+    if(metaOrder.couponId>0){
+        [appendHttpStr appendFormat:@"&couponId=%d",metaOrder.couponId];
+    }
+    if(metaOrder.orderTime!=nil){
+        [appendHttpStr appendFormat:@"&orderTime=%@",metaOrder.orderTime];
+    }
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@updMetaOrder?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSLog(@"updMetaOrder  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
+
+
+-(NSArray *)getMetaOrderList:(TDOrderSearch *)orderSearch{
+    NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
+    if(orderSearch.searchType==SEARCH_TYPE_SHOPID){
+        [appendHttpStr appendFormat:@"&shopId=%d",orderSearch.shopId];
+    }else{
+        [appendHttpStr appendFormat:@"&userId=%@",orderSearch.userId];
+    }
+    if(orderSearch.startTime!=nil){
+        [appendHttpStr appendFormat:@"&startTime=%@",orderSearch.startTime];
+    }
+    if(orderSearch.maxNum>0){
+        [appendHttpStr appendFormat:@"&maxNum=%d",orderSearch.maxNum];
+    }
+    
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@getMetaOrderList?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSLog(@"getMetaOrderList  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* numOfOilOrderVal=[[[rootElement elementsForName:@"numofMetaOrder"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            NSArray *metaOrderListNode=[rootElement elementsForName:@"metaOrderList"];
+            NSMutableArray *metaOrderArr=[[NSMutableArray alloc] init];
+            
+            for (GDataXMLElement *element in metaOrderListNode) {
+                
+                TDMetaOrder *tdMetaOrder= [self parseTDMetaOrderInfoXML:element];
+                
+                [metaOrderArr addObject:tdMetaOrder];
+                
+            }
+            
+            return metaOrderArr;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return nil;
+}
+
+-(BOOL)createMetaOrderNumber:(int)metaOrderId metaId:(int)metaId{
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@createMetaOrderNumber?senderId=%@&secToken=%@&metaOrderId=%d&metaId=%d",self.connect_header,userID,secToken,metaOrderId,metaId];
+    NSLog(@"createMetaOrderNumber  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
+-(BOOL)createMetaOrderImg:(int)metaOrderId imgName:(NSString *)imgName{
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@createMetaOrderImg?senderId=%@&secToken=%@&metaOrderId=%d&imgName=%@",self.connect_header,userID,secToken,metaOrderId,imgName];
+    NSLog(@"createMetaOrderImg  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
+
+
+-(BOOL)createDecoOrder:(TDDecoOrder *)decoOrder{
+    
+    NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
+    if(decoOrder.type>0){
+        [appendHttpStr appendFormat:@"&type=%d",decoOrder.type];
+    }
+    if(decoOrder.state>0){
+        [appendHttpStr appendFormat:@"&state=%d",decoOrder.state];
+    }
+    if(decoOrder.payState>0){
+        [appendHttpStr appendFormat:@"&payState=%d",decoOrder.payState];
+    }
+    if(decoOrder.userId!=nil){
+        [appendHttpStr appendFormat:@"&userId=%@",decoOrder.userId];
+    }
+    if(decoOrder.carId>0){
+        [appendHttpStr appendFormat:@"&carId=%d",decoOrder.carId];
+    }
+    if(decoOrder.shopId>0){
+        [appendHttpStr appendFormat:@"&shopId=%d",decoOrder.shopId];
+    }
+    if(decoOrder.stationId>0){
+        [appendHttpStr appendFormat:@"&stationId=%d",decoOrder.stationId];
+    }
+    if(decoOrder.price>0){
+        [appendHttpStr appendFormat:@"&price=%f",decoOrder.price];
+    }
+    if(decoOrder.couponId>0){
+        [appendHttpStr appendFormat:@"&couponId=%d",decoOrder.couponId];
+    }
+    if(decoOrder.orderTime!=nil){
+        [appendHttpStr appendFormat:@"&orderTime=%@",decoOrder.orderTime];
+    }
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@createDecoOrder?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSLog(@"createDecoOrder  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        NSString* createTimeVal=[[[rootElement elementsForName:@"createTime"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
+-(BOOL)delDecoOrder:(int)decoOrderId{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@delDecoOrder?senderId=%@&secToken=%@&id=%d",self.connect_header,userID,secToken,decoOrderId];
+    NSLog(@"delDecoOrder  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            
+            
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
+
+-(BOOL)updDecoOrder:(TDDecoOrder *)decoOrder{
+    
+    NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
+    if(decoOrder.decoOrderId<=0){
+        return NO;
+    }
+    [appendHttpStr appendFormat:@"&id=%d",decoOrder.decoOrderId];
+    if(decoOrder.type>0){
+        [appendHttpStr appendFormat:@"&type=%d",decoOrder.type];
+    }
+    if(decoOrder.state>0){
+        [appendHttpStr appendFormat:@"&state=%d",decoOrder.state];
+    }
+    if(decoOrder.payState>0){
+        [appendHttpStr appendFormat:@"&payState=%d",decoOrder.payState];
+    }
+    if(decoOrder.userId!=nil){
+        [appendHttpStr appendFormat:@"&userId=%@",decoOrder.userId];
+    }
+    if(decoOrder.carId>0){
+        [appendHttpStr appendFormat:@"&carId=%d",decoOrder.carId];
+    }
+    if(decoOrder.shopId>0){
+        [appendHttpStr appendFormat:@"&shopId=%d",decoOrder.shopId];
+    }
+    if(decoOrder.stationId>0){
+        [appendHttpStr appendFormat:@"&stationId=%d",decoOrder.stationId];
+    }
+    
+    if(decoOrder.couponId>0){
+        [appendHttpStr appendFormat:@"&couponId=%d",decoOrder.couponId];
+    }
+    if(decoOrder.orderTime!=nil){
+        [appendHttpStr appendFormat:@"&orderTime=%@",decoOrder.orderTime];
+    }
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@updDecoOrder?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSLog(@"updDecoOrder  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
+
+
+-(NSArray *)getDecoOrderList:(TDOrderSearch *)orderSearch{
+    NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
+    if(orderSearch.searchType==SEARCH_TYPE_SHOPID){
+        [appendHttpStr appendFormat:@"&shopId=%d",orderSearch.shopId];
+    }else{
+        [appendHttpStr appendFormat:@"&userId=%@",orderSearch.userId];
+    }
+    if(orderSearch.startTime!=nil){
+        [appendHttpStr appendFormat:@"&startTime=%@",orderSearch.startTime];
+    }
+    if(orderSearch.maxNum>0){
+        [appendHttpStr appendFormat:@"&maxNum=%d",orderSearch.maxNum];
+    }
+    
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@getDecoOrderList?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSLog(@"getDecoOrderList  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* numOfOilOrderVal=[[[rootElement elementsForName:@"numOfDecoOrder"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            NSArray *decoOrderListNode=[rootElement elementsForName:@"decoOrderList"];
+            NSMutableArray *decoOrderArr=[[NSMutableArray alloc] init];
+            
+            for (GDataXMLElement *element in decoOrderListNode) {
+                
+                TDDecoOrder *tdDecoOrder= [self parseTDDecoOrderInfoXML:element];
+                
+                [decoOrderArr addObject:tdDecoOrder];
+                
+            }
+            
+            return decoOrderArr;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return nil;
+}
+
+
+-(BOOL)createDecoOrderNumber:(int)decoOrderId decoId:(int)decoId{
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@createDecoOrderNumber?senderId=%@&secToken=%@&decoOrderId=%d&decoId=%d",self.connect_header,userID,secToken,decoOrderId,decoId];
+    NSLog(@"createDecoOrderNumber  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    return NO;
+}
 
 /***********************************
  * webService API end...
@@ -507,6 +1193,112 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     tdGoodInfo.isShow=[[[[element elementsForName:@"isShow"] objectAtIndex:0] stringValue] boolValue];
     tdGoodInfo.isChange=[[[[element elementsForName:@"isChange"] objectAtIndex:0] stringValue] boolValue];
     return tdGoodInfo;
+}
+-(TDOilOrder *)parseTDOilOrderInfoXML:(GDataXMLElement *)element{
+    TDOilOrder *tdOilOrder=[[TDOilOrder alloc] init];
+    
+    tdOilOrder.oilOrderId=[[[[element elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+    tdOilOrder.type=[[[[element elementsForName:@"type"] objectAtIndex:0] stringValue] intValue];
+    tdOilOrder.createTime=[[[element elementsForName:@"createTime"] objectAtIndex:0] stringValue];
+    
+    tdOilOrder.finishTime=[[[element elementsForName:@"finishTime"] objectAtIndex:0] stringValue];
+    tdOilOrder.state=[[[[element elementsForName:@"state"] objectAtIndex:0] stringValue] intValue];
+    tdOilOrder.shopId=[[[[element elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
+    tdOilOrder.payState=[[[[element elementsForName:@"payState"] objectAtIndex:0] stringValue] intValue];
+    tdOilOrder.userId=[[[element elementsForName:@"userId"] objectAtIndex:0] stringValue];
+    tdOilOrder.carId=[[[[element elementsForName:@"carId"] objectAtIndex:0] stringValue] intValue];
+    tdOilOrder.stationId=[[[[element elementsForName:@"stationId"] objectAtIndex:0] stringValue] intValue];
+    tdOilOrder.price=[[[[element elementsForName:@"price"] objectAtIndex:0] stringValue] floatValue];
+    tdOilOrder.couponId=[[[[element elementsForName:@"couponId"] objectAtIndex:0] stringValue] intValue];
+    
+    NSArray *oilOrderNumberListNode=[element elementsForName:@"oilOrderNumber"];
+    NSMutableArray *oilOrderNumberArr=[[NSMutableArray alloc] init];
+    
+    for (GDataXMLElement *child in oilOrderNumberListNode) {
+        OilOrderNumberInfo *oilOrderNumberInfo=[[OilOrderNumberInfo alloc] init];
+        oilOrderNumberInfo.orderNumberId=[[[[child elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+        oilOrderNumberInfo.oilId=[[[[child elementsForName:@"oilId"] objectAtIndex:0] stringValue] intValue];
+        oilOrderNumberInfo.oilOrderId=[[[[child elementsForName:@"oilOrderId"] objectAtIndex:0] stringValue] intValue];
+        [oilOrderNumberArr addObject:oilOrderNumberInfo];
+    }
+    
+    tdOilOrder.oilOrderNumber=oilOrderNumberArr;
+    
+    return tdOilOrder;
+}
+-(TDMetaOrder *)parseTDMetaOrderInfoXML:(GDataXMLElement *)element{
+    TDMetaOrder *tdMetaOrder=[[TDMetaOrder alloc] init];
+    
+    tdMetaOrder.metaOrderId=[[[[element elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+    tdMetaOrder.type=[[[[element elementsForName:@"type"] objectAtIndex:0] stringValue] intValue];
+    tdMetaOrder.createTime=[[[element elementsForName:@"createTime"] objectAtIndex:0] stringValue];
+    
+    tdMetaOrder.finishTime=[[[element elementsForName:@"finishTime"] objectAtIndex:0] stringValue];
+    tdMetaOrder.state=[[[[element elementsForName:@"state"] objectAtIndex:0] stringValue] intValue];
+    tdMetaOrder.shopId=[[[[element elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
+    tdMetaOrder.payState=[[[[element elementsForName:@"payState"] objectAtIndex:0] stringValue] intValue];
+    tdMetaOrder.userId=[[[element elementsForName:@"userId"] objectAtIndex:0] stringValue];
+    tdMetaOrder.carId=[[[[element elementsForName:@"carId"] objectAtIndex:0] stringValue] intValue];
+    tdMetaOrder.stationId=[[[[element elementsForName:@"stationId"] objectAtIndex:0] stringValue] intValue];
+    tdMetaOrder.price=[[[[element elementsForName:@"price"] objectAtIndex:0] stringValue] floatValue];
+    tdMetaOrder.couponId=[[[[element elementsForName:@"couponId"] objectAtIndex:0] stringValue] intValue];
+    
+    NSArray *metaOrderNumberListNode=[element elementsForName:@"metaOrderNumber"];
+    NSMutableArray *metaOrderNumberArr=[[NSMutableArray alloc] init];
+    
+    for (GDataXMLElement *child in metaOrderNumberListNode) {
+        MetaOrderNumberInfo *metaOrderNumberInfo=[[MetaOrderNumberInfo alloc] init];
+        metaOrderNumberInfo.metaNumberId=[[[[child elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+        metaOrderNumberInfo.metaId=[[[[child elementsForName:@"metaId"] objectAtIndex:0] stringValue] intValue];
+        metaOrderNumberInfo.metaOrderId=[[[[child elementsForName:@"metaOrderId"] objectAtIndex:0] stringValue] intValue];
+        [metaOrderNumberArr addObject:metaOrderNumberInfo];
+    }
+    
+    NSArray *metaOrderImgListNode=[element elementsForName:@"metaOrderImg"];
+    NSMutableArray *metaOrderImgArr=[[NSMutableArray alloc] init];
+    
+    for (GDataXMLElement *child1 in metaOrderImgListNode) {
+        MetaOrderImg *metaOrderImg=[[MetaOrderImg alloc] init];
+        metaOrderImg.metaOrderImgId=[[[[child1 elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+        metaOrderImg.imgName=[[[child1 elementsForName:@"imgName"] objectAtIndex:0] stringValue];
+        metaOrderImg.metaOrderId=[[[[child1 elementsForName:@"metaOrderId"] objectAtIndex:0] stringValue] intValue];
+        [metaOrderImgArr addObject:metaOrderImg];
+    }
+    
+    tdMetaOrder.metaOrderNumber=metaOrderNumberArr;
+    tdMetaOrder.metaOrderImg=metaOrderImgArr;
+    return tdMetaOrder;
+}
+-(TDDecoOrder *)parseTDDecoOrderInfoXML:(GDataXMLElement *)element{
+    TDDecoOrder *tdDecoOrder=[[TDDecoOrder alloc] init];
+    
+    tdDecoOrder.decoOrderId=[[[[element elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+    tdDecoOrder.type=[[[[element elementsForName:@"type"] objectAtIndex:0] stringValue] intValue];
+    tdDecoOrder.createTime=[[[element elementsForName:@"createTime"] objectAtIndex:0] stringValue];
+    
+    tdDecoOrder.finishTime=[[[element elementsForName:@"finishTime"] objectAtIndex:0] stringValue];
+    tdDecoOrder.state=[[[[element elementsForName:@"state"] objectAtIndex:0] stringValue] intValue];
+    tdDecoOrder.shopId=[[[[element elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
+    tdDecoOrder.payState=[[[[element elementsForName:@"payState"] objectAtIndex:0] stringValue] intValue];
+    tdDecoOrder.userId=[[[element elementsForName:@"userId"] objectAtIndex:0] stringValue];
+    tdDecoOrder.carId=[[[[element elementsForName:@"carId"] objectAtIndex:0] stringValue] intValue];
+    tdDecoOrder.stationId=[[[[element elementsForName:@"stationId"] objectAtIndex:0] stringValue] intValue];
+    tdDecoOrder.price=[[[[element elementsForName:@"price"] objectAtIndex:0] stringValue] floatValue];
+    tdDecoOrder.couponId=[[[[element elementsForName:@"couponId"] objectAtIndex:0] stringValue] intValue];
+    
+    NSArray *decoOrderNumberListNode=[element elementsForName:@"decoOrderNumber"];
+    NSMutableArray *decoOrderNumberArr=[[NSMutableArray alloc] init];
+    
+    for (GDataXMLElement *child in decoOrderNumberListNode) {
+        DecoOrderNumber *decoOrderNumberInfo=[[DecoOrderNumber alloc] init];
+        decoOrderNumberInfo.decoOrderNumberId=[[[[child elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+        decoOrderNumberInfo.decoOrderId=[[[[child elementsForName:@"decoOrderId"] objectAtIndex:0] stringValue] intValue];
+        decoOrderNumberInfo.decoId=[[[[child elementsForName:@"decoId"] objectAtIndex:0] stringValue] intValue];
+        [decoOrderNumberArr addObject:decoOrderNumberInfo];
+    }
+    
+    tdDecoOrder.decoOrderNumber=decoOrderNumberArr;
+    return tdDecoOrder;
 }
 
 -(TDCarInfo *)parseTDCarInfoXML:(GDataXMLElement *)element{
@@ -593,13 +1385,13 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
 -(GDataXMLElement *)getRootElementByData:(NSData *)data{
     GDataXMLDocument *doc=[[GDataXMLDocument alloc] initWithData:data options:0 error:nil];
     GDataXMLElement *rootElement=[doc rootElement];
-    return rootElement;
+    return [rootElement copy];
 }
 
 -(NSData *)requestURLSync:(NSString *)service{
     NSURL* url=[NSURL URLWithString:service];
     NSMutableURLRequest* request=[NSMutableURLRequest requestWithURL:url];
-    [request setTimeoutInterval:DEFAULT_TIME_OUT];
+    [request setTimeoutInterval:12];
     [request setHTTPMethod:@"GET"];
     NSURLResponse* response=nil;
     NSError* error=nil;
@@ -610,7 +1402,8 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         NSString *errorDescription=nil;
         errorDescription=error.localizedDescription;
         dispatch_async(dispatch_get_main_queue(), ^{
-          
+            
+            [self notificationErrorCode:errorDescription];
             
         });
     }

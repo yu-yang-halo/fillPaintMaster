@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ElApiService.h"
 @interface AppDelegate ()
 {
 }
@@ -17,7 +18,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    // Override point for customization after application launch.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        BOOL logSuc=[[ElApiService shareElApiService] appUserLogin:@"regUser1" password:@"706c39f565fd9446"  shopId:1];
+        
+        if(logSuc){
+            NSLog(@"success");
+         
+        }else{
+            NSLog(@"fail");
+        }
+    });
+  
+    
     return YES;
 }
 
