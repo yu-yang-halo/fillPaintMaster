@@ -7,10 +7,14 @@
 //
 
 #import "ShopView1Controller.h"
-
+#import "MonitorViewController.h"
 @interface ShopView1Controller ()
 @property (weak, nonatomic) IBOutlet UIView *containerView;
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *channelImageView0;
+@property (weak, nonatomic) IBOutlet UIImageView *channelImageView1;
+@property (weak, nonatomic) IBOutlet UIImageView *channelImageView2;
+
+@property (weak, nonatomic) IBOutlet UIImageView *channelImageView3;
 
 @end
 
@@ -19,6 +23,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    MonitorViewController  *monitor0=[[MonitorViewController alloc] initUID:@"5NYMJK5PENUPZY98111A" withPass:@"admin"];
+    
+    [self.channelImageView0 addSubview:monitor0.view];
+    
+    MonitorViewController  *monitor1=[[MonitorViewController alloc] initUID:@"X54G85ZXC4L8W1YG111A" withPass:@"admin"];
+    
+    [self.channelImageView0 addSubview:monitor1.view];
+    
+    MonitorViewController  *monitor2=[[MonitorViewController alloc] initUID:@"5NYMJK5PENUPZY98111A" withPass:@"admin"];
+    
+    [self.channelImageView0 addSubview:monitor2.view];
+    
+    MonitorViewController  *monitor3=[[MonitorViewController alloc] initUID:@"X54G85ZXC4L8W1YG111A" withPass:@"admin"];
+    
+    [self.channelImageView0 addSubview:monitor3.view];
+    
+   
 }
 -(void)awakeFromNib{
     

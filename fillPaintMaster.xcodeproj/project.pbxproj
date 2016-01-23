@@ -112,6 +112,36 @@
 		847F9D1B1C50BBD8005ED278 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F9D191C50ACB5005ED278 /* libxml2.dylib */; };
 		848149081C32643500588564 /* DelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848149071C32643500588564 /* DelegateViewController.m */; };
 		8481490D1C326DFB00588564 /* TDButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481490C1C326DFB00588564 /* TDButtonView.m */; };
+		84C701311C5379C6007FA60F /* MyCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C7011F1C5379C6007FA60F /* MyCamera.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		84C701371C5379C6007FA60F /* CameraShowGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C701281C5379C6007FA60F /* CameraShowGLView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		84C701381C5379C6007FA60F /* MonitorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C7012A1C5379C6007FA60F /* MonitorView.xib */; };
+		84C701391C5379C6007FA60F /* MonitorViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84C7012C1C5379C6007FA60F /* MonitorViewController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		84C7013A1C5379C6007FA60F /* DirectDisplayShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 84C7012D1C5379C6007FA60F /* DirectDisplayShader.fsh */; };
+		84C7013B1C5379C6007FA60F /* DirectDisplayShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 84C7012E1C5379C6007FA60F /* DirectDisplayShader.vsh */; };
+		84C7013C1C5379C6007FA60F /* PSDMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C701301C5379C6007FA60F /* PSDMonitor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		84C701471C537F67007FA60F /* IOTCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701461C537F67007FA60F /* IOTCamera.framework */; };
+		84C7014A1C537F94007FA60F /* libIOTCAPIs_ALL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701481C537F94007FA60F /* libIOTCAPIs_ALL.a */; };
+		84C701531C5382D4007FA60F /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701521C5382D4007FA60F /* VideoToolbox.framework */; };
+		84C701551C5382E7007FA60F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701541C5382E7007FA60F /* QuartzCore.framework */; };
+		84C701571C5382F3007FA60F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701561C5382F3007FA60F /* CoreVideo.framework */; };
+		84C701591C5382FA007FA60F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701581C5382FA007FA60F /* GLKit.framework */; };
+		84C7015B1C538304007FA60F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7015A1C538304007FA60F /* AVFoundation.framework */; };
+		84C7015D1C53830D007FA60F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7015C1C53830D007FA60F /* OpenAL.framework */; };
+		84C7015F1C53831A007FA60F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7015E1C53831A007FA60F /* AudioToolbox.framework */; };
+		84C701611C5383DB007FA60F /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701601C5383DB007FA60F /* libbz2.1.0.dylib */; };
+		84C701631C5383E3007FA60F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701621C5383E3007FA60F /* libstdc++.6.0.9.dylib */; };
+		84C701651C538400007FA60F /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701641C538400007FA60F /* libiconv.dylib */; };
+		84C701671C53841F007FA60F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701661C53841F007FA60F /* SystemConfiguration.framework */; };
+		84C701691C538426007FA60F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701681C538426007FA60F /* CFNetwork.framework */; };
+		84C7016B1C53848C007FA60F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7016A1C53848C007FA60F /* Accelerate.framework */; };
+		84C7016D1C5384B4007FA60F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7016C1C5384B4007FA60F /* libz.dylib */; };
+		84C7016F1C5384F5007FA60F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7016E1C5384F5007FA60F /* Security.framework */; };
+		84C701711C538509007FA60F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701701C538509007FA60F /* AssetsLibrary.framework */; };
+		84C701731C53855C007FA60F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701721C53855C007FA60F /* MobileCoreServices.framework */; };
+		84C701771C5385DE007FA60F /* IOTCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701741C5385DE007FA60F /* IOTCamera.framework */; };
+		84C701781C5385DF007FA60F /* libIOTCAPIs_ALL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701751C5385DE007FA60F /* libIOTCAPIs_ALL.a */; };
+		84C701791C5385DF007FA60F /* libIOTCAPIs_ALLT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701761C5385DE007FA60F /* libIOTCAPIs_ALLT.a */; };
+		84C7017B1C5387ED007FA60F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7017A1C5387ED007FA60F /* CoreMedia.framework */; };
 		C6FF04885D98EFD277CD0577 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49336F7C7CEF0F6B8C6EC250 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -307,6 +337,41 @@
 		848149071C32643500588564 /* DelegateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateViewController.m; sourceTree = "<group>"; };
 		8481490B1C326DFB00588564 /* TDButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDButtonView.h; sourceTree = "<group>"; };
 		8481490C1C326DFB00588564 /* TDButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDButtonView.m; sourceTree = "<group>"; };
+		84C7011E1C5379C5007FA60F /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
+		84C7011F1C5379C6007FA60F /* MyCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCamera.m; sourceTree = "<group>"; };
+		84C701281C5379C6007FA60F /* CameraShowGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraShowGLView.m; sourceTree = "<group>"; };
+		84C701291C5379C6007FA60F /* CameraShowGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraShowGLView.h; sourceTree = "<group>"; };
+		84C7012A1C5379C6007FA60F /* MonitorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonitorView.xib; sourceTree = "<group>"; };
+		84C7012B1C5379C6007FA60F /* MonitorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonitorViewController.h; sourceTree = "<group>"; };
+		84C7012C1C5379C6007FA60F /* MonitorViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonitorViewController.mm; sourceTree = "<group>"; };
+		84C7012D1C5379C6007FA60F /* DirectDisplayShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DirectDisplayShader.fsh; sourceTree = "<group>"; };
+		84C7012E1C5379C6007FA60F /* DirectDisplayShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DirectDisplayShader.vsh; sourceTree = "<group>"; };
+		84C7012F1C5379C6007FA60F /* PSDMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSDMonitor.h; sourceTree = "<group>"; };
+		84C701301C5379C6007FA60F /* PSDMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSDMonitor.m; sourceTree = "<group>"; };
+		84C701461C537F67007FA60F /* IOTCamera.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOTCamera.framework; path = ../../Desktop/IOTCamera.framework; sourceTree = "<group>"; };
+		84C701481C537F94007FA60F /* libIOTCAPIs_ALL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIOTCAPIs_ALL.a; path = ../../Desktop/libIOTCAPIs_ALL.a; sourceTree = "<group>"; };
+		84C701491C537F94007FA60F /* libIOTCAPIs_ALLT.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIOTCAPIs_ALLT.a; path = ../../Desktop/libIOTCAPIs_ALLT.a; sourceTree = "<group>"; };
+		84C701521C5382D4007FA60F /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		84C701541C5382E7007FA60F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		84C701561C5382F3007FA60F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		84C701581C5382FA007FA60F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		84C7015A1C538304007FA60F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		84C7015C1C53830D007FA60F /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		84C7015E1C53831A007FA60F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		84C701601C5383DB007FA60F /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = usr/lib/libbz2.1.0.dylib; sourceTree = SDKROOT; };
+		84C701621C5383E3007FA60F /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		84C701641C538400007FA60F /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		84C701661C53841F007FA60F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		84C701681C538426007FA60F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		84C7016A1C53848C007FA60F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		84C7016C1C5384B4007FA60F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		84C7016E1C5384F5007FA60F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		84C701701C538509007FA60F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		84C701721C53855C007FA60F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		84C701741C5385DE007FA60F /* IOTCamera.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IOTCamera.framework; sourceTree = "<group>"; };
+		84C701751C5385DE007FA60F /* libIOTCAPIs_ALL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIOTCAPIs_ALL.a; sourceTree = "<group>"; };
+		84C701761C5385DE007FA60F /* libIOTCAPIs_ALLT.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIOTCAPIs_ALLT.a; sourceTree = "<group>"; };
+		84C7017A1C5387ED007FA60F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		E2E5957C845E102A048E030F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -315,6 +380,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C7017B1C5387ED007FA60F /* CoreMedia.framework in Frameworks */,
+				84C701731C53855C007FA60F /* MobileCoreServices.framework in Frameworks */,
+				84C701711C538509007FA60F /* AssetsLibrary.framework in Frameworks */,
+				84C7016F1C5384F5007FA60F /* Security.framework in Frameworks */,
+				84C701571C5382F3007FA60F /* CoreVideo.framework in Frameworks */,
+				84C701771C5385DE007FA60F /* IOTCamera.framework in Frameworks */,
+				84C7014A1C537F94007FA60F /* libIOTCAPIs_ALL.a in Frameworks */,
+				84C701471C537F67007FA60F /* IOTCamera.framework in Frameworks */,
+				84C701531C5382D4007FA60F /* VideoToolbox.framework in Frameworks */,
+				84C7016B1C53848C007FA60F /* Accelerate.framework in Frameworks */,
+				84C701611C5383DB007FA60F /* libbz2.1.0.dylib in Frameworks */,
+				84C7015B1C538304007FA60F /* AVFoundation.framework in Frameworks */,
+				84C701691C538426007FA60F /* CFNetwork.framework in Frameworks */,
+				84C701671C53841F007FA60F /* SystemConfiguration.framework in Frameworks */,
+				84C701651C538400007FA60F /* libiconv.dylib in Frameworks */,
+				84C7016D1C5384B4007FA60F /* libz.dylib in Frameworks */,
+				84C701631C5383E3007FA60F /* libstdc++.6.0.9.dylib in Frameworks */,
+				84C701791C5385DF007FA60F /* libIOTCAPIs_ALLT.a in Frameworks */,
+				84C701781C5385DF007FA60F /* libIOTCAPIs_ALL.a in Frameworks */,
+				84C7015F1C53831A007FA60F /* AudioToolbox.framework in Frameworks */,
+				84C7015D1C53830D007FA60F /* OpenAL.framework in Frameworks */,
+				84C701551C5382E7007FA60F /* QuartzCore.framework in Frameworks */,
+				84C701591C5382FA007FA60F /* GLKit.framework in Frameworks */,
 				847F9D1B1C50BBD8005ED278 /* libxml2.dylib in Frameworks */,
 				C6FF04885D98EFD277CD0577 /* libPods.a in Frameworks */,
 			);
@@ -438,6 +526,7 @@
 		18B9324C1BA6A8C50019279E /* fillPaintMaster */ = {
 			isa = PBXGroup;
 			children = (
+				84C7011D1C537835007FA60F /* video */,
 				84345A741C3A3A800089DB45 /* service */,
 				1803C3211C36903B003157F1 /* resources */,
 				18E8A11C1BBA397900FBD3F4 /* Tools */,
@@ -707,6 +796,27 @@
 			name = order;
 			sourceTree = "<group>";
 		};
+		84C7011D1C537835007FA60F /* video */ = {
+			isa = PBXGroup;
+			children = (
+				84C701741C5385DE007FA60F /* IOTCamera.framework */,
+				84C701751C5385DE007FA60F /* libIOTCAPIs_ALL.a */,
+				84C701761C5385DE007FA60F /* libIOTCAPIs_ALLT.a */,
+				84C7011E1C5379C5007FA60F /* MyCamera.h */,
+				84C7011F1C5379C6007FA60F /* MyCamera.m */,
+				84C701281C5379C6007FA60F /* CameraShowGLView.m */,
+				84C701291C5379C6007FA60F /* CameraShowGLView.h */,
+				84C7012A1C5379C6007FA60F /* MonitorView.xib */,
+				84C7012B1C5379C6007FA60F /* MonitorViewController.h */,
+				84C7012C1C5379C6007FA60F /* MonitorViewController.mm */,
+				84C7012D1C5379C6007FA60F /* DirectDisplayShader.fsh */,
+				84C7012E1C5379C6007FA60F /* DirectDisplayShader.vsh */,
+				84C7012F1C5379C6007FA60F /* PSDMonitor.h */,
+				84C701301C5379C6007FA60F /* PSDMonitor.m */,
+			);
+			name = video;
+			sourceTree = "<group>";
+		};
 		D59418E1BE4B6B94E7F037D6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -719,6 +829,27 @@
 		DA468AD83F69F47810361E7D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84C7017A1C5387ED007FA60F /* CoreMedia.framework */,
+				84C701721C53855C007FA60F /* MobileCoreServices.framework */,
+				84C701701C538509007FA60F /* AssetsLibrary.framework */,
+				84C7016E1C5384F5007FA60F /* Security.framework */,
+				84C7016C1C5384B4007FA60F /* libz.dylib */,
+				84C7016A1C53848C007FA60F /* Accelerate.framework */,
+				84C701681C538426007FA60F /* CFNetwork.framework */,
+				84C701661C53841F007FA60F /* SystemConfiguration.framework */,
+				84C701641C538400007FA60F /* libiconv.dylib */,
+				84C701621C5383E3007FA60F /* libstdc++.6.0.9.dylib */,
+				84C701601C5383DB007FA60F /* libbz2.1.0.dylib */,
+				84C7015E1C53831A007FA60F /* AudioToolbox.framework */,
+				84C7015C1C53830D007FA60F /* OpenAL.framework */,
+				84C7015A1C538304007FA60F /* AVFoundation.framework */,
+				84C701581C5382FA007FA60F /* GLKit.framework */,
+				84C701561C5382F3007FA60F /* CoreVideo.framework */,
+				84C701541C5382E7007FA60F /* QuartzCore.framework */,
+				84C701521C5382D4007FA60F /* VideoToolbox.framework */,
+				84C701481C537F94007FA60F /* libIOTCAPIs_ALL.a */,
+				84C701491C537F94007FA60F /* libIOTCAPIs_ALLT.a */,
+				84C701461C537F67007FA60F /* IOTCamera.framework */,
 				847F9D191C50ACB5005ED278 /* libxml2.dylib */,
 				847F9D171C50AA78005ED278 /* libxml2.2.dylib */,
 				49336F7C7CEF0F6B8C6EC250 /* libPods.a */,
@@ -819,6 +950,7 @@
 				18E8ED181C2FE39700968CEB /* OtherCarViewController.xib in Resources */,
 				18E8ED041C2FDB8100968CEB /* RightCarViewController.xib in Resources */,
 				1803C3281C36A67F003157F1 /* location.html in Resources */,
+				84C7013A1C5379C6007FA60F /* DirectDisplayShader.fsh in Resources */,
 				18EB1AF51C378A9E00791849 /* TDLoginViewController.xib in Resources */,
 				18ED344C1C3627C60085B250 /* ShopView1Controller.xib in Resources */,
 				18E809C01BC248DF00712C43 /* TDTableViewCell1.xib in Resources */,
@@ -835,7 +967,9 @@
 				18E809BB1BC230D200712C43 /* TDTableViewCell0.xib in Resources */,
 				18E9461D1C40C2C20047ADEA /* LaunchScreen.xib in Resources */,
 				18E809D61BC2A9C900712C43 /* PaintView0Controller.xib in Resources */,
+				84C701381C5379C6007FA60F /* MonitorView.xib in Resources */,
 				1803C3291C36A67F003157F1 /* arrow.png in Resources */,
+				84C7013B1C5379C6007FA60F /* DirectDisplayShader.vsh in Resources */,
 				18B9325A1BA6A8C50019279E /* Assets.xcassets in Resources */,
 				18EE55821C41FB1C00A99D50 /* CarInfoView.xib in Resources */,
 				18ED34471C3627B60085B250 /* ShopView0Controller.xib in Resources */,
@@ -950,12 +1084,15 @@
 				18EBC4A21C47BC5F00AFFC1A /* TDActiveViewController.m in Sources */,
 				182FC7011C4FB532001978F5 /* TDOilInfo.m in Sources */,
 				18E809DA1BC2AD2800712C43 /* PaintView1Controller.m in Sources */,
+				84C7013C1C5379C6007FA60F /* PSDMonitor.m in Sources */,
 				845E48521C3B94FC00AAD5A5 /* CoolNavi.m in Sources */,
 				18B932521BA6A8C50019279E /* AppDelegate.m in Sources */,
 				18EB1AF91C37934600791849 /* TDIdCodeViewController.m in Sources */,
+				84C701311C5379C6007FA60F /* MyCamera.m in Sources */,
 				18EB79F51C51072200BA0C26 /* YYButtonUtils.m in Sources */,
 				18ED344B1C3627C60085B250 /* ShopView1Controller.m in Sources */,
 				848149081C32643500588564 /* DelegateViewController.m in Sources */,
+				84C701391C5379C6007FA60F /* MonitorViewController.mm in Sources */,
 				183EAA121BB92E450029ED79 /* TDNavigationViewController.m in Sources */,
 				18E8ED031C2FDB8100968CEB /* RightCarViewController.m in Sources */,
 				84345A901C3A42780089DB45 /* TDPaintItem.m in Sources */,
@@ -973,6 +1110,7 @@
 				18EB27B21C4E5E4E0085EDC4 /* ElApiService.m in Sources */,
 				18B9324F1BA6A8C50019279E /* main.m in Sources */,
 				182FC7101C4FC200001978F5 /* TDGoodInfo.m in Sources */,
+				84C701371C5379C6007FA60F /* CameraShowGLView.m in Sources */,
 				84345A811C3A3E770089DB45 /* TDCarInfo.m in Sources */,
 				18E8ECFE1C2FC43200968CEB /* LeftCarViewController.m in Sources */,
 				18EB1AEE1C37759000791849 /* TDAlbumViewController.m in Sources */,
@@ -1098,6 +1236,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fillPaintMaster/lib/Debug-iphoneos",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1109,6 +1251,10 @@
 				INFOPLIST_FILE = fillPaintMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fillPaintMaster/lib/Debug-iphoneos",
+				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"$(inherited)",
@@ -1133,6 +1279,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fillPaintMaster/lib/Release-iphoneos",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1144,6 +1294,10 @@
 				INFOPLIST_FILE = fillPaintMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fillPaintMaster/lib/Release-iphoneos",
+				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"$(inherited)",
