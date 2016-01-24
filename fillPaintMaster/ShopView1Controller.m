@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *channelImageView3;
 
+@property(nonatomic,retain) MonitorViewController *monitor0;
 @end
 
 @implementation ShopView1Controller
@@ -23,23 +24,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    MonitorViewController  *monitor0=[[MonitorViewController alloc] initUID:@"5NYMJK5PENUPZY98111A" withPass:@"admin"];
     
-    [self.channelImageView0 addSubview:monitor0.view];
     
-    MonitorViewController  *monitor1=[[MonitorViewController alloc] initUID:@"X54G85ZXC4L8W1YG111A" withPass:@"admin"];
-    
-    [self.channelImageView0 addSubview:monitor1.view];
-    
-    MonitorViewController  *monitor2=[[MonitorViewController alloc] initUID:@"5NYMJK5PENUPZY98111A" withPass:@"admin"];
-    
-    [self.channelImageView0 addSubview:monitor2.view];
-    
-    MonitorViewController  *monitor3=[[MonitorViewController alloc] initUID:@"X54G85ZXC4L8W1YG111A" withPass:@"admin"];
-    
-    [self.channelImageView0 addSubview:monitor3.view];
-    
+    [self setImageViewStyle:self.channelImageView0];
+    [self setImageViewStyle:self.channelImageView1];
+    [self setImageViewStyle:self.channelImageView2];
+    [self setImageViewStyle:self.channelImageView3];
    
+    NSArray *uids=@[@"5NYMJK5PENUPZY98111A",@"X54G85ZXC4L8W1YG111A",@"8YM2LT63DMWXPBUG111A"];
+    NSArray *views=@[self.channelImageView0,self.channelImageView1,self.channelImageView2];
+    
+    self.monitor0=[[MonitorViewController alloc] initUIDS:uids viewArr:views];
+    
+    
+}
+-(void)openVideoStream{
+    [self.monitor0 beginShowVideos];
+}
+-(void)closeVideoStream{
+    [self.monitor0 endShowVideos];
+}
+-(void)setImageViewStyle:(UIImageView *)imageView{
+   imageView.layer.borderWidth=1;
+   [imageView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.9]];
+   imageView.layer.borderColor=[[UIColor greenColor] CGColor];
 }
 -(void)awakeFromNib{
     

@@ -13,8 +13,10 @@
 
 #import "CameraShowGLView.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+
+#import "MyCamera.h"
 #define MAX_IMG_BUFFER_SIZE	(1280*720*4)
-@interface MonitorViewController : UIViewController <CameraDelegate,MonitorTouchDelegate>
+@interface MonitorViewController : UIViewController <MyCameraDelegate,MonitorTouchDelegate>
 {
 	unsigned short mCodecId;
 	CameraShowGLView *glView;
@@ -24,10 +26,12 @@
 
 	BOOL bStopShowCompletedLock;
 	
-    Camera *camera;
+
     Monitor *monitor;
 }
--(instancetype)initUID:(NSString *)uid withPass:(NSString *)pass;
+-(instancetype)initUIDS:(NSArray *)uids viewArr:(NSArray *)views;
+-(void)beginShowVideos;
+-(void)endShowVideos;
 -(void)recordCameraState:(UILabel *)label;
 @property (nonatomic, assign) BOOL bStopShowCompletedLock;
 @property (nonatomic, assign) unsigned short mCodecId;
@@ -35,7 +39,7 @@
 @property (nonatomic, assign) CameraShowGLView *glView;
 @property CVPixelBufferPoolRef mPixelBufferPool;
 @property CVPixelBufferRef mPixelBuffer;
-@property (nonatomic, retain) Camera *camera;
+
 @property (nonatomic, retain) Monitor *monitor;
 @property (nonatomic, retain) NSString *videoUID;
 @property (nonatomic, retain) NSString *videoPass;

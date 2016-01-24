@@ -12,7 +12,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import <sys/time.h>
 
-
+#define DEF_SplitViewNum		4
+#define DEF_ReTryConnectInterval 25*1000
+#define DEF_ReTryTimes			10
 unsigned int _getTickCount() {
     
     struct timeval tv;
@@ -25,8 +27,15 @@ unsigned int _getTickCount() {
 
 @interface MonitorViewController (){
     UILabel *mlabel;
+    int mchannel;
+    NSTimer* mTimerStartShowRevoke;
+    int mnReTryTimesArray[DEF_SplitViewNum];
+    unsigned int mnLastReTryTickArray[DEF_SplitViewNum];
+    
 }
-
+@property(nonatomic,retain) NSArray *mUIDList;
+@property(nonatomic,retain) NSArray *mViewList;
+@property(nonatomic,retain) NSMutableArray *mCameraList;
 @end
 
 @implementation MonitorViewController
@@ -37,21 +46,28 @@ unsigned int _getTickCount() {
 @synthesize mPixelBufferPool;
 @synthesize mPixelBuffer;
 @synthesize mSizePixelBuffer;
-@synthesize camera;
 @synthesize monitor;
 @synthesize image;
 #define DEF_WAIT4STOPSHOW_TIME	250
 
 -(void)stop
 {
-    [monitor deattachCamera];
-    
-    [camera stopSoundToPhone:0];
-    [camera stopShow:0];
+    if(mTimerStartShowRevoke!=nil){
+        [mTimerStartShowRevoke invalidate];
+        mTimerStartShowRevoke = nil;
+    }
+   
+    for (MyCamera *camera in _mCameraList) {
+        [camera stopSoundToPhone:0];
+        [camera stopShow:0];
+        
+        [camera stop:0];
+        [camera disconnect];
+        [camera setDelegate2:nil];
+    }
     [self waitStopShowCompleted:DEF_WAIT4STOPSHOW_TIME];
-    [camera stop:0];
-    [camera disconnect];
-    [camera setDelegate:nil];
+    
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -67,45 +83,90 @@ unsigned int _getTickCount() {
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    if(glView) {
-        [self.glView tearDownGL];
-        [self.glView release];
+    if(mTimerStartShowRevoke!=nil){
+        [mTimerStartShowRevoke invalidate];
+        mTimerStartShowRevoke = nil;
     }
-    CVPixelBufferRelease(mPixelBuffer);
-    CVPixelBufferPoolRelease(mPixelBufferPool);
     
-    [camera release];
-    [monitor release];
 }
 
 
--(instancetype)initUID:(NSString *)uid withPass:(NSString *)pass{
+-(instancetype)initUIDS:(NSArray *)uids viewArr:(NSArray *)views{
     self=[super init];
     if(self){
-         [Camera initIOTC];
-        camera = [[Camera alloc] initWithName:uid];
-        camera.delegate=self;
+        self.mUIDList=uids;
+        self.mViewList=views;
+        self.mCameraList=[[NSMutableArray alloc] init];
+        
+    }
+    return self;
+}
+-(void)endShowVideos{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self stop];
+    });
+    
+}
+-(void)beginShowVideos{
+    for (NSString *uid in _mUIDList) {
+        MyCamera *camera = [[MyCamera alloc] initWithName:uid];
+        camera.delegate2=self;
         [camera connect:uid];//8YM2LT63DMWXPBUG111A
-        [camera start:0 viewAccount:@"admin"  viewPassword:pass is_playback:FALSE];
-        [camera startShow:0 ScreenObject:self];
+        [camera start:0 viewAccount:@"admin"  viewPassword:@"admin" is_playback:FALSE];
+        [camera startShow:mchannel ScreenObject:self];
         SMsgAVIoctrlGetAudioOutFormatReq *s = (SMsgAVIoctrlGetAudioOutFormatReq *)malloc(sizeof(SMsgAVIoctrlGetAudioOutFormatReq));
-        s->channel = 0;
-        [camera sendIOCtrlToChannel:0 Type:IOTYPE_USER_IPCAM_GETAUDIOOUTFORMAT_REQ Data:(char *)s DataSize:sizeof(SMsgAVIoctrlGetAudioOutFormatReq)];
+        s->channel = mchannel;
+        [camera sendIOCtrlToChannel:mchannel Type:IOTYPE_USER_IPCAM_GETAUDIOOUTFORMAT_REQ Data:(char *)s DataSize:sizeof(SMsgAVIoctrlGetAudioOutFormatReq)];
         free(s);
         
         SMsgAVIoctrlGetSupportStreamReq *s2 = (SMsgAVIoctrlGetSupportStreamReq *)malloc(sizeof(SMsgAVIoctrlGetSupportStreamReq));
-        [camera sendIOCtrlToChannel:0 Type:IOTYPE_USER_IPCAM_GETSUPPORTSTREAM_REQ Data:(char *)s2 DataSize:sizeof(SMsgAVIoctrlGetSupportStreamReq)];
+        [camera sendIOCtrlToChannel:mchannel Type:IOTYPE_USER_IPCAM_GETSUPPORTSTREAM_REQ Data:(char *)s2 DataSize:sizeof(SMsgAVIoctrlGetSupportStreamReq)];
         free(s2);
         
         SMsgAVIoctrlTimeZone s3={0};
         s3.cbSize = sizeof(s3);
-        [camera sendIOCtrlToChannel:0 Type:IOTYPE_USER_IPCAM_GET_TIMEZONE_REQ Data:(char *)&s3 DataSize:sizeof(s3)];
+        [camera sendIOCtrlToChannel:mchannel Type:IOTYPE_USER_IPCAM_GET_TIMEZONE_REQ Data:(char *)&s3 DataSize:sizeof(s3)];
+        [self.mCameraList addObject:camera];
+        [camera release];
     }
-    return self;
-}
--(void)viewWillAppear:(BOOL)animated{
     
+    mTimerStartShowRevoke = [NSTimer scheduledTimerWithTimeInterval:3.6 target:self selector:@selector(onTimerStartShowRevoke:) userInfo:nil repeats:YES];
+
+}
+
+
+-(void)onTimerStartShowRevoke:(NSTimer*)aTimer {
+    
+    int idx = 0;
+    for( MyCamera* theCamera in _mCameraList ) {
+       
+        
+        if( theCamera.sessionState == CONNECTION_STATE_CONNECTED &&
+           [theCamera getConnectionStateOfChannel:0] == CONNECTION_STATE_CONNECTED &&
+           ![theCamera isAVChannelStartShow:0] ) {
+            
+            [theCamera startShow:0 ScreenObject:self];
+            theCamera.delegate2 = self;
+            
+        }
+        else if( theCamera.sessionState != CONNECTION_STATE_CONNECTING &&
+                theCamera.sessionState != CONNECTION_STATE_WRONG_PASSWORD ) {
+            
+            unsigned int now = _getTickCount();
+            if( now - mnLastReTryTickArray[idx] > DEF_ReTryConnectInterval &&
+               mnReTryTimesArray[idx] <= DEF_ReTryTimes ) {
+                
+                [theCamera connect:theCamera.uid];
+                [theCamera start:0];
+                
+                mnLastReTryTickArray[idx] = _getTickCount();
+                mnReTryTimesArray[idx] += 1;
+                
+            }
+        }
+        
+        idx++;
+    }
 }
 - (void)viewDidLoad
 {
@@ -113,36 +174,9 @@ unsigned int _getTickCount() {
     
     
     [self.view setBackgroundColor:[UIColor clearColor]];
-     self.view.frame=CGRectMake(0,0,320,200);
-    self.scrollViewPortrait.frame=self.view.frame;
-    monitor=[[Monitor alloc] initWithFrame:self.view.frame];
-    [monitor attachCamera:camera];
-    
-    
-    [self removeGLView:TRUE];
-    NSLog( @"video frame {%d,%d}%dx%d", (int)self.monitor.frame.origin.x, (int)self.monitor.frame.origin.y, (int)self.monitor.frame.size.width, (int)self.monitor.frame.size.height);
-    if( glView == nil ) {
-        glView = [[CameraShowGLView alloc] initWithFrame:self.monitor.frame];
-        [glView setMinimumGestureLength:100 MaximumVariance:50];
-        glView.delegate = self;
-        [glView attachCamera:camera];
-    }
-    else {
-        [self.glView destroyFramebuffer];
-        self.glView.frame = self.monitor.frame;
-    }
-    self.view.frame=self.glView.frame;
-    [glView setContentMode:UIViewContentModeScaleToFill];
-    [self.scrollViewPortrait addSubview:glView];
-    
-    if( mCodecId == MEDIA_CODEC_VIDEO_MJPEG ) {
-        [self.scrollViewPortrait bringSubviewToFront:monitor/*self.glView*/];
-    }
-    else {
-        [self.scrollViewPortrait bringSubviewToFront:/*monitor*/self.glView];
-    }
-    
+  
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(cameraStopShowCompleted:) name: @"CameraStopShowCompleted" object: nil];
+    
     
     
 }
@@ -156,7 +190,7 @@ unsigned int _getTickCount() {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 #pragma mark - Camera Delegate
-- (void)camera:(Camera *)camera didChangeChannelStatus:(NSInteger)channel ChannelStatus:(NSInteger)status
+- (void)camera:(MyCamera *)camera didChangeChannelStatus:(NSInteger)channel ChannelStatus:(NSInteger)status
 {
     switch (status) {
         case CONNECTION_STATE_CONNECTED:
@@ -188,7 +222,7 @@ unsigned int _getTickCount() {
     }
 }
 
-- (void)camera:(Camera *)camera didChangeSessionStatus:(NSInteger)status
+- (void)camera:(MyCamera *)camera didChangeSessionStatus:(NSInteger)status
 {
     NSString *message=nil;
     switch (status) {
@@ -235,24 +269,19 @@ unsigned int _getTickCount() {
     }
     
 }
--(void)getWifiInfo {
-    NSLog(@"***** wifi info****");
-    // get WiFi info
-    SMsgAVIoctrlListWifiApReq *structWiFi = (SMsgAVIoctrlListWifiApReq *)malloc(sizeof(SMsgAVIoctrlListWifiApReq));
-   
-    
-    [camera sendIOCtrlToChannel:0
-                           Type:IOTYPE_USER_IPCAM_LISTWIFIAP_REQ
-                           Data:(char *)structWiFi
-                       DataSize:sizeof(SMsgAVIoctrlListWifiApReq)];
-    free(structWiFi);
-}
-- (void)camera:(Camera *)camera didReceiveFrameInfoWithVideoWidth:(NSInteger)videoWidth VideoHeight:(NSInteger)videoHeight VideoFPS:(NSInteger)fps VideoBPS:(NSInteger)videoBps AudioBPS:(NSInteger)audioBps OnlineNm:(NSInteger)onlineNm FrameCount:(unsigned long)frameCount IncompleteFrameCount:(unsigned long)incompleteFrameCount
+
+- (void)camera:(MyCamera *)camera didReceiveFrameInfoWithVideoWidth:(NSInteger)videoWidth VideoHeight:(NSInteger)videoHeight VideoFPS:(NSInteger)fps VideoBPS:(NSInteger)videoBps AudioBPS:(NSInteger)audioBps OnlineNm:(NSInteger)onlineNm FrameCount:(unsigned long)frameCount IncompleteFrameCount:(unsigned long)incompleteFrameCount
 {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSLog(@"videoWidth %d videoHeight %d",videoWidth,videoHeight);
+    });
+    
     
 }
 
-- (void)camera:(Camera *)camera didReceiveIOCtrlWithType:(NSInteger)type Data:(const char *)data DataSize:(NSInteger)size
+- (void)camera:(MyCamera *)camera didReceiveIOCtrlWithType:(NSInteger)type Data:(const char *)data DataSize:(NSInteger)size
 {
     NSLog(@"didReceiveIOCtrlWithType %d %s",type,data);
     if (type == IOTYPE_USER_IPCAM_LISTWIFIAP_RESP) {
@@ -278,7 +307,7 @@ unsigned int _getTickCount() {
     }
 }
 
-- (void)camera:(Camera *)camera didReceiveJPEGDataFrame:(const char *)imgData DataSize:(NSInteger)size
+- (void)camera:(MyCamera *)camera didReceiveJPEGDataFrame:(const char *)imgData DataSize:(NSInteger)size
 {
     /*
      * You may use the code snippet as below to get an image.
@@ -289,7 +318,7 @@ unsigned int _getTickCount() {
      */
 }
 
-- (void)camera:(Camera *)camera didReceiveRawDataFrame:(const char *)imgData VideoWidth:(NSInteger)width VideoHeight:(NSInteger)height
+- (void)camera:(MyCamera *)camera didReceiveRawDataFrame:(const char *)imgData VideoWidth:(NSInteger)width VideoHeight:(NSInteger)height
 {
     /* You may use the code snippet as below to get an image. */
     
@@ -361,34 +390,76 @@ unsigned int _getTickCount() {
 
 - (void)reportCodecId:(NSValue*)pointer
 {
-    unsigned short *pnCodecId = (unsigned short *)[pointer pointerValue];
-    
-    mCodecId = *pnCodecId;
-    
-    if( mCodecId == MEDIA_CODEC_VIDEO_MJPEG ) {
-        [self.scrollViewPortrait bringSubviewToFront:monitor/*self.glView*/];
-    }
-    else {
-        [self.scrollViewPortrait bringSubviewToFront:/*monitor*/self.glView];
+   
+}
+
+
+- (void)updateToScreen2:(NSArray*)arrs {
+   
+    @autoreleasepool
+    {
+        CIImage *ciImage = [arrs objectAtIndex:0];
+        NSString *uid = [arrs objectAtIndex:1];
+        NSNumber *channel = [arrs objectAtIndex:2];
+        UIImage *img = [UIImage imageWithCIImage:ciImage scale:0.8 orientation:UIImageOrientationUp];
+        int index=0;
+        for (int i=0;i<[_mCameraList count];i++) {
+            MyCamera *cm=[_mCameraList objectAtIndex:i];
+            if([cm.uid isEqualToString:uid]){
+                index=i;
+                break;
+            }
+            
+        }
+        NSLog(@"#####channel %@  uid %@",channel,uid);
+        [(UIImageView *)[self.mViewList objectAtIndex:index] setImage:img];
+        
+        
+           
     }
 }
 
-- (void)updateToScreen:(NSValue*)pointer
-{
-    LPSIMAGEBUFFINFO pScreenBmpStore = (LPSIMAGEBUFFINFO)[pointer pointerValue];
-    
-    //	[glView renderVideo:pScreenBmpStore->pixelBuff];
-    
-    int width = (int)CVPixelBufferGetWidth(pScreenBmpStore->pixelBuff);
-    int height = (int)CVPixelBufferGetHeight(pScreenBmpStore->pixelBuff);
-    mSizePixelBuffer = CGSizeMake( width, height );
-#ifndef DEF_Using_APLEAGLView
-    [glView renderVideo:pScreenBmpStore->pixelBuff];
-#else
-    self.test.presentationRect = mSizePixelBuffer;
-    [[self test] displayPixelBuffer:pScreenBmpStore->pixelBuff withRelease:FALSE];
-#endif
-}
+//
+//- (void)updateToScreen:(NSValue*)pointer
+//{
+//    LPSIMAGEBUFFINFO pScreenBmpStore = (LPSIMAGEBUFFINFO)[pointer pointerValue];
+//    if( mPixelBuffer == nil ||
+//       mSizePixelBuffer.width != pScreenBmpStore->nWidth ||
+//       mSizePixelBuffer.height != pScreenBmpStore->nHeight ) {
+//        
+//        if(mPixelBuffer) {
+//            CVPixelBufferRelease(mPixelBuffer);
+//            CVPixelBufferPoolRelease(mPixelBufferPool);
+//        }
+//        
+//        NSMutableDictionary* attributes;
+//        attributes = [NSMutableDictionary dictionary];
+//        [attributes setObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(NSString*)kCVPixelBufferPixelFormatTypeKey];
+//        [attributes setObject:[NSNumber numberWithInt:pScreenBmpStore->nWidth] forKey: (NSString*)kCVPixelBufferWidthKey];
+//        [attributes setObject:[NSNumber numberWithInt:pScreenBmpStore->nHeight] forKey: (NSString*)kCVPixelBufferHeightKey];
+//        
+//        CVReturn err = CVPixelBufferPoolCreate(kCFAllocatorDefault, NULL, (CFDictionaryRef) attributes, &mPixelBufferPool);
+//        if( err != kCVReturnSuccess ) {
+//            NSLog( @"mPixelBufferPool create failed!" );
+//        }
+//        err = CVPixelBufferPoolCreatePixelBuffer (NULL, mPixelBufferPool, &mPixelBuffer);
+//        if( err != kCVReturnSuccess ) {
+//            NSLog( @"mPixelBuffer create failed!" );
+//        }
+//        mSizePixelBuffer = CGSizeMake(pScreenBmpStore->nWidth, pScreenBmpStore->nHeight);
+//        NSLog( @"CameraLiveViewController - mPixelBuffer created %dx%d nBytes_per_Row:%d", pScreenBmpStore->nWidth, pScreenBmpStore->nHeight, pScreenBmpStore->nBytes_per_Row );
+//    }
+//    CVPixelBufferLockBaseAddress(mPixelBuffer,0);
+//    
+//    UInt8* baseAddress = (UInt8*)CVPixelBufferGetBaseAddress(mPixelBuffer);
+//    
+//    memcpy(baseAddress, pScreenBmpStore->pData_buff, pScreenBmpStore->nBytes_per_Row * pScreenBmpStore->nHeight );
+//    
+//    CVPixelBufferUnlockBaseAddress(mPixelBuffer,0);
+//    
+//    [glView renderVideo:mPixelBuffer];
+//
+//}
 
 - (void)waitStopShowCompleted:(unsigned int)uTimeOutInMs
 {
@@ -412,19 +483,9 @@ unsigned int _getTickCount() {
 }
 
 -(void)dealloc{
-    [_scrollViewPortrait release];
+    
     [super dealloc];
-    if(monitor!=nil){
-        [monitor deattachCamera];
-        [monitor release];
-        monitor=nil;
-    }
-    if(camera!=nil){
-        [camera disconnect];
-        [camera release];
-        camera=nil;
-    }
-    [image release];
+    
     NSLog(@"monitorVC release...");
 }
 
@@ -547,51 +608,10 @@ unsigned int _getTickCount() {
 
 -(void)snapshot
 {
-    char *imageFrame = (char *) malloc(MAX_IMG_BUFFER_SIZE);
-    unsigned int w = 0, h = 0;
-    unsigned int codec_id = mCodecId;
-    int size = 0;
-    size = [camera getChannel:0 Snapshot:imageFrame DataSize:MAX_IMG_BUFFER_SIZE ImageType:&codec_id   WithImageWidth:&w ImageHeight:&h];
-    if (size > 0) {
-        UIImage *img = NULL;
-        
-        if (codec_id == MEDIA_CODEC_VIDEO_H264 || codec_id == MEDIA_CODEC_VIDEO_MPEG4) {
-            img = [self getUIImage:imageFrame Width:w Height:h];
-            NSData *imgData = UIImageJPEGRepresentation(img, 1.0f);
-           
-        }
-        else if (codec_id == MEDIA_CODEC_VIDEO_MJPEG) {
-            NSData *data = [[NSData alloc] initWithBytes:imageFrame length:size];
-            img = [[UIImage alloc] initWithData:data];
-            NSData *imgData = UIImageJPEGRepresentation(img, 1.0f);
-            
-            [data release];
-            [img release];
-            
-        }
-    }
     
-    free(imageFrame);
 }
 - (void)monitor:(Monitor *)monitor gesturePinched:(CGFloat)scale{
-    if( mCodecId == MEDIA_CODEC_VIDEO_MJPEG ) {
-        [self.scrollViewPortrait bringSubviewToFront:self.monitor/*self.glView*/];
-    }
-    else {
-        [self.scrollViewPortrait bringSubviewToFront:/*monitor*/self.glView];
-    }
     
-    
-    if( mCodecId == MEDIA_CODEC_VIDEO_MJPEG ) {
-        [self.scrollViewPortrait setZoomScale:scale animated:YES];
-        NSLog(@"MEDIA_CODEC_VIDEO_MJPEG...");
-    }
-    else {
-        
-        [self.scrollViewPortrait setContentSize:self.glView.frame.size];
-        NSLog(@"w:%f h:%f scale:%f",self.glView.frame.size.width,self.glView.frame.size.height,scale);
-        
-    }
 
 }
 @end

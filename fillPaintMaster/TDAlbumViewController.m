@@ -28,7 +28,7 @@
     [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *changeBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
-    [changeBtn setImage:[UIImage imageNamed:@"change"] forState:UIControlStateNormal];
+    [changeBtn setImage:[UIImage imageNamed:@"city_icon_location"] forState:UIControlStateNormal];
     [changeBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -40)];
     [changeBtn addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
     
