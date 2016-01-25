@@ -90,6 +90,8 @@
 		18ED34471C3627B60085B250 /* ShopView0Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED34451C3627B60085B250 /* ShopView0Controller.xib */; };
 		18ED344B1C3627C60085B250 /* ShopView1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED34491C3627C60085B250 /* ShopView1Controller.m */; };
 		18ED344C1C3627C60085B250 /* ShopView1Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED344A1C3627C60085B250 /* ShopView1Controller.xib */; };
+		18EDC6B91C564E5B0068A655 /* LiveViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18EDC6B71C564E5B0068A655 /* LiveViewController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		18EDC6BA1C564E5B0068A655 /* LiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EDC6B81C564E5B0068A655 /* LiveViewController.xib */; };
 		18EE557F1C41F4A400A99D50 /* TDCarInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE557D1C41F4A400A99D50 /* TDCarInfoViewController.m */; };
 		18EE55801C41F4A400A99D50 /* TDCarInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE557E1C41F4A400A99D50 /* TDCarInfoViewController.xib */; };
 		18EE55821C41FB1C00A99D50 /* CarInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE55811C41FB1C00A99D50 /* CarInfoView.xib */; };
@@ -292,6 +294,9 @@
 		18ED34481C3627C60085B250 /* ShopView1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopView1Controller.h; sourceTree = "<group>"; };
 		18ED34491C3627C60085B250 /* ShopView1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopView1Controller.m; sourceTree = "<group>"; };
 		18ED344A1C3627C60085B250 /* ShopView1Controller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopView1Controller.xib; sourceTree = "<group>"; };
+		18EDC6B61C564E5B0068A655 /* LiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
+		18EDC6B71C564E5B0068A655 /* LiveViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LiveViewController.mm; sourceTree = "<group>"; };
+		18EDC6B81C564E5B0068A655 /* LiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveViewController.xib; sourceTree = "<group>"; };
 		18EE557C1C41F4A400A99D50 /* TDCarInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCarInfoViewController.h; sourceTree = "<group>"; };
 		18EE557D1C41F4A400A99D50 /* TDCarInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCarInfoViewController.m; sourceTree = "<group>"; };
 		18EE557E1C41F4A400A99D50 /* TDCarInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDCarInfoViewController.xib; sourceTree = "<group>"; };
@@ -812,6 +817,9 @@
 				84C7012E1C5379C6007FA60F /* DirectDisplayShader.vsh */,
 				84C7012F1C5379C6007FA60F /* PSDMonitor.h */,
 				84C701301C5379C6007FA60F /* PSDMonitor.m */,
+				18EDC6B61C564E5B0068A655 /* LiveViewController.h */,
+				18EDC6B71C564E5B0068A655 /* LiveViewController.mm */,
+				18EDC6B81C564E5B0068A655 /* LiveViewController.xib */,
 			);
 			name = video;
 			sourceTree = "<group>";
@@ -943,6 +951,7 @@
 			files = (
 				18EB1AFA1C37934600791849 /* TDIdCodeViewController.xib in Resources */,
 				18E8ECFF1C2FC43200968CEB /* LeftCarViewController.xib in Resources */,
+				18EDC6BA1C564E5B0068A655 /* LiveViewController.xib in Resources */,
 				18E8A1241BBA468600FBD3F4 /* TDBeautyTableViewCell.xib in Resources */,
 				18EB1AEF1C37759000791849 /* TDAlbumViewController.xib in Resources */,
 				18E9462D1C4119180047ADEA /* search.html in Resources */,
@@ -1067,6 +1076,7 @@
 				847F9D161C50877D005ED278 /* TDDecoOrder.m in Sources */,
 				847F9D101C507174005ED278 /* TDOrderSearch.m in Sources */,
 				84345A7B1C3A3CCE0089DB45 /* TDCity.m in Sources */,
+				18EDC6B91C564E5B0068A655 /* LiveViewController.mm in Sources */,
 				18B932551BA6A8C50019279E /* TDHomeViewController.m in Sources */,
 				84345A771C3A3AD90089DB45 /* TDHttpDataService.m in Sources */,
 				182FC70D1C4FBE5E001978F5 /* TDCityInfo.m in Sources */,

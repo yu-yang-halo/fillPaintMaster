@@ -44,6 +44,7 @@
     [s0.view setBackgroundColor:[UIColor purpleColor]];
     
     
+    
     [self.containerView addSubview:s0.view];
     [self.containerView addSubview:s1.view];
     [self.containerView bringSubviewToFront:s0.view];
@@ -65,25 +66,25 @@
         if(sender.selected){
             [sender setSelected:NO];
             [self.btn1 setSelected:YES];
-            [s1 openVideoStream];
+           
             [self.containerView bringSubviewToFront:s1.view];
             
         }else{
             [sender setSelected:YES];
             [self.btn1 setSelected:NO];
-            [s1 closeVideoStream];
+           
             [self.containerView bringSubviewToFront:s0.view];
         }
     }else{
         if(sender.selected){
             [sender setSelected:NO];
             [self.btn0 setSelected:YES];
-            [s1 closeVideoStream];
+            
             [self.containerView bringSubviewToFront:s0.view];
         }else{
             [sender setSelected:YES];
             [self.btn0 setSelected:NO];
-            [s1 openVideoStream];
+            
             [self.containerView bringSubviewToFront:s1.view];
         }
     }

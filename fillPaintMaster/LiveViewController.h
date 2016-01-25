@@ -1,11 +1,10 @@
 //
-//  AppMonitorViewController.h
-//  IOTCamSample
+//  LiveViewController.h
+//  fillPaintMaster
 //
-//  Created by Cloud Hsiao on 12/7/17.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by apple on 16/1/25.
+//  Copyright © 2016年 LZTech. All rights reserved.
 //
-
 #import <UIKit/UIKit.h>
 #import <IOTCamera/AVIOCTRLDEFs.h>
 #import <IOTCamera/Camera.h>
@@ -13,27 +12,22 @@
 
 #import "CameraShowGLView.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-
-#import "MyCamera.h"
 #define MAX_IMG_BUFFER_SIZE	(1280*720*4)
 extern unsigned int _getTickCount();
-
-@interface MonitorViewController : UIViewController <MyCameraDelegate,MonitorTouchDelegate>
+@interface LiveViewController : UIViewController <CameraDelegate,MonitorTouchDelegate>
 {
-	unsigned short mCodecId;
-	CameraShowGLView *glView;
-	CVPixelBufferPoolRef mPixelBufferPool;
-	CVPixelBufferRef mPixelBuffer;
-	CGSize mSizePixelBuffer;
-
-	BOOL bStopShowCompletedLock;
-	
-
+    unsigned short mCodecId;
+    CameraShowGLView *glView;
+    CVPixelBufferPoolRef mPixelBufferPool;
+    CVPixelBufferRef mPixelBuffer;
+    CGSize mSizePixelBuffer;
+    
+    BOOL bStopShowCompletedLock;
+    
+    Camera *camera;
     Monitor *monitor;
 }
--(instancetype)initUIDS:(NSArray *)uids viewArr:(NSArray *)views;
--(void)beginShowVideos;
--(void)endShowVideos;
+-(instancetype)initUID:(NSString *)uid withPass:(NSString *)pass;
 -(void)recordCameraState:(UILabel *)label;
 @property (nonatomic, assign) BOOL bStopShowCompletedLock;
 @property (nonatomic, assign) unsigned short mCodecId;
@@ -41,7 +35,7 @@ extern unsigned int _getTickCount();
 @property (nonatomic, assign) CameraShowGLView *glView;
 @property CVPixelBufferPoolRef mPixelBufferPool;
 @property CVPixelBufferRef mPixelBuffer;
-
+@property (nonatomic, retain) Camera *camera;
 @property (nonatomic, retain) Monitor *monitor;
 @property (nonatomic, retain) NSString *videoUID;
 @property (nonatomic, retain) NSString *videoPass;
