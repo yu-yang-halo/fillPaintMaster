@@ -9,5 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @interface YYButtonUtils : NSObject
+
 +(void)imageTopTextBottom:(UIButton *)button;
++(void)LimageLeftTextRight:(UIButton *)button;
++(void)RimageLeftTextRight:(UIButton *)button;
 @end

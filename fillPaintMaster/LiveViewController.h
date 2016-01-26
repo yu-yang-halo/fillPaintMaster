@@ -10,10 +10,11 @@
 #import <IOTCamera/Camera.h>
 #import <IOTCamera/Monitor.h>
 
+#import "MonitorViewController.h"
 #import "CameraShowGLView.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #define MAX_IMG_BUFFER_SIZE	(1280*720*4)
-extern unsigned int _getTickCount();
+//extern unsigned int _getTickCount();
 @interface LiveViewController : UIViewController <CameraDelegate,MonitorTouchDelegate>
 {
     unsigned short mCodecId;

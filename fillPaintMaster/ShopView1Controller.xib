@@ -15,6 +15,7 @@
                 <outlet property="channelImageView1" destination="o3I-s3-avM" id="zHK-bV-Mq5"/>
                 <outlet property="channelImageView2" destination="W7Q-My-DJb" id="Cu5-lU-rrs"/>
                 <outlet property="channelImageView3" destination="dVZ-o8-ojX" id="sW7-MU-kpy"/>
+                <outlet property="closeBigVideoShowBtn" destination="UgM-7R-dhB" id="SJ8-cH-fTb"/>
                 <outlet property="containerView" destination="UZ3-Bi-q4p" id="YSg-H0-xqO"/>
                 <outlet property="singleView" destination="zhv-cb-Dm7" id="El2-Ob-vTG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -103,6 +104,18 @@
                                 <constraint firstAttribute="height" constant="240" id="QgU-1R-kbd"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgM-7R-dhB">
+                            <rect key="frame" x="128" y="289" width="63" height="47"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="63" id="Bw1-WS-YpL"/>
+                                <constraint firstAttribute="height" constant="47" id="fxG-GR-y9r"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="58"/>
+                            <state key="normal" title="⊗">
+                                <color key="titleColor" red="1" green="0.089232675607805234" blue="0.13064616296981879" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -110,12 +123,14 @@
                         <constraint firstAttribute="trailing" secondItem="20Z-uS-jFH" secondAttribute="trailing" constant="1" id="15G-Tf-Lq1"/>
                         <constraint firstItem="Tla-7U-Zqv" firstAttribute="leading" secondItem="UZ3-Bi-q4p" secondAttribute="leading" constant="1" id="5qD-na-3jt"/>
                         <constraint firstAttribute="trailing" secondItem="zhv-cb-Dm7" secondAttribute="trailing" constant="1" id="7ce-dk-D5m"/>
+                        <constraint firstItem="UgM-7R-dhB" firstAttribute="top" secondItem="zhv-cb-Dm7" secondAttribute="bottom" constant="8" id="7de-ag-OxR"/>
                         <constraint firstItem="Tla-7U-Zqv" firstAttribute="top" secondItem="EyI-lG-SCS" secondAttribute="bottom" constant="20" id="ARg-Jz-ly2"/>
                         <constraint firstItem="j9a-wk-dbO" firstAttribute="width" secondItem="8OO-l7-oZ5" secondAttribute="width" id="Aan-Vj-RSQ"/>
                         <constraint firstItem="j9a-wk-dbO" firstAttribute="top" secondItem="EyI-lG-SCS" secondAttribute="bottom" constant="20" id="D2e-h3-VNo"/>
                         <constraint firstItem="20Z-uS-jFH" firstAttribute="top" secondItem="8OO-l7-oZ5" secondAttribute="bottom" id="IMO-bl-H2F"/>
                         <constraint firstItem="o3I-s3-avM" firstAttribute="width" secondItem="Tla-7U-Zqv" secondAttribute="width" id="Ix6-fU-Zbt"/>
                         <constraint firstItem="dVZ-o8-ojX" firstAttribute="width" secondItem="W7Q-My-DJb" secondAttribute="width" id="Jna-oB-RFc"/>
+                        <constraint firstItem="UgM-7R-dhB" firstAttribute="centerX" secondItem="UZ3-Bi-q4p" secondAttribute="centerX" id="My4-FD-joR"/>
                         <constraint firstItem="dVZ-o8-ojX" firstAttribute="leading" secondItem="W7Q-My-DJb" secondAttribute="trailing" id="Sgy-Ae-D5q"/>
                         <constraint firstItem="o3I-s3-avM" firstAttribute="leading" secondItem="Tla-7U-Zqv" secondAttribute="trailing" id="XM7-4e-uLE"/>
                         <constraint firstItem="20Z-uS-jFH" firstAttribute="leading" secondItem="blS-e7-fsx" secondAttribute="trailing" constant="-1" id="YW9-v8-0GD"/>

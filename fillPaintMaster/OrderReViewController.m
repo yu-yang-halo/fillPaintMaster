@@ -14,6 +14,8 @@
 #import "TDBaseItem.h"
 #import "TDPaintItem.h"
 #import "TDConstants.h"
+#import "YYButtonUtils.h"
+#import "TDLocationViewController.h"
 const float ROW_HEIGHT=50;
 const float ROW_HEIGHT_SECTION10=100;
 const float ROW_HEIGHT_SECTION11=60;
@@ -95,10 +97,11 @@ const float ROW_HEIGHT_SECTION11=60;
     [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *changeBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
+     [changeBtn setTitle:@"合肥" forState:UIControlStateNormal];
     [changeBtn setImage:[UIImage imageNamed:@"city_icon_location"] forState:UIControlStateNormal];
-    [changeBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -40)];
-    [changeBtn addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
     
+    [changeBtn addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
+      [YYButtonUtils RimageLeftTextRight:changeBtn];
     
     UIView  *titleView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 44)];
     UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 24)];
@@ -119,7 +122,10 @@ const float ROW_HEIGHT_SECTION11=60;
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:changeBtn];
 }
 -(void)change:(id)sender{
-    
+    TDLocationViewController *locationVC=[[TDLocationViewController alloc] init];
+    [self presentViewController:locationVC animated:YES completion:^{
+        
+    }];
 }
 -(void)back:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];

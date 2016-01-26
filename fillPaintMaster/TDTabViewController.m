@@ -11,7 +11,7 @@
 #import "TDCarInfoViewController.h"
 
 #import "YYButtonUtils.h"
-float BUTTON_W=20;
+float BUTTON_W=30;
 float BUTTON_H=49;
 
 @interface TDTabViewController (){
@@ -136,9 +136,11 @@ float BUTTON_H=49;
     if(tagId==0){
         [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
         UIButton *locBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,(44-40)/2, 60, 40)];
+        [locBtn setTitle:@"合肥" forState:UIControlStateNormal];
         [locBtn setImage:[UIImage imageNamed:@"city_icon_location"] forState:UIControlStateNormal];
         [locBtn addTarget:self action:@selector(location:) forControlEvents:UIControlEventTouchUpInside];
-        [locBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
+       // [locBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
+        [YYButtonUtils LimageLeftTextRight:locBtn];
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:locBtn];
         UIImageView *logo=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
         CGRect framLayout=logo.frame;

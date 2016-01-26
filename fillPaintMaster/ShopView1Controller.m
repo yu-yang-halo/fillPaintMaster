@@ -25,6 +25,8 @@
 @property(nonatomic,retain) MonitorViewController *monitor0;
 @property(nonatomic,retain) NSArray *uids;
 @property(nonatomic,retain) LiveViewController *liveVC;
+@property (weak, nonatomic) IBOutlet UIButton *closeBigVideoShowBtn;
+
 @end
 
 @implementation ShopView1Controller
@@ -33,6 +35,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.singleView setHidden:YES];
+    [self.closeBigVideoShowBtn setHidden:YES];
     
     [self setImageViewStyle:self.channelImageView0];
     [self setImageViewStyle:self.channelImageView1];
@@ -52,7 +55,7 @@
     [self.button2 addTarget:self action:@selector(clickGesture:) forControlEvents:UIControlEventTouchUpInside];
     [self.button3 addTarget:self action:@selector(clickGesture:) forControlEvents:UIControlEventTouchUpInside];
     
-    
+    [self.closeBigVideoShowBtn addTarget:self action:@selector(closeBigVideo:) forControlEvents:UIControlEventTouchUpInside];
    
   self.uids=@[@"5NYMJK5PENUPZY98111A",@"X54G85ZXC4L8W1YG111A",@"8YM2LT63DMWXPBUG111A"];
     NSArray *views=@[self.channelImageView0,self.channelImageView1,self.channelImageView2];
@@ -73,7 +76,13 @@
     [self.singleView setUserInteractionEnabled:YES];
     [self.singleView addSubview:_liveVC.view];
     [self.singleView setHidden:NO];
-    
+    [self.closeBigVideoShowBtn setHidden:NO];
+}
+-(void)closeBigVideo:(UIButton *)sender{
+    [self.liveVC stop];
+    [self.singleView setHidden:YES];
+    [self.closeBigVideoShowBtn setHidden:YES];
+    [self openVideoStream];
     
 }
 

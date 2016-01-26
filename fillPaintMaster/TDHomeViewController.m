@@ -10,7 +10,8 @@
 #import "TDAdView.h"
 #import "TDLoginViewController.h"
 #import "CarBeautyViewController.h"
-static const float ICON_WIDTH=70;
+#import "YYButtonUtils.h"
+static const float ICON_WIDTH=45;
 static const float ICON_HEIGHT=80;
 static const float AD_HEIGHT=120;
 static const float TOP_SPACE=5;
@@ -91,7 +92,9 @@ static const float ROW_HEIGHT=40;
         [button setTitle:[_serviceItems objectAtIndex:i] forState:UIControlStateNormal];
         
         [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
-        [self initButtonProperties:button];
+        //[self initButtonProperties:button];
+        [YYButtonUtils imageTopTextBottom:button];
+        
         
         [_containerView addSubview:button];
     }

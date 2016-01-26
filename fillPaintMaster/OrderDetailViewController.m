@@ -7,7 +7,8 @@
 //
 
 #import "OrderDetailViewController.h"
-
+#import "YYButtonUtils.h"
+#import "TDLocationViewController.h"
 @interface OrderDetailViewController (){
     NSString *titleName;
 }
@@ -46,7 +47,10 @@
     
 }
 -(void)change:(id)sender{
-    
+    TDLocationViewController *locationVC=[[TDLocationViewController alloc] init];
+    [self presentViewController:locationVC animated:YES completion:^{
+        
+    }];
 }
 -(void)back:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
@@ -59,10 +63,11 @@
     [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *changeBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
+     [changeBtn setTitle:@"合肥" forState:UIControlStateNormal];
     [changeBtn setImage:[UIImage imageNamed:@"city_icon_location"] forState:UIControlStateNormal];
-    [changeBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -40)];
-    [changeBtn addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
     
+    [changeBtn addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
+    [YYButtonUtils RimageLeftTextRight:changeBtn];
     
     
     UIView  *titleView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 44)];
