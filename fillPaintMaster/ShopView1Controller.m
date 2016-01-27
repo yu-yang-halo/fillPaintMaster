@@ -24,8 +24,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *button3;
 @property(nonatomic,retain) MonitorViewController *monitor0;
 @property(nonatomic,retain) NSArray *uids;
-@property(nonatomic,retain) LiveViewController *liveVC;
+@property(nonatomic,strong) LiveViewController *liveVC;
 @property (weak, nonatomic) IBOutlet UIButton *closeBigVideoShowBtn;
+@property (weak, nonatomic) IBOutlet UILabel *bigVideoStatusLabel;
 
 @end
 
@@ -64,25 +65,46 @@
     
     [self openVideoStream];
     
+    self.liveVC=[[LiveViewController alloc] init];
+    
 }
 -(void)clickGesture:(UIButton *)sender{
     NSLog(@"sender %@ tag %d",sender,sender.tag);
-    [self closeVideoStream];
-     self.liveVC=[[LiveViewController alloc] initUID:[_uids objectAtIndex:sender.tag] withPass:@"admin"];
-    CGRect frame=_liveVC.view.frame;
-    frame.origin.y=-60;
-    _liveVC.view.frame=frame;
-    //_liveVC.view.frame=_singleView.frame;
-    [self.singleView setUserInteractionEnabled:YES];
-    [self.singleView addSubview:_liveVC.view];
-    [self.singleView setHidden:NO];
-    [self.closeBigVideoShowBtn setHidden:NO];
+    if(sender.tag==3){
+        return;
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+         [self closeVideoStream];
+    });
+    [self performSelector:@selector(showBigVideo:) withObject:[NSNumber numberWithInt:sender.tag] afterDelay:2];
+}
+-(void)showBigVideo:(NSNumber *)obj{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.liveVC startCameraShow:[_uids objectAtIndex:[obj intValue]] withPass:@"admin"];
+    });
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        CGRect frame=_liveVC.view.frame;
+        frame.origin.y=-60;
+        _liveVC.view.frame=frame;
+        [_liveVC recordCameraState:self.bigVideoStatusLabel];
+        
+        [self.singleView setUserInteractionEnabled:YES];
+        [self.singleView addSubview:_liveVC.view];
+        [self.singleView setHidden:NO];
+        [self.closeBigVideoShowBtn setHidden:NO];
+        [self.bigVideoStatusLabel setHidden:NO];
+    });
 }
 -(void)closeBigVideo:(UIButton *)sender{
-    [self.liveVC stop];
     [self.singleView setHidden:YES];
     [self.closeBigVideoShowBtn setHidden:YES];
-    [self openVideoStream];
+     [self.bigVideoStatusLabel setHidden:YES];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+         [self.liveVC stop];
+         [self performSelector:@selector(openVideoStream) withObject:self afterDelay:2];
+    });
     
 }
 

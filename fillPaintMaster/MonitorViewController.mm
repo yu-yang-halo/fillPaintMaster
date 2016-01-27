@@ -62,7 +62,7 @@ unsigned int _getTickCount() {
         [camera stopShow:0];
         
         [camera stop:0];
-        [camera disconnect];
+        //[camera disconnect];
         [camera setDelegate2:nil];
     }
     [self waitStopShowCompleted:DEF_WAIT4STOPSHOW_TIME];
@@ -83,10 +83,10 @@ unsigned int _getTickCount() {
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    if(mTimerStartShowRevoke!=nil){
-        [mTimerStartShowRevoke invalidate];
-        mTimerStartShowRevoke = nil;
-    }
+//    if(mTimerStartShowRevoke!=nil){
+//        [mTimerStartShowRevoke invalidate];
+//        mTimerStartShowRevoke = nil;
+//    }
     
 }
 
@@ -130,7 +130,7 @@ unsigned int _getTickCount() {
         [camera release];
     }
     
-    mTimerStartShowRevoke = [NSTimer scheduledTimerWithTimeInterval:3.6 target:self selector:@selector(onTimerStartShowRevoke:) userInfo:nil repeats:YES];
+//    mTimerStartShowRevoke = [NSTimer scheduledTimerWithTimeInterval:3.6 target:self selector:@selector(onTimerStartShowRevoke:) userInfo:nil repeats:YES];
 
 }
 

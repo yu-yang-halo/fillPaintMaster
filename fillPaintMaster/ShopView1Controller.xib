@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShopView1Controller">
             <connections>
+                <outlet property="bigVideoStatusLabel" destination="LD1-Wz-z70" id="D7Y-RL-kbQ"/>
                 <outlet property="button0" destination="j9a-wk-dbO" id="Ygr-SS-aHK"/>
                 <outlet property="button1" destination="8OO-l7-oZ5" id="2uI-AN-K9W"/>
                 <outlet property="button2" destination="blS-e7-fsx" id="bfD-FU-18Q"/>
@@ -116,6 +117,17 @@
                                 <color key="titleColor" red="1" green="0.089232675607805234" blue="0.13064616296981879" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LD1-Wz-z70">
+                            <rect key="frame" x="159" y="260" width="158" height="21"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="khY-IS-zrh"/>
+                                <constraint firstAttribute="width" constant="158" id="tGW-2l-cSo"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.11228967838283954" green="1" blue="0.09574349680646288" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -127,6 +139,7 @@
                         <constraint firstItem="Tla-7U-Zqv" firstAttribute="top" secondItem="EyI-lG-SCS" secondAttribute="bottom" constant="20" id="ARg-Jz-ly2"/>
                         <constraint firstItem="j9a-wk-dbO" firstAttribute="width" secondItem="8OO-l7-oZ5" secondAttribute="width" id="Aan-Vj-RSQ"/>
                         <constraint firstItem="j9a-wk-dbO" firstAttribute="top" secondItem="EyI-lG-SCS" secondAttribute="bottom" constant="20" id="D2e-h3-VNo"/>
+                        <constraint firstItem="LD1-Wz-z70" firstAttribute="leading" secondItem="zhv-cb-Dm7" secondAttribute="trailing" constant="-159" id="I8P-7G-Cjm"/>
                         <constraint firstItem="20Z-uS-jFH" firstAttribute="top" secondItem="8OO-l7-oZ5" secondAttribute="bottom" id="IMO-bl-H2F"/>
                         <constraint firstItem="o3I-s3-avM" firstAttribute="width" secondItem="Tla-7U-Zqv" secondAttribute="width" id="Ix6-fU-Zbt"/>
                         <constraint firstItem="dVZ-o8-ojX" firstAttribute="width" secondItem="W7Q-My-DJb" secondAttribute="width" id="Jna-oB-RFc"/>
@@ -140,6 +153,7 @@
                         <constraint firstItem="EyI-lG-SCS" firstAttribute="centerX" secondItem="UZ3-Bi-q4p" secondAttribute="centerX" id="dCn-KH-yub"/>
                         <constraint firstItem="dVZ-o8-ojX" firstAttribute="top" secondItem="o3I-s3-avM" secondAttribute="bottom" id="dsb-Wk-Gw4"/>
                         <constraint firstItem="8OO-l7-oZ5" firstAttribute="top" secondItem="EyI-lG-SCS" secondAttribute="bottom" constant="20" id="eZU-gX-KgF"/>
+                        <constraint firstItem="UgM-7R-dhB" firstAttribute="top" secondItem="LD1-Wz-z70" secondAttribute="bottom" constant="8" symbolic="YES" id="f87-QH-dWN"/>
                         <constraint firstItem="blS-e7-fsx" firstAttribute="leading" secondItem="UZ3-Bi-q4p" secondAttribute="leading" constant="1" id="iD2-dn-Lfy"/>
                         <constraint firstItem="blS-e7-fsx" firstAttribute="width" secondItem="20Z-uS-jFH" secondAttribute="width" id="iv1-dx-JJe"/>
                         <constraint firstAttribute="trailing" secondItem="8OO-l7-oZ5" secondAttribute="trailing" id="j82-J6-Dga"/>

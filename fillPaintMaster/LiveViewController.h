@@ -28,7 +28,7 @@
     Camera *camera;
     Monitor *monitor;
 }
--(instancetype)initUID:(NSString *)uid withPass:(NSString *)pass;
+-(void)startCameraShow:(NSString *)uid withPass:(NSString *)pass;
 -(void)recordCameraState:(UILabel *)label;
 @property (nonatomic, assign) BOOL bStopShowCompletedLock;
 @property (nonatomic, assign) unsigned short mCodecId;

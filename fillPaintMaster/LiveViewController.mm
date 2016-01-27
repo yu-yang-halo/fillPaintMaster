@@ -36,7 +36,7 @@
 -(void)stop
 {
     [monitor deattachCamera];
-    
+    [glView deattachCamera];
     [camera stopSoundToPhone:0];
     [camera stopShow:0];
     [self waitStopShowCompleted:DEF_WAIT4STOPSHOW_TIME];
@@ -71,30 +71,31 @@
 }
 
 
--(instancetype)initUID:(NSString *)uid withPass:(NSString *)pass{
-    self=[super init];
-    if(self){
-        [Camera initIOTC];
-        camera = [[Camera alloc] initWithName:uid];
-        camera.delegate=self;
-        [camera connect:uid];//8YM2LT63DMWXPBUG111A
-        [camera start:0 viewAccount:@"admin"  viewPassword:pass is_playback:FALSE];
-        [camera startShow:0 ScreenObject:self];
-        SMsgAVIoctrlGetAudioOutFormatReq *s = (SMsgAVIoctrlGetAudioOutFormatReq *)malloc(sizeof(SMsgAVIoctrlGetAudioOutFormatReq));
-        s->channel = 0;
-        [camera sendIOCtrlToChannel:0 Type:IOTYPE_USER_IPCAM_GETAUDIOOUTFORMAT_REQ Data:(char *)s DataSize:sizeof(SMsgAVIoctrlGetAudioOutFormatReq)];
-        free(s);
-        
-        SMsgAVIoctrlGetSupportStreamReq *s2 = (SMsgAVIoctrlGetSupportStreamReq *)malloc(sizeof(SMsgAVIoctrlGetSupportStreamReq));
-        [camera sendIOCtrlToChannel:0 Type:IOTYPE_USER_IPCAM_GETSUPPORTSTREAM_REQ Data:(char *)s2 DataSize:sizeof(SMsgAVIoctrlGetSupportStreamReq)];
-        free(s2);
-        
-        SMsgAVIoctrlTimeZone s3={0};
-        s3.cbSize = sizeof(s3);
-        [camera sendIOCtrlToChannel:0 Type:IOTYPE_USER_IPCAM_GET_TIMEZONE_REQ Data:(char *)&s3 DataSize:sizeof(s3)];
-    }
-    return self;
+-(void)startCameraShow:(NSString *)uid withPass:(NSString *)pass{
+    
+    camera = [[Camera alloc] initWithName:uid];
+    camera.delegate=self;
+    [camera connect:uid];//8YM2LT63DMWXPBUG111A
+    [camera start:0 viewAccount:@"admin"  viewPassword:pass is_playback:FALSE];
+    [camera startShow:0 ScreenObject:self];
+    SMsgAVIoctrlGetAudioOutFormatReq *s = (SMsgAVIoctrlGetAudioOutFormatReq *)malloc(sizeof(SMsgAVIoctrlGetAudioOutFormatReq));
+    s->channel = 0;
+    [camera sendIOCtrlToChannel:0 Type:IOTYPE_USER_IPCAM_GETAUDIOOUTFORMAT_REQ Data:(char *)s DataSize:sizeof(SMsgAVIoctrlGetAudioOutFormatReq)];
+    free(s);
+    
+    SMsgAVIoctrlGetSupportStreamReq *s2 = (SMsgAVIoctrlGetSupportStreamReq *)malloc(sizeof(SMsgAVIoctrlGetSupportStreamReq));
+    [camera sendIOCtrlToChannel:0 Type:IOTYPE_USER_IPCAM_GETSUPPORTSTREAM_REQ Data:(char *)s2 DataSize:sizeof(SMsgAVIoctrlGetSupportStreamReq)];
+    free(s2);
+    
+    SMsgAVIoctrlTimeZone s3={0};
+    s3.cbSize = sizeof(s3);
+    [camera sendIOCtrlToChannel:0 Type:IOTYPE_USER_IPCAM_GET_TIMEZONE_REQ Data:(char *)&s3 DataSize:sizeof(s3)];
+    
+    [monitor attachCamera:camera];
+    [glView attachCamera:camera];
+    
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     
 }
@@ -107,8 +108,7 @@
     self.view.frame=CGRectMake(0,0,317,360);
     self.scrollViewPortrait.frame=self.view.frame;
     monitor=[[Monitor alloc] initWithFrame:self.view.frame];
-    [monitor attachCamera:camera];
-    
+  
     
     [self removeGLView:TRUE];
     NSLog( @"video frame {%d,%d}%dx%d", (int)self.monitor.frame.origin.x, (int)self.monitor.frame.origin.y, (int)self.monitor.frame.size.width, (int)self.monitor.frame.size.height);
@@ -116,7 +116,7 @@
         glView = [[CameraShowGLView alloc] initWithFrame:self.monitor.frame];
         [glView setMinimumGestureLength:100 MaximumVariance:50];
         glView.delegate = self;
-        [glView attachCamera:camera];
+        
     }
     else {
         [self.glView destroyFramebuffer];
@@ -184,28 +184,28 @@
     NSString *message=nil;
     switch (status) {
         case CONNECTION_STATE_CONNECTED:
-            message=NSLocalizedString(@"connect_suc", nil);
+            message=@"已连接";
             
             break;
             
         case CONNECTION_STATE_CONNECTING:
-            message=NSLocalizedString(@"connecting",nil);
+            message=@"正在连接";
             break;
             
         case CONNECTION_STATE_DISCONNECTED:
-            message=NSLocalizedString(@"unconnect",nil);
+            message=@"连接断开";
             break;
             
         case CONNECTION_STATE_CONNECT_FAILED:
-            message=NSLocalizedString(@"connect_fail",nil);
+            message=@"连接错误";
             break;
             
         case CONNECTION_STATE_TIMEOUT:
-            message=NSLocalizedString(@"connect_timeout",nil);
+            message=@"连接超时";
             break;
             
         case CONNECTION_STATE_UNKNOWN_DEVICE:
-            message=NSLocalizedString(@"unknown_device",nil);
+            message=@"未知设备";
             break;
             
         case CONNECTION_STATE_UNSUPPORTED:
@@ -213,7 +213,7 @@
             break;
             
         case CONNECTION_STATE_WRONG_PASSWORD:
-            message=NSLocalizedString(@"passerror", nil);
+            message=@"密码错误";
             break;
             
         default:
@@ -373,12 +373,8 @@
     int width = (int)CVPixelBufferGetWidth(pScreenBmpStore->pixelBuff);
     int height = (int)CVPixelBufferGetHeight(pScreenBmpStore->pixelBuff);
     mSizePixelBuffer = CGSizeMake( width, height );
-#ifndef DEF_Using_APLEAGLView
+
     [glView renderVideo:pScreenBmpStore->pixelBuff];
-#else
-    self.test.presentationRect = mSizePixelBuffer;
-    [[self test] displayPixelBuffer:pScreenBmpStore->pixelBuff withRelease:FALSE];
-#endif
 }
 
 - (void)waitStopShowCompleted:(unsigned int)uTimeOutInMs
@@ -416,7 +412,7 @@
         camera=nil;
     }
     [image release];
-    NSLog(@"monitorVC release...");
+    NSLog(@"LiveViewVC release...");
 }
 
 #pragma mark - AudioSession implementations
