@@ -17,6 +17,7 @@ static const float AD_HEIGHT=120;
 static const float TOP_SPACE=5;
 static const float LEFT_SPACE=15;
 static const float ROW_HEIGHT=40;
+#import "LiveViewController.h"
 @interface TDHomeViewController (){
     NSArray *imgItms;
     NSArray *contentItms;
@@ -67,10 +68,13 @@ static const float ROW_HEIGHT=40;
     
     [self initHomeView];
     
+                     
     TDLoginViewController *tdLoginVC=[[TDLoginViewController alloc] init];
     [self presentViewController:tdLoginVC animated:YES completion:^{
         
     }];
+    
+    
 
 }
 -(void)initHomeView{

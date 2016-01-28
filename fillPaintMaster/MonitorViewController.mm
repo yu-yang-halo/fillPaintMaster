@@ -52,17 +52,18 @@ unsigned int _getTickCount() {
 
 -(void)stop
 {
-    if(mTimerStartShowRevoke!=nil){
-        [mTimerStartShowRevoke invalidate];
-        mTimerStartShowRevoke = nil;
-    }
+//    if(mTimerStartShowRevoke!=nil){
+//        [mTimerStartShowRevoke invalidate];
+//        mTimerStartShowRevoke = nil;
+//    }
    
     for (MyCamera *camera in _mCameraList) {
+        [camera disconnect];
         [camera stopSoundToPhone:0];
         [camera stopShow:0];
         
         [camera stop:0];
-        //[camera disconnect];
+        
         [camera setDelegate2:nil];
     }
     [self waitStopShowCompleted:DEF_WAIT4STOPSHOW_TIME];
@@ -108,6 +109,7 @@ unsigned int _getTickCount() {
     
 }
 -(void)beginShowVideos{
+    mchannel=0;
     for (NSString *uid in _mUIDList) {
         MyCamera *camera = [[MyCamera alloc] initWithName:uid];
         camera.delegate2=self;
@@ -157,7 +159,7 @@ unsigned int _getTickCount() {
                mnReTryTimesArray[idx] <= DEF_ReTryTimes ) {
                 
                 [theCamera connect:theCamera.uid];
-                [theCamera start:0];
+                [theCamera start:0 viewAccount:@"admin"  viewPassword:@"admin" is_playback:FALSE];
                 
                 mnLastReTryTickArray[idx] = _getTickCount();
                 mnReTryTimesArray[idx] += 1;

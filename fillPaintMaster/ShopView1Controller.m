@@ -9,7 +9,12 @@
 #import "ShopView1Controller.h"
 #import "MonitorViewController.h"
 #import "LiveViewController.h"
-@interface ShopView1Controller ()
+@interface ShopView1Controller (){
+    CGRect originFram0;
+    CGRect originFram1;
+    CGRect originFram2;
+    CGRect originFram3;
+}
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIImageView *channelImageView0;
 @property (weak, nonatomic) IBOutlet UIImageView *channelImageView1;
@@ -43,6 +48,13 @@
     [self setImageViewStyle:self.channelImageView2];
     [self setImageViewStyle:self.channelImageView3];
     
+    originFram0=self.channelImageView0.frame;
+    originFram1=self.channelImageView1.frame;
+    originFram2=self.channelImageView2.frame;
+    originFram3=self.channelImageView3.frame;
+    
+    
+    
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickGesture:)];
     
     [tap setNumberOfTouchesRequired:1];
@@ -58,52 +70,44 @@
     
     [self.closeBigVideoShowBtn addTarget:self action:@selector(closeBigVideo:) forControlEvents:UIControlEventTouchUpInside];
    
-  self.uids=@[@"5NYMJK5PENUPZY98111A",@"X54G85ZXC4L8W1YG111A",@"8YM2LT63DMWXPBUG111A"];
-    NSArray *views=@[self.channelImageView0,self.channelImageView1,self.channelImageView2];
+  self.uids=@[@"5NYMJK5PENUPZY98111A",@"X54G85ZXC4L8W1YG111A",@"8YM2LT63DMWXPBUG111A",@"PRAD13G9VNCB43AT111A"];
+    NSArray *views=@[self.channelImageView0,self.channelImageView1,self.channelImageView2,self.channelImageView3];
     
     self.monitor0=[[MonitorViewController alloc] initUIDS:_uids viewArr:views];
     
     [self openVideoStream];
-    
     self.liveVC=[[LiveViewController alloc] init];
+
+   [self.singleView addSubview:self.liveVC.view];
+    
     
 }
 -(void)clickGesture:(UIButton *)sender{
     NSLog(@"sender %@ tag %d",sender,sender.tag);
-    if(sender.tag==3){
-        return;
-    }
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-         [self closeVideoStream];
-    });
-    [self performSelector:@selector(showBigVideo:) withObject:[NSNumber numberWithInt:sender.tag] afterDelay:2];
-}
--(void)showBigVideo:(NSNumber *)obj{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self.liveVC startCameraShow:[_uids objectAtIndex:[obj intValue]] withPass:@"admin"];
-    });
+  
+   [self closeVideoStream];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        CGRect frame=_liveVC.view.frame;
-        frame.origin.y=-60;
-        _liveVC.view.frame=frame;
-        [_liveVC recordCameraState:self.bigVideoStatusLabel];
-        
-        [self.singleView setUserInteractionEnabled:YES];
-        [self.singleView addSubview:_liveVC.view];
-        [self.singleView setHidden:NO];
-        [self.closeBigVideoShowBtn setHidden:NO];
-        [self.bigVideoStatusLabel setHidden:NO];
-    });
+   [self performSelector:@selector(showSingleVideo:) withObject:[NSNumber numberWithInt:sender.tag] afterDelay:2];
+   
+    
+    
+}
+-(void)showSingleVideo:(NSNumber *)tag{
+    [self.liveVC startVideoShow:[_uids objectAtIndex:[tag intValue]] withPass:@"admin"];
+    [self.liveVC recordCameraState:self.bigVideoStatusLabel];
+    [self.bigVideoStatusLabel setHidden:NO];
+    [self.closeBigVideoShowBtn setHidden:NO];
+    [self.singleView setHidden:NO];
 }
 -(void)closeBigVideo:(UIButton *)sender{
-    [self.singleView setHidden:YES];
+    [self.liveVC stop];
+    
     [self.closeBigVideoShowBtn setHidden:YES];
-     [self.bigVideoStatusLabel setHidden:YES];
+    [self.singleView setHidden:YES];
+    [self.bigVideoStatusLabel setHidden:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-         [self.liveVC stop];
-         [self performSelector:@selector(openVideoStream) withObject:self afterDelay:2];
+        
+        [self performSelector:@selector(beginShowVideos) withObject:nil afterDelay:2];
     });
     
 }
@@ -118,7 +122,7 @@
 -(void)setImageViewStyle:(UIImageView *)imageView{
    imageView.layer.borderWidth=1;
    [imageView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.9]];
-   imageView.layer.borderColor=[[UIColor greenColor] CGColor];
+   imageView.layer.borderColor=[[UIColor colorWithWhite:0 alpha:0.4] CGColor];
 }
 -(void)awakeFromNib{
     

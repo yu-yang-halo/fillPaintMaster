@@ -1,17 +1,16 @@
 //
-//  LiveViewController.m
-//  fillPaintMaster
+//  AppMonitorViewController.m
+//  IOTCamSample
 //
-//  Created by apple on 16/1/25.
-//  Copyright © 2016年 LZTech. All rights reserved.
+//  Created by Cloud Hsiao on 12/7/17.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
+
 #import "LiveViewController.h"
 #import <IOTCamera/AVFRAMEINFO.h>
 #import <IOTCamera/ImageBuffInfo.h>
 #import <AVFoundation/AVFoundation.h>
 #import <sys/time.h>
-
-
 
 
 @interface LiveViewController (){
@@ -29,14 +28,15 @@
 @synthesize mPixelBuffer;
 @synthesize mSizePixelBuffer;
 @synthesize camera;
-@synthesize monitor;
+
 @synthesize image;
 #define DEF_WAIT4STOPSHOW_TIME	250
 
 -(void)stop
 {
-    [monitor deattachCamera];
+    
     [glView deattachCamera];
+    
     [camera stopSoundToPhone:0];
     [camera stopShow:0];
     [self waitStopShowCompleted:DEF_WAIT4STOPSHOW_TIME];
@@ -67,11 +67,10 @@
     CVPixelBufferPoolRelease(mPixelBufferPool);
     
     [camera release];
-    [monitor release];
+    
 }
 
-
--(void)startCameraShow:(NSString *)uid withPass:(NSString *)pass{
+-(void)startVideoShow:(NSString *)uid withPass:(NSString *)pass{
     
     camera = [[Camera alloc] initWithName:uid];
     camera.delegate=self;
@@ -91,47 +90,49 @@
     s3.cbSize = sizeof(s3);
     [camera sendIOCtrlToChannel:0 Type:IOTYPE_USER_IPCAM_GET_TIMEZONE_REQ Data:(char *)&s3 DataSize:sizeof(s3)];
     
-    [monitor attachCamera:camera];
+   
+ 
+     glView.delegate = self;
     [glView attachCamera:camera];
     
 }
-
+-(instancetype)initUID:(NSString *)uid withPass:(NSString *)pass{
+    self=[super init];
+    if(self){
+     
+    }
+    return self;
+}
 -(void)viewWillAppear:(BOOL)animated{
     
 }
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    
     [self.view setBackgroundColor:[UIColor clearColor]];
-    self.view.frame=CGRectMake(0,0,317,360);
-    self.scrollViewPortrait.frame=self.view.frame;
-    monitor=[[Monitor alloc] initWithFrame:self.view.frame];
-  
+    self.view.frame=CGRectMake(0,0,317,240);
+   
+   
     
     [self removeGLView:TRUE];
-    NSLog( @"video frame {%d,%d}%dx%d", (int)self.monitor.frame.origin.x, (int)self.monitor.frame.origin.y, (int)self.monitor.frame.size.width, (int)self.monitor.frame.size.height);
+
     if( glView == nil ) {
-        glView = [[CameraShowGLView alloc] initWithFrame:self.monitor.frame];
+        glView = [[CameraShowGLView alloc] initWithFrame:self.view.frame];
         [glView setMinimumGestureLength:100 MaximumVariance:50];
-        glView.delegate = self;
+       
         
     }
     else {
         [self.glView destroyFramebuffer];
-        self.glView.frame = self.monitor.frame;
+        self.glView.frame = self.view.frame;
     }
-    self.view.frame=self.glView.frame;
-    [glView setContentMode:UIViewContentModeScaleAspectFit];
-    [self.scrollViewPortrait addSubview:glView];
     
-    if( mCodecId == MEDIA_CODEC_VIDEO_MJPEG ) {
-        [self.scrollViewPortrait bringSubviewToFront:monitor/*self.glView*/];
-    }
-    else {
-        [self.scrollViewPortrait bringSubviewToFront:/*monitor*/self.glView];
-    }
+    [glView setContentMode:UIViewContentModeScaleAspectFill];
+    [self.view addSubview:glView];
+    
     
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(cameraStopShowCompleted:) name: @"CameraStopShowCompleted" object: nil];
     
@@ -222,7 +223,7 @@
     }
     mlabel.text=message;
     if(status==CONNECTION_STATE_CONNECTED){
-        
+       
     }
     
 }
@@ -357,10 +358,8 @@
     mCodecId = *pnCodecId;
     
     if( mCodecId == MEDIA_CODEC_VIDEO_MJPEG ) {
-        [self.scrollViewPortrait bringSubviewToFront:monitor/*self.glView*/];
     }
     else {
-        [self.scrollViewPortrait bringSubviewToFront:/*monitor*/self.glView];
     }
 }
 
@@ -373,8 +372,11 @@
     int width = (int)CVPixelBufferGetWidth(pScreenBmpStore->pixelBuff);
     int height = (int)CVPixelBufferGetHeight(pScreenBmpStore->pixelBuff);
     mSizePixelBuffer = CGSizeMake( width, height );
-
+#ifndef DEF_Using_APLEAGLView
     [glView renderVideo:pScreenBmpStore->pixelBuff];
+#else
+   
+#endif
 }
 
 - (void)waitStopShowCompleted:(unsigned int)uTimeOutInMs
@@ -395,24 +397,19 @@
 {
     bStopShowCompletedLock = TRUE;
     NSLog(@"cameraStopShowCompleted...bStopShowCompletedLock = TRUE");
-    
+  
 }
 
 -(void)dealloc{
-    [_scrollViewPortrait release];
-    [super dealloc];
-    if(monitor!=nil){
-        [monitor deattachCamera];
-        [monitor release];
-        monitor=nil;
-    }
+   [super dealloc];
+    
     if(camera!=nil){
         [camera disconnect];
         [camera release];
         camera=nil;
     }
     [image release];
-    NSLog(@"LiveViewVC release...");
+    NSLog(@"monitorVC release...");
 }
 
 #pragma mark - AudioSession implementations
@@ -544,16 +541,13 @@
         
         if (codec_id == MEDIA_CODEC_VIDEO_H264 || codec_id == MEDIA_CODEC_VIDEO_MPEG4) {
             img = [self getUIImage:imageFrame Width:w Height:h];
-            NSData *imgData = UIImageJPEGRepresentation(img, 1.0f);
             
         }
         else if (codec_id == MEDIA_CODEC_VIDEO_MJPEG) {
             NSData *data = [[NSData alloc] initWithBytes:imageFrame length:size];
             img = [[UIImage alloc] initWithData:data];
             NSData *imgData = UIImageJPEGRepresentation(img, 1.0f);
-            
-            [data release];
-            [img release];
+           
             
         }
     }
@@ -562,21 +556,18 @@
 }
 - (void)monitor:(Monitor *)monitor gesturePinched:(CGFloat)scale{
     if( mCodecId == MEDIA_CODEC_VIDEO_MJPEG ) {
-        [self.scrollViewPortrait bringSubviewToFront:self.monitor/*self.glView*/];
+        
     }
     else {
-        [self.scrollViewPortrait bringSubviewToFront:/*monitor*/self.glView];
     }
     
     
     if( mCodecId == MEDIA_CODEC_VIDEO_MJPEG ) {
-        [self.scrollViewPortrait setZoomScale:scale animated:YES];
-        NSLog(@"MEDIA_CODEC_VIDEO_MJPEG...");
+         NSLog(@"MEDIA_CODEC_VIDEO_MJPEG...");
     }
     else {
         
-        [self.scrollViewPortrait setContentSize:self.glView.frame.size];
-        NSLog(@"w:%f h:%f scale:%f",self.glView.frame.size.width,self.glView.frame.size.height,scale);
+       NSLog(@"w:%f h:%f scale:%f",self.glView.frame.size.width,self.glView.frame.size.height,scale);
         
     }
     
