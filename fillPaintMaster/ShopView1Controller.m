@@ -87,6 +87,14 @@
   
    [self closeVideoStream];
     
+    [self.button0 setEnabled:NO];
+    [self.button1 setEnabled:NO];
+    [self.button2 setEnabled:NO];
+    [self.button3 setEnabled:NO];
+   
+    
+    
+    
    [self performSelector:@selector(showSingleVideo:) withObject:[NSNumber numberWithInt:sender.tag] afterDelay:2];
    
     
@@ -105,6 +113,13 @@
     [self.closeBigVideoShowBtn setHidden:YES];
     [self.singleView setHidden:YES];
     [self.bigVideoStatusLabel setHidden:YES];
+    
+    [self.button0 setEnabled:YES];
+    [self.button1 setEnabled:YES];
+    [self.button2 setEnabled:YES];
+    [self.button3 setEnabled:YES];
+    
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         [self performSelector:@selector(beginShowVideos) withObject:nil afterDelay:2];
