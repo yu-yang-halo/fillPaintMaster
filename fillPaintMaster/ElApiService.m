@@ -10,8 +10,8 @@
 #import "GDataXMLNode.h"
 
 const static int DEFAULT_TIME_OUT=11;
-const static NSString* WEBSERVICE_IP=@"192.168.1.107";
-const static int WEBSERVICE_PORT=8080;
+const static NSString* WEBSERVICE_IP=@"liuzhi1212.gicp.net";
+const static int WEBSERVICE_PORT=9000;
 static  NSString* KEY_USERID=@"userID_KEY";
 static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
 
