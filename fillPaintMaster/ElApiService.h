@@ -19,6 +19,8 @@
 #import "TDOrderSearch.h"
 #import "TDMetaOrder.h"
 #import "TDDecoOrder.h"
+#import "TDBannerInfoType.h"
+#import "TDPromotionInfoType.h"
 #import <Foundation/Foundation.h>
 
 @class ElApiService;
@@ -56,6 +58,8 @@ static ElApiService* shareService=nil;
 -(BOOL)updDecoOrder:(TDDecoOrder *)decoOrder;
 -(NSArray *)getDecoOrderList:(TDOrderSearch *)orderSearch;
 -(BOOL)createDecoOrderNumber:(int)decoOrderId decoId:(int)decoId;
+-(NSArray *)getBannerList:(int)maxNum;
+-(NSArray *)getPromotionList:(int)maxNum;
 
 
 @end

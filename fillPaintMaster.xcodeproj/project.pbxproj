@@ -23,6 +23,8 @@
 		182FC70A1C4FBB84001978F5 /* TDCouponInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC7091C4FBB84001978F5 /* TDCouponInfo.m */; };
 		182FC70D1C4FBE5E001978F5 /* TDCityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC70C1C4FBE5E001978F5 /* TDCityInfo.m */; };
 		182FC7101C4FC200001978F5 /* TDGoodInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC70F1C4FC200001978F5 /* TDGoodInfo.m */; };
+		1836FEC61C795027009028D9 /* TDBannerInfoType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1836FEC51C795027009028D9 /* TDBannerInfoType.m */; };
+		1836FEC91C7953EA009028D9 /* TDPromotionInfoType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1836FEC81C7953EA009028D9 /* TDPromotionInfoType.m */; };
 		183EAA0F1BB929A00029ED79 /* TDTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183EAA0E1BB929A00029ED79 /* TDTabViewController.m */; };
 		183EAA121BB92E450029ED79 /* TDNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183EAA111BB92E450029ED79 /* TDNavigationViewController.m */; };
 		183EAA161BB94B3E0029ED79 /* TDAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183EAA151BB94B3E0029ED79 /* TDAdView.m */; };
@@ -183,6 +185,10 @@
 		182FC70C1C4FBE5E001978F5 /* TDCityInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCityInfo.m; sourceTree = "<group>"; };
 		182FC70E1C4FC200001978F5 /* TDGoodInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDGoodInfo.h; sourceTree = "<group>"; };
 		182FC70F1C4FC200001978F5 /* TDGoodInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDGoodInfo.m; sourceTree = "<group>"; };
+		1836FEC41C795027009028D9 /* TDBannerInfoType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBannerInfoType.h; sourceTree = "<group>"; };
+		1836FEC51C795027009028D9 /* TDBannerInfoType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBannerInfoType.m; sourceTree = "<group>"; };
+		1836FEC71C7953EA009028D9 /* TDPromotionInfoType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDPromotionInfoType.h; sourceTree = "<group>"; };
+		1836FEC81C7953EA009028D9 /* TDPromotionInfoType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDPromotionInfoType.m; sourceTree = "<group>"; };
 		183EAA0D1BB929A00029ED79 /* TDTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTabViewController.h; sourceTree = "<group>"; };
 		183EAA0E1BB929A00029ED79 /* TDTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTabViewController.m; sourceTree = "<group>"; };
 		183EAA101BB92E450029ED79 /* TDNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNavigationViewController.h; sourceTree = "<group>"; };
@@ -459,6 +465,10 @@
 				182FC70C1C4FBE5E001978F5 /* TDCityInfo.m */,
 				182FC70E1C4FC200001978F5 /* TDGoodInfo.h */,
 				182FC70F1C4FC200001978F5 /* TDGoodInfo.m */,
+				1836FEC41C795027009028D9 /* TDBannerInfoType.h */,
+				1836FEC51C795027009028D9 /* TDBannerInfoType.m */,
+				1836FEC71C7953EA009028D9 /* TDPromotionInfoType.h */,
+				1836FEC81C7953EA009028D9 /* TDPromotionInfoType.m */,
 			);
 			name = new;
 			sourceTree = "<group>";
@@ -1064,6 +1074,7 @@
 				18E8ED081C2FDD4200968CEB /* FrontCarViewController.m in Sources */,
 				8481490D1C326DFB00588564 /* TDButtonView.m in Sources */,
 				18EB1AFE1C37985900791849 /* TDPassSetViewController.m in Sources */,
+				1836FEC91C7953EA009028D9 /* TDPromotionInfoType.m in Sources */,
 				18ED343D1C3613EB0085B250 /* OrderDetailViewController.m in Sources */,
 				18EE55851C42075A00A99D50 /* TDCarInfoModel.m in Sources */,
 				18ED34461C3627B60085B250 /* ShopView0Controller.m in Sources */,
@@ -1096,6 +1107,7 @@
 				18E809DA1BC2AD2800712C43 /* PaintView1Controller.m in Sources */,
 				84C7013C1C5379C6007FA60F /* PSDMonitor.m in Sources */,
 				845E48521C3B94FC00AAD5A5 /* CoolNavi.m in Sources */,
+				1836FEC61C795027009028D9 /* TDBannerInfoType.m in Sources */,
 				18B932521BA6A8C50019279E /* AppDelegate.m in Sources */,
 				18EB1AF91C37934600791849 /* TDIdCodeViewController.m in Sources */,
 				18EB79F51C51072200BA0C26 /* YYButtonUtils.m in Sources */,

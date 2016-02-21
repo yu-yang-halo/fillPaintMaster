@@ -8,6 +8,8 @@
 
 #import "TDLoginViewController.h"
 #import "TDIdCodeViewController.h"
+#import <UIView+Toast.h>
+#import "ElApiService.h"
 @interface TDLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *accountTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTxtField;
@@ -24,6 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.accountTxtField.delegate=self;
+    self.passwordTxtField.delegate=self;
+    [self.passwordTxtField setSecureTextEntry:YES];
     
 }
 -(void)initView{
@@ -35,6 +40,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
    
+}
+#pragma mark textFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 /*
@@ -48,7 +58,26 @@
 */
 
 - (IBAction)clickLogin:(id)sender {
-    
+    NSString *username=_accountTxtField.text;
+    NSString *password=_passwordTxtField.text;
+    if([username isEqualToString:@"" ]||[password isEqualToString:@""]){
+        [self.view makeToast:@"用户名或密码不能为空"];
+    }else{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+           
+          BOOL resultYN=[[ElApiService shareElApiService] appUserLogin:username password:password shopId:-1];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(resultYN){
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }else{
+                    [self.view makeToast:@"用户名或密码错误"];
+                }
+            });
+         
+            
+        });
+    }
 }
 - (IBAction)fogetPass:(id)sender {
     TDIdCodeViewController *tdIdCodeVC=[[TDIdCodeViewController alloc] init];
@@ -67,8 +96,6 @@
 }
 
 - (IBAction)clickBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

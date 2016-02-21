@@ -19,16 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BOOL logSuc=[[ElApiService shareElApiService] appUserLogin:@"regUser1" password:@"706c39f565fd9446"  shopId:1];
-        
-        if(logSuc){
-            NSLog(@"success");
-         
-        }else{
-            NSLog(@"fail");
-        }
-    });
+    
      [Camera initIOTC];
   
     

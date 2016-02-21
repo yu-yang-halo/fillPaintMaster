@@ -141,7 +141,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@getUserInfoById?senderId=%@&secToken=%@userId=%@",self.connect_header,userID,secToken,userID];
+    NSString *service=[NSString stringWithFormat:@"%@getUserInfoById?senderId=%@&secToken=%@&userId=%@",self.connect_header,userID,secToken,userID];
     NSLog(@"getUserInfoById  service:%@",service);
     NSData *data=[self requestURLSync:service];
     if(data!=nil){
@@ -419,7 +419,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@getGoodsList?senderId=%@&secToken=%@",self.connect_header,userID,secToken];
+    NSString *service=[NSString stringWithFormat:@"%@getGoodsList?senderId=%@&secToken=%@&shopId=%d",self.connect_header,userID,secToken,shopId];
     NSLog(@"getGoodsList  service:%@",service);
     NSData *data=[self requestURLSync:service];
     if(data!=nil){
@@ -1146,10 +1146,98 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     return NO;
 }
 
+-(NSArray *)getBannerList:(int)maxNum{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@getBannerList?senderId=%@&secToken=%@&maxNum=%d",self.connect_header,userID,secToken,maxNum];
+    NSLog(@"getBannerList  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+           NSArray *bannerListItems=[rootElement elementsForName:@"bannerList"];
+            NSMutableArray *bannerArr=[[NSMutableArray alloc] init];
+            
+            for (GDataXMLElement *element in bannerListItems) {
+                
+                TDBannerInfoType *tdBannerInfoType= [self parseTDBannerInfoXML:element];
+                
+                [bannerArr addObject:tdBannerInfoType];
+                
+            }
+            return bannerArr;
+            
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    
+
+    return nil;
+}
+-(NSArray *)getPromotionList:(int)maxNum{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@getPromotionList?senderId=%@&secToken=%@&maxNum=%d",self.connect_header,userID,secToken,maxNum];
+    NSLog(@"getPromotionList  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            NSArray *bannerListItems=[rootElement elementsForName:@"promotionList"];
+            NSMutableArray *promotionArr=[[NSMutableArray alloc] init];
+            
+            for (GDataXMLElement *element in bannerListItems) {
+                
+                TDPromotionInfoType *tdPromotionInfoType=(TDPromotionInfoType *) [self parseTDBannerInfoXML:element];
+                
+                [promotionArr addObject:tdPromotionInfoType];
+                
+            }
+            return promotionArr;
+            
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+        
+    }
+    
+    
+    return nil;
+}
+
 /***********************************
  * webService API end...
  ***********************************
  */
+
+-(TDPromotionInfoType *)parseTDPromotionInfoXML:(GDataXMLElement *)element{
+    TDPromotionInfoType *tdPromotionInfoType=[[TDPromotionInfoType alloc] init];
+    tdPromotionInfoType.typeId=[[[[element elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+    tdPromotionInfoType.imgName=[[[element elementsForName:@"imgName"] objectAtIndex:0] stringValue];
+    tdPromotionInfoType.src=[[[element elementsForName:@"src"] objectAtIndex:0] stringValue];
+    return tdPromotionInfoType;
+}
+-(TDBannerInfoType *)parseTDBannerInfoXML:(GDataXMLElement *)element{
+    TDBannerInfoType *tdBannerInfoType=[[TDBannerInfoType alloc] init];
+    tdBannerInfoType.typeId=[[[[element elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+    tdBannerInfoType.imgName=[[[element elementsForName:@"imgName"] objectAtIndex:0] stringValue];
+    tdBannerInfoType.src=[[[element elementsForName:@"src"] objectAtIndex:0] stringValue];
+    return tdBannerInfoType;
+}
 
 -(TDShopInfo *)parseTDShopInfoXML:(GDataXMLElement *)element{
     TDShopInfo *tdShopInfo=[[TDShopInfo alloc] init];
