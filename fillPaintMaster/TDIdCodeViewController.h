@@ -7,10 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef NS_ENUM(NSInteger, TDIdCodeType){
-    TDIdCodeType_GETVCODE,
-    TDIdCodeType_REGISTER
-};
-@interface TDIdCodeViewController : UIViewController
-@property(nonatomic,assign) TDIdCodeType idCodeType;
+
+@interface TDIdCodeViewController : UIViewController<UITextFieldDelegate>
 @end

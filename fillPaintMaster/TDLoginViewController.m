@@ -10,6 +10,10 @@
 #import "TDIdCodeViewController.h"
 #import <UIView+Toast.h>
 #import "ElApiService.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+static const NSString *KEY_USERNAME=@"KEY_USERNAME";
+static const NSString *KEY_PASSWORD=@"KEY_PASSWORD";
+
 @interface TDLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *accountTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTxtField;
@@ -30,13 +34,18 @@
     self.passwordTxtField.delegate=self;
     [self.passwordTxtField setSecureTextEntry:YES];
     
-}
--(void)initView{
-    [self.loginButton.layer setCornerRadius:5];
+    NSString *name=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERNAME];
+    NSString *pass=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_PASSWORD];
     
-    [self.passwordTxtField setSecureTextEntry:YES];
+    if(name!=nil&&pass!=nil){
+        [self.accountTxtField setText:name];
+        [self.passwordTxtField setText:pass];
+    }
+    
+    
     
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
    
@@ -63,13 +72,24 @@
     if([username isEqualToString:@"" ]||[password isEqualToString:@""]){
         [self.view makeToast:@"用户名或密码不能为空"];
     }else{
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        hud.labelText = @"登录中...";
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
            
           BOOL resultYN=[[ElApiService shareElApiService] appUserLogin:username password:password shopId:-1];
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide:YES];
                 if(resultYN){
+                    
+                    [[NSUserDefaults standardUserDefaults] setObject:username forKey:KEY_USERNAME];
+                     [[NSUserDefaults standardUserDefaults] setObject:password forKey:KEY_PASSWORD];
+                    
                     [self dismissViewControllerAnimated:YES completion:nil];
+                    
                 }else{
                     [self.view makeToast:@"用户名或密码错误"];
                 }
@@ -79,17 +99,11 @@
         });
     }
 }
-- (IBAction)fogetPass:(id)sender {
-    TDIdCodeViewController *tdIdCodeVC=[[TDIdCodeViewController alloc] init];
-    [tdIdCodeVC setIdCodeType:TDIdCodeType_GETVCODE];
-    [self presentViewController:tdIdCodeVC animated:YES completion:^{
-        
-    }];
-}
+
 
 - (IBAction)registerUser:(id)sender {
     TDIdCodeViewController *tdIdCodeVC=[[TDIdCodeViewController alloc] init];
-    [tdIdCodeVC setIdCodeType:TDIdCodeType_REGISTER];
+
     [self presentViewController:tdIdCodeVC animated:YES completion:^{
         
     }];

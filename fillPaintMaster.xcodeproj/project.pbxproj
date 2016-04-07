@@ -75,8 +75,6 @@
 		18EB1AF51C378A9E00791849 /* TDLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB1AF31C378A9E00791849 /* TDLoginViewController.xib */; };
 		18EB1AF91C37934600791849 /* TDIdCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB1AF71C37934600791849 /* TDIdCodeViewController.m */; };
 		18EB1AFA1C37934600791849 /* TDIdCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB1AF81C37934600791849 /* TDIdCodeViewController.xib */; };
-		18EB1AFE1C37985900791849 /* TDPassSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB1AFC1C37985900791849 /* TDPassSetViewController.m */; };
-		18EB1AFF1C37985900791849 /* TDPassSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EB1AFD1C37985900791849 /* TDPassSetViewController.xib */; };
 		18EB27AC1C4E5C930085EDC4 /* carwsapi.wsdl in Resources */ = {isa = PBXBuildFile; fileRef = 18EB27AB1C4E5C930085EDC4 /* carwsapi.wsdl */; };
 		18EB27B21C4E5E4E0085EDC4 /* ElApiService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB27AD1C4E5E4E0085EDC4 /* ElApiService.m */; };
 		18EB27B31C4E5E4E0085EDC4 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EB27B01C4E5E4E0085EDC4 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -100,6 +98,7 @@
 		18EE55851C42075A00A99D50 /* TDCarInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE55841C42075A00A99D50 /* TDCarInfoModel.m */; };
 		18EFC0071C4689F90068DA68 /* TDStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC0061C4689F90068DA68 /* TDStoreViewController.m */; };
 		18F612F71C53B21300238F12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F612F61C53B21300238F12 /* CoreGraphics.framework */; };
+		840FEE401CB61DAC0056C7BE /* TDServiceDataInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 840FEE3F1CB61DAC0056C7BE /* TDServiceDataInfo.m */; };
 		84345A771C3A3AD90089DB45 /* TDHttpDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A761C3A3AD90089DB45 /* TDHttpDataService.m */; };
 		84345A7B1C3A3CCE0089DB45 /* TDCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A7A1C3A3CCE0089DB45 /* TDCity.m */; };
 		84345A7E1C3A3D8E0089DB45 /* TDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A7D1C3A3D8E0089DB45 /* TDUser.m */; };
@@ -145,6 +144,7 @@
 		84C701781C5385DF007FA60F /* libIOTCAPIs_ALL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701751C5385DE007FA60F /* libIOTCAPIs_ALL.a */; };
 		84C701791C5385DF007FA60F /* libIOTCAPIs_ALLT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701761C5385DE007FA60F /* libIOTCAPIs_ALLT.a */; };
 		84C7017B1C5387ED007FA60F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7017A1C5387ED007FA60F /* CoreMedia.framework */; };
+		84ED19AB1CB4DD8600116C99 /* WsqMD5Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84ED19A91CB4DD8600116C99 /* WsqMD5Util.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C6FF04885D98EFD277CD0577 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49336F7C7CEF0F6B8C6EC250 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -271,9 +271,6 @@
 		18EB1AF61C37934600791849 /* TDIdCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDIdCodeViewController.h; sourceTree = "<group>"; };
 		18EB1AF71C37934600791849 /* TDIdCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDIdCodeViewController.m; sourceTree = "<group>"; };
 		18EB1AF81C37934600791849 /* TDIdCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDIdCodeViewController.xib; sourceTree = "<group>"; };
-		18EB1AFB1C37985900791849 /* TDPassSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDPassSetViewController.h; sourceTree = "<group>"; };
-		18EB1AFC1C37985900791849 /* TDPassSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDPassSetViewController.m; sourceTree = "<group>"; };
-		18EB1AFD1C37985900791849 /* TDPassSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDPassSetViewController.xib; sourceTree = "<group>"; };
 		18EB27AB1C4E5C930085EDC4 /* carwsapi.wsdl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = carwsapi.wsdl; sourceTree = "<group>"; };
 		18EB27AD1C4E5E4E0085EDC4 /* ElApiService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElApiService.m; sourceTree = "<group>"; };
 		18EB27AE1C4E5E4E0085EDC4 /* ElApiService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElApiService.h; sourceTree = "<group>"; };
@@ -314,6 +311,8 @@
 		18F612F61C53B21300238F12 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		40FB5D2497535D497A282D1A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		49336F7C7CEF0F6B8C6EC250 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		840FEE3E1CB61DAC0056C7BE /* TDServiceDataInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDServiceDataInfo.h; sourceTree = "<group>"; };
+		840FEE3F1CB61DAC0056C7BE /* TDServiceDataInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDServiceDataInfo.m; sourceTree = "<group>"; };
 		84345A751C3A3AD90089DB45 /* TDHttpDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDHttpDataService.h; sourceTree = "<group>"; };
 		84345A761C3A3AD90089DB45 /* TDHttpDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDHttpDataService.m; sourceTree = "<group>"; };
 		84345A791C3A3CCE0089DB45 /* TDCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCity.h; sourceTree = "<group>"; };
@@ -383,6 +382,8 @@
 		84C701751C5385DE007FA60F /* libIOTCAPIs_ALL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIOTCAPIs_ALL.a; sourceTree = "<group>"; };
 		84C701761C5385DE007FA60F /* libIOTCAPIs_ALLT.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIOTCAPIs_ALLT.a; sourceTree = "<group>"; };
 		84C7017A1C5387ED007FA60F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		84ED19A91CB4DD8600116C99 /* WsqMD5Util.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WsqMD5Util.mm; sourceTree = "<group>"; };
+		84ED19AA1CB4DD8600116C99 /* WsqMD5Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WsqMD5Util.h; sourceTree = "<group>"; };
 		E2E5957C845E102A048E030F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -469,6 +470,8 @@
 				1836FEC51C795027009028D9 /* TDBannerInfoType.m */,
 				1836FEC71C7953EA009028D9 /* TDPromotionInfoType.h */,
 				1836FEC81C7953EA009028D9 /* TDPromotionInfoType.m */,
+				840FEE3E1CB61DAC0056C7BE /* TDServiceDataInfo.h */,
+				840FEE3F1CB61DAC0056C7BE /* TDServiceDataInfo.m */,
 			);
 			name = new;
 			sourceTree = "<group>";
@@ -672,9 +675,6 @@
 				18EB1AF61C37934600791849 /* TDIdCodeViewController.h */,
 				18EB1AF71C37934600791849 /* TDIdCodeViewController.m */,
 				18EB1AF81C37934600791849 /* TDIdCodeViewController.xib */,
-				18EB1AFB1C37985900791849 /* TDPassSetViewController.h */,
-				18EB1AFC1C37985900791849 /* TDPassSetViewController.m */,
-				18EB1AFD1C37985900791849 /* TDPassSetViewController.xib */,
 			);
 			name = account;
 			sourceTree = "<group>";
@@ -724,8 +724,10 @@
 		84345A741C3A3A800089DB45 /* service */ = {
 			isa = PBXGroup;
 			children = (
-				18EB27AD1C4E5E4E0085EDC4 /* ElApiService.m */,
+				84ED19A91CB4DD8600116C99 /* WsqMD5Util.mm */,
+				84ED19AA1CB4DD8600116C99 /* WsqMD5Util.h */,
 				18EB27AE1C4E5E4E0085EDC4 /* ElApiService.h */,
+				18EB27AD1C4E5E4E0085EDC4 /* ElApiService.m */,
 				18EB27AF1C4E5E4E0085EDC4 /* GDataDefines.h */,
 				18EB27B01C4E5E4E0085EDC4 /* GDataXMLNode.m */,
 				18EB27B11C4E5E4E0085EDC4 /* GDataXMLNode.h */,
@@ -994,7 +996,6 @@
 				18ED34471C3627B60085B250 /* ShopView0Controller.xib in Resources */,
 				1803C3201C36598D003157F1 /* panoroma.html in Resources */,
 				18ED343E1C3613EB0085B250 /* OrderDetailViewController.xib in Resources */,
-				18EB1AFF1C37985900791849 /* TDPassSetViewController.xib in Resources */,
 				18E8ED131C2FE25A00968CEB /* TopCarViewController.xib in Resources */,
 				18E9462A1C40FDE50047ADEA /* city.plist in Resources */,
 				1803C3251C36905B003157F1 /* 360.png in Resources */,
@@ -1073,7 +1074,6 @@
 				18E8A11B1BBA207800FBD3F4 /* CarBeautyViewController.m in Sources */,
 				18E8ED081C2FDD4200968CEB /* FrontCarViewController.m in Sources */,
 				8481490D1C326DFB00588564 /* TDButtonView.m in Sources */,
-				18EB1AFE1C37985900791849 /* TDPassSetViewController.m in Sources */,
 				1836FEC91C7953EA009028D9 /* TDPromotionInfoType.m in Sources */,
 				18ED343D1C3613EB0085B250 /* OrderDetailViewController.m in Sources */,
 				18EE55851C42075A00A99D50 /* TDCarInfoModel.m in Sources */,
@@ -1107,6 +1107,7 @@
 				18E809DA1BC2AD2800712C43 /* PaintView1Controller.m in Sources */,
 				84C7013C1C5379C6007FA60F /* PSDMonitor.m in Sources */,
 				845E48521C3B94FC00AAD5A5 /* CoolNavi.m in Sources */,
+				84ED19AB1CB4DD8600116C99 /* WsqMD5Util.mm in Sources */,
 				1836FEC61C795027009028D9 /* TDBannerInfoType.m in Sources */,
 				18B932521BA6A8C50019279E /* AppDelegate.m in Sources */,
 				18EB1AF91C37934600791849 /* TDIdCodeViewController.m in Sources */,
@@ -1121,6 +1122,7 @@
 				18248FF11BBEB490008D3C36 /* OrderReViewController.m in Sources */,
 				183EAA0F1BB929A00029ED79 /* TDTabViewController.m in Sources */,
 				18E809BF1BC248DF00712C43 /* TDTableViewCell1.m in Sources */,
+				840FEE401CB61DAC0056C7BE /* TDServiceDataInfo.m in Sources */,
 				18E809D51BC2A9C900712C43 /* PaintView0Controller.m in Sources */,
 				18EE557F1C41F4A400A99D50 /* TDCarInfoViewController.m in Sources */,
 				18E946211C40FAF20047ADEA /* TDLocationViewController.m in Sources */,

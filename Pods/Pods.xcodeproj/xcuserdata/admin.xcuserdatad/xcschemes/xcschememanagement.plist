@@ -4,12 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-SDWebImage.xcscheme</key>
+		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Toast.xcscheme</key>
+		<key>CustomIOSAlertView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -19,20 +24,20 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Toast.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1A648BACC3ED0B7818940FB3C61C7937</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>33C29E92CA3846D1D87F5A9F71F05AE6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>41B43FB23A34BFF9F2C0D936</key>
+		<key>15861722E21E7A0562F905678C6AE6E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,17 +47,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EB4E77558C75ED3BEC8E8B6E</key>
+		<key>928353533005A4198EBDA5B700D37B64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F2C9E92DC05837F084F6172834D0F9FD</key>
+		<key>BA81B9F23769D8D353913FCAFBEA71E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F3C06031AACA11AE0EF3EF30</key>
+		<key>DDC616B9850A1520AB27C1EC91C7403D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FE2F1D7B9D9FCEA148517E4657B243F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

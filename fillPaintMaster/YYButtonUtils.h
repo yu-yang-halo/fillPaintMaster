@@ -13,4 +13,5 @@
 +(void)imageTopTextBottom:(UIButton *)button;
 +(void)LimageLeftTextRight:(UIButton *)button;
 +(void)RimageLeftTextRight:(UIButton *)button;
+
 @end

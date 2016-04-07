@@ -8,9 +8,10 @@
 
 #import "ElApiService.h"
 #import "GDataXMLNode.h"
+#import "WsqMD5Util.h"
 
 const static int DEFAULT_TIME_OUT=11;
-const static NSString* WEBSERVICE_IP=@"liuzhi1212.gicp.net";
+const static NSString* WEBSERVICE_IP=@"112.124.106.131";
 const static int WEBSERVICE_PORT=9000;
 static  NSString* KEY_USERID=@"userID_KEY";
 static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
@@ -45,7 +46,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     if(shopId>0){
         [appendHttpStr appendFormat:@"&shopId=%d",shopId];
     }
-    NSString *service=[NSString stringWithFormat:@"%@appUserLogin?name=%@&password=%@&clientEnv=ios&logoutYN=0%@",self.connect_header,name,pass,appendHttpStr];
+    NSString *service=[NSString stringWithFormat:@"%@appUserLogin?name=%@&password=%@&clientEnv=ios&logoutYN=0%@",self.connect_header,name,[WsqMD5Util getmd5WithString:pass],appendHttpStr];
     NSLog(@"appUserLogin service:%@",service);
     NSData *data=[self requestURLSync:service];
     if(data!=nil){
@@ -70,11 +71,9 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     
     return NO;
 }
--(BOOL)createUser:(NSString *)loginName password:(NSString *)pass email:(NSString *)email phone:(NSString *)phoneNumber type:(int)type shopId:(int)shopId{
-    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
-    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+-(BOOL)createUser:(NSString *)loginName password:(NSString *)pass email:(NSString *)email phone:(NSString *)phoneNumber shopId:(int)shopId{
     
-    NSString *service=[NSString stringWithFormat:@"%@createUser?senderId=%@&secToken=%@loginName=%@&password=%@&email=%@&phone=%@&type=%d&shopId=%d",self.connect_header,userID,secToken,loginName,pass,email,phoneNumber,type,shopId];
+    NSString *service=[NSString stringWithFormat:@"%@createUser?senderId=0&secToken=1&loginName=%@&password=%@&email=%@&phone=%@&type=3&shopId=%d",self.connect_header,loginName,pass,email,phoneNumber,shopId];
     NSLog(@"createUser service:%@",service);
     NSData *data=[self requestURLSync:service];
     if(data!=nil){
@@ -1218,11 +1217,137 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     
     return nil;
 }
+-(NSArray *)getDayOrderStateList:(int)shopId searchType:(int)searchType{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@getDayOrderStateList?senderId=%@&secToken=%@&searchTime=%@&shopId=%d&searchType=%d",self.connect_header,userID,secToken,@"",shopId,searchType];
+    NSLog(@"getDayOrderStateList  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            NSArray *orderStateListItems=[rootElement elementsForName:@"orderStateList"];
+            NSMutableArray *orderStateList=[[NSMutableArray alloc] init];
+            
+            for (GDataXMLElement *element in orderStateListItems) {
+                
+                TDOrderStateType *tdOrderStateType=(TDOrderStateType *) [self parseTDOrderStateTypeXML:element];
+                
+                [orderStateList addObject:tdOrderStateType];
+                
+            }
+            return orderStateList;
+            
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+    }
+    return nil;
+}
+
+-(NSArray *)getGoodsType{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@getGoodsType?senderId=%@&secToken=%@",self.connect_header,userID,secToken];
+    NSLog(@"getGoodsType  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            NSArray *goodsTypeListItems=[rootElement elementsForName:@"goodsTypeList"];
+            NSMutableArray *goodsTypeList=[[NSMutableArray alloc] init];
+            
+            for (GDataXMLElement *element in goodsTypeListItems) {
+                
+                TDGoodsType *tdGoodsType=(TDGoodsType *) [self parseTDGoodsTypeXML:element];
+                
+                [goodsTypeList addObject:tdGoodsType];
+                
+            }
+            return goodsTypeList;
+            
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+    }
+
+    return nil;
+}
+
+-(BOOL)createGoodsOrder:(NSString *)goodsInfo shopId:(int)arg1 price:(float)arg2 address:(NSString *)arg3 name:(NSString *)arg4 phone:(NSString *)arg5{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@createGoodsOrder?senderId=%@&secToken=%@&userId=%@&goodsInfo=%@&shopId=%d&price=%f&address=%@&name=%@&phone=%@",self.connect_header,userID,secToken,userID,goodsInfo,arg1,arg2,arg3,arg4,arg5];
+    NSLog(@"createGoodsOrder  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+    }
+    
+    return NO;
+}
+-(BOOL)updCoupon:(int)promotionId{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@updCoupon?senderId=%@&secToken=%@&userId=%@&promotionId=%d",self.connect_header,userID,secToken,userID,promotionId];
+    NSLog(@"updCoupon  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            return YES;
+        }else{
+            [self notificationErrorCode:errorMsgVal];
+        }
+    }
+    
+    
+    return NO;
+}
+
 
 /***********************************
  * webService API end...
  ***********************************
  */
+
+-(TDGoodsType *)parseTDGoodsTypeXML:(GDataXMLElement *)element{
+    TDGoodsType *tdGoodsType=[[TDGoodsType alloc] init];
+    tdGoodsType.goodTypeId=[[[[element elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+    tdGoodsType.name=[[[element elementsForName:@"name"] objectAtIndex:0] stringValue];
+   
+    return tdGoodsType;
+}
+
 
 -(TDPromotionInfoType *)parseTDPromotionInfoXML:(GDataXMLElement *)element{
     TDPromotionInfoType *tdPromotionInfoType=[[TDPromotionInfoType alloc] init];
@@ -1237,6 +1362,12 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     tdBannerInfoType.imgName=[[[element elementsForName:@"imgName"] objectAtIndex:0] stringValue];
     tdBannerInfoType.src=[[[element elementsForName:@"src"] objectAtIndex:0] stringValue];
     return tdBannerInfoType;
+}
+-(TDOrderStateType *)parseTDOrderStateTypeXML:(GDataXMLElement *)element{
+    TDOrderStateType *tdOrderStateType=[[TDOrderStateType alloc] init];
+    tdOrderStateType.isFull=[[[[element elementsForName:@"isFull"] objectAtIndex:0] stringValue] intValue];
+    tdOrderStateType.orderTime=[[[element elementsForName:@"orderTime"] objectAtIndex:0] stringValue];
+    return tdOrderStateType;
 }
 
 -(TDShopInfo *)parseTDShopInfoXML:(GDataXMLElement *)element{

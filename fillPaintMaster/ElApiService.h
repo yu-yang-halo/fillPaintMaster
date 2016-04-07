@@ -21,6 +21,7 @@
 #import "TDDecoOrder.h"
 #import "TDBannerInfoType.h"
 #import "TDPromotionInfoType.h"
+#import "TDServiceDataInfo.h"
 #import <Foundation/Foundation.h>
 
 @class ElApiService;
@@ -31,7 +32,7 @@ static ElApiService* shareService=nil;
 @property(nonatomic,retain) NSString* connect_header;
 +(ElApiService *) shareElApiService;
 -(BOOL)appUserLogin:(NSString *)name password:(NSString *)pass shopId:(int)shopId;
--(BOOL)createUser:(NSString *)loginName password:(NSString *)pass email:(NSString *)email phone:(NSString *)phoneNumber type:(int)type shopId:(int)shopId;
+-(BOOL)createUser:(NSString *)loginName password:(NSString *)pass email:(NSString *)email phone:(NSString *)phoneNumber shopId:(int)shopId;
 -(BOOL)updUser:(TDUser *)tdUser;
 -(TDUser *)getUserInfo;
 -(NSArray *)getShopList;
@@ -60,6 +61,14 @@ static ElApiService* shareService=nil;
 -(BOOL)createDecoOrderNumber:(int)decoOrderId decoId:(int)decoId;
 -(NSArray *)getBannerList:(int)maxNum;
 -(NSArray *)getPromotionList:(int)maxNum;
+
+-(NSArray *)getDayOrderStateList:(int)shopId searchType:(int)searchType;
+-(NSArray *)getGoodsType;
+-(BOOL)createGoodsOrder:(NSString *)goodsInfo shopId:(int)arg1 price:(float)arg2 address:(NSString *)arg3 name:(NSString *)arg4 phone:(NSString *)arg5;
+-(BOOL)updCoupon:(int)promotionId;
+
+
+
 
 
 @end
