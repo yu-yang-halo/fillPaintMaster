@@ -18,6 +18,7 @@ static const float TOP_SPACE=5;
 static const float LEFT_SPACE=15;
 static const float ROW_HEIGHT=40;
 #import "LiveViewController.h"
+#import <SDCycleScrollView/SDCycleScrollView.h>
 @interface TDHomeViewController (){
     NSArray *imgItms;
     NSArray *contentItms;
@@ -26,7 +27,7 @@ static const float ROW_HEIGHT=40;
 @property(retain, nonatomic)  UIView *containerView;
 @property(retain, nonatomic)  UITableView *tableView;
 
-@property (retain, nonatomic)  TDAdView *adView;
+@property (retain, nonatomic)  SDCycleScrollView *cycleScrollView;
 @property(retain,nonatomic) NSArray *serviceItems;
 
 @end
@@ -36,7 +37,16 @@ static const float ROW_HEIGHT=40;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-     self.adView=[[TDAdView alloc] initADViewWithFrame:CGRectMake(0,64, self.view.frame.size.width, AD_HEIGHT) adImageNames:@[@"ad",@"ad",@"ad"]];
+    // 网络加载图片的轮播器
+    self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0,64, self.view.frame.size.width, AD_HEIGHT) delegate:nil placeholderImage:nil];
+    NSArray *imagesURLStrings=@[@"http://112.124.106.131/kele/upload/banner/7xi.jpg",@"http://112.124.106.131/kele/upload/banner/7xi.jpg",@"http://112.124.106.131/kele/upload/banner/7xi.jpg"];
+    _cycleScrollView.imageURLStringsGroup = imagesURLStrings;
+    _cycleScrollView.currentPageDotColor=[UIColor whiteColor];
+    _cycleScrollView.pageDotColor=[UIColor colorWithWhite:1 alpha:0.4];
+    
+    
+    
+    
     self.serviceItems=@[@"洗车美容",@"换油保养",@"钣金喷漆",@"手机探店",@"车险直销",@"产品超市",@"即将上线",@"即将上线"];
     imgItms=@[@"home_icon_hongbao",@"home_icon_recommend"];
     contentItms=@[@"领取优惠券和红包",@"热门推荐"];
@@ -58,7 +68,7 @@ static const float ROW_HEIGHT=40;
     
     
     
-    [self.view addSubview:_adView];
+    [self.view addSubview:_cycleScrollView];
     [self.view addSubview:_tdScrollView];
     
     
