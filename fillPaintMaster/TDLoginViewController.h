@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+extern const NSString *KEY_USERNAME;
+extern const NSString *KEY_PASSWORD;
 @interface TDLoginViewController : UIViewController<UITextFieldDelegate>
 
 @end

@@ -99,6 +99,7 @@
 		18EFC0071C4689F90068DA68 /* TDStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EFC0061C4689F90068DA68 /* TDStoreViewController.m */; };
 		18F612F71C53B21300238F12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F612F61C53B21300238F12 /* CoreGraphics.framework */; };
 		840FEE401CB61DAC0056C7BE /* TDServiceDataInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 840FEE3F1CB61DAC0056C7BE /* TDServiceDataInfo.m */; };
+		840FEE981CB8D8EA0056C7BE /* errorCodePlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 840FEE971CB8D8E90056C7BE /* errorCodePlist.plist */; };
 		84345A771C3A3AD90089DB45 /* TDHttpDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A761C3A3AD90089DB45 /* TDHttpDataService.m */; };
 		84345A7B1C3A3CCE0089DB45 /* TDCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A7A1C3A3CCE0089DB45 /* TDCity.m */; };
 		84345A7E1C3A3D8E0089DB45 /* TDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A7D1C3A3D8E0089DB45 /* TDUser.m */; };
@@ -313,6 +314,11 @@
 		49336F7C7CEF0F6B8C6EC250 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		840FEE3E1CB61DAC0056C7BE /* TDServiceDataInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDServiceDataInfo.h; sourceTree = "<group>"; };
 		840FEE3F1CB61DAC0056C7BE /* TDServiceDataInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDServiceDataInfo.m; sourceTree = "<group>"; };
+		840FEE8F1CB8A3D80056C7BE /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = ../../Downloads/BaiduMap_IOSSDK_v2.10.2_Lib/BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
+		840FEE901CB8A3D80056C7BE /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Location.framework; path = ../../Downloads/BaiduMap_IOSSDK_v2.10.2_Lib/BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
+		840FEE911CB8A3D80056C7BE /* BaiduMapAPI_Map.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Map.framework; path = ../../Downloads/BaiduMap_IOSSDK_v2.10.2_Lib/BaiduMapAPI_Map.framework; sourceTree = "<group>"; };
+		840FEE921CB8A3D80056C7BE /* BaiduMapAPI_Utils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Utils.framework; path = ../../Downloads/BaiduMap_IOSSDK_v2.10.2_Lib/BaiduMapAPI_Utils.framework; sourceTree = "<group>"; };
+		840FEE971CB8D8E90056C7BE /* errorCodePlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = errorCodePlist.plist; sourceTree = "<group>"; };
 		84345A751C3A3AD90089DB45 /* TDHttpDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDHttpDataService.h; sourceTree = "<group>"; };
 		84345A761C3A3AD90089DB45 /* TDHttpDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDHttpDataService.m; sourceTree = "<group>"; };
 		84345A791C3A3CCE0089DB45 /* TDCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCity.h; sourceTree = "<group>"; };
@@ -556,6 +562,7 @@
 				18B9325E1BA6A8C50019279E /* Info.plist */,
 				18B9324D1BA6A8C50019279E /* Supporting Files */,
 				18E9461C1C40C2C20047ADEA /* LaunchScreen.xib */,
+				840FEE971CB8D8E90056C7BE /* errorCodePlist.plist */,
 			);
 			path = fillPaintMaster;
 			sourceTree = "<group>";
@@ -848,6 +855,10 @@
 		DA468AD83F69F47810361E7D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				840FEE8F1CB8A3D80056C7BE /* BaiduMapAPI_Base.framework */,
+				840FEE901CB8A3D80056C7BE /* BaiduMapAPI_Location.framework */,
+				840FEE911CB8A3D80056C7BE /* BaiduMapAPI_Map.framework */,
+				840FEE921CB8A3D80056C7BE /* BaiduMapAPI_Utils.framework */,
 				18F612F61C53B21300238F12 /* CoreGraphics.framework */,
 				84C7017A1C5387ED007FA60F /* CoreMedia.framework */,
 				84C701721C53855C007FA60F /* MobileCoreServices.framework */,
@@ -999,6 +1010,7 @@
 				18E8ED131C2FE25A00968CEB /* TopCarViewController.xib in Resources */,
 				18E9462A1C40FDE50047ADEA /* city.plist in Resources */,
 				1803C3251C36905B003157F1 /* 360.png in Resources */,
+				840FEE981CB8D8EA0056C7BE /* errorCodePlist.plist in Resources */,
 				18248FF61BBEB851008D3C36 /* TDBeautyTableViewCell2.xib in Resources */,
 				18B932581BA6A8C50019279E /* Main.storyboard in Resources */,
 			);

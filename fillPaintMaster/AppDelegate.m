@@ -9,8 +9,14 @@
 #import "AppDelegate.h"
 #import "ElApiService.h"
 #import <IOTCamera/Camera.h>
+#import <BaiduMapAPI_Base/BMKMapManager.h>
+#import <UIView+Toast.h>
+
+
 @interface AppDelegate ()
 {
+    BMKMapManager *mapManager;
+   
 }
 @end
 
@@ -20,8 +26,26 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
-     [Camera initIOTC];
+    [Camera initIOTC];
   
+   
+    mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+    BOOL ret = [mapManager start:@"zM1g4ZYRsDAQAfK8kiZtVBiVx3FPo9Tj"  generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }else{
+        NSLog(@"manager start success");
+    }
+    
+    
+
+    [[ElApiService shareElApiService] setIWSErrorCodeListenerBlock:^(NSString * errorCode, NSString *errorMsg) {
+        if(errorMsg!=nil){
+           [self.window makeToast:errorMsg];
+        }
+        
+    }];
     
     return YES;
 }
@@ -48,5 +72,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
 
 @end

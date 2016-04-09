@@ -26,11 +26,22 @@
 
 @class ElApiService;
 static ElApiService* shareService=nil;
+
+typedef void (^ErrorCodeHandlerBlock)(NSString * ,NSString *);
+
+
+
+
+
 @interface ElApiService : NSObject{
     
 }
 @property(nonatomic,retain) NSString* connect_header;
 +(ElApiService *) shareElApiService;
+
+-(void)setIWSErrorCodeListenerBlock:(ErrorCodeHandlerBlock)block;
+
+
 -(BOOL)appUserLogin:(NSString *)name password:(NSString *)pass shopId:(int)shopId;
 -(BOOL)createUser:(NSString *)loginName password:(NSString *)pass email:(NSString *)email phone:(NSString *)phoneNumber shopId:(int)shopId;
 -(BOOL)updUser:(TDUser *)tdUser;
@@ -69,6 +80,13 @@ static ElApiService* shareService=nil;
 
 
 
+/*
+   image URL get
+ */
+-(NSString *)getBannerURL:(NSString *)imageName;
+-(NSString *)getPromotionURL:(NSString *)imageName;
+-(NSString *)getGoodsURL:(NSString *)imageName shopId:(int)shopId;
+-(NSString *)getPanoramaURL:(NSString *)imageName shopId:(int)shopId;
 
 
 @end

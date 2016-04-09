@@ -13,12 +13,18 @@
 #import "YYButtonUtils.h"
 float BUTTON_W=30;
 float BUTTON_H=49;
+const NSString *kNotificationLocationUpdate=@"notification_location_update";
 
-@interface TDTabViewController (){
+@interface TDTabViewController ()<BMKLocationServiceDelegate>{
     UIButton *homeBtn;
     UIButton *doorBtn;
     UIButton *activeBtn;
     UIButton *myBtn;
+    
+    UIButton *locBtn;
+    NSString *cityName;
+    
+    BMKLocationService *locService;
 }
 
 @end
@@ -28,10 +34,19 @@ float BUTTON_H=49;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
+    
     [self initTDTabBar];
     
     [self initCustomView:0];
     
+    
+    
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self locMyPosition];
 }
 
 -(void)initTDTabBar{
@@ -135,12 +150,18 @@ float BUTTON_H=49;
 -(void)initCustomView:(NSUInteger)tagId{
     if(tagId==0){
         [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
-        UIButton *locBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,(44-40)/2, 60, 40)];
-        [locBtn setTitle:@"合肥" forState:UIControlStateNormal];
-        [locBtn setImage:[UIImage imageNamed:@"city_icon_location"] forState:UIControlStateNormal];
-        [locBtn addTarget:self action:@selector(location:) forControlEvents:UIControlEventTouchUpInside];
-       // [locBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
-        [YYButtonUtils LimageLeftTextRight:locBtn];
+        locBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,(44-40)/2, 60, 40)];
+       
+        if(cityName!=nil){
+            [locBtn setTitle:cityName forState:UIControlStateNormal];
+        }
+        
+        
+        [locBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [locBtn setTitleColor:[UIColor colorWithWhite:0 alpha:0.5] forState:UIControlStateHighlighted];
+       
+        [locBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,-10,0,0)];
+      
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:locBtn];
         UIImageView *logo=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
         CGRect framLayout=logo.frame;
@@ -181,18 +202,57 @@ float BUTTON_H=49;
    
     
 }
--(void)location:(UIButton *)sender{
-    NSLog(@"location...");
+
+-(void)locMyPosition{
+    //初始化BMKLocationService
+    locService = [[BMKLocationService alloc]init];
+    locService.delegate = self;
+    //启动LocationService
+    [locService startUserLocationService];
+}
+
+//实现相关delegate 处理位置信息更新
+//处理方向变更信息
+- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
+{
+    // NSLog(@"heading is %@ userLocation::%@",userLocation.heading,userLocation);
+}
+//处理位置坐标更新
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    //[self.eventDelegate onLocationComplete:userLocation];
     
-    TDLocationViewController *locationVC=[[TDLocationViewController alloc] init];
-    [self presentViewController:locationVC animated:YES completion:^{
-        
+    CLGeocoder *geocoder=[[CLGeocoder alloc] init];
+    
+    double lat=userLocation.location.coordinate.latitude;
+    double lgt=userLocation.location.coordinate.longitude;
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f,%f",lat,lgt] forKey:@"latlgt"];
+    
+    CLLocation *location=[[CLLocation alloc] initWithLatitude:userLocation.location.coordinate.latitude longitude:userLocation.location.coordinate.longitude];
+    
+   
+    
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        for (CLPlacemark *mark in placemarks) {
+          //  NSLog(@"%@ : %@ ",mark.thoroughfare,mark.locality);
+            cityName=mark.locality;
+            
+            [locBtn setTitle:cityName forState:UIControlStateNormal];
+            
+            
+        }
     }];
+    
     
 }
 
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+   
 }
 
 

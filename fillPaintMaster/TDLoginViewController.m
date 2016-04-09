@@ -11,8 +11,8 @@
 #import <UIView+Toast.h>
 #import "ElApiService.h"
 #import <MBProgressHUD/MBProgressHUD.h>
-static const NSString *KEY_USERNAME=@"KEY_USERNAME";
-static const NSString *KEY_PASSWORD=@"KEY_PASSWORD";
+const NSString *KEY_USERNAME=@"KEY_USERNAME";
+const NSString *KEY_PASSWORD=@"KEY_PASSWORD";
 
 @interface TDLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *accountTxtField;

@@ -11,6 +11,8 @@
 #import "TDLoginViewController.h"
 #import "CarBeautyViewController.h"
 #import "YYButtonUtils.h"
+#import "ElApiService.h"
+#import "AppDelegate.h"
 static const float ICON_WIDTH=45;
 static const float ICON_HEIGHT=80;
 static const float AD_HEIGHT=120;
@@ -19,7 +21,7 @@ static const float LEFT_SPACE=15;
 static const float ROW_HEIGHT=40;
 #import "LiveViewController.h"
 #import <SDCycleScrollView/SDCycleScrollView.h>
-@interface TDHomeViewController (){
+@interface TDHomeViewController ()<SDCycleScrollViewDelegate>{
     NSArray *imgItms;
     NSArray *contentItms;
 }
@@ -38,12 +40,12 @@ static const float ROW_HEIGHT=40;
     [super viewDidLoad];
     
     // 网络加载图片的轮播器
-    self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0,64, self.view.frame.size.width, AD_HEIGHT) delegate:nil placeholderImage:nil];
-    NSArray *imagesURLStrings=@[@"http://112.124.106.131/kele/upload/banner/7xi.jpg",@"http://112.124.106.131/kele/upload/banner/7xi.jpg",@"http://112.124.106.131/kele/upload/banner/7xi.jpg"];
-    _cycleScrollView.imageURLStringsGroup = imagesURLStrings;
+    self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0,64, self.view.frame.size.width, AD_HEIGHT) delegate:self placeholderImage:nil];
+
+    
     _cycleScrollView.currentPageDotColor=[UIColor whiteColor];
     _cycleScrollView.pageDotColor=[UIColor colorWithWhite:1 alpha:0.4];
-    
+    _cycleScrollView.autoScroll=NO;
     
     
     
@@ -84,9 +86,38 @@ static const float ROW_HEIGHT=40;
         
     }];
     
-    
+    [self netDataGet];
 
 }
+
+
+-(void)netDataGet{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *bannerList=[[ElApiService shareElApiService] getBannerList:3];
+        
+        NSMutableArray *imagesURLStrings=[[NSMutableArray alloc] init];
+        
+        if(bannerList!=nil&&[bannerList count]>0){
+            for (TDBannerInfoType *banner in bannerList) {
+                NSString *imageUrl=[[ElApiService shareElApiService] getBannerURL:banner.imgName];
+                [imagesURLStrings addObject:imageUrl];
+            }
+            
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if([imagesURLStrings count]>0){
+                 _cycleScrollView.imageURLStringsGroup = imagesURLStrings;
+            }
+          
+        });
+        
+        
+    });
+}
+
+
 -(void)initHomeView{
     /*
      2行
@@ -257,6 +288,17 @@ static const float ROW_HEIGHT=40;
     
     
     return tableViewCell;
+}
+
+#pragma mark SDCycleScrollViewDelegate
+/** 点击图片回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    NSLog(@"click index %ld ",index);
+}
+
+/** 图片滚动回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
+    NSLog(@"didScrollToIndex index %ld ",index);
 }
 
 @end

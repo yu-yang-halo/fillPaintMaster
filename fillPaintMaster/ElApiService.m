@@ -17,6 +17,9 @@ static  NSString* KEY_USERID=@"userID_KEY";
 static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
 
 @interface ElApiService()
+@property(nonatomic,strong,readwrite) ErrorCodeHandlerBlock block;
+@property(nonatomic,strong) NSDictionary *errorCodeDictionary;
+
 -(NSData *)requestURLSync:(NSString *)service;
 -(NSData *)requestURL:(NSString *)service;
 -(GDataXMLElement *)getRootElementByData:(NSData *)data;
@@ -31,11 +34,44 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if(shareService==nil){
             shareService=[[ElApiService alloc] init];
             shareService.connect_header=[NSString stringWithFormat:@"http://%@:%d/car/services/carwsapi/",WEBSERVICE_IP,WEBSERVICE_PORT];
+            
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [shareService readErrorCodePlistFile];
+            });
         }
         return shareService;
     }
     
 }
+
+-(void)readErrorCodePlistFile{
+    NSDictionary *errCodeDictionary=[[NSDictionary alloc] initWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"errorCodePlist.plist"]];
+    //NSLog(@"%@",errCodeDictionary);
+    self.errorCodeDictionary=errCodeDictionary;
+}
+
+-(void)setIWSErrorCodeListenerBlock:(ErrorCodeHandlerBlock)block{
+    self.block=block;
+}
+-(NSString *)getBannerURL:(NSString *)imageName{
+    NSString *bannerURL=[NSString stringWithFormat:@"http://%@/kele/upload/banner/%@",WEBSERVICE_IP,imageName];
+    return bannerURL;
+}
+-(NSString *)getPromotionURL:(NSString *)imageName{
+    NSString *bannerURL=[NSString stringWithFormat:@"http://%@/kele/upload/promotion/%@",WEBSERVICE_IP,imageName];
+    return bannerURL;
+}
+-(NSString *)getGoodsURL:(NSString *)imageName shopId:(int)shopId{
+    NSString *goodsURL=[NSString stringWithFormat:@"http://%@/kele/upload/goods/%d/%@",WEBSERVICE_IP,shopId,imageName];
+    return goodsURL;
+}
+-(NSString *)getPanoramaURL:(NSString *)imageName shopId:(int)shopId{
+    NSString *panoramaURL=[NSString stringWithFormat:@"http://%@/kele/upload/panorama/%d/%@",WEBSERVICE_IP,shopId,imageName];
+    return panoramaURL;
+}
+
+
 /***********************************
  * webService API begin...
  ***********************************
@@ -64,7 +100,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return YES;
         }else{
-            [self notificationErrorCode:nil];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -86,7 +122,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -117,7 +153,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     }
 
     
-    NSString *service=[NSString stringWithFormat:@"%@createUser?senderId=%@&secToken=%@userId=%@%@",self.connect_header,userID,secToken,userID,appendHttpStr];
+    NSString *service=[NSString stringWithFormat:@"%@updUser?senderId=%@&secToken=%@userId=%@&type=3%@",self.connect_header,userID,secToken,userID,appendHttpStr];
     NSLog(@"updUser service:%@",service);
     NSData *data=[self requestURLSync:service];
     if(data!=nil){
@@ -130,7 +166,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -160,7 +196,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return user;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -195,7 +231,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return shopInfoArr;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -232,7 +268,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return oilArr;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -267,7 +303,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return metalplateArr;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -302,7 +338,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return decorationArr;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -337,7 +373,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return couponArr;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -372,7 +408,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return cityArr;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -407,7 +443,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return carArr;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -442,7 +478,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return goodsArr;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -500,7 +536,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -525,7 +561,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -588,7 +624,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -638,7 +674,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return oilOrderArr;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -664,7 +700,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -723,7 +759,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -748,7 +784,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -811,7 +847,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -861,7 +897,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return metaOrderArr;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -887,7 +923,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -912,7 +948,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -974,7 +1010,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -999,7 +1035,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -1061,7 +1097,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -1111,7 +1147,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return decoOrderArr;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -1138,7 +1174,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -1173,7 +1209,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             return bannerArr;
             
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -1209,7 +1245,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             return promotionArr;
             
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -1245,7 +1281,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             return orderStateList;
             
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
     }
     return nil;
@@ -1279,7 +1315,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             return goodsTypeList;
             
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
     }
 
@@ -1303,7 +1339,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
     }
     
@@ -1326,7 +1362,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         if([errorCodeVal isEqualToString:@"0"]){
             return YES;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
     }
     
@@ -1587,7 +1623,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
             
             return tdShopInfo;
         }else{
-            [self notificationErrorCode:errorMsgVal];
+            [self notificationErrorCode:errorCodeVal];
         }
         
     }
@@ -1598,7 +1634,18 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
 
 #pragma private
 
+
+
+
 -(void)notificationErrorCode:(NSString *)errorCode{
+    
+    if([NSThread isMainThread]){
+        _block(errorCode,[self.errorCodeDictionary objectForKey:errorCode]);
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _block(errorCode,[self.errorCodeDictionary objectForKey:errorCode]);
+        });
+    }
     return ;
 }
 -(GDataXMLElement *)getRootElementByData:(NSData *)data{

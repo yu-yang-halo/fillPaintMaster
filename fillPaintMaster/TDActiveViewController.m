@@ -8,10 +8,12 @@
 
 #import "TDActiveViewController.h"
 #import "TDActiveTableViewCell.h"
+#import "ElApiService.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <UIView+Toast.h>
 @interface TDActiveViewController (){
-    NSArray *activeItems;
-    NSArray *activeNumbers;
-    NSArray *activeIcons;
+   
+    NSArray *promotionList;
 }
 @property(nonatomic,retain) UITableView *tableView;
 
@@ -22,30 +24,74 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      self.tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 64,self.view.frame.size.width, self.view.frame.size.height-64-49)];
-    
-    activeItems=@[@"门店兑换码",@"油行天下"];
-    activeNumbers=@[@"已有20012人参加",@"已有10023人参加"];
-    activeIcons=@[@"active_01",@"active_02"];
-    self.tableView.rowHeight=197;
-    self.tableView.delegate   =self;
-    self.tableView.dataSource =self;
+     self.tableView.rowHeight=130;
+     self.tableView.delegate   =self;
+     self.tableView.dataSource =self;
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   
     
     [self.view addSubview:_tableView];
     
+    [self netDataGet];
     
-    
+}
+
+-(void)netDataGet{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        promotionList=[[ElApiService shareElApiService] getPromotionList:-1];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(promotionList!=nil){
+                [self.tableView reloadData];
+            }
+            
+        });
+        
+        
+    });
+ 
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(promotionList!=nil){
+       TDPromotionInfoType *promotion=[promotionList objectAtIndex:indexPath.row];
+        NSLog(@"select %@",promotion.src);
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        hud.labelText = @"领取中...";
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            BOOL isSUC=[[ElApiService shareElApiService] updCoupon:promotion.typeId];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+               
+                [hud hide:YES];
+                if(isSUC){
+                    [self.view makeToast:@"活动优惠券领取成功"];
+                }
+                
+            });
+            
+        });
+        
+    }
+    
+}
+
 //activeCell
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [activeItems count];
+    if(promotionList!=nil)
+    {
+        return [promotionList count];
+    }
+    return  0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -56,13 +102,18 @@
         NSLog(@"new ....");
         
     }
-    [activeTableCell.activeNameLabel setText:[activeItems objectAtIndex:indexPath.row]];
-    [activeTableCell.activeNumsLabel setText:[activeNumbers objectAtIndex:indexPath.row]];
-    [activeTableCell.activeImageView setImage:[UIImage imageNamed:[activeIcons objectAtIndex:indexPath.row]]];
+    
+    TDPromotionInfoType *promotionInfoType=[promotionList objectAtIndex:indexPath.row];
+    
+    NSString *urlImage=[[ElApiService shareElApiService] getPromotionURL:promotionInfoType.imgName];
+    
+    
+    [activeTableCell.activeImageView sd_setImageWithURL:[NSURL URLWithString:urlImage] placeholderImage:nil];
     
     return activeTableCell;
     
 }
+
 
 
 
