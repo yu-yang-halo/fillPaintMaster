@@ -4,12 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>CustomIOSAlertView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDCycleScrollView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,12 +47,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1A648BACC3ED0B7818940FB3C61C7937</key>
+		<key>28FBA61ED3358D488385ADBCAB19339D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>33C29E92CA3846D1D87F5A9F71F05AE6</key>
+		<key>5C70214662AAECC051D70A090E0F256A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,7 +62,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F2C9E92DC05837F084F6172834D0F9FD</key>
+		<key>6A51F1035521F9C5D78E4D3366B0BD41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8F74D9EA91F4C43190670066BAC37D44</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>928353533005A4198EBDA5B700D37B64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4732A103964A95B268BF7A047DBDED9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FE2F1D7B9D9FCEA148517E4657B243F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

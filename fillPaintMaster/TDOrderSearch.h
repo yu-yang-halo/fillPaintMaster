@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 typedef NS_ENUM(NSUInteger, SEARCH_TYPE){
-    SEARCH_TYPE_SHOPID,
-    SEARCH_TYPE_USERID
+    SEARCH_TYPE_SHOPID=1,
+    SEARCH_TYPE_USERID=2
 };
 
 @interface TDOrderSearch : NSObject

@@ -25,4 +25,17 @@
     
     return [NSString stringWithFormat:@"%d:%@",hourINT,minuteStr];
 }
++(NSString *)normalShowTime:(NSString *)serverTime{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //2016-04-09T16:30:53.000+08:00
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.000+08:00"];
+    NSDate *date = [dateFormatter dateFromString:serverTime];
+    
+    NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+    [dateFormatter2 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    return [dateFormatter2 stringFromDate:date];
+}
+
+
 @end

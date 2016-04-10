@@ -17,6 +17,7 @@ PODS:
   - BaiduMapKit (2.10.2)
   - CustomIOSAlertView (0.9.3)
   - MBProgressHUD (0.9.2)
+  - MJRefresh (3.1.0)
   - SDCycleScrollView (1.62):
     - SDWebImage (~> 3.7)
   - SDWebImage (3.7.3):
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - BaiduMapKit
   - CustomIOSAlertView (~> 0.9.3)
   - MBProgressHUD (~> 0.9.2)
+  - MJRefresh (~> 3.1.0)
   - SDCycleScrollView (~> 1.62)
   - SDWebImage
   - Toast (~> 3.0)
@@ -38,6 +40,7 @@ SPEC CHECKSUMS:
   BaiduMapKit: b1706a062597c70ec62a0cca93212cba1d3017e1
   CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   SDCycleScrollView: ae016cb4cc4036523917f146ede6f7b11d408f6a
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   Toast: 32c59229abfcf41850162b83bb9259dc84372473

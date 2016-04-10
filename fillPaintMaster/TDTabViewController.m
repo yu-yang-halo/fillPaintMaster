@@ -33,12 +33,18 @@ const NSString *kNotificationLocationUpdate=@"notification_location_update";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"返回"  style:UIBarButtonItemStylePlain  target:self  action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
+  
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
     
     [self initTDTabBar];
     
     [self initCustomView:0];
+    
+    
+    
     
     
     
@@ -113,11 +119,7 @@ const NSString *kNotificationLocationUpdate=@"notification_location_update";
     [self.tabBar setHidden:YES];
 }
 -(void)click:(UIButton *)sender{
-    if(sender.selected){
-        [sender setSelected:NO];
-    }else{
-        [sender setSelected:YES];
-    }
+   [sender setSelected:YES];
     if(sender==homeBtn){
         [doorBtn setSelected:NO];
         [activeBtn setSelected:NO];

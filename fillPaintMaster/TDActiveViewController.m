@@ -11,9 +11,11 @@
 #import "ElApiService.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <UIView+Toast.h>
+#import <MJRefresh/MJRefresh.h>
 @interface TDActiveViewController (){
    
     NSArray *promotionList;
+    MJRefreshNormalHeader *refreshHeader;
 }
 @property(nonatomic,retain) UITableView *tableView;
 
@@ -33,7 +35,15 @@
     
     [self.view addSubview:_tableView];
     
-    [self netDataGet];
+    refreshHeader=[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 进入刷新状态后会自动调用这个block
+        [self netDataGet];
+    }];
+    [refreshHeader.lastUpdatedTimeLabel setHidden:YES];
+
+     self.tableView.mj_header=refreshHeader;
+    [self.tableView.mj_header beginRefreshing];
+
     
 }
 
@@ -46,7 +56,7 @@
             if(promotionList!=nil){
                 [self.tableView reloadData];
             }
-            
+            [refreshHeader endRefreshing];
         });
         
         
@@ -99,7 +109,6 @@
     if(activeTableCell==nil){
         activeTableCell= [[[NSBundle mainBundle] loadNibNamed:@"TDActiveTableViewCell" owner:self options:nil] lastObject];
         
-        NSLog(@"new ....");
         
     }
     

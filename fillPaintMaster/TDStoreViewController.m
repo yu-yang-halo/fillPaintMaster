@@ -28,10 +28,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     mapView = [[BMKMapView alloc]initWithFrame:self.view.bounds];
-    
+    [mapView setZoomLevel:12];
     self.view = mapView;
     
-   
     
     [self netDataGet:-100];
 }
@@ -110,9 +109,10 @@
         NSArray *shopIDSelectedArr=[self getShopId:annotation.coordinate];
         newAnnotationView.tag=[shopIDSelectedArr[0] intValue];
         if([shopIDSelectedArr[1] boolValue]){
-            newAnnotationView.pinColor = BMKPinAnnotationColorGreen;
+           
+            newAnnotationView.image=[UIImage imageNamed:@"maker2"];
         }else{
-            newAnnotationView.pinColor = BMKPinAnnotationColorRed;
+            newAnnotationView.image=[UIImage imageNamed:@"maker"];
         }
         
         return newAnnotationView;
@@ -123,9 +123,9 @@
    // NSLog(@"didSelectAnnotationView %@",view);
 }
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view{
-     NSLog(@"annotationViewForBubble %@ tag:%ld",view,view.tag);
-    [(BMKPinAnnotationView *)(view) setPinColor:BMKPinAnnotationColorGreen];
+    // NSLog(@"annotationViewForBubble %@ tag:%ld",view,view.tag);
     
+     [(BMKPinAnnotationView *)(view) setImage:[UIImage imageNamed:@"maker2"]];
     
     
     if(user.shopId!=view.tag){
@@ -138,8 +138,12 @@
 -(void)netDataGet:(int)shopID{
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if(shopID<0){
+        hud.labelText = @"数据加载中...";
+    }else{
+        hud.labelText = @"店铺切换中...";
+    }
     
-    hud.labelText = @"数据处理中...";
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if(shopID>0){
@@ -158,6 +162,12 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide:YES];
+            
+            
+            if(user.shopId>0){
+                [[NSUserDefaults standardUserDefaults] setObject:@(user.shopId) forKey:@"shopId"];
+            }
+
             
             if(shopInfos!=nil){
                 if(annotations!=nil){

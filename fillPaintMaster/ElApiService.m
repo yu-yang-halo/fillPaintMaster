@@ -634,11 +634,10 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
 
 -(NSArray *)getOilOrderList:(TDOrderSearch *)orderSearch{
     NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
-    if(orderSearch.searchType==SEARCH_TYPE_SHOPID){
+    if(orderSearch.shopId>0){
         [appendHttpStr appendFormat:@"&shopId=%d",orderSearch.shopId];
-    }else{
-        [appendHttpStr appendFormat:@"&userId=%@",orderSearch.userId];
     }
+    
     if(orderSearch.startTime!=nil){
         [appendHttpStr appendFormat:@"&startTime=%@",orderSearch.startTime];
     }
@@ -650,7 +649,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@getOilOrderList?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSString *service=[NSString stringWithFormat:@"%@getOilOrderList?senderId=%@&secToken=%@&userId=%@&searchType=%d%@",self.connect_header,userID,secToken,userID,orderSearch.searchType,appendHttpStr];
     NSLog(@"getOilOrderList  service:%@",service);
     NSData *data=[self requestURLSync:service];
     if(data!=nil){
@@ -857,11 +856,10 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
 
 -(NSArray *)getMetaOrderList:(TDOrderSearch *)orderSearch{
     NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
-    if(orderSearch.searchType==SEARCH_TYPE_SHOPID){
+    if(orderSearch.shopId>0){
         [appendHttpStr appendFormat:@"&shopId=%d",orderSearch.shopId];
-    }else{
-        [appendHttpStr appendFormat:@"&userId=%@",orderSearch.userId];
     }
+    
     if(orderSearch.startTime!=nil){
         [appendHttpStr appendFormat:@"&startTime=%@",orderSearch.startTime];
     }
@@ -869,11 +867,10 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         [appendHttpStr appendFormat:@"&maxNum=%d",orderSearch.maxNum];
     }
     
-    
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@getMetaOrderList?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSString *service=[NSString stringWithFormat:@"%@getMetaOrderList?senderId=%@&secToken=%@&userId=%@&searchType=%d%@",self.connect_header,userID,secToken,userID,orderSearch.searchType,appendHttpStr];
     NSLog(@"getMetaOrderList  service:%@",service);
     NSData *data=[self requestURLSync:service];
     if(data!=nil){
@@ -1107,11 +1104,10 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
 
 -(NSArray *)getDecoOrderList:(TDOrderSearch *)orderSearch{
     NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
-    if(orderSearch.searchType==SEARCH_TYPE_SHOPID){
+    if(orderSearch.shopId>0){
         [appendHttpStr appendFormat:@"&shopId=%d",orderSearch.shopId];
-    }else{
-        [appendHttpStr appendFormat:@"&userId=%@",orderSearch.userId];
     }
+    
     if(orderSearch.startTime!=nil){
         [appendHttpStr appendFormat:@"&startTime=%@",orderSearch.startTime];
     }
@@ -1123,7 +1119,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@getDecoOrderList?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSString *service=[NSString stringWithFormat:@"%@getDecoOrderList?senderId=%@&secToken=%@&userId=%@&searchType=%d%@",self.connect_header,userID,secToken,userID,orderSearch.searchType,appendHttpStr];
     NSLog(@"getDecoOrderList  service:%@",service);
     NSData *data=[self requestURLSync:service];
     if(data!=nil){

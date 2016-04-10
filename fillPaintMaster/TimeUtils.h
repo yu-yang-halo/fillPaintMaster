@@ -10,4 +10,5 @@
 
 @interface TimeUtils : NSObject
 +(NSString *)createTimeString:(int)row column:(int)col;
++(NSString *)normalShowTime:(NSString *)serverTime;
 @end
