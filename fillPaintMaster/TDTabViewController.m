@@ -9,13 +9,14 @@
 #import "TDTabViewController.h"
 #import "TDLocationViewController.h"
 #import "TDCarInfoViewController.h"
-
+#import "CityTableViewController.h"
 #import "YYButtonUtils.h"
+#import "Constants.h"
+#import "ElApiService.h"
 float BUTTON_W=30;
 float BUTTON_H=49;
-const NSString *kNotificationLocationUpdate=@"notification_location_update";
 
-@interface TDTabViewController ()<BMKLocationServiceDelegate>{
+@interface TDTabViewController (){
     UIButton *homeBtn;
     UIButton *doorBtn;
     UIButton *activeBtn;
@@ -24,7 +25,10 @@ const NSString *kNotificationLocationUpdate=@"notification_location_update";
     UIButton *locBtn;
     NSString *cityName;
     
-    BMKLocationService *locService;
+    
+    
+    NSArray *cityList;
+   
 }
 
 @end
@@ -39,20 +43,87 @@ const NSString *kNotificationLocationUpdate=@"notification_location_update";
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
     
+    
+    locBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,(44-40)/2, 60, 40)];
+    [locBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [locBtn setTitleColor:[UIColor colorWithWhite:0 alpha:0.5] forState:UIControlStateHighlighted];
+    
+    [locBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,-10,0,0)];
+    [locBtn addTarget:self action:@selector(toCityList:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self initTDTabBar];
     
     [self initCustomView:0];
     
+    [self netDataGet];
     
+}
+
+-(void)netDataGet{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        cityList=[[ElApiService shareElApiService] getCityList];
+        
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+        });
+    });
+}
+
+
+
+-(void)toCityList:(UIButton *)sender{
+    CityTableViewController *cityTableVC=[[CityTableViewController alloc] init];
+    [cityTableVC setCityList:cityList];
     
+    self.navigationItem.backBarButtonItem.title=@"返回";
     
-    
+    [self.navigationController pushViewController:cityTableVC animated:YES];
     
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self locMyPosition];
+    
+    BOOL toDoorYN=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_TO_DOOR] boolValue];
+    
+    if(toDoorYN){
+        
+        cityName=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_CITY_NAME];
+        [locBtn setTitle:cityName forState:UIControlStateNormal];
+        [self click:doorBtn];
+        [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:KEY_TO_DOOR];
+    }else{
+       
+        [self compareCity];
+        
+    }
+    
+}
+/*
+ * first 比较定位城市与列表城市
+ *  没有找到----显示定位城市
+ */
+-(void)compareCity{
+    NSString *latlgtCityName=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_LATLGT_CITYNAME];
+    NSString *findCityName=nil;
+    for(TDCityInfo *cityInfo in cityList){
+        if([cityInfo.name isEqualToString:latlgtCityName]||[latlgtCityName isEqualToString:[NSString stringWithFormat:@"%@市",cityInfo.name]]){
+            
+            findCityName=latlgtCityName;
+            [[NSUserDefaults standardUserDefaults] setObject:@(cityInfo.cityId) forKey:KEY_CITY_ID];
+            [[NSUserDefaults standardUserDefaults] setObject:findCityName forKey:KEY_CITY_NAME];
+            
+            break;
+        }
+    }
+    if(findCityName==nil){
+        findCityName=latlgtCityName;
+        [[NSUserDefaults standardUserDefaults] setObject:@(-1) forKey:KEY_CITY_ID];
+    }
+    [locBtn setTitle:findCityName forState:UIControlStateNormal];
 }
 
 -(void)initTDTabBar{
@@ -152,17 +223,13 @@ const NSString *kNotificationLocationUpdate=@"notification_location_update";
 -(void)initCustomView:(NSUInteger)tagId{
     if(tagId==0){
         [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
-        locBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,(44-40)/2, 60, 40)];
-       
+        
         if(cityName!=nil){
             [locBtn setTitle:cityName forState:UIControlStateNormal];
         }
         
         
-        [locBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [locBtn setTitleColor:[UIColor colorWithWhite:0 alpha:0.5] forState:UIControlStateHighlighted];
-       
-        [locBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,-10,0,0)];
+        
       
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:locBtn];
         UIImageView *logo=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
@@ -202,50 +269,6 @@ const NSString *kNotificationLocationUpdate=@"notification_location_update";
         
     }
    
-    
-}
-
--(void)locMyPosition{
-    //初始化BMKLocationService
-    locService = [[BMKLocationService alloc]init];
-    locService.delegate = self;
-    //启动LocationService
-    [locService startUserLocationService];
-}
-
-//实现相关delegate 处理位置信息更新
-//处理方向变更信息
-- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
-{
-    // NSLog(@"heading is %@ userLocation::%@",userLocation.heading,userLocation);
-}
-//处理位置坐标更新
-- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
-{
-    //[self.eventDelegate onLocationComplete:userLocation];
-    
-    CLGeocoder *geocoder=[[CLGeocoder alloc] init];
-    
-    double lat=userLocation.location.coordinate.latitude;
-    double lgt=userLocation.location.coordinate.longitude;
-    
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f,%f",lat,lgt] forKey:@"latlgt"];
-    
-    CLLocation *location=[[CLLocation alloc] initWithLatitude:userLocation.location.coordinate.latitude longitude:userLocation.location.coordinate.longitude];
-    
-   
-    
-    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        for (CLPlacemark *mark in placemarks) {
-          //  NSLog(@"%@ : %@ ",mark.thoroughfare,mark.locality);
-            cityName=mark.locality;
-            
-            [locBtn setTitle:cityName forState:UIControlStateNormal];
-            
-            
-        }
-    }];
-    
     
 }
 

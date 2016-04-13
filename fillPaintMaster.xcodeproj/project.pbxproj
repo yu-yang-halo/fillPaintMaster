@@ -153,6 +153,14 @@
 		84C701781C5385DF007FA60F /* libIOTCAPIs_ALL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701751C5385DE007FA60F /* libIOTCAPIs_ALL.a */; };
 		84C701791C5385DF007FA60F /* libIOTCAPIs_ALLT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701761C5385DE007FA60F /* libIOTCAPIs_ALLT.a */; };
 		84C7017B1C5387ED007FA60F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7017A1C5387ED007FA60F /* CoreMedia.framework */; };
+		84EA42401CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA423E1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.m */; };
+		84EA42411CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EA423F1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.xib */; };
+		84EA42451CBDD8E900DFCBDA /* MyCouponTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA42431CBDD8E900DFCBDA /* MyCouponTableViewController.m */; };
+		84EA42461CBDD8E900DFCBDA /* MyCouponTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EA42441CBDD8E900DFCBDA /* MyCouponTableViewController.xib */; };
+		84EA424A1CBE0F8F00DFCBDA /* MyCarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA42481CBE0F8F00DFCBDA /* MyCarTableViewController.m */; };
+		84EA424B1CBE0F8F00DFCBDA /* MyCarTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EA42491CBE0F8F00DFCBDA /* MyCarTableViewController.xib */; };
+		84EA424F1CBE23CA00DFCBDA /* CityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA424D1CBE23CA00DFCBDA /* CityTableViewController.m */; };
+		84EA42501CBE23CA00DFCBDA /* CityTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EA424E1CBE23CA00DFCBDA /* CityTableViewController.xib */; };
 		84ED19AB1CB4DD8600116C99 /* WsqMD5Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84ED19A91CB4DD8600116C99 /* WsqMD5Util.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C6FF04885D98EFD277CD0577 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49336F7C7CEF0F6B8C6EC250 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -409,6 +417,18 @@
 		84C701751C5385DE007FA60F /* libIOTCAPIs_ALL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIOTCAPIs_ALL.a; sourceTree = "<group>"; };
 		84C701761C5385DE007FA60F /* libIOTCAPIs_ALLT.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIOTCAPIs_ALLT.a; sourceTree = "<group>"; };
 		84C7017A1C5387ED007FA60F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		84EA423D1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGoodsOrderTableViewController.h; sourceTree = "<group>"; };
+		84EA423E1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGoodsOrderTableViewController.m; sourceTree = "<group>"; };
+		84EA423F1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyGoodsOrderTableViewController.xib; sourceTree = "<group>"; };
+		84EA42421CBDD8E800DFCBDA /* MyCouponTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCouponTableViewController.h; sourceTree = "<group>"; };
+		84EA42431CBDD8E900DFCBDA /* MyCouponTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCouponTableViewController.m; sourceTree = "<group>"; };
+		84EA42441CBDD8E900DFCBDA /* MyCouponTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCouponTableViewController.xib; sourceTree = "<group>"; };
+		84EA42471CBE0F8F00DFCBDA /* MyCarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCarTableViewController.h; sourceTree = "<group>"; };
+		84EA42481CBE0F8F00DFCBDA /* MyCarTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCarTableViewController.m; sourceTree = "<group>"; };
+		84EA42491CBE0F8F00DFCBDA /* MyCarTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCarTableViewController.xib; sourceTree = "<group>"; };
+		84EA424C1CBE23C900DFCBDA /* CityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityTableViewController.h; sourceTree = "<group>"; };
+		84EA424D1CBE23CA00DFCBDA /* CityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityTableViewController.m; sourceTree = "<group>"; };
+		84EA424E1CBE23CA00DFCBDA /* CityTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityTableViewController.xib; sourceTree = "<group>"; };
 		84ED19A91CB4DD8600116C99 /* WsqMD5Util.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WsqMD5Util.mm; sourceTree = "<group>"; };
 		84ED19AA1CB4DD8600116C99 /* WsqMD5Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WsqMD5Util.h; sourceTree = "<group>"; };
 		E2E5957C845E102A048E030F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -625,6 +645,18 @@
 				18E4EFFC1CB9FA69000C12FD /* MyOrderTableViewController.h */,
 				18E4EFFD1CB9FA69000C12FD /* MyOrderTableViewController.m */,
 				18E4EFFE1CB9FA69000C12FD /* MyOrderTableViewController.xib */,
+				84EA423D1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.h */,
+				84EA423E1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.m */,
+				84EA423F1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.xib */,
+				84EA42421CBDD8E800DFCBDA /* MyCouponTableViewController.h */,
+				84EA42431CBDD8E900DFCBDA /* MyCouponTableViewController.m */,
+				84EA42441CBDD8E900DFCBDA /* MyCouponTableViewController.xib */,
+				84EA42471CBE0F8F00DFCBDA /* MyCarTableViewController.h */,
+				84EA42481CBE0F8F00DFCBDA /* MyCarTableViewController.m */,
+				84EA42491CBE0F8F00DFCBDA /* MyCarTableViewController.xib */,
+				84EA424C1CBE23C900DFCBDA /* CityTableViewController.h */,
+				84EA424D1CBE23CA00DFCBDA /* CityTableViewController.m */,
+				84EA424E1CBE23CA00DFCBDA /* CityTableViewController.xib */,
 			);
 			name = tablelist;
 			sourceTree = "<group>";
@@ -1015,6 +1047,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18EB1AFA1C37934600791849 /* TDIdCodeViewController.xib in Resources */,
+				84EA42461CBDD8E900DFCBDA /* MyCouponTableViewController.xib in Resources */,
 				18E8ECFF1C2FC43200968CEB /* LeftCarViewController.xib in Resources */,
 				18EDC6BA1C564E5B0068A655 /* LiveViewController.xib in Resources */,
 				18E8A1241BBA468600FBD3F4 /* TDBeautyTableViewCell.xib in Resources */,
@@ -1028,11 +1061,13 @@
 				18E4F00B1CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.xib in Resources */,
 				18EB1AF51C378A9E00791849 /* TDLoginViewController.xib in Resources */,
 				18ED344C1C3627C60085B250 /* ShopView1Controller.xib in Resources */,
+				84EA42501CBE23CA00DFCBDA /* CityTableViewController.xib in Resources */,
 				18E809C01BC248DF00712C43 /* TDTableViewCell1.xib in Resources */,
 				18E946291C40FDE50047ADEA /* area.plist in Resources */,
 				18EBC4A81C47BEB100AFFC1A /* TDActiveTableViewCell.xib in Resources */,
 				18E946321C41195B0047ADEA /* TDSearchViewController.xib in Resources */,
 				18E809DB1BC2AD2800712C43 /* PaintView1Controller.xib in Resources */,
+				84EA42411CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.xib in Resources */,
 				18E946221C40FAF20047ADEA /* TDLocationViewController.xib in Resources */,
 				18E8ED0E1C2FE15A00968CEB /* BackCarViewController.xib in Resources */,
 				18EE55801C41F4A400A99D50 /* TDCarInfoViewController.xib in Resources */,
@@ -1044,6 +1079,7 @@
 				18E809D61BC2A9C900712C43 /* PaintView0Controller.xib in Resources */,
 				84C701381C5379C6007FA60F /* MonitorView.xib in Resources */,
 				18E4F0101CBA0307000C12FD /* MyCouponTableViewCell.xib in Resources */,
+				84EA424B1CBE0F8F00DFCBDA /* MyCarTableViewController.xib in Resources */,
 				1803C3291C36A67F003157F1 /* arrow.png in Resources */,
 				84C7013B1C5379C6007FA60F /* DirectDisplayShader.vsh in Resources */,
 				18B9325A1BA6A8C50019279E /* Assets.xcassets in Resources */,
@@ -1149,6 +1185,7 @@
 				18EDC6B91C564E5B0068A655 /* LiveViewController.mm in Sources */,
 				18B932551BA6A8C50019279E /* TDHomeViewController.m in Sources */,
 				84345A771C3A3AD90089DB45 /* TDHttpDataService.m in Sources */,
+				84EA42451CBDD8E900DFCBDA /* MyCouponTableViewController.m in Sources */,
 				182FC70D1C4FBE5E001978F5 /* TDCityInfo.m in Sources */,
 				847F9D0D1C5067D7005ED278 /* TDOilOrder.m in Sources */,
 				18E8ED171C2FE39700968CEB /* OtherCarViewController.m in Sources */,
@@ -1168,12 +1205,14 @@
 				845E48521C3B94FC00AAD5A5 /* CoolNavi.m in Sources */,
 				84ED19AB1CB4DD8600116C99 /* WsqMD5Util.mm in Sources */,
 				1836FEC61C795027009028D9 /* TDBannerInfoType.m in Sources */,
+				84EA424A1CBE0F8F00DFCBDA /* MyCarTableViewController.m in Sources */,
 				18B932521BA6A8C50019279E /* AppDelegate.m in Sources */,
 				18EB1AF91C37934600791849 /* TDIdCodeViewController.m in Sources */,
 				18EB79F51C51072200BA0C26 /* YYButtonUtils.m in Sources */,
 				18E4F00F1CBA0307000C12FD /* MyCouponTableViewCell.m in Sources */,
 				18ED344B1C3627C60085B250 /* ShopView1Controller.m in Sources */,
 				18EC48181C54B67D0006D23C /* MyCamera.m in Sources */,
+				84EA424F1CBE23CA00DFCBDA /* CityTableViewController.m in Sources */,
 				848149081C32643500588564 /* DelegateViewController.m in Sources */,
 				84C701391C5379C6007FA60F /* MonitorViewController.mm in Sources */,
 				183EAA121BB92E450029ED79 /* TDNavigationViewController.m in Sources */,
@@ -1183,6 +1222,7 @@
 				18248FF11BBEB490008D3C36 /* OrderReViewController.m in Sources */,
 				183EAA0F1BB929A00029ED79 /* TDTabViewController.m in Sources */,
 				18E809BF1BC248DF00712C43 /* TDTableViewCell1.m in Sources */,
+				84EA42401CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.m in Sources */,
 				840FEE401CB61DAC0056C7BE /* TDServiceDataInfo.m in Sources */,
 				18E809D51BC2A9C900712C43 /* PaintView0Controller.m in Sources */,
 				18EE557F1C41F4A400A99D50 /* TDCarInfoViewController.m in Sources */,

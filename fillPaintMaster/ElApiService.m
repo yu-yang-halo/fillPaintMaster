@@ -380,7 +380,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     return nil;
 }
 
--(NSArray *)getCityList:(int)shopId{
+-(NSArray *)getCityList{
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
@@ -449,6 +449,59 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     }
     return nil;
 }
+
+-(BOOL)createCar:(TDCarInfo *)carInfo{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@createCar?senderId=%@&secToken=%@&userId=%@&type=%d&number=%@",self.connect_header,userID,secToken,userID,carInfo.type,[WsqMD5Util encodeToPercentEscapeString:carInfo.number]];
+    NSLog(@"createCar  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            
+            return YES;
+        }else{
+            [self notificationErrorCode:errorCodeVal];
+        }
+        
+    }
+    
+    return NO;
+    
+}
+-(BOOL)delCar:(int)carId{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@delCar?senderId=%@&secToken=%@&id=%d",self.connect_header,userID,secToken,carId];
+    
+    NSLog(@"delCar  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            
+            return YES;
+        }else{
+            [self notificationErrorCode:errorCodeVal];
+        }
+        
+    }
+    return NO;
+    
+}
+
 
 -(NSArray *)getGoodsList:(int)shopId{
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
@@ -1102,6 +1155,56 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
 }
 
 
+-(NSArray *)getGoodsOrderList:(TDOrderSearch *)orderSearch{
+    NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
+    if(orderSearch.shopId>0){
+        [appendHttpStr appendFormat:@"&shopId=%d",orderSearch.shopId];
+    }
+    
+    if(orderSearch.startTime!=nil){
+        [appendHttpStr appendFormat:@"&startTime=%@",orderSearch.startTime];
+    }
+    if(orderSearch.maxNum>0){
+        [appendHttpStr appendFormat:@"&maxNum=%d",orderSearch.maxNum];
+    }
+    
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@getGoodsOrderList?senderId=%@&secToken=%@&userId=%@&searchType=%ld%@",self.connect_header,userID,secToken,userID,orderSearch.searchType,appendHttpStr];
+    NSLog(@"getGoodsOrderList  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        if([errorCodeVal isEqualToString:@"0"]){
+            NSArray *goodsOrderListNode=[rootElement elementsForName:@"goodsOrderList"];
+            NSMutableArray *goodsOrderArr=[[NSMutableArray alloc] init];
+            
+            for (GDataXMLElement *element in goodsOrderListNode) {
+                
+             TDGoodsOrderListType *tdGoodsOrderListType= [self parseTDGoodsOrderListTypeXML:element];
+                
+                [goodsOrderArr addObject:tdGoodsOrderListType];
+                
+            }
+            
+            return goodsOrderArr;
+        }else{
+            [self notificationErrorCode:errorCodeVal];
+        }
+        
+    }
+    return nil;
+
+    
+}
+
+
+
 -(NSArray *)getDecoOrderList:(TDOrderSearch *)orderSearch{
     NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
     if(orderSearch.shopId>0){
@@ -1119,7 +1222,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@getDecoOrderList?senderId=%@&secToken=%@&userId=%@&searchType=%d%@",self.connect_header,userID,secToken,userID,orderSearch.searchType,appendHttpStr];
+    NSString *service=[NSString stringWithFormat:@"%@getDecoOrderList?senderId=%@&secToken=%@&userId=%@&searchType=%ld%@",self.connect_header,userID,secToken,userID,orderSearch.searchType,appendHttpStr];
     NSLog(@"getDecoOrderList  service:%@",service);
     NSData *data=[self requestURLSync:service];
     if(data!=nil){
@@ -1520,6 +1623,25 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     tdMetaOrder.metaOrderImg=metaOrderImgArr;
     return tdMetaOrder;
 }
+-(TDGoodsOrderListType *)parseTDGoodsOrderListTypeXML:(GDataXMLElement *)element{
+    TDGoodsOrderListType *tdGoodsOrderListType=[[TDGoodsOrderListType alloc] init];
+    tdGoodsOrderListType.goodsOrderId=[[[[element elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+    tdGoodsOrderListType.goodsInfo=[[[element elementsForName:@"goodsInfo"] objectAtIndex:0] stringValue];
+    tdGoodsOrderListType.createTime=[[[element elementsForName:@"createTime"] objectAtIndex:0] stringValue];
+    tdGoodsOrderListType.address=[[[element elementsForName:@"address"] objectAtIndex:0] stringValue];
+    tdGoodsOrderListType.name=[[[element elementsForName:@"name"] objectAtIndex:0] stringValue];
+    tdGoodsOrderListType.phone=[[[element elementsForName:@"phone"] objectAtIndex:0] stringValue];
+    tdGoodsOrderListType.processTime=[[[element elementsForName:@"processTime"] objectAtIndex:0] stringValue];
+    tdGoodsOrderListType.expressName=[[[element elementsForName:@"expressName"] objectAtIndex:0] stringValue];
+    tdGoodsOrderListType.expressWaybill=[[[element elementsForName:@"expressWaybill"] objectAtIndex:0] stringValue];
+     tdGoodsOrderListType.userId=[[[[element elementsForName:@"userId"] objectAtIndex:0] stringValue] intValue];
+    tdGoodsOrderListType.shopId=[[[[element elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
+    tdGoodsOrderListType.price=[[[[element elementsForName:@"price"] objectAtIndex:0] stringValue] floatValue];
+    tdGoodsOrderListType.state=[[[[element elementsForName:@"state"] objectAtIndex:0] stringValue] intValue];
+ 
+    return tdGoodsOrderListType;
+}
+
 -(TDDecoOrder *)parseTDDecoOrderInfoXML:(GDataXMLElement *)element{
     TDDecoOrder *tdDecoOrder=[[TDDecoOrder alloc] init];
     

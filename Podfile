@@ -7,3 +7,4 @@ pod 'MBProgressHUD', '~> 0.9.2'
 pod 'SDCycleScrollView', '~> 1.62'
 pod 'BaiduMapKit'
 pod 'MJRefresh', '~> 3.1.0'
+pod 'MMPopupView', :head

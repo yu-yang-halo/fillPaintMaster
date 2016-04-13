@@ -11,12 +11,12 @@
 #import <IOTCamera/Camera.h>
 #import <BaiduMapAPI_Base/BMKMapManager.h>
 #import <UIView+Toast.h>
-
-
-@interface AppDelegate ()
+#import <BaiduMapAPI_Location/BMKLocationService.h>
+#import "Constants.h"
+@interface AppDelegate ()<BMKLocationServiceDelegate>
 {
     BMKMapManager *mapManager;
-   
+    BMKLocationService *locService;
 }
 @end
 
@@ -34,11 +34,15 @@
     BOOL ret = [mapManager start:@"r3ZVUYbY8K40NBY4D11uchiKIbPHBATj"  generalDelegate:nil];
     //r3ZVUYbY8K40NBY4D11uchiKIbPHBATj
     //zM1g4ZYRsDAQAfK8kiZtVBiVx3FPo9Tj
+    
     if (!ret) {
         NSLog(@"manager start failed!");
     }else{
         NSLog(@"manager start success");
+        [self locMyPosition];
     }
+    
+    
     
     
 
@@ -51,6 +55,52 @@
     
     return YES;
 }
+
+
+
+-(void)locMyPosition{
+    //初始化BMKLocationService
+    locService = [[BMKLocationService alloc]init];
+    locService.delegate = self;
+    //启动LocationService
+    [locService startUserLocationService];
+}
+
+//实现相关delegate 处理位置信息更新
+//处理方向变更信息
+- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
+{
+    // NSLog(@"heading is %@ userLocation::%@",userLocation.heading,userLocation);
+}
+//处理位置坐标更新
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    //[self.eventDelegate onLocationComplete:userLocation];
+    
+    CLGeocoder *geocoder=[[CLGeocoder alloc] init];
+    
+    double lat=userLocation.location.coordinate.latitude;
+    double lgt=userLocation.location.coordinate.longitude;
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f,%f",lat,lgt] forKey:KEY_LATLGT];
+    
+    CLLocation *location=[[CLLocation alloc] initWithLatitude:userLocation.location.coordinate.latitude longitude:userLocation.location.coordinate.longitude];
+    
+    
+    
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        for (CLPlacemark *mark in placemarks) {
+            //  NSLog(@"%@ : %@ ",mark.thoroughfare,mark.locality);
+            
+            [[NSUserDefaults standardUserDefaults] setObject:mark.locality forKey:KEY_LATLGT_CITYNAME];
+            
+            
+        }
+    }];
+    
+    
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

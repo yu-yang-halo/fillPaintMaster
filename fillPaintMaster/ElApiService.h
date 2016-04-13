@@ -51,7 +51,8 @@ typedef void (^ErrorCodeHandlerBlock)(NSString * ,NSString *);
 -(NSArray *)getMetalplateList:(int)shopId;
 -(NSArray *)getDecorationList:(int)shopId;
 -(NSArray *)getCouponList:(int)shopId;
--(NSArray *)getCityList:(int)shopId;
+-(NSArray *)getCityList;
+
 -(NSArray *)getCarByCurrentUser;
 -(NSArray *)getGoodsList:(int)shopId;
 -(BOOL)createOilOrder:(TDOilOrder *)oilOrder;
@@ -77,6 +78,11 @@ typedef void (^ErrorCodeHandlerBlock)(NSString * ,NSString *);
 -(NSArray *)getGoodsType;
 -(BOOL)createGoodsOrder:(NSString *)goodsInfo shopId:(int)arg1 price:(float)arg2 address:(NSString *)arg3 name:(NSString *)arg4 phone:(NSString *)arg5;
 -(BOOL)updCoupon:(int)promotionId;
+
+-(NSArray *)getGoodsOrderList:(TDOrderSearch *)orderSearch;
+-(BOOL)createCar:(TDCarInfo *)carInfo;
+-(BOOL)delCar:(int)carId;
+
 
 
 

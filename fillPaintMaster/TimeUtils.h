@@ -11,4 +11,6 @@
 @interface TimeUtils : NSObject
 +(NSString *)createTimeString:(int)row column:(int)col;
 +(NSString *)normalShowTime:(NSString *)serverTime;
++(NSString *)normalShowTime:(NSString *)serverTime format:(NSString *)format;
++(BOOL)isOverTime:(NSString *)endTime;
 @end

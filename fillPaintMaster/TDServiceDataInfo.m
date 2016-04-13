@@ -16,4 +16,5 @@
 @end
 @implementation TDOrderStateType
 @end
-
+@implementation TDGoodsOrderListType
+@end

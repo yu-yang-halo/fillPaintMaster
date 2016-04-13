@@ -45,4 +45,13 @@ static const int SEARCH_SHOP=1;//搜索类型 按店搜索
 static const int SEARCH_USER=2;//搜索类型 按用户搜索
 
 
+
+static const NSString *KEY_LATLGT=@"latlgt";
+static const NSString *KEY_LATLGT_CITYNAME=@"latlgt_city_name";
+
+static const NSString *KEY_CITY_ID=@"selected_cityId";
+static const NSString *KEY_CITY_NAME=@"selected_cityName";
+static const NSString *KEY_TO_DOOR=@"toDoor";
+
+
 #endif /* Constants_h */

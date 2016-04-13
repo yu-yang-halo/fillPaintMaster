@@ -23,3 +23,21 @@
 @property(nonatomic,assign) BOOL isFull;
 @end
 
+@interface TDGoodsOrderListType : NSObject
+@property(nonatomic,assign) int goodsOrderId;
+@property(nonatomic,strong) NSString *goodsInfo;
+@property(nonatomic,strong) NSString *createTime;
+@property(nonatomic,assign) int userId;
+@property(nonatomic,assign) int shopId;
+@property(nonatomic,assign) float price;
+@property(nonatomic,strong) NSString *address;
+@property(nonatomic,strong) NSString *name;
+@property(nonatomic,strong) NSString *phone;
+@property(nonatomic,assign) int state;
+@property(nonatomic,strong) NSString *processTime;
+@property(nonatomic,strong) NSString *expressName;
+@property(nonatomic,strong) NSString *expressWaybill;
+
+
+@end
+

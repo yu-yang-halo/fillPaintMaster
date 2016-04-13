@@ -13,9 +13,11 @@
 #import "TDTabViewController.h"
 #import "TDLoginViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "Constants.h"
 @interface TDStoreViewController ()<BMKMapViewDelegate>
 {
-    BMKMapView* mapView;
+    BMKMapView  *mapView;
+    UITableView *tableView;
     NSArray *shopInfos;
     TDUser *user;
     NSMutableArray *annotations;
@@ -27,16 +29,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    mapView = [[BMKMapView alloc]initWithFrame:self.view.bounds];
+    mapView = [[BMKMapView alloc] initWithFrame:self.view.bounds];
+    tableView=[[UITableView alloc] initWithFrame:self.view.bounds];
     [mapView setZoomLevel:12];
     self.view = mapView;
     
     
     [self netDataGet:-100];
 }
+
 -(void)locationNewCenter{
 
-    NSString *latlgtStr=[[NSUserDefaults standardUserDefaults] objectForKey:@"latlgt"];
+    NSString *latlgtStr=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_LATLGT];
     
     NSArray *latlgtArr=[latlgtStr componentsSeparatedByString:@","];
     if(latlgtArr!=nil&&[latlgtArr count]==2){
@@ -86,8 +90,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationLocationUpdate object:nil];
+   
 }
 
 /*

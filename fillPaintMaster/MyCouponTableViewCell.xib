@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="145" id="KGk-i7-Jjw" customClass="MyCouponTableViewCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCouponTableViewCell" rowHeight="145" id="KGk-i7-Jjw" customClass="MyCouponTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="342" height="145"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -17,22 +17,19 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coupon_bg0" translatesAutoresizingMaskIntoConstraints="NO" id="fRz-fr-488">
                         <rect key="frame" x="8" y="8" width="326" height="128"/>
-                        <animations/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ud-To-mZH">
                         <rect key="frame" x="18" y="13" width="174" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="174" id="2Te-uP-DiU"/>
                             <constraint firstAttribute="height" constant="21" id="MwL-gz-3o7"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有效期至2016-03-09" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uvv-7I-rYf">
                         <rect key="frame" x="18" y="62" width="174" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="av3-ew-1n5"/>
                             <constraint firstAttribute="width" constant="174" id="lRa-3w-bX6"/>
@@ -43,18 +40,16 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥3999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHB-3s-jJ9">
                         <rect key="frame" x="256" y="29" width="73" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="73" id="rbQ-5G-stR"/>
                             <constraint firstAttribute="height" constant="21" id="tYn-hK-Yeo"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invailed" translatesAutoresizingMaskIntoConstraints="NO" id="8UO-2K-Qqu">
                         <rect key="frame" x="143" y="27" width="90" height="90"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="90" id="R85-Q6-Ih8"/>
                             <constraint firstAttribute="width" constant="90" id="akF-V7-nJP"/>
@@ -62,7 +57,6 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="desc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqt-En-P8R">
                         <rect key="frame" x="18" y="110" width="174" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="174" id="ebD-ry-QaC"/>
                             <constraint firstAttribute="height" constant="21" id="la5-M7-3Uq"/>
@@ -72,7 +66,6 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="oqt-En-P8R" secondAttribute="bottom" constant="5" id="1tz-jA-eiZ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="fRz-fr-488" secondAttribute="trailing" id="9m5-eZ-smz"/>
@@ -90,7 +83,14 @@
                     <constraint firstItem="8UO-2K-Qqu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wy9-7V-k7g"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
+            <connections>
+                <outlet property="backgroundImageView" destination="fRz-fr-488" id="0rr-ft-OSx"/>
+                <outlet property="couponContentLabel" destination="VHB-3s-jJ9" id="qaM-pb-jXN"/>
+                <outlet property="descLabel" destination="oqt-En-P8R" id="rik-Go-CjB"/>
+                <outlet property="invaildImageView" destination="8UO-2K-Qqu" id="W7a-aL-naf"/>
+                <outlet property="nameLabel" destination="4ud-To-mZH" id="lLO-P4-5U7"/>
+                <outlet property="usingTimeLabel" destination="Uvv-7I-rYf" id="9fd-Ib-OHp"/>
+            </connections>
             <point key="canvasLocation" x="229" y="225.5"/>
         </tableViewCell>
     </objects>

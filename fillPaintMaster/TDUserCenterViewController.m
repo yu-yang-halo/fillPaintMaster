@@ -10,6 +10,9 @@
 #import "ElApiService.h"
 #import <MJRefresh/MJRefresh.h>
 #import "MyOrderTableViewController.h"
+#import "MyGoodsOrderTableViewController.h"
+#import "MyCouponTableViewController.h"
+#import "MyCarTableViewController.h"
 static const float ROW_HEIGHT=60;
 static CGFloat const kWindowHeight = 160.0f;
 @interface TDUserCenterViewController (){
@@ -67,7 +70,13 @@ static CGFloat const kWindowHeight = 160.0f;
             NSArray *datas=nil;
             if(carInfos!=nil&&[carInfos count]>0){
                
-                datas=@[user.loginName,[(TDCarInfo *)carInfos[0] number]];
+                if ([carInfos count]>=2) {
+                    datas=@[user.loginName,[NSString stringWithFormat:@"%@ 更多...",[(TDCarInfo *)carInfos[0] number]]];
+                }else{
+                    datas=@[user.loginName,[(TDCarInfo *)carInfos[0] number]];
+                }
+                
+                
             }else{
                 datas=@[user.loginName,@"您还没有车牌，请添加"];
             }
@@ -140,6 +149,19 @@ static CGFloat const kWindowHeight = 160.0f;
         [myOrderTableVC setType:1];
         [self.navigationItem.backBarButtonItem setTitle:@"返回"];
         [self.tabBarController.navigationController pushViewController:myOrderTableVC animated:YES];
+    }else if(indexPath.row==2){
+        MyGoodsOrderTableViewController *goodsOrderTableVC=[[MyGoodsOrderTableViewController alloc] init];
+        [self.navigationItem.backBarButtonItem setTitle:@"返回"];
+        [self.tabBarController.navigationController pushViewController:goodsOrderTableVC animated:YES];
+    }else if(indexPath.row==4){
+        
+        MyCouponTableViewController *couponTableVC=[[MyCouponTableViewController alloc] init];
+        [self.navigationItem.backBarButtonItem setTitle:@"返回"];
+        [self.tabBarController.navigationController pushViewController:couponTableVC animated:YES];
+    }else if(indexPath.row==0){
+        MyCarTableViewController *carTableVC=[[MyCarTableViewController alloc] init];
+        [self.navigationItem.backBarButtonItem setTitle:@"返回"];
+        [self.tabBarController.navigationController pushViewController:carTableVC animated:YES];
     }
 }
 

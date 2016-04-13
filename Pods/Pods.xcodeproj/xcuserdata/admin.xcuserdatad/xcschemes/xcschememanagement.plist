@@ -19,6 +19,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MMPopupView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Masonry.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +57,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>35509D77359B36F5AC85567719962D8A</key>
+		<key>311592250C7A3D5FE1481AA2323D93FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>351D334B3C0B49938E167678166C1A44</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>39E38B056EF6C485AB87B387CA64620C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,22 +82,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>75CA8F3F31DB0AB64182F3BECCBBFA21</key>
+		<key>8AF0559ECF0522CAEB2C126ED8A3B6FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8EBA2BF93F5D4DE3CF4597EA1AA5CC3D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8F74D9EA91F4C43190670066BAC37D44</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DBD53C6095313E6F941251D52AFBB93D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F0CF8B325E4F7067CA7942E09931BFC8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

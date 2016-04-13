@@ -26,4 +26,9 @@
 
 //计算大文件的MD5值
 +(NSString*)getFileMD5WithPath:(NSString*)path;
+
++(NSString *)encodeToPercentEscapeString:(NSString *)input;
+
++(NSString *)decodeFromPercentEscapeString:(NSString *)input;
+
 @end

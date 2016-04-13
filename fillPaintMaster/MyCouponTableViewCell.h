@@ -9,5 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface MyCouponTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usingTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *couponContentLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *invaildImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 @end

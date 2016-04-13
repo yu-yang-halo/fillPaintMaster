@@ -9,5 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface MyGoodsOrderTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *createTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+
+
 
 @end
