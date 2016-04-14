@@ -14,7 +14,7 @@
 #import "TDLoginViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "Constants.h"
-@interface TDStoreViewController ()<BMKMapViewDelegate>
+@interface TDStoreViewController ()<BMKMapViewDelegate,MyTabHandlerDelegate>
 {
     BMKMapView  *mapView;
     UITableView *tableView;
@@ -28,14 +28,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    mapView = [[BMKMapView alloc] initWithFrame:self.view.bounds];
-    tableView=[[UITableView alloc] initWithFrame:self.view.bounds];
+     // Do any additional setup after loading the view.
+     mapView = [[BMKMapView alloc] initWithFrame:self.view.bounds];
+     tableView=[[UITableView alloc] initWithFrame:self.view.bounds];
+    [tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
+    [tableView setDelegate:self];
+    [tableView setDataSource:self];
+    
+    
+    
     [mapView setZoomLevel:12];
-    self.view = mapView;
     
+    [self.view addSubview:mapView];
+    [self.view addSubview:tableView];
+    [self.view bringSubviewToFront:tableView];
     
-    [self netDataGet:-100];
+    [(TDTabViewController *)self.tabBarController setTabHandlerDelegate:self];
+
 }
 
 -(void)locationNewCenter{
@@ -55,7 +65,16 @@
     
 }
 
-
+/*
+     MyTabHandlerDelegate
+ */
+-(void)onModeSelected:(int)mode{
+    if(mode==1){
+         [self.view bringSubviewToFront:mapView];
+    }else{
+        [self.view bringSubviewToFront:tableView];
+    }
+}
 
 -(NSArray *)getShopId:(CLLocationCoordinate2D)coor{
     int shopId=-100;
@@ -79,6 +98,8 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self netDataGet:-100];
+    
     [mapView viewWillAppear];
      mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
 }
@@ -93,14 +114,75 @@
    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)netDataGet:(int)shopID{
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if(shopID<0){
+        hud.labelText = @"数据加载中...";
+    }else{
+        hud.labelText = @"店铺切换中...";
+    }
+    
+    int cityId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_CITY_ID] intValue];
+    
+    
+    
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if(shopID>0){
+            NSString *name=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERNAME];
+            NSString *pass=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_PASSWORD];
+            
+            user.shopId=shopID;
+            [[ElApiService shareElApiService] updUser:user];
+            [[ElApiService shareElApiService] appUserLogin:name password:pass shopId:-1];
+        }else{
+            user=[[ElApiService shareElApiService] getUserInfo];
+        }
+        shopInfos=[[ElApiService shareElApiService] getShopList];
+        
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hide:YES];
+            
+            
+            if(user.shopId>0){
+                [[NSUserDefaults standardUserDefaults] setObject:@(user.shopId) forKey:@"shopId"];
+            }
+            
+            
+            if(shopInfos!=nil){
+                if(annotations!=nil){
+                    [mapView removeAnnotations:annotations];
+                }
+                annotations=[[NSMutableArray alloc] init];
+                
+                for (TDShopInfo *shopInfo in shopInfos) {
+                    
+                    if(shopInfo.cityId==cityId){
+                        // 添加一个PointAnnotation
+                        BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+                        CLLocationCoordinate2D coor;
+                        coor.latitude =shopInfo.latitude;
+                        coor.longitude = shopInfo.longitude;
+                        annotation.coordinate = coor;
+                        annotation.title =shopInfo.name;
+                        [annotations addObject:annotation];
+                    }
+                    
+                }
+                [mapView addAnnotations:annotations];
+            }
+            [self locationNewCenter];
+            
+        });
+    });
 }
+
+/*
+#pragma mark - BaiduMap delegate
 */
 
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
@@ -138,63 +220,21 @@
     }
 }
 
--(void)netDataGet:(int)shopID{
+/*
+ * UITableView  delegate datasource
+ */
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    if(shopID<0){
-        hud.labelText = @"数据加载中...";
-    }else{
-        hud.labelText = @"店铺切换中...";
-    }
-    
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if(shopID>0){
-            NSString *name=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERNAME];
-            NSString *pass=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_PASSWORD];
-            
-            user.shopId=shopID;
-            [[ElApiService shareElApiService] updUser:user];
-            [[ElApiService shareElApiService] appUserLogin:name password:pass shopId:-1];
-        }else{
-            user=[[ElApiService shareElApiService] getUserInfo];
-        }
-        shopInfos=[[ElApiService shareElApiService] getShopList];
-        
-        
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hide:YES];
-            
-            
-            if(user.shopId>0){
-                [[NSUserDefaults standardUserDefaults] setObject:@(user.shopId) forKey:@"shopId"];
-            }
-
-            
-            if(shopInfos!=nil){
-                if(annotations!=nil){
-                    [mapView removeAnnotations:annotations];
-                }
-                annotations=[[NSMutableArray alloc] init];
-                
-                for (TDShopInfo *shopInfo in shopInfos) {
-                    // 添加一个PointAnnotation
-                    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
-                    CLLocationCoordinate2D coor;
-                    coor.latitude =shopInfo.latitude;
-                    coor.longitude = shopInfo.longitude;
-                    annotation.coordinate = coor;
-                    annotation.title =shopInfo.name;
-                    [annotations addObject:annotation];
-                    
-                }
-                [mapView addAnnotations:annotations];
-            }
-            [self locationNewCenter];
-            
-        });
-    });
+    return 0;
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    return nil;
+}
+
+
+
 
 @end

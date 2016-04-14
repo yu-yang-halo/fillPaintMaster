@@ -145,15 +145,15 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     if(tdUser.phone!=nil){
         [appendHttpStr appendFormat:@"&phone=%@",tdUser.phone];
     }
-    if(tdUser.type>0){
-        [appendHttpStr appendFormat:@"&type=%d",tdUser.type];
-    }
+//    if(tdUser.type>0){
+//        [appendHttpStr appendFormat:@"&type=%d",tdUser.type];
+//    }
     if(tdUser.shopId>0){
         [appendHttpStr appendFormat:@"&shopId=%d",tdUser.shopId];
     }
 
     
-    NSString *service=[NSString stringWithFormat:@"%@updUser?senderId=%@&secToken=%@userId=%@&type=3%@",self.connect_header,userID,secToken,userID,appendHttpStr];
+    NSString *service=[NSString stringWithFormat:@"%@updUser?senderId=%@&secToken=%@&userId=%@&type=3%@",self.connect_header,userID,secToken,userID,appendHttpStr];
     NSLog(@"updUser service:%@",service);
     NSData *data=[self requestURLSync:service];
     if(data!=nil){

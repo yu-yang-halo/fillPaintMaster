@@ -161,6 +161,8 @@
 		84EA424B1CBE0F8F00DFCBDA /* MyCarTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EA42491CBE0F8F00DFCBDA /* MyCarTableViewController.xib */; };
 		84EA424F1CBE23CA00DFCBDA /* CityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA424D1CBE23CA00DFCBDA /* CityTableViewController.m */; };
 		84EA42501CBE23CA00DFCBDA /* CityTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EA424E1CBE23CA00DFCBDA /* CityTableViewController.xib */; };
+		84EA42541CBFA03600DFCBDA /* ShopLocationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA42521CBFA03400DFCBDA /* ShopLocationsTableViewCell.m */; };
+		84EA42551CBFA03600DFCBDA /* ShopLocationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EA42531CBFA03400DFCBDA /* ShopLocationsTableViewCell.xib */; };
 		84ED19AB1CB4DD8600116C99 /* WsqMD5Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84ED19A91CB4DD8600116C99 /* WsqMD5Util.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C6FF04885D98EFD277CD0577 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49336F7C7CEF0F6B8C6EC250 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -429,6 +431,9 @@
 		84EA424C1CBE23C900DFCBDA /* CityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityTableViewController.h; sourceTree = "<group>"; };
 		84EA424D1CBE23CA00DFCBDA /* CityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityTableViewController.m; sourceTree = "<group>"; };
 		84EA424E1CBE23CA00DFCBDA /* CityTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityTableViewController.xib; sourceTree = "<group>"; };
+		84EA42511CBFA03400DFCBDA /* ShopLocationsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopLocationsTableViewCell.h; sourceTree = "<group>"; };
+		84EA42521CBFA03400DFCBDA /* ShopLocationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopLocationsTableViewCell.m; sourceTree = "<group>"; };
+		84EA42531CBFA03400DFCBDA /* ShopLocationsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopLocationsTableViewCell.xib; sourceTree = "<group>"; };
 		84ED19A91CB4DD8600116C99 /* WsqMD5Util.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WsqMD5Util.mm; sourceTree = "<group>"; };
 		84ED19AA1CB4DD8600116C99 /* WsqMD5Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WsqMD5Util.h; sourceTree = "<group>"; };
 		E2E5957C845E102A048E030F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -676,6 +681,9 @@
 				18E4F00C1CBA0307000C12FD /* MyCouponTableViewCell.h */,
 				18E4F00D1CBA0307000C12FD /* MyCouponTableViewCell.m */,
 				18E4F00E1CBA0307000C12FD /* MyCouponTableViewCell.xib */,
+				84EA42511CBFA03400DFCBDA /* ShopLocationsTableViewCell.h */,
+				84EA42521CBFA03400DFCBDA /* ShopLocationsTableViewCell.m */,
+				84EA42531CBFA03400DFCBDA /* ShopLocationsTableViewCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1078,6 +1086,7 @@
 				18E9461D1C40C2C20047ADEA /* LaunchScreen.xib in Resources */,
 				18E809D61BC2A9C900712C43 /* PaintView0Controller.xib in Resources */,
 				84C701381C5379C6007FA60F /* MonitorView.xib in Resources */,
+				84EA42551CBFA03600DFCBDA /* ShopLocationsTableViewCell.xib in Resources */,
 				18E4F0101CBA0307000C12FD /* MyCouponTableViewCell.xib in Resources */,
 				84EA424B1CBE0F8F00DFCBDA /* MyCarTableViewController.xib in Resources */,
 				1803C3291C36A67F003157F1 /* arrow.png in Resources */,
@@ -1208,6 +1217,7 @@
 				84EA424A1CBE0F8F00DFCBDA /* MyCarTableViewController.m in Sources */,
 				18B932521BA6A8C50019279E /* AppDelegate.m in Sources */,
 				18EB1AF91C37934600791849 /* TDIdCodeViewController.m in Sources */,
+				84EA42541CBFA03600DFCBDA /* ShopLocationsTableViewCell.m in Sources */,
 				18EB79F51C51072200BA0C26 /* YYButtonUtils.m in Sources */,
 				18E4F00F1CBA0307000C12FD /* MyCouponTableViewCell.m in Sources */,
 				18ED344B1C3627C60085B250 /* ShopView1Controller.m in Sources */,

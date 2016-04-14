@@ -12,8 +12,15 @@
   自定义Tab界面 
  */
 
-@interface TDTabViewController : UITabBarController
+@protocol MyTabHandlerDelegate <NSObject>
 
-
+-(void)onModeSelected:(int)mode;
 
 @end
+
+@interface TDTabViewController : UITabBarController
+
+@property(nonatomic,weak) id<MyTabHandlerDelegate> tabHandlerDelegate;
+
+@end
+

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TDStoreViewController : UIViewController
+@interface TDStoreViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end

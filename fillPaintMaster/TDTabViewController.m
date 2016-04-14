@@ -23,6 +23,7 @@ float BUTTON_H=49;
     UIButton *myBtn;
     
     UIButton *locBtn;
+    UIButton *rightBtn;
     NSString *cityName;
     
     
@@ -51,11 +52,31 @@ float BUTTON_H=49;
     [locBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,-10,0,0)];
     [locBtn addTarget:self action:@selector(toCityList:) forControlEvents:UIControlEventTouchUpInside];
     
+    rightBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,(44-40)/2,80, 40)];
+    [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,10,0,-10)];
+    [rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [rightBtn setTitle:@"地图模式" forState:UIControlStateNormal];
+    [rightBtn setTitle:@"列表模式" forState:UIControlStateSelected];
+    [rightBtn addTarget:self action:@selector(selectMode:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
     [self initTDTabBar];
     
     [self initCustomView:0];
     
     [self netDataGet];
+    
+}
+
+-(void)selectMode:(UIButton *)sender{
+    if(sender.selected){
+        [sender setSelected:NO];
+    }else{
+        [sender setSelected:YES];
+    }
+    
+    [self.tabHandlerDelegate onModeSelected:sender.selected?1:0];
     
 }
 
@@ -237,8 +258,9 @@ float BUTTON_H=49;
         //framLayout.origin.x=-30;
         logo.frame=framLayout;
         self.navigationItem.titleView=logo;
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
     }else if(tagId==2){
-        UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
         
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
         [titleLabel setFont:[UIFont systemFontOfSize:20]];
@@ -246,9 +268,12 @@ float BUTTON_H=49;
         self.navigationItem.titleView=titleLabel;
         
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+       
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+        
         
     }else if(tagId==1){
-        UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
         
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
         [titleLabel setFont:[UIFont systemFontOfSize:20]];
@@ -256,9 +281,10 @@ float BUTTON_H=49;
         self.navigationItem.titleView=titleLabel;
         
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:rightBtn];
         
     }else if(tagId==3){
-        UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
         
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
         [titleLabel setFont:[UIFont systemFontOfSize:20]];
@@ -266,6 +292,7 @@ float BUTTON_H=49;
         self.navigationItem.titleView=titleLabel;
         
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
         
     }
    
