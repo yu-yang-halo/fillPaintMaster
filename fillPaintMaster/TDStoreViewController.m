@@ -14,6 +14,8 @@
 #import "TDLoginViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "Constants.h"
+#import "ShopLocationsTableViewCell.h"
+
 @interface TDStoreViewController ()<BMKMapViewDelegate,MyTabHandlerDelegate>
 {
     BMKMapView  *mapView;
@@ -35,6 +37,7 @@
     
     [tableView setDelegate:self];
     [tableView setDataSource:self];
+    [tableView setRowHeight:120];
     
     
     
@@ -229,9 +232,15 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ShopLocationsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShopLocationsTableViewCell"];
+    if(cell==nil){
+        cell= [[[NSBundle mainBundle] loadNibNamed:@"ShopLocationsTableViewCell" owner:self options:nil] lastObject];
+    }
     
     
-    return nil;
+
+    
+    return cell;
 }
 
 
