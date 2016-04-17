@@ -10,6 +10,4 @@
 
 @interface ShopView1Controller : UIViewController
 @property(nonatomic,weak) UIViewController *tdShopVCDelegate;
--(void)openVideoStream;
--(void)closeVideoStream;
 @end

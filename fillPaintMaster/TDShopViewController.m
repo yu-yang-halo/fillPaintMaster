@@ -33,7 +33,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self initTitleView];
+  
+    self.title=@"手机探店";
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:nil];
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+    
     [self initButton];
     
     s0=[[ShopView0Controller alloc] init];
@@ -44,9 +48,6 @@
     s1=[[ShopView1Controller alloc] init];
     [s1 setTdShopVCDelegate:self];
     s1.view.frame=self.containerView.bounds;
-    [s0.view setBackgroundColor:[UIColor purpleColor]];
-    
-    
     
     [self.containerView addSubview:s0.view];
     [self.containerView addSubview:s1.view];
@@ -93,55 +94,21 @@
     }
 }
 
--(void)initTitleView{
-    
-    UIButton *backBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
-    [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -50, 0, 0)];
-    [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *changeBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
-     [changeBtn setTitle:@"合肥" forState:UIControlStateNormal];
-    [changeBtn setImage:[UIImage imageNamed:@"city_icon_location"] forState:UIControlStateNormal];
- 
-    [changeBtn addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
-      [YYButtonUtils RimageLeftTextRight:changeBtn];
-    
-    
-    UIView  *titleView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 44)];
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 24)];
-    UILabel *cphLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 150, 20)];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [titleLabel setText:@"门店"];
-    
-    [cphLabel setTextAlignment:NSTextAlignmentCenter];
-    [cphLabel setFont:[UIFont systemFontOfSize:10]];
-    [cphLabel setText:@"皖A PS826"];
-    
-    [titleView addSubview:titleLabel];
-    [titleView addSubview:cphLabel];
-    
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.titleView=titleView;
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:changeBtn];
-}
--(void)change:(id)sender{
-    TDLocationViewController *locationVC=[[TDLocationViewController alloc] init];
-    [self presentViewController:locationVC animated:YES completion:^{
-        
-    }];
-}
--(void)back:(id)sender{
-    [s1 closeVideoStream];
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)viewWillAppear:(BOOL)animated{
+    [s0 viewWillAppear:animated];
+    [s1 viewWillAppear:animated];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [s0 viewWillDisappear:animated];
+    [s1 viewWillDisappear:animated];
+}
 /*
 #pragma mark - Navigation
 

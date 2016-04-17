@@ -1483,6 +1483,10 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     tdShopInfo.latitude=[[[[element elementsForName:@"latitude"] objectAtIndex:0] stringValue] floatValue];
     tdShopInfo.cityId=[[[[element elementsForName:@"cityId"] objectAtIndex:0] stringValue] intValue];
     tdShopInfo.desc=[[[element elementsForName:@"desc"] objectAtIndex:0] stringValue];
+    tdShopInfo.panorama=[[[element elementsForName:@"panorama"] objectAtIndex:0] stringValue];
+    tdShopInfo.openTime=[[[element elementsForName:@"openTime"] objectAtIndex:0] stringValue];
+    tdShopInfo.closeTime=[[[element elementsForName:@"closeTime"] objectAtIndex:0] stringValue];
+    
     return tdShopInfo;
 }
 -(TDOilInfo *)parseTDOilInfoXML:(GDataXMLElement *)element{

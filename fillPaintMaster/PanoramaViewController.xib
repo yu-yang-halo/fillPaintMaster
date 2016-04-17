@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PanoramaViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="2xJ-Et-2tw" id="ue7-Tx-jZu"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xJ-Et-2tw">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                </webView>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d41-eX-0L0">
+                    <rect key="frame" x="0.0" y="532" width="320" height="36"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的店铺全景" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxG-pP-bdg">
+                            <rect key="frame" x="109" y="7" width="102" height="21"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="10w-7J-IMR"/>
+                                <constraint firstAttribute="width" constant="102" id="bFI-Cg-MkG"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="30c-jZ-46j"/>
+                        <constraint firstItem="AxG-pP-bdg" firstAttribute="centerX" secondItem="d41-eX-0L0" secondAttribute="centerX" id="Eov-wL-p26"/>
+                        <constraint firstItem="AxG-pP-bdg" firstAttribute="centerY" secondItem="d41-eX-0L0" secondAttribute="centerY" id="oay-nS-Adu"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="d41-eX-0L0" secondAttribute="bottom" id="5Z2-Fg-FyT"/>
+                <constraint firstAttribute="trailing" secondItem="d41-eX-0L0" secondAttribute="trailing" id="87B-8k-ZeY"/>
+                <constraint firstItem="2xJ-Et-2tw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ItX-pz-20I"/>
+                <constraint firstItem="2xJ-Et-2tw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Kwg-lS-B6s"/>
+                <constraint firstAttribute="trailing" secondItem="2xJ-Et-2tw" secondAttribute="trailing" id="SNk-kX-9OT"/>
+                <constraint firstItem="d41-eX-0L0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="clr-UD-Kro"/>
+                <constraint firstAttribute="bottom" secondItem="2xJ-Et-2tw" secondAttribute="bottom" id="rAQ-9y-d7x"/>
+            </constraints>
+            <point key="canvasLocation" x="146" y="315"/>
+        </view>
+    </objects>
+</document>

@@ -15,5 +15,9 @@
 @property(nonatomic,assign) float latitude;
 @property(nonatomic,assign) int cityId;
 @property(nonatomic,retain) NSString * desc;
+@property(nonatomic,strong) NSString *panorama;
+@property(nonatomic,strong) NSString *openTime;
+@property(nonatomic,strong) NSString *closeTime;
+
 
 @end

@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jQuery Panorama Viewer by Pete R. | The Pete Design</title>
+	<meta name="title" content="jQuery Panorama Viewer by Pete R. | The Pete Design" />
+	<meta name="description" content="Embed your panorama photos on your site with jQuery Panorama Viewer" />
+	<link rel="image_src" href="/images/panorama_viewer_image.png" />
+
+	<meta content="http://www.thepetedesign.com/demos/panorama_viewer_demo.html" property="og:url" />
+	<meta content="http://www.thepetedesign.com/images/panorama_viewer_image.png" property="og:image" />
+	<link rel="shortcut icon" id="favicon" href="favicon.png"> 
+	<meta name="author" content="Pete R.">
+	<link rel="canonical" href="http://www.thepetedesign.com/demos/panorama_viewer_demo.html" />
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Pacifico:400' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="jquery.panorama_viewer.js"></script>
+  <link href='panorama_viewer.css' rel='stylesheet' type='text/css'>
+  <style>
+    html {
+      height: 100%;
+    }
+    body {
+      background: #F1f1f2;
+      padding: 0;
+      text-align: center;
+      font-family: 'open sans';
+      position: relative;
+      margin: 0;
+      height: 100%;
+    }
+    
+    .wrapper {
+    	height: auto !important;
+    	height: 100%;
+    	margin: 0 auto; 
+    	overflow: hidden;
+    }
+    
+       
+  
+
+       .credit {
+      text-align: center;
+      color: #888;
+      padding: 10px 10px;
+      margin: 0 0 0 0;
+      background: #f5f5f5;
+      float: left;
+      width: 100%;
+    }
+    .credit a {
+      text-decoration: none;
+      font-weight: bold;
+      color: black;
+    }
+    
+    
+    
+
+
+    .panorama {
+      width: 100%;
+      float: left;
+      margin-top: -5px;
+      height: 100%;
+    }
+    
+    .panorama .credit {
+      background: rgba(0,0,0,0.2);
+      color: white;
+      font-size: 12px;
+      text-align: center;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      float: right;
+    }
+    
+	</style>
+
+</head>
+<body>
+  <div class="wrapper">
+
+      <div class="panorama">
+  	   <img src="demo_photo.jpg"  id="image" >
+  	   <div class="credit">
+  	     我的店铺全景
+  	   </div>
+  	  </div>
+    </div>
+  
+ 
+</body>
+<script>
+	   $(document).ready(function(){
+                $(".panorama").panorama_viewer({
+                     repeat: true,
+                     direction: "horizontal",
+                     animationTime: 700,
+                     easing: "ease-out",
+                     overlay: true
+                 });
+		});
+
+		function initImageURL(url){
+		     $("#image").attr("src",url);
+		}
+
+	</script>
+</html>

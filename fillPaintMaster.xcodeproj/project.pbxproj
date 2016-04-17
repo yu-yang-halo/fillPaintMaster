@@ -28,6 +28,11 @@
 		183EAA161BB94B3E0029ED79 /* TDAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183EAA151BB94B3E0029ED79 /* TDAdView.m */; };
 		188D71871CC34C3C0075A3B0 /* DescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D71851CC34C3C0075A3B0 /* DescriptionTableViewCell.m */; };
 		188D71881CC34C3C0075A3B0 /* DescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188D71861CC34C3C0075A3B0 /* DescriptionTableViewCell.xib */; };
+		188D718B1CC388B50075A3B0 /* My360ViewObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D718A1CC388B50075A3B0 /* My360ViewObject.m */; };
+		188D718D1CC38A970075A3B0 /* My360View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188D718C1CC38A970075A3B0 /* My360View.xib */; };
+		188D718F1CC394FD0075A3B0 /* panorama in Resources */ = {isa = PBXBuildFile; fileRef = 188D718E1CC394FD0075A3B0 /* panorama */; };
+		188D71931CC3954A0075A3B0 /* PanoramaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D71911CC3954A0075A3B0 /* PanoramaViewController.m */; };
+		188D71941CC3954A0075A3B0 /* PanoramaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188D71921CC3954A0075A3B0 /* PanoramaViewController.xib */; };
 		18B9324F1BA6A8C50019279E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9324E1BA6A8C50019279E /* main.m */; };
 		18B932521BA6A8C50019279E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B932511BA6A8C50019279E /* AppDelegate.m */; };
 		18B932551BA6A8C50019279E /* TDHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B932541BA6A8C50019279E /* TDHomeViewController.m */; };
@@ -212,6 +217,13 @@
 		188D71841CC34C3C0075A3B0 /* DescriptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionTableViewCell.h; sourceTree = "<group>"; };
 		188D71851CC34C3C0075A3B0 /* DescriptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionTableViewCell.m; sourceTree = "<group>"; };
 		188D71861CC34C3C0075A3B0 /* DescriptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescriptionTableViewCell.xib; sourceTree = "<group>"; };
+		188D71891CC388B50075A3B0 /* My360ViewObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = My360ViewObject.h; sourceTree = "<group>"; };
+		188D718A1CC388B50075A3B0 /* My360ViewObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = My360ViewObject.m; sourceTree = "<group>"; };
+		188D718C1CC38A970075A3B0 /* My360View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = My360View.xib; sourceTree = "<group>"; };
+		188D718E1CC394FD0075A3B0 /* panorama */ = {isa = PBXFileReference; lastKnownFileType = folder; path = panorama; sourceTree = "<group>"; };
+		188D71901CC3954A0075A3B0 /* PanoramaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanoramaViewController.h; sourceTree = "<group>"; };
+		188D71911CC3954A0075A3B0 /* PanoramaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanoramaViewController.m; sourceTree = "<group>"; };
+		188D71921CC3954A0075A3B0 /* PanoramaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PanoramaViewController.xib; sourceTree = "<group>"; };
 		18B9324A1BA6A8C50019279E /* fillPaintMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fillPaintMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B9324E1BA6A8C50019279E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18B932501BA6A8C50019279E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -828,6 +840,13 @@
 				18EB1AEB1C37759000791849 /* TDAlbumViewController.h */,
 				18EB1AEC1C37759000791849 /* TDAlbumViewController.m */,
 				18EB1AED1C37759000791849 /* TDAlbumViewController.xib */,
+				188D71891CC388B50075A3B0 /* My360ViewObject.h */,
+				188D718A1CC388B50075A3B0 /* My360ViewObject.m */,
+				188D718C1CC38A970075A3B0 /* My360View.xib */,
+				188D71901CC3954A0075A3B0 /* PanoramaViewController.h */,
+				188D71911CC3954A0075A3B0 /* PanoramaViewController.m */,
+				188D71921CC3954A0075A3B0 /* PanoramaViewController.xib */,
+				188D718E1CC394FD0075A3B0 /* panorama */,
 			);
 			name = shop;
 			sourceTree = "<group>";
@@ -1103,16 +1122,19 @@
 				188D71881CC34C3C0075A3B0 /* DescriptionTableViewCell.xib in Resources */,
 				84EA424B1CBE0F8F00DFCBDA /* MyCarTableViewController.xib in Resources */,
 				1803C3291C36A67F003157F1 /* arrow.png in Resources */,
+				188D71941CC3954A0075A3B0 /* PanoramaViewController.xib in Resources */,
 				84C7013B1C5379C6007FA60F /* DirectDisplayShader.vsh in Resources */,
 				18B9325A1BA6A8C50019279E /* Assets.xcassets in Resources */,
 				18E4F0061CB9FB1A000C12FD /* MyOrderTableViewCell.xib in Resources */,
 				18EE55821C41FB1C00A99D50 /* CarInfoView.xib in Resources */,
 				18E4F0001CB9FA69000C12FD /* MyOrderTableViewController.xib in Resources */,
 				18ED34471C3627B60085B250 /* ShopView0Controller.xib in Resources */,
+				188D718F1CC394FD0075A3B0 /* panorama in Resources */,
 				1803C3201C36598D003157F1 /* panoroma.html in Resources */,
 				18E8ED131C2FE25A00968CEB /* TopCarViewController.xib in Resources */,
 				18E9462A1C40FDE50047ADEA /* city.plist in Resources */,
 				1803C3251C36905B003157F1 /* 360.png in Resources */,
+				188D718D1CC38A970075A3B0 /* My360View.xib in Resources */,
 				840FEE981CB8D8EA0056C7BE /* errorCodePlist.plist in Resources */,
 				18248FF61BBEB851008D3C36 /* TDBeautyTableViewCell2.xib in Resources */,
 				18B932581BA6A8C50019279E /* Main.storyboard in Resources */,
@@ -1244,7 +1266,9 @@
 				840FEE401CB61DAC0056C7BE /* TDServiceDataInfo.m in Sources */,
 				18E809D51BC2A9C900712C43 /* PaintView0Controller.m in Sources */,
 				18EE557F1C41F4A400A99D50 /* TDCarInfoViewController.m in Sources */,
+				188D71931CC3954A0075A3B0 /* PanoramaViewController.m in Sources */,
 				18E946211C40FAF20047ADEA /* TDLocationViewController.m in Sources */,
+				188D718B1CC388B50075A3B0 /* My360ViewObject.m in Sources */,
 				18C014B51CC1D5E3006284F3 /* TDWebViewController.m in Sources */,
 				182FC6FB1C4FACCD001978F5 /* TDStationInfo.m in Sources */,
 				182FC70A1C4FBB84001978F5 /* TDCouponInfo.m in Sources */,

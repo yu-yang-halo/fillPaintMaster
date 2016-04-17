@@ -7,6 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface ShopView0Controller : UIViewController<UIWebViewDelegate>
+@interface ShopView0Controller : UIViewController
 @property(nonatomic,weak) UIViewController *tdShopVCDelegate;
 @end

@@ -10,9 +10,22 @@
 #import <UIView+Toast.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "TDAlbumViewController.h"
-@interface ShopView0Controller ()
+#import <BaiduMapAPI_Map/BMKMapView.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
+#import "Constants.h"
+#import "ElApiService.h"
+#import "My360ViewObject.h"
+#import "PanoramaViewController.h"
+
+@interface ShopView0Controller ()<BMKMapViewDelegate>
 {
-  
+   BMKMapView  *mapView;
+   NSArray *shopInfos;
+    TDShopInfo *myShop;
+    int shopId;
+    My360ViewObject *viewObject;
+   
 }
 @property (retain, nonatomic) UIWebView *webView;
 @end
@@ -21,47 +34,72 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
+    mapView = [[BMKMapView alloc] initWithFrame:self.view.bounds];
+    [mapView setZoomLevel:13];
+    [self.view addSubview:mapView];
     
-    NSLog(@"viewDidLoad....");
-    [self initMapView];
-}
--(void)initMapView{
-    //panoroma.html
-    self.webView=[[UIWebView alloc] initWithFrame:self.view.bounds];
-    self.webView.delegate=self;
+    shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:@"shopId"] intValue];
+    viewObject=[[My360ViewObject alloc] init];
     
-    NSString *path=[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"location.html"];
+
     
-    NSString *htmlString=[[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    
-    
-    [self.webView loadHTMLString:htmlString baseURL:[[NSBundle mainBundle] bundleURL]];
-    
-    [self.view addSubview:_webView];
-    JSContext *context=[self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    context[@"clickToAlbum"]=^(){
-        NSLog(@"clickToAlbum....");
-        
-        NSArray *args=[JSContext currentArguments];
-        for (JSValue *jsVal in args) {
-            NSLog(@"argument : %@",jsVal.toString);
-        }
-        JSValue *thiz=[JSContext currentThis];
-        
-        NSLog(@"end....%@",thiz);
-        [self toggleAlbumVC];
-       
-    };
+    [self netDataGet];
 }
 
--(void)toggleAlbumVC{
-    TDAlbumViewController *tdAlbumVC=[[TDAlbumViewController alloc] init];
-    
-    [self.tdShopVCDelegate.navigationController pushViewController:tdAlbumVC animated:YES];
+-(void)netDataGet{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+        shopInfos=[[ElApiService shareElApiService] getShopList];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            for (TDShopInfo *shop in shopInfos) {
+                if(shop.shopId==shopId){
+                    myShop=shop;
+                    break;
+                }
+            }
+            [self locationNewCenter];
+            
+            
+        });
+    });
 }
+-(void)locationNewCenter{
+    if(myShop==nil){
+        return;
+    }
+    CLLocationCoordinate2D co2d=CLLocationCoordinate2DMake(myShop.latitude, myShop.longitude);
+    
+    [mapView setCenterCoordinate:co2d animated:YES];
+    
+    // 添加一个PointAnnotation
+    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+    CLLocationCoordinate2D coor;
+    coor.latitude =myShop.latitude;
+    coor.longitude = myShop.longitude;
+    annotation.coordinate = coor;
+    annotation.title =myShop.name;
+   
+    [mapView addAnnotation:annotation];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    [mapView viewWillAppear];
+    mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [mapView viewWillDisappear];
+    mapView.delegate = nil; // 不用时，置nil
+}
+
+
 
 -(void)viewDidLayoutSubviews{
-    self.webView.frame=self.view.bounds;
+  
 }
 
 
@@ -71,15 +109,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView{
-    NSLog(@"webViewDidStartLoad");
-    [self.view makeToastActivity:CSToastPositionCenter];
-}
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-    NSLog(@"webViewDidFinishLoad");
-    [self.view hideToastActivity];
-    
-}
 
 
 
@@ -92,5 +121,47 @@
     // Pass the selected object to the new view controller.
 }
 */
+/*
+ #pragma mark - BaiduMap delegate
+ */
+
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
+        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
+        
+        newAnnotationView.image=[UIImage imageNamed:@"maker"];
+        
+        
+        
+        [viewObject.nameLabel setText:annotation.title];
+        
+        newAnnotationView.paopaoView=[[BMKActionPaopaoView alloc] initWithCustomView:viewObject.m360View];
+        
+        [viewObject.my360Button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+        
+        return newAnnotationView;
+    }
+    return nil;
+}
+
+-(void)click:(id)sender{
+    NSLog(@"click...");
+    
+    PanoramaViewController *panoramaVC=[[PanoramaViewController alloc] init];
+    panoramaVC.panorama=myShop.panorama;
+    panoramaVC.title=myShop.name;
+    
+    
+    [self.tdShopVCDelegate.navigationController pushViewController:panoramaVC animated:YES];
+    
+}
+- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
+    // NSLog(@"didSelectAnnotationView %@",view);
+}
+- (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view{
+    // NSLog(@"annotationViewForBubble %@ tag:%ld",view,view.tag);
+    
+}
 
 @end
