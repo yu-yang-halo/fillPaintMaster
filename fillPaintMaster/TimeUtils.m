@@ -64,6 +64,41 @@
     
     return YES;
 }
++(NSString *)newDate:(int)incre{
+    NSDate *date=[NSDate new];
+    
+    date=[date dateByAddingTimeInterval:24*60*60*incre];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd+HH+mm+ss"];
+    
+    
+    
+    return [dateFormatter stringFromDate:date];
+}
 
++(NSString *)createTimeHHMM:(NSString *)hhmm incre:(int)incre{
+    NSCalendar *greCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *dateComponentsForDate = [greCalendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSWeekOfMonthCalendarUnit | NSWeekOfYearCalendarUnit fromDate:[NSDate date]];
+    
+  
+    [dateComponentsForDate setDay:(dateComponentsForDate.day+incre)];
+    
+    NSArray *hhmmArr=[hhmm componentsSeparatedByString:@":"];
+    
+    [dateComponentsForDate setHour:[hhmmArr[0] intValue]];
+    [dateComponentsForDate setMinute:[hhmmArr[1] intValue]];
+    [dateComponentsForDate setSecond:0];
+    
+    //  根据设置的dateComponentsForDate获取历法中与之对应的时间点
+    //  这里的时分秒会使用NSDateComponents中规定的默认数值，一般为0或1。
+    NSDate *dateFromDateComponentsForDate = [greCalendar dateFromComponents:dateComponentsForDate];
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd+HH+mm+ss"];
+    
+    return [dateFormatter stringFromDate:dateFromDateComponentsForDate];
+}
 
 @end
+

@@ -9,6 +9,7 @@
 #import "TDStoreViewController.h"
 #import <BaiduMapAPI_Map/BMKMapView.h>
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #import "ElApiService.h"
 #import "TDTabViewController.h"
 #import "TDLoginViewController.h"
@@ -31,13 +32,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      // Do any additional setup after loading the view.
-     mapView = [[BMKMapView alloc] initWithFrame:self.view.bounds];
-     tableView=[[UITableView alloc] initWithFrame:self.view.bounds];
+    mapView = [[BMKMapView alloc] initWithFrame:self.view.bounds];
+    tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 64,self.view.bounds.size.width, self.view.bounds.size.height-64-49)];
     [tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     [tableView setDelegate:self];
     [tableView setDataSource:self];
-    [tableView setRowHeight:120];
+    [tableView setRowHeight:100];
     
     
     
@@ -126,12 +127,6 @@
         hud.labelText = @"店铺切换中...";
     }
     
-    int cityId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_CITY_ID] intValue];
-    
-    
-    
-    
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if(shopID>0){
             NSString *name=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERNAME];
@@ -145,6 +140,7 @@
         }
         shopInfos=[[ElApiService shareElApiService] getShopList];
         
+        shopInfos=[self filterShopInfoList:shopInfos];
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -163,8 +159,7 @@
                 annotations=[[NSMutableArray alloc] init];
                 
                 for (TDShopInfo *shopInfo in shopInfos) {
-                    
-                    if(shopInfo.cityId==cityId){
+                
                         // 添加一个PointAnnotation
                         BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
                         CLLocationCoordinate2D coor;
@@ -173,15 +168,30 @@
                         annotation.coordinate = coor;
                         annotation.title =shopInfo.name;
                         [annotations addObject:annotation];
-                    }
+                    
                     
                 }
                 [mapView addAnnotations:annotations];
             }
             [self locationNewCenter];
             
+            [tableView reloadData];
+            
         });
     });
+}
+
+-(NSArray *)filterShopInfoList:(NSArray *)allshops{
+    int cityId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_CITY_ID] intValue];
+    
+    NSMutableArray *temp=[[NSMutableArray alloc] init];
+    for (TDShopInfo *shopInfo in allshops) {
+        
+        if(shopInfo.cityId==cityId){
+            [temp addObject:shopInfo];
+        }
+    }
+    return temp;
 }
 
 /*
@@ -228,6 +238,9 @@
  */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
+    if(shopInfos!=nil){
+        return [shopInfos count];
+    }
     return 0;
 }
 
@@ -237,11 +250,46 @@
         cell= [[[NSBundle mainBundle] loadNibNamed:@"ShopLocationsTableViewCell" owner:self options:nil] lastObject];
     }
     
+    TDShopInfo *shopInfo=[shopInfos objectAtIndex:indexPath.row];
     
+    [cell.nameLabel setText:shopInfo.name];
+    [cell.descLabel setText:shopInfo.desc];
+    if(user.shopId==shopInfo.shopId){
+        [cell.selectedStatusImageView setHighlighted:YES];
+    }else{
+        [cell.selectedStatusImageView setHighlighted:NO];
+    }
+    
+    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(shopInfo.latitude,shopInfo.longitude));
+    
+    double distance=[self caculateDistance:point1];
+    
+    
+    [cell.distanceLabel setText:[NSString stringWithFormat:@"%.1fkm",distance/1000]];
 
     
     return cell;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    TDShopInfo *shopInfo=[shopInfos objectAtIndex:indexPath.row];
+    
+    if(user.shopId!=shopInfo.shopId){
+        [self netDataGet:shopInfo.shopId];
+    }
+    
+}
+-(double)caculateDistance:(BMKMapPoint)point1{
+    NSString *latlgt=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_LATLGT];
+    
+    NSArray *latlgtArr=[latlgt componentsSeparatedByString:@","];
+    
+    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake([latlgtArr[0] floatValue],[latlgtArr[1] floatValue]));
+    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
+  
+    return distance;
+}
+
+
 
 
 

@@ -11,17 +11,19 @@
 #import "TDTableViewCell0.h"
 #import "TDTableViewCell1.h"
 #import "OrderSuccessViewController.h"
-#import "TDBaseItem.h"
-#import "TDPaintItem.h"
 #import "TDConstants.h"
 #import "YYButtonUtils.h"
 #import "TDLocationViewController.h"
+#import "ElApiService.h"
+#import "Constants.h"
+#import "TimeUtils.h"
 const float ROW_HEIGHT=50;
 const float ROW_HEIGHT_SECTION10=100;
 const float ROW_HEIGHT_SECTION11=60;
 @interface OrderReViewController (){
     NSArray *test;
     NSString *titleName;
+    float totalPrice;
 }
 @property (weak, nonatomic) IBOutlet UITableView *beautyItemTableView;
 
@@ -43,16 +45,17 @@ const float ROW_HEIGHT_SECTION11=60;
     }else{
         titleName=@"钣金喷漆";
     }
+    self.title=titleName;
     
-    [self initTitleView];
+    
     [self initBeautyItemTableView];
     [self initButton];
     [self updateLabelView];
     
 }
 -(void)initButton{
-    [self.commitOrderBtn.layer setCornerRadius:5];
-    [self.commitOrderBtn setBackgroundColor:[UIColor orangeColor]];
+    [self.commitOrderBtn.layer setCornerRadius:4];
+    [self.commitOrderBtn setBackgroundColor:BTN_BG_COLOR];
     
 }
 -(void)initBeautyItemTableView{
@@ -72,73 +75,110 @@ const float ROW_HEIGHT_SECTION11=60;
     
 }
 -(void)updateLabelView{
-    float total=0.0;
+    totalPrice=0.0;
     if(_carBeautyType==CarBeautyType_paint){
-        for (TDPaintItem  *item in _items) {
-            total+=item.totalPrice;
-        }
+        
     }else{
-        for (TDBaseItem  *item in _items) {
-            
-            total+=item.itemPrice;
+        for (TDBaseItem *baseItem in _items) {
+            totalPrice+=baseItem.price;
         }
     }
-   
     
-    [self.totalLabel setText:[NSString stringWithFormat:@"%.f元",total]];
+    [self.totalLabel setText:[NSString stringWithFormat:@"%.f元",totalPrice]];
+    if(totalPrice<=0){
+        [self.commitOrderBtn setBackgroundColor:[UIColor grayColor]];
+        [self.commitOrderBtn setEnabled:NO];
+        
+    }else{
+        [self.commitOrderBtn setBackgroundColor:BTN_BG_COLOR];
+        [self.commitOrderBtn setEnabled:YES];
+    }
     
 }
 
--(void)initTitleView{
-    
-    UIButton *backBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
-    [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -50, 0, 0)];
-    [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *changeBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
-     [changeBtn setTitle:@"合肥" forState:UIControlStateNormal];
-    [changeBtn setImage:[UIImage imageNamed:@"city_icon_location"] forState:UIControlStateNormal];
-    
-    [changeBtn addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
-      [YYButtonUtils RimageLeftTextRight:changeBtn];
-    
-    UIView  *titleView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 44)];
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 24)];
-    UILabel *cphLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 150, 20)];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [titleLabel setText:titleName];
-    
-    [cphLabel setTextAlignment:NSTextAlignmentCenter];
-    [cphLabel setFont:[UIFont systemFontOfSize:10]];
-    [cphLabel setText:@"皖A PS826"];
-    
-    [titleView addSubview:titleLabel];
-    [titleView addSubview:cphLabel];
-    
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.titleView=titleView;
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:changeBtn];
-}
--(void)change:(id)sender{
-    TDLocationViewController *locationVC=[[TDLocationViewController alloc] init];
-    [self presentViewController:locationVC animated:YES completion:^{
-        
-    }];
-}
--(void)back:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 - (IBAction)oneKeyOrder:(id)sender {
     //立即下单
     
-    UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    OrderSuccessViewController *orderSucVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderSucVC"];
-    [orderSucVC setCarBeautyType:_carBeautyType];
-    [self.navigationController pushViewController:orderSucVC animated:YES];
     
+    if([_items count]>0){
+        [self commitMyOrder];
+    }
+    
+}
+-(void)commitMyOrder{
+    
+    int carId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_CAR_ID] intValue];
+    int shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
+    int incre=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SELECT_INCRE] intValue];
+    NSString *hhmm=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SELECT_TIME];
+    
+    NSLog(@"incre %d; hhmm %@ ; %@",incre,hhmm,[TimeUtils createTimeHHMM:hhmm incre:incre]);
+    
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        BOOL todoSuccess=NO;
+        if(_carBeautyType==CarBeautyType_beauty){
+            TDDecoOrder *decoOrder=[[TDDecoOrder alloc] init];
+            [decoOrder setType:TYPE_PAY_TOSHOP];
+            [decoOrder setState:STATE_ORDER_UNFINISHED];
+      
+            [decoOrder setCarId:carId];
+            [decoOrder setShopId:shopId];
+            [decoOrder setPrice:totalPrice];
+            [decoOrder setOrderTime:[TimeUtils createTimeHHMM:hhmm incre:incre]];
+            int decoOrderId=[[ElApiService shareElApiService] createDecoOrder:decoOrder];
+            
+            if(decoOrderId>0){
+                
+                for (TDBaseItem *item in _items) {
+                    todoSuccess=[[ElApiService shareElApiService] createDecoOrderNumber:decoOrderId decoId:item.decorationId];
+                    if(todoSuccess){
+                        break;
+                    }
+                }
+            }
+            
+        }else if (_carBeautyType==CarBeautyType_oil){
+            TDOilOrder *oilOrder=[[TDOilOrder alloc] init];
+            [oilOrder setType:TYPE_PAY_TOSHOP];
+            [oilOrder setState:STATE_ORDER_UNFINISHED];
+            
+            [oilOrder setCarId:carId];
+            [oilOrder setShopId:shopId];
+            [oilOrder setPrice:totalPrice];
+            [oilOrder setOrderTime:[TimeUtils createTimeHHMM:hhmm incre:incre]];
+            int oilOrderId=[[ElApiService shareElApiService] createOilOrder:oilOrder];
+            
+            if(oilOrderId>0){
+                for (TDBaseItem *item in _items) {
+                    todoSuccess=[[ElApiService shareElApiService] createOilOrderNumber:oilOrderId oilId:item.oilId];
+                    if(!todoSuccess){
+                        break;
+                    }
+                }
+            }
+        }
+      
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(todoSuccess){
+                NSLog(@"success");
+            }else{
+                  NSLog(@"fail");
+            }
+            UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            OrderSuccessViewController *orderSucVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderSucVC"];
+            [orderSucVC setCarBeautyType:_carBeautyType];
+            [orderSucVC setResultOK:todoSuccess];
+            [orderSucVC setItems:_items];
+            
+            
+            [self.navigationController pushViewController:orderSucVC animated:YES];
+
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -192,18 +232,8 @@ const float ROW_HEIGHT_SECTION11=60;
         
        
         
-        if([baseItem isKindOfClass:[TDPaintItem class]]){
-             TDPaintItem *itm=(TDPaintItem *)baseItem;
-            if(itm.carPositionType>=CAR_TYPE_K1){
-                 [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %.f元 数量 %d",itm.itemName,itm.totalPrice,itm.nums]];
-            }else{
-                 [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %.f元",itm.itemName,itm.totalPrice]];
-            }
-            
-            
-        }else{
-             [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %.f元",baseItem.itemName,baseItem.itemPrice]];
-        }
+        [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %.f元",baseItem.name,baseItem.price]];
+        
         
         [tableCell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [tableCell.delBtn setTag:indexPath.row];

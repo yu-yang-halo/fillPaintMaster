@@ -10,26 +10,35 @@
 #import "TimeUtils.h"
 #import "TDBeautyTableViewCell.h"
 #import "OrderReViewController.h"
-#import "TDHttpDataService.h"
-#import "TDBaseItem.h"
-#import "TDBaseTime.h"
 #import "YYButtonUtils.h"
 #import "TDLocationViewController.h"
-@interface CarBeautyViewController (){
+#import "ElApiService.h"
+#import "Constants.h"
+#import "MyCollectionViewCell.h"
+@interface CarBeautyViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>{
     NSUInteger totalMoney;
     NSUInteger totalCount;
     
     NSString *titleName;
+    int shopId;
     
-    TDHttpDataService *httpServer;
+    NSArray *dayOrderStates;
+    NSArray *carItems;
+    int incre;
 }
-@property (weak, nonatomic) IBOutlet UIView *timeView;
-@property (weak, nonatomic) IBOutlet UITableView *beautyItemTableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *timeCollectionView;
 
-@property(retain,nonatomic) NSArray *items;
+@property (weak, nonatomic) IBOutlet UITableView *beautyItemTableView;
+@property (weak, nonatomic) IBOutlet UIView *topView;
+
 @property (weak, nonatomic) IBOutlet UIButton *cartBtn;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 @property (weak, nonatomic) IBOutlet UIButton *orderBtn;
+
+- (IBAction)timeChange:(id)sender;
+
+
+
 
 @end
 
@@ -37,170 +46,134 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    httpServer=[[TDHttpDataService alloc] init];
+    
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
+   
     if(_carBeautyType==CarBeautyType_beauty){
         titleName=@"洗车美容";
-        
-        self.items=[httpServer fetchAllBeautyItems];
     }else{
         titleName=@"换油保养";
-        
-        self.items=[httpServer fetchAllOilMaintainItems];
     }
+    self.title=titleName;
+    [self resetNSUserDefaults];
     
-    [self initTitleView];
+    incre=-1;
+    self.timeCollectionView.delegate=self;
+    self.timeCollectionView.dataSource=self;
+    
+    
+    [self.timeCollectionView registerNib:[UINib nibWithNibName:@"MyCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"MyCollectionViewCell"];
+    //创建一个layout布局类
+    UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
+    //设置布局方向为垂直流布局
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    //设置每个item的大小为100*100
+    layout.itemSize = CGSizeMake(50, 30);
+    layout.minimumInteritemSpacing=5;
+    layout.minimumLineSpacing=5;
+    [self.timeCollectionView setCollectionViewLayout:layout];
    
-    [self initBeautyItemTableView];
+    [self.beautyItemTableView setRowHeight:90];
+    [self.beautyItemTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    self.beautyItemTableView.delegate=self;
+    self.beautyItemTableView.dataSource=self;
     
     [self initOrderBtn];
+    
+    [self netDataGet];
+}
+-(void)resetNSUserDefaults{
+    [[NSUserDefaults standardUserDefaults] setObject:@(0) forKey:KEY_SELECT_INCRE];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:KEY_SELECT_TIME];
 }
 
--(void)viewDidAppear:(BOOL)animated{
-     [self initTimeView];
-}
--(void)viewWillAppear:(BOOL)animated{
+
+-(void)netDataGet{
     
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+        if(incre<0){
+            dayOrderStates=[[ElApiService shareElApiService] getDayOrderStateList:shopId searchType:_carBeautyType incre:0];
+            if(_carBeautyType==CarBeautyType_beauty){
+                carItems=[[ElApiService shareElApiService] getDecorationList:shopId];
+            }else if (_carBeautyType==CarBeautyType_oil){
+                carItems=[[ElApiService shareElApiService] getOilListByshopId:shopId];
+            }
+
+            
+        }else{
+            dayOrderStates=[[ElApiService shareElApiService] getDayOrderStateList:shopId searchType:_carBeautyType incre:incre];
+        }
+        
+        
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.timeCollectionView reloadData];
+            [self.beautyItemTableView reloadData];
+            int row=[dayOrderStates count]%6==0?[dayOrderStates count]/6:([dayOrderStates count]/6+1);
+            
+            [self.topView addConstraint:[NSLayoutConstraint
+                                  constraintWithItem:_topView
+                                  attribute:NSLayoutAttributeHeight
+                                  relatedBy:NSLayoutRelationEqual
+                                  toItem:nil
+                                  attribute:NSLayoutAttributeNotAnAttribute
+                                  multiplier:1
+                                  constant:row*30+34]];
+            
+            
+        });
+    });
 }
+
 -(void)initOrderBtn{
+    
+    [self.cartBtn.layer setBorderColor:[BTN_BG_COLOR CGColor]];
+    [self.cartBtn.layer setBorderWidth:1];
+    [self.cartBtn.layer setCornerRadius:_cartBtn.frame.size.width/2];
+    [self.cartBtn setBackgroundColor:[UIColor clearColor]];
+    [self.cartBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.cartBtn setTitle:@"0" forState:UIControlStateNormal];
+    
+    
     [self.orderBtn setEnabled:NO];
     [self.orderBtn setBackgroundColor:[UIColor grayColor]];
-    [self.orderBtn.layer setCornerRadius:5.0];
+    [self.orderBtn.layer setCornerRadius:4.0];
+    
     
     [self.orderBtn addTarget:self action:@selector(orderDetail:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)orderDetail:(id)sender{
+    
     UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     OrderReViewController *orderVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderVC"];
     [orderVC setCarBeautyType:_carBeautyType];
-    [orderVC setItems:[self selectedItems]];
+    [orderVC setItems:[self selectBaseItems]];
+    [orderVC setCarInfos:self.carInfos];
     
     [self.navigationController pushViewController:orderVC animated:YES];
-    
-}
--(NSMutableArray *)selectedItems{
-    NSMutableArray *selectedArrs=[[NSMutableArray alloc] init];
-    
-    for (TDBaseItem *item in _items) {
-        if(item.isAddYN){
-           [selectedArrs addObject:item];
-        }
-    }
-    return selectedArrs;
+
 }
 
--(void)initBeautyItemTableView{
-   
-    
-    
-    [self.beautyItemTableView setRowHeight:50];
-    [self.beautyItemTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    self.beautyItemTableView.delegate=self;
-    self.beautyItemTableView.dataSource=self;
-}
-
--(void)initTimeView{
-    /*
-         4行 6列
-     
-     */
-    NSArray *orderTimes=[httpServer fetchAllOrderTimes];
-    
-    float totalH=self.timeView.frame.size.height;
-    float totalW=self.timeView.frame.size.width;
-    float top=5;
-    float left=20;
-    
-    float BTN_WIDTH=45;
-    float BTN_HEIGHT=28;
-   
-    float hspace=(totalW-left-6*BTN_WIDTH)/6;
-    float vspace=(totalH-4*BTN_HEIGHT-top*2)/3;
-    
-    
-    for(int j=0;j<24;j++){
-        int row=j/6;
-        int col=j%6;
-        TDBaseTime *baseTime=[orderTimes objectAtIndex:j];
-        
-        UIButton *timeBtn=[[UIButton alloc] initWithFrame:CGRectMake(left+col*(BTN_WIDTH+hspace),top+row*(BTN_HEIGHT+vspace),BTN_WIDTH, BTN_HEIGHT)];
-        [timeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [timeBtn.layer setBorderWidth:1];
-        [timeBtn.layer setBorderColor:[[UIColor colorWithWhite:0.8 alpha:1] CGColor]];
-        
-        
-        [timeBtn setBackgroundImage:[UIImage imageNamed:@"yes"] forState:UIControlStateSelected];
-        
-        [timeBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
-        [timeBtn setTag:j];
-        [timeBtn addTarget:self action:@selector(selectTime:) forControlEvents:UIControlEventTouchUpInside];
-        [timeBtn setTitle:baseTime.timeValue forState:UIControlStateNormal];
-        if(!baseTime.enableYN){
-            [timeBtn setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
-        }else{
-            [timeBtn setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1]];
-        }
-        [timeBtn setEnabled:baseTime.enableYN];
-        
-        [self.timeView addSubview:timeBtn];
-        
-    }
-    
-}
 -(void)selectTime:(UIButton *)sender{
-    NSLog(@"tag %d",sender.tag);
+    NSLog(@"tag %d  %@",sender.tag, sender.titleLabel.text);
     if(sender.selected){
         [sender setSelected:NO];
-        //[sender setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1]];
-        
-
     }else{
         [sender setSelected:YES];
-        //[sender setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
-      
     }
+    
+    
+    [[NSUserDefaults standardUserDefaults] setObject:sender.titleLabel.text forKey:KEY_SELECT_TIME];
+    
+     [self.timeCollectionView reloadData];
 }
 
--(void)initTitleView{
-
-    UIButton *backBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
-    [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -50, 0, 0)];
-    [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *changeBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
-     [changeBtn setTitle:@"合肥" forState:UIControlStateNormal];
-    [changeBtn setImage:[UIImage imageNamed:@"city_icon_location"] forState:UIControlStateNormal];
-   
-    [changeBtn addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [YYButtonUtils RimageLeftTextRight:changeBtn];
-    
-    UIView  *titleView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 44)];
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 24)];
-    UILabel *cphLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 150, 20)];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:[UIFont systemFontOfSize:20]];
-    
-    [titleLabel setText:titleName];
-    
-    [cphLabel setTextAlignment:NSTextAlignmentCenter];
-    [cphLabel setFont:[UIFont systemFontOfSize:10]];
-    [cphLabel setText:@"皖A PS826"];
-    
-    [titleView addSubview:titleLabel];
-    [titleView addSubview:cphLabel];
-    
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.titleView=titleView;
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:changeBtn];
-}
--(void)change:(id)sender{
-    TDLocationViewController *locationVC=[[TDLocationViewController alloc] init];
-    [self presentViewController:locationVC animated:YES completion:^{
-        
-    }];
-}
 -(void)back:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -211,7 +184,20 @@
 
 #pragma mark TableView delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_items count];
+    if(carItems!=nil){
+      return [carItems count];
+    }
+    return 0;
+}
+
+-(NSMutableArray *)selectBaseItems{
+    NSMutableArray *selectItems=[[NSMutableArray alloc] init];
+    for (TDBaseItem *baseItem in carItems) {
+        if(baseItem.isAddYN){
+            [selectItems addObject:baseItem];
+        }
+    }
+    return selectItems;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -219,15 +205,12 @@
     TDBeautyTableViewCell *tableCell=[tableView dequeueReusableCellWithIdentifier:identifier];
     if(tableCell==nil){
        tableCell= [[[NSBundle mainBundle] loadNibNamed:@"TDBeautyTableViewCell" owner:self options:nil] lastObject];
-       
-        NSLog(@"new ....");
-    }else{
-        NSLog(@"exists...");
     }
     
-    TDBaseItem *item=[_items objectAtIndex:indexPath.row];
+    TDBaseItem *item=[carItems objectAtIndex:indexPath.row];
     
-    [tableCell.contentLabel setText:[NSString stringWithFormat:@"%@   %.f元",item.itemName,item.itemPrice] ];
+    [tableCell.contentLabel setText:[NSString stringWithFormat:@"%@   %.f元",item.name,item.price] ];
+    [tableCell.descLabel setText:item.desc];
     [tableCell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [tableCell.addOrRemoveBtn setSelected:item.isAddYN];
     [tableCell.addOrRemoveBtn setTag:indexPath.row];
@@ -235,7 +218,7 @@
     return tableCell;
 }
 -(void)addOrRemoveCart:(UIButton *)sender{
-    TDBaseItem *item=[_items objectAtIndex:sender.tag];
+    TDBaseItem *item=[carItems objectAtIndex:sender.tag];
     if(item.isAddYN){
         [item setIsAddYN:NO];
     }else{
@@ -243,7 +226,7 @@
     }
     [sender setSelected:item.isAddYN];
     
-    int val=item.itemPrice;
+    int val=item.price;
     
     if(sender.selected){
        
@@ -257,18 +240,18 @@
 
     if(totalMoney>0){
         [self.orderBtn setEnabled:YES];
-        [self.orderBtn setBackgroundColor:[UIColor blueColor]];
-        [self.moneyLabel setTextColor:[UIColor blueColor]];
+        [self.orderBtn setBackgroundColor:BTN_BG_COLOR];
+        [self.moneyLabel setTextColor:[UIColor blackColor]];
         [self.moneyLabel setText:[NSString stringWithFormat:@"¥ %d元",totalMoney]];
-        [self.cartBtn setBackgroundImage:[UIImage imageNamed:@"cartcircle"] forState:UIControlStateNormal];
+       
         [self.cartBtn setTitle:[NSString stringWithFormat:@"%d",totalCount] forState:UIControlStateNormal];
     }else{
         [self.orderBtn setEnabled:NO];
          [self.orderBtn setBackgroundColor:[UIColor grayColor]];
         [self.moneyLabel setTextColor:[UIColor grayColor]];
         [self.moneyLabel setText:@"0元"];
-        [self.cartBtn setBackgroundImage:[UIImage imageNamed:@"cart"] forState:UIControlStateNormal];
-        [self.cartBtn setTitle:@"" forState:UIControlStateNormal];
+        
+        [self.cartBtn setTitle:@"0" forState:UIControlStateNormal];
         
     }
    
@@ -276,5 +259,69 @@
     NSLog(@"addOrRemoveCart index %d",sender.tag);
     
 }
+#pragma mark Collections Delegate
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if(dayOrderStates!=nil){
+         return [dayOrderStates count];
+    }
+    return 0;
+    
+}
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+ 
+    MyCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MyCollectionViewCell" forIndexPath:indexPath];
+    
+    NSString *selectTime= [[NSUserDefaults standardUserDefaults] objectForKey:KEY_SELECT_TIME];
+    
+    TDOrderStateType *orderStateType=[dayOrderStates objectAtIndex:indexPath.row];
+    if (orderStateType.isFull||orderStateType.isInvaild) {
+        [cell.timeButton setEnabled:NO];
+        [cell.timeButton setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.1]];
+    }else{
+        
+        [cell.timeButton setEnabled:YES];
+        
+        if([orderStateType.orderTime isEqualToString:selectTime]){
+            [cell.timeButton setSelected:YES];
+        }else{
+            [cell.timeButton setSelected:NO];
+        }
+        if(cell.timeButton.selected){
+            [cell.timeButton setBackgroundColor:BTN_TIME_SELECTED_COLOR];
+        }else{
+            [cell.timeButton setBackgroundColor:[UIColor clearColor]];
+        }
+        
+        
+        
+        [cell.timeButton setTitle:orderStateType.orderTime forState:UIControlStateNormal];
+        [cell.timeButton addTarget:self action:@selector(selectTime:) forControlEvents:UIControlEventTouchUpInside];
+        
 
+        
+    }
+    
+    
+    return cell;
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(48, 24);
+}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+     return UIEdgeInsetsMake(5, 3, 0,3);
+}
+
+- (IBAction)timeChange:(UISegmentedControl *)sender {
+    NSLog(@"sender index : %d",sender.selectedSegmentIndex);
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:KEY_SELECT_TIME];
+    incre=sender.selectedSegmentIndex;
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@(incre) forKey:KEY_SELECT_INCRE];
+    
+    [self netDataGet];
+    
+}
 @end

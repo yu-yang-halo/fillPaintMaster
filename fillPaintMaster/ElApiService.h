@@ -8,9 +8,7 @@
 #import "TDUser.h"
 #import "TDStationInfo.h"
 #import "TDShopInfo.h"
-#import "TDOilInfo.h"
 #import "TDMetalplateInfo.h"
-#import "TDDecorationInfo.h"
 #import "TDCouponInfo.h"
 #import "TDCityInfo.h"
 #import "TDCarInfo.h"
@@ -55,7 +53,7 @@ typedef void (^ErrorCodeHandlerBlock)(NSString * ,NSString *);
 
 -(NSArray *)getCarByCurrentUser;
 -(NSArray *)getGoodsList:(int)shopId;
--(BOOL)createOilOrder:(TDOilOrder *)oilOrder;
+-(int)createOilOrder:(TDOilOrder *)oilOrder;
 -(BOOL)delOilOrder:(int)oilOrderId;
 -(BOOL)updOilOrder:(TDOilOrder *)oilOrder;
 -(NSArray *)getOilOrderList:(TDOrderSearch *)orderSearch;
@@ -66,15 +64,14 @@ typedef void (^ErrorCodeHandlerBlock)(NSString * ,NSString *);
 -(NSArray *)getMetaOrderList:(TDOrderSearch *)orderSearch;
 -(BOOL)createMetaOrderNumber:(int)metaOrderId metaId:(int)metaId;
 -(BOOL)createMetaOrderImg:(int)metaOrderId imgName:(NSString *)imgName;
--(BOOL)createDecoOrder:(TDDecoOrder *)decoOrder;
+-(int)createDecoOrder:(TDDecoOrder *)decoOrder;
 -(BOOL)delDecoOrder:(int)decoOrderId;
 -(BOOL)updDecoOrder:(TDDecoOrder *)decoOrder;
 -(NSArray *)getDecoOrderList:(TDOrderSearch *)orderSearch;
 -(BOOL)createDecoOrderNumber:(int)decoOrderId decoId:(int)decoId;
 -(NSArray *)getBannerList:(int)maxNum;
 -(NSArray *)getPromotionList:(int)maxNum;
-
--(NSArray *)getDayOrderStateList:(int)shopId searchType:(int)searchType;
+-(NSArray *)getDayOrderStateList:(int)shopId searchType:(int)searchType incre:(int)incre;
 -(NSArray *)getGoodsType;
 -(BOOL)createGoodsOrder:(NSString *)goodsInfo shopId:(int)arg1 price:(float)arg2 address:(NSString *)arg3 name:(NSString *)arg4 phone:(NSString *)arg5;
 -(BOOL)updCoupon:(int)promotionId;

@@ -18,3 +18,14 @@
 @end
 @implementation TDGoodsOrderListType
 @end
+
+@implementation TDBaseItem
+
+@end
+@implementation TDDecorationInfo
+
+@end
+@implementation TDOilInfo
+
+@end
+

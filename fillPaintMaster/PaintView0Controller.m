@@ -16,8 +16,6 @@
 #import "TDConstants.h"
 #import "TDButtonView.h"
 #import "OrderReViewController.h"
-#import "TDHttpDataService.h"
-#import "TDPaintItem.h"
 #import "OrderReViewController.h"
 const int PAGE_SIZE_NUM=6;
 
@@ -30,7 +28,6 @@ const int PAGE_SIZE_NUM=6;
     NSUInteger qQ_number;
     NSUInteger k2_number;
     
-    TDHttpDataService *httpServer;
     NSArray *paintArrs;
     
     UIView *leftCarView;
@@ -55,9 +52,7 @@ const int PAGE_SIZE_NUM=6;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    httpServer=[[TDHttpDataService alloc] init];
     
-    paintArrs=[httpServer fetchAllPaintItems];
     
     [self updateLabelView];
     
@@ -140,54 +135,19 @@ const int PAGE_SIZE_NUM=6;
 }
 
 -(void)setPaintItem:(int)posTag numbers:(int)nums{
-    for (TDPaintItem *item in paintArrs){
-        if(item.carPositionType==posTag){
-            if(nums>0){
-                [item setIsAddYN:YES];
-                [item setNums:nums];
-            }else{
-                [item setIsAddYN:NO];
-                [item setNums:0];
-            }
-            
-            break;
-        }
-    }
+
     
 }
 -(void)setPaintItem:(int)posTag selected:(BOOL)selected{
-    for (TDPaintItem *item in paintArrs){
-        if(item.carPositionType==posTag){
-            [item setIsAddYN:selected];
-            break;
-        }
-    }
 }
 
 -(NSMutableArray *)selectedItems{
-    NSMutableArray *items=[[NSMutableArray alloc] init];
-    for (TDPaintItem *item in paintArrs){
-        if(item.isAddYN){
-            [items addObject:item];
-        }
-    }
-    return items;
+   
+    return nil;
 }
 
 -(void)updateLabelView{
-    float total=0.0;
-    for (TDPaintItem *item in paintArrs){
-        if(item.isAddYN){
-            total+=item.totalPrice;
-        }
-    }
-
-    [self.totalLabel setText:[NSString stringWithFormat:@"%.f元",total]];
-    if(total<=0){
-        [self.orderButton setEnabled:NO];
-    }else{
-        [self.orderButton setEnabled:YES];
-    }
+    
 }
 
 -(void)viewDidLayoutSubviews{

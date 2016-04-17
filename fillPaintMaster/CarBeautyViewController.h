@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HeaderUViewController.h"
 typedef NS_ENUM(NSUInteger, CarBeautyType){
-    CarBeautyType_beauty,
-    CarBeautyType_oil,
-    CarBeautyType_paint
+    CarBeautyType_beauty=5,
+    CarBeautyType_oil=6,
+    CarBeautyType_paint=7
 };
 
-@interface CarBeautyViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface CarBeautyViewController : HeaderUViewController<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,assign) CarBeautyType carBeautyType;
+
 
 @end

@@ -84,11 +84,13 @@ float BUTTON_H=49;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         cityList=[[ElApiService shareElApiService] getCityList];
-        
-        
-        
+        TDUser *user=[[ElApiService shareElApiService] getUserInfo];
         dispatch_async(dispatch_get_main_queue(), ^{
             
+            if(user.shopId>0){
+                [[NSUserDefaults standardUserDefaults] setObject:@(user.shopId) forKey:KEY_SHOP_ID];
+            }
+
         });
     });
 }

@@ -7,22 +7,20 @@
 //
 
 #import "OrderSuccessViewController.h"
-#import "OrderDetailViewController.h"
 #import "YYButtonUtils.h"
 #import "TDLocationViewController.h"
-
-@interface OrderSuccessViewController (){
+#import "ElApiService.h"
+#import "TDTabViewController.h"
+#import "DescriptionTableViewCell.h"
+@interface OrderSuccessViewController ()<UITableViewDataSource,UITableViewDelegate>{
     NSString *titleName;
 }
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 
-@property (weak, nonatomic) IBOutlet UILabel *contactsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *carInfoLabel;
-@property (weak, nonatomic) IBOutlet UILabel *totalLabel;
-@property (weak, nonatomic) IBOutlet UIButton *bookingDetailButon;
+@property (weak, nonatomic) IBOutlet UIImageView *okImageView;
+@property (weak, nonatomic) IBOutlet UILabel *resultLabel;
+@property (weak, nonatomic) IBOutlet UITableView *detailTableView;
 @property (weak, nonatomic) IBOutlet UIButton *backHomeButton;
-- (IBAction)bookDetailAction:(id)sender;
-
-- (IBAction)backHomeAction:(id)sender;
 
 @end
 
@@ -37,78 +35,60 @@
     }else{
         titleName=@"钣金喷漆";
     }
-    [self initTitleView];
-    [self initButton];
+    self.title=titleName;
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+    
+    if(_resultOK){
+        [self.resultLabel setText:@"预约成功\n请等待客服确认"];
+        [self.okImageView setHidden:NO];
+    }else{
+        [self.resultLabel setText:@"对不起，预约失败"];
+        [self.okImageView setHidden:YES];
+        [self.headerView setBackgroundColor:[UIColor redColor]];
+    }
+    
+    [self.backHomeButton.layer setCornerRadius:4];
+    self.detailTableView.delegate=self;
+    self.detailTableView.dataSource=self;
+    [self.detailTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.detailTableView setRowHeight:60];
+    
+    
+    [self.backHomeButton addTarget:self action:@selector(backHome:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
 }
--(void)initButton{
-    [self.bookingDetailButon.layer setCornerRadius:5];
-    [self.bookingDetailButon.layer setBorderWidth:1];
-    [self.bookingDetailButon setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+-(void)backHome:(id)sender{
     
-    [self.bookingDetailButon.layer setBorderColor:[[UIColor grayColor] CGColor]];
+    UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    TDTabViewController *tabVC=[storyBoard instantiateViewControllerWithIdentifier:@"tabVC"];
     
-    [self.backHomeButton.layer setCornerRadius:5];
-    [self.backHomeButton.layer setBorderWidth:1];
-    [self.backHomeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [self.backHomeButton.layer setBorderColor:[[UIColor grayColor] CGColor]];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
     
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)initTitleView{
-    
-    UIButton *backBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
-    [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -50, 0, 0)];
-    [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *changeBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
-     [changeBtn setTitle:@"合肥" forState:UIControlStateNormal];
-    [changeBtn setImage:[UIImage imageNamed:@"city_icon_location"] forState:UIControlStateNormal];
-    
-    [changeBtn addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
-      [YYButtonUtils RimageLeftTextRight:changeBtn];
-    
-    UIView  *titleView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 44)];
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 24)];
-    UILabel *cphLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 150, 20)];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [titleLabel setText:titleName];
-    
-    [cphLabel setTextAlignment:NSTextAlignmentCenter];
-    [cphLabel setFont:[UIFont systemFontOfSize:10]];
-    [cphLabel setText:@"皖A PS826"];
-    
-    [titleView addSubview:titleLabel];
-    [titleView addSubview:cphLabel];
-    
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.titleView=titleView;
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:changeBtn];
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [_items count];
 }
--(void)change:(id)sender{
-    TDLocationViewController *locationVC=[[TDLocationViewController alloc] init];
-    [self presentViewController:locationVC animated:YES completion:^{
-        
-    }];
-}
--(void)back:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    DescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DescriptionTableViewCell"];
+    if(cell==nil){
+        cell= [[[NSBundle mainBundle] loadNibNamed:@"DescriptionTableViewCell" owner:self options:nil] lastObject];
+    }
+    TDBaseItem *baseItem=[_items objectAtIndex:indexPath.row];
+    
+    [cell.nameLabel setText:baseItem.name];
+    [cell.priceLabel setText:[NSString stringWithFormat:@"%.1f元",baseItem.price]];
+    
+    return cell;
 }
 
 
-- (IBAction)bookDetailAction:(id)sender {
-   
-    OrderDetailViewController *orderDetail=[[OrderDetailViewController alloc] init];
-    [orderDetail setCarBeautyType:_carBeautyType];
-    [self.navigationController pushViewController:orderDetail animated:YES];
-    
-}
-
-- (IBAction)backHomeAction:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
 @end

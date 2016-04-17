@@ -13,4 +13,7 @@
 +(NSString *)normalShowTime:(NSString *)serverTime;
 +(NSString *)normalShowTime:(NSString *)serverTime format:(NSString *)format;
 +(BOOL)isOverTime:(NSString *)endTime;
++(NSString *)newDate:(int)incre;
++(NSString *)createTimeHHMM:(NSString *)hhmm incre:(int)incre;
+
 @end

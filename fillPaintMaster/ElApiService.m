@@ -9,6 +9,7 @@
 #import "ElApiService.h"
 #import "GDataXMLNode.h"
 #import "WsqMD5Util.h"
+#import "TimeUtils.h"
 
 const static int DEFAULT_TIME_OUT=11;
 const static NSString* WEBSERVICE_IP=@"112.124.106.131";
@@ -537,30 +538,14 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     }
     return nil;
 }
--(BOOL)createOilOrder:(TDOilOrder *)oilOrder{
+-(int)createOilOrder:(TDOilOrder *)oilOrder{
     
     NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
-    if(oilOrder.type>0){
-        [appendHttpStr appendFormat:@"&type=%d",oilOrder.type];
-    }
-    if(oilOrder.state>0){
-        [appendHttpStr appendFormat:@"&state=%d",oilOrder.state];
-    }
-    if(oilOrder.payState>0){
-        [appendHttpStr appendFormat:@"&payState=%d",oilOrder.payState];
-    }
-    if(oilOrder.userId!=nil){
-        [appendHttpStr appendFormat:@"&userId=%@",oilOrder.userId];
-    }
+   
     if(oilOrder.carId>0){
         [appendHttpStr appendFormat:@"&carId=%d",oilOrder.carId];
     }
-    if(oilOrder.shopId>0){
-        [appendHttpStr appendFormat:@"&shopId=%d",oilOrder.shopId];
-    }
-    if(oilOrder.stationId>0){
-        [appendHttpStr appendFormat:@"&stationId=%d",oilOrder.stationId];
-    }
+   
     if(oilOrder.price>0){
         [appendHttpStr appendFormat:@"&price=%f",oilOrder.price];
     }
@@ -574,7 +559,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@createOilOrder?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSString *service=[NSString stringWithFormat:@"%@createOilOrder?senderId=%@&secToken=%@&userId=%@&payState=%d&state=%d&type=%d&shopId=%d&stationId=%d%@",self.connect_header,userID,secToken,userID,oilOrder.payState,oilOrder.state,oilOrder.type,oilOrder.shopId,oilOrder.stationId,appendHttpStr];
     NSLog(@"createOilOrder  service:%@",service);
     NSData *data=[self requestURLSync:service];
     
@@ -587,13 +572,13 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
         
         if([errorCodeVal isEqualToString:@"0"]){
-            return YES;
+            return [idVal intValue];
         }else{
             [self notificationErrorCode:errorCodeVal];
         }
         
     }
-    return NO;
+    return -1;
 }
 -(BOOL)delOilOrder:(int)oilOrderId{
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
@@ -1006,30 +991,14 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
 }
 
 
--(BOOL)createDecoOrder:(TDDecoOrder *)decoOrder{
+-(int)createDecoOrder:(TDDecoOrder *)decoOrder{
     
     NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
-    if(decoOrder.type>0){
-        [appendHttpStr appendFormat:@"&type=%d",decoOrder.type];
-    }
-    if(decoOrder.state>0){
-        [appendHttpStr appendFormat:@"&state=%d",decoOrder.state];
-    }
-    if(decoOrder.payState>0){
-        [appendHttpStr appendFormat:@"&payState=%d",decoOrder.payState];
-    }
-    if(decoOrder.userId!=nil){
-        [appendHttpStr appendFormat:@"&userId=%@",decoOrder.userId];
-    }
+    
     if(decoOrder.carId>0){
         [appendHttpStr appendFormat:@"&carId=%d",decoOrder.carId];
     }
-    if(decoOrder.shopId>0){
-        [appendHttpStr appendFormat:@"&shopId=%d",decoOrder.shopId];
-    }
-    if(decoOrder.stationId>0){
-        [appendHttpStr appendFormat:@"&stationId=%d",decoOrder.stationId];
-    }
+   
     if(decoOrder.price>0){
         [appendHttpStr appendFormat:@"&price=%f",decoOrder.price];
     }
@@ -1043,7 +1012,7 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@createDecoOrder?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSString *service=[NSString stringWithFormat:@"%@createDecoOrder?senderId=%@&secToken=%@&userId=%@&payState=%d&state=%d&type=%d&shopId=%d&stationId=%d%@",self.connect_header,userID,secToken,userID,decoOrder.payState,decoOrder.state,decoOrder.type,decoOrder.shopId,decoOrder.stationId,appendHttpStr];
     NSLog(@"createDecoOrder  service:%@",service);
     NSData *data=[self requestURLSync:service];
     
@@ -1058,13 +1027,13 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         NSString* createTimeVal=[[[rootElement elementsForName:@"createTime"] objectAtIndex:0] stringValue];
         
         if([errorCodeVal isEqualToString:@"0"]){
-            return YES;
+            return [idVal intValue];
         }else{
             [self notificationErrorCode:errorCodeVal];
         }
         
     }
-    return NO;
+    return -1;
 }
 -(BOOL)delDecoOrder:(int)decoOrderId{
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
@@ -1352,11 +1321,11 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     
     return nil;
 }
--(NSArray *)getDayOrderStateList:(int)shopId searchType:(int)searchType{
+-(NSArray *)getDayOrderStateList:(int)shopId searchType:(int)searchType incre:(int)incre{
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@getDayOrderStateList?senderId=%@&secToken=%@&searchTime=%@&shopId=%d&searchType=%d",self.connect_header,userID,secToken,@"",shopId,searchType];
+    NSString *service=[NSString stringWithFormat:@"%@getDayOrderStateList?senderId=%@&secToken=%@&searchTime=%@&shopId=%d&searchType=%d",self.connect_header,userID,secToken,[TimeUtils newDate:incre],shopId,searchType];
     NSLog(@"getDayOrderStateList  service:%@",service);
     NSData *data=[self requestURLSync:service];
     

@@ -9,6 +9,7 @@
 #import "CityTableViewController.h"
 #import "ElApiService.h"
 #import "Constants.h"
+#import "NSString+Contains.h"
 @interface CityTableViewController ()
 
 @end
@@ -117,7 +118,7 @@
     
     NSString *citname=city.name;
     
-    if(![city.name containsString:@"市"]){
+    if(![citname myContainsString:@"市"]){
         citname=[NSString stringWithFormat:@"%@市",city.name];
     }
     

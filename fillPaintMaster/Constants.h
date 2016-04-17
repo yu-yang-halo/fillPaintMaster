@@ -52,6 +52,18 @@ static const NSString *KEY_LATLGT_CITYNAME=@"latlgt_city_name";
 static const NSString *KEY_CITY_ID=@"selected_cityId";
 static const NSString *KEY_CITY_NAME=@"selected_cityName";
 static const NSString *KEY_TO_DOOR=@"toDoor";
+static const NSString *KEY_SHOP_ID=@"shopId";
+static const NSString *KEY_CAR_ID=@"carId";
 
+static const NSString *KEY_SELECT_TIME=@"select_order_time";
+static const NSString *KEY_SELECT_INCRE=@"select_order_incre";
+
+
+
+#define BTN_BG_COLOR [UIColor colorWithRed:82/255.0 green:73/255.0 blue:228/255.0 alpha:0.9]
+
+#define BTN_TIME_SELECTED_COLOR [UIColor colorWithRed:74/255.0 green:140/255.0 blue:23/255.0 alpha:1]
+
+#define TEXT_PRICE_COLOR [UIColor colorWithRed:220/255.0 green:59/255.0 blue:252/255.0 alpha:1]
 
 #endif /* Constants_h */

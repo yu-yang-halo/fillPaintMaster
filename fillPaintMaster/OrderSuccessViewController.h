@@ -10,4 +10,7 @@
 #import "CarBeautyViewController.h"
 @interface OrderSuccessViewController : UIViewController
 @property(nonatomic,assign) CarBeautyType carBeautyType;
+@property(nonatomic,assign) BOOL resultOK;
+@property(nonatomic,strong) NSArray *items;
+
 @end

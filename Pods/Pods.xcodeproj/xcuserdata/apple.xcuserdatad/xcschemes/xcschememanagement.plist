@@ -8,46 +8,92 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>CustomIOSAlertView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>MMPopupView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>Masonry.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>SDCycleScrollView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>Toast.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>28FBA61ED3358D488385ADBCAB19339D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>311592250C7A3D5FE1481AA2323D93FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>351D334B3C0B49938E167678166C1A44</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>39E38B056EF6C485AB87B387CA64620C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -63,6 +109,16 @@
 			<true/>
 		</dict>
 		<key>6A51F1035521F9C5D78E4D3366B0BD41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8AF0559ECF0522CAEB2C126ED8A3B6FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8EBA2BF93F5D4DE3CF4597EA1AA5CC3D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

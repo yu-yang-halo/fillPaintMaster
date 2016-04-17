@@ -14,6 +14,9 @@
 #import "ElApiService.h"
 #import "AppDelegate.h"
 #import <MJRefresh/MJRefresh.h>
+#import <UIView+Toast.h>
+#import "TDWebViewController.h"
+#import "Constants.h"
 static const float ICON_WIDTH=45;
 static const float ICON_HEIGHT=80;
 static const float AD_HEIGHT=120;
@@ -26,6 +29,8 @@ static const float ROW_HEIGHT=40;
     NSArray *imgItms;
     NSArray *contentItms;
     MJRefreshNormalHeader *refreshHeader;
+    NSArray *bannerList;
+    NSArray *carInfos;
 }
 @property(retain, nonatomic)  UIScrollView *tdScrollView;
 @property(retain, nonatomic)  UIView *containerView;
@@ -51,7 +56,7 @@ static const float ROW_HEIGHT=40;
     
     
     
-    self.serviceItems=@[@"洗车美容",@"换油保养",@"钣金喷漆",@"手机探店",@"车险直销",@"产品超市",@"即将上线",@"即将上线"];
+    self.serviceItems=@[@"洗车美容",@"换油保养",@"钣金喷漆",@"手机探店",@"车险直销",@"产品超市",@"自助洗"];
     imgItms=@[@"home_icon_hongbao",@"home_icon_recommend"];
     contentItms=@[@"领取优惠券和红包",@"热门推荐"];
 
@@ -107,8 +112,10 @@ static const float ROW_HEIGHT=40;
 
 -(void)netDataGet{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *bannerList=[[ElApiService shareElApiService] getBannerList:3];
+        bannerList=[[ElApiService shareElApiService] getBannerList:3];
         TDUser *user=[[ElApiService shareElApiService] getUserInfo];
+        carInfos=[[ElApiService shareElApiService] getCarByCurrentUser];
+        
         
         
         NSMutableArray *imagesURLStrings=[[NSMutableArray alloc] init];
@@ -149,7 +156,7 @@ static const float ROW_HEIGHT=40;
      2 3
      4 5
      */
-    for (int i=0; i<8; i++) {
+    for (int i=0; i<7; i++) {
         
         int col=i%4;
         int row=i/4;
@@ -183,6 +190,17 @@ static const float ROW_HEIGHT=40;
     
 }
 -(void)click:(UIButton *)sender{
+    
+    NSNumber *shopIDObj=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID];
+    
+    if([shopIDObj intValue]<=0){
+        
+        [self.view makeToast:@"请选择店铺"];
+        
+        return;
+    }
+    
+    
     UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     
     switch (sender.tag) {
@@ -191,7 +209,9 @@ static const float ROW_HEIGHT=40;
              汽车美容
              */
             CarBeautyViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"beautyVC"];
+            [vc setCarInfos:carInfos];
             [vc setCarBeautyType:CarBeautyType_beauty];
+             
             [self.tabBarController.navigationController pushViewController:vc animated:YES];
             
                }
@@ -203,6 +223,7 @@ static const float ROW_HEIGHT=40;
              */
             CarBeautyViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"beautyVC"];
             [vc setCarBeautyType:CarBeautyType_oil];
+            [vc setCarInfos:carInfos];
             [self.tabBarController.navigationController pushViewController:vc animated:YES];
             
         }
@@ -280,9 +301,6 @@ static const float ROW_HEIGHT=40;
         case 6:
             imageName=@"default_icon_serve";
             break;
-        case 7:
-            imageName=@"default_icon_serve";
-            break;
     }
     return imageName;
     
@@ -316,12 +334,15 @@ static const float ROW_HEIGHT=40;
 #pragma mark SDCycleScrollViewDelegate
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    NSLog(@"click index %ld ",index);
+    
+    TDBannerInfoType *banerInfo=[bannerList objectAtIndex:index];
+    
+    TDWebViewController *webVC=[[TDWebViewController alloc] init];
+    [webVC setUrl:banerInfo.src];
+    
+    [self.navigationItem.backBarButtonItem setTitle:@"返回"];
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
-/** 图片滚动回调 */
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
-    NSLog(@"didScrollToIndex index %ld ",index);
-}
 
 @end

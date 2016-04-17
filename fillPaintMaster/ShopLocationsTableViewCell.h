@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ShopLocationsTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *selectedStatusImageView;
 
 @end

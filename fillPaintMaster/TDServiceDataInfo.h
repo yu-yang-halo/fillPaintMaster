@@ -21,6 +21,7 @@
 @interface TDOrderStateType : NSObject
 @property(nonatomic,strong) NSString *orderTime;
 @property(nonatomic,assign) BOOL isFull;
+@property(nonatomic,assign) BOOL isInvaild;
 @end
 
 @interface TDGoodsOrderListType : NSObject
@@ -40,4 +41,24 @@
 
 
 @end
+
+@interface TDBaseItem : NSObject
+@property(nonatomic,assign) int oilId;
+@property(nonatomic,assign) int decorationId;
+@property(nonatomic,retain) NSString *name;
+@property(nonatomic,retain) NSString *desc;
+@property(nonatomic,assign) float price;
+@property(nonatomic,assign) int shopId;
+@property(nonatomic,assign) BOOL isAddYN;
+
+@end
+
+@interface TDDecorationInfo : TDBaseItem
+
+@end
+
+@interface TDOilInfo : TDBaseItem
+
+@end
+
 
