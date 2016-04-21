@@ -28,4 +28,7 @@
 @implementation TDOilInfo
 
 @end
+@implementation CameraListType
+
+@end
 

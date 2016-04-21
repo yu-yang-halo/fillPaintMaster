@@ -11,6 +11,7 @@
 #import <UIView+Toast.h>
 #import "ElApiService.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "JPUSHService.h"
 const NSString *KEY_USERNAME=@"KEY_USERNAME";
 const NSString *KEY_PASSWORD=@"KEY_PASSWORD";
 
@@ -84,6 +85,13 @@ const NSString *KEY_PASSWORD=@"KEY_PASSWORD";
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hide:YES];
                 if(resultYN){
+                    
+                    NSString *type=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USER_TYPE];
+                    
+                    NSSet *tags=[NSSet setWithObjects:type, nil];
+                    [JPUSHService setTags:tags alias:username fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+                        
+                    }];
                     
                     [[NSUserDefaults standardUserDefaults] setObject:username forKey:KEY_USERNAME];
                      [[NSUserDefaults standardUserDefaults] setObject:password forKey:KEY_PASSWORD];

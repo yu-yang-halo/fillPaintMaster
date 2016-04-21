@@ -107,8 +107,6 @@
 		18ED34471C3627B60085B250 /* ShopView0Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED34451C3627B60085B250 /* ShopView0Controller.xib */; };
 		18ED344B1C3627C60085B250 /* ShopView1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED34491C3627C60085B250 /* ShopView1Controller.m */; };
 		18ED344C1C3627C60085B250 /* ShopView1Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18ED344A1C3627C60085B250 /* ShopView1Controller.xib */; };
-		18EDC6B91C564E5B0068A655 /* LiveViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18EDC6B71C564E5B0068A655 /* LiveViewController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		18EDC6BA1C564E5B0068A655 /* LiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EDC6B81C564E5B0068A655 /* LiveViewController.xib */; };
 		18EE557F1C41F4A400A99D50 /* TDCarInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE557D1C41F4A400A99D50 /* TDCarInfoViewController.m */; };
 		18EE55801C41F4A400A99D50 /* TDCarInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE557E1C41F4A400A99D50 /* TDCarInfoViewController.xib */; };
 		18EE55821C41FB1C00A99D50 /* CarInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EE55811C41FB1C00A99D50 /* CarInfoView.xib */; };
@@ -129,9 +127,12 @@
 		847F9D1B1C50BBD8005ED278 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F9D191C50ACB5005ED278 /* libxml2.dylib */; };
 		848149081C32643500588564 /* DelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848149071C32643500588564 /* DelegateViewController.m */; };
 		8481490D1C326DFB00588564 /* TDButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481490C1C326DFB00588564 /* TDButtonView.m */; };
+		84C519F71CC870B3004450FA /* MonitorViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84C519F61CC870B3004450FA /* MonitorViewController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		84C519F91CC87203004450FA /* MonitorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C519F81CC87202004450FA /* MonitorView.xib */; };
+		84C519FE1CC89CC5004450FA /* GoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C519FC1CC89CC5004450FA /* GoodsViewController.m */; };
+		84C519FF1CC89CC6004450FA /* GoodsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C519FD1CC89CC5004450FA /* GoodsViewController.xib */; };
+		84C51A031CC8A7DA004450FA /* jpush-ios-2.1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C51A011CC8A7DA004450FA /* jpush-ios-2.1.6.a */; };
 		84C701371C5379C6007FA60F /* CameraShowGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C701281C5379C6007FA60F /* CameraShowGLView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		84C701381C5379C6007FA60F /* MonitorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C7012A1C5379C6007FA60F /* MonitorView.xib */; };
-		84C701391C5379C6007FA60F /* MonitorViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84C7012C1C5379C6007FA60F /* MonitorViewController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		84C7013A1C5379C6007FA60F /* DirectDisplayShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 84C7012D1C5379C6007FA60F /* DirectDisplayShader.fsh */; };
 		84C7013B1C5379C6007FA60F /* DirectDisplayShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 84C7012E1C5379C6007FA60F /* DirectDisplayShader.vsh */; };
 		84C7013C1C5379C6007FA60F /* PSDMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C701301C5379C6007FA60F /* PSDMonitor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -345,9 +346,6 @@
 		18ED34481C3627C60085B250 /* ShopView1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopView1Controller.h; sourceTree = "<group>"; };
 		18ED34491C3627C60085B250 /* ShopView1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopView1Controller.m; sourceTree = "<group>"; };
 		18ED344A1C3627C60085B250 /* ShopView1Controller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopView1Controller.xib; sourceTree = "<group>"; };
-		18EDC6B61C564E5B0068A655 /* LiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
-		18EDC6B71C564E5B0068A655 /* LiveViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LiveViewController.mm; sourceTree = "<group>"; };
-		18EDC6B81C564E5B0068A655 /* LiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveViewController.xib; sourceTree = "<group>"; };
 		18EE557C1C41F4A400A99D50 /* TDCarInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCarInfoViewController.h; sourceTree = "<group>"; };
 		18EE557D1C41F4A400A99D50 /* TDCarInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCarInfoViewController.m; sourceTree = "<group>"; };
 		18EE557E1C41F4A400A99D50 /* TDCarInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDCarInfoViewController.xib; sourceTree = "<group>"; };
@@ -390,11 +388,16 @@
 		848149071C32643500588564 /* DelegateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateViewController.m; sourceTree = "<group>"; };
 		8481490B1C326DFB00588564 /* TDButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDButtonView.h; sourceTree = "<group>"; };
 		8481490C1C326DFB00588564 /* TDButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDButtonView.m; sourceTree = "<group>"; };
+		84C519F51CC870B2004450FA /* MonitorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonitorViewController.h; sourceTree = "<group>"; };
+		84C519F61CC870B3004450FA /* MonitorViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonitorViewController.mm; sourceTree = "<group>"; };
+		84C519F81CC87202004450FA /* MonitorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonitorView.xib; sourceTree = "<group>"; };
+		84C519FB1CC89CC5004450FA /* GoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsViewController.h; sourceTree = "<group>"; };
+		84C519FC1CC89CC5004450FA /* GoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsViewController.m; sourceTree = "<group>"; };
+		84C519FD1CC89CC5004450FA /* GoodsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsViewController.xib; sourceTree = "<group>"; };
+		84C51A011CC8A7DA004450FA /* jpush-ios-2.1.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.6.a"; sourceTree = "<group>"; };
+		84C51A021CC8A7DA004450FA /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		84C701281C5379C6007FA60F /* CameraShowGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraShowGLView.m; sourceTree = "<group>"; };
 		84C701291C5379C6007FA60F /* CameraShowGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraShowGLView.h; sourceTree = "<group>"; };
-		84C7012A1C5379C6007FA60F /* MonitorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonitorView.xib; sourceTree = "<group>"; };
-		84C7012B1C5379C6007FA60F /* MonitorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonitorViewController.h; sourceTree = "<group>"; };
-		84C7012C1C5379C6007FA60F /* MonitorViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonitorViewController.mm; sourceTree = "<group>"; };
 		84C7012D1C5379C6007FA60F /* DirectDisplayShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DirectDisplayShader.fsh; sourceTree = "<group>"; };
 		84C7012E1C5379C6007FA60F /* DirectDisplayShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DirectDisplayShader.vsh; sourceTree = "<group>"; };
 		84C7012F1C5379C6007FA60F /* PSDMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSDMonitor.h; sourceTree = "<group>"; };
@@ -451,6 +454,7 @@
 				18F612F71C53B21300238F12 /* CoreGraphics.framework in Frameworks */,
 				84C701771C5385DE007FA60F /* IOTCamera.framework in Frameworks */,
 				84C701781C5385DF007FA60F /* libIOTCAPIs_ALL.a in Frameworks */,
+				84C51A031CC8A7DA004450FA /* jpush-ios-2.1.6.a in Frameworks */,
 				84C7017B1C5387ED007FA60F /* CoreMedia.framework in Frameworks */,
 				84C701731C53855C007FA60F /* MobileCoreServices.framework in Frameworks */,
 				84C701711C538509007FA60F /* AssetsLibrary.framework in Frameworks */,
@@ -531,6 +535,7 @@
 		183EAA091BB927480029ED79 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				84C519FA1CC89BE2004450FA /* goods */,
 				18C014AE1CC1D4C4006284F3 /* webview */,
 				845E484B1C3B580100AAD5A5 /* main */,
 				18EB1AF01C378A7500791849 /* account */,
@@ -596,6 +601,7 @@
 		18B9324C1BA6A8C50019279E /* fillPaintMaster */ = {
 			isa = PBXGroup;
 			children = (
+				84C51A001CC8A7BC004450FA /* jpush */,
 				18C014AA1CC1D01F006284F3 /* extends */,
 				84C7011D1C537835007FA60F /* video */,
 				84345A741C3A3A800089DB45 /* service */,
@@ -930,9 +936,31 @@
 			name = order;
 			sourceTree = "<group>";
 		};
+		84C519FA1CC89BE2004450FA /* goods */ = {
+			isa = PBXGroup;
+			children = (
+				84C519FB1CC89CC5004450FA /* GoodsViewController.h */,
+				84C519FC1CC89CC5004450FA /* GoodsViewController.m */,
+				84C519FD1CC89CC5004450FA /* GoodsViewController.xib */,
+			);
+			name = goods;
+			sourceTree = "<group>";
+		};
+		84C51A001CC8A7BC004450FA /* jpush */ = {
+			isa = PBXGroup;
+			children = (
+				84C51A011CC8A7DA004450FA /* jpush-ios-2.1.6.a */,
+				84C51A021CC8A7DA004450FA /* JPUSHService.h */,
+			);
+			name = jpush;
+			sourceTree = "<group>";
+		};
 		84C7011D1C537835007FA60F /* video */ = {
 			isa = PBXGroup;
 			children = (
+				84C519F51CC870B2004450FA /* MonitorViewController.h */,
+				84C519F61CC870B3004450FA /* MonitorViewController.mm */,
+				84C519F81CC87202004450FA /* MonitorView.xib */,
 				84C701741C5385DE007FA60F /* IOTCamera.framework */,
 				84C701751C5385DE007FA60F /* libIOTCAPIs_ALL.a */,
 				84C701761C5385DE007FA60F /* libIOTCAPIs_ALLT.a */,
@@ -940,16 +968,10 @@
 				84C701291C5379C6007FA60F /* CameraShowGLView.h */,
 				18EC48161C54B67D0006D23C /* MyCamera.h */,
 				18EC48171C54B67D0006D23C /* MyCamera.m */,
-				84C7012A1C5379C6007FA60F /* MonitorView.xib */,
-				84C7012B1C5379C6007FA60F /* MonitorViewController.h */,
-				84C7012C1C5379C6007FA60F /* MonitorViewController.mm */,
 				84C7012D1C5379C6007FA60F /* DirectDisplayShader.fsh */,
 				84C7012E1C5379C6007FA60F /* DirectDisplayShader.vsh */,
 				84C7012F1C5379C6007FA60F /* PSDMonitor.h */,
 				84C701301C5379C6007FA60F /* PSDMonitor.m */,
-				18EDC6B61C564E5B0068A655 /* LiveViewController.h */,
-				18EDC6B71C564E5B0068A655 /* LiveViewController.mm */,
-				18EDC6B81C564E5B0068A655 /* LiveViewController.xib */,
 			);
 			name = video;
 			sourceTree = "<group>";
@@ -1052,6 +1074,11 @@
 					18B932491BA6A8C50019279E = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = HLQ3A9KFRW;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					18B932621BA6A8C50019279E = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -1086,7 +1113,6 @@
 				18EB1AFA1C37934600791849 /* TDIdCodeViewController.xib in Resources */,
 				84EA42461CBDD8E900DFCBDA /* MyCouponTableViewController.xib in Resources */,
 				18E8ECFF1C2FC43200968CEB /* LeftCarViewController.xib in Resources */,
-				18EDC6BA1C564E5B0068A655 /* LiveViewController.xib in Resources */,
 				18E8A1241BBA468600FBD3F4 /* TDBeautyTableViewCell.xib in Resources */,
 				18EB1AEF1C37759000791849 /* TDAlbumViewController.xib in Resources */,
 				18C014BC1CC1F2D4006284F3 /* MyCollectionViewCell.xib in Resources */,
@@ -1115,8 +1141,8 @@
 				18B932811BA6A9540019279E /* InfoPlist.strings in Resources */,
 				18E809BB1BC230D200712C43 /* TDTableViewCell0.xib in Resources */,
 				18E9461D1C40C2C20047ADEA /* LaunchScreen.xib in Resources */,
+				84C519F91CC87203004450FA /* MonitorView.xib in Resources */,
 				18E809D61BC2A9C900712C43 /* PaintView0Controller.xib in Resources */,
-				84C701381C5379C6007FA60F /* MonitorView.xib in Resources */,
 				84EA42551CBFA03600DFCBDA /* ShopLocationsTableViewCell.xib in Resources */,
 				18E4F0101CBA0307000C12FD /* MyCouponTableViewCell.xib in Resources */,
 				188D71881CC34C3C0075A3B0 /* DescriptionTableViewCell.xib in Resources */,
@@ -1126,6 +1152,7 @@
 				84C7013B1C5379C6007FA60F /* DirectDisplayShader.vsh in Resources */,
 				18B9325A1BA6A8C50019279E /* Assets.xcassets in Resources */,
 				18E4F0061CB9FB1A000C12FD /* MyOrderTableViewCell.xib in Resources */,
+				84C519FF1CC89CC6004450FA /* GoodsViewController.xib in Resources */,
 				18EE55821C41FB1C00A99D50 /* CarInfoView.xib in Resources */,
 				18E4F0001CB9FA69000C12FD /* MyOrderTableViewController.xib in Resources */,
 				18ED34471C3627B60085B250 /* ShopView0Controller.xib in Resources */,
@@ -1210,8 +1237,10 @@
 				18E8A11B1BBA207800FBD3F4 /* CarBeautyViewController.m in Sources */,
 				18E8ED081C2FDD4200968CEB /* FrontCarViewController.m in Sources */,
 				8481490D1C326DFB00588564 /* TDButtonView.m in Sources */,
+				84C519F71CC870B3004450FA /* MonitorViewController.mm in Sources */,
 				1836FEC91C7953EA009028D9 /* TDPromotionInfoType.m in Sources */,
 				18EE55851C42075A00A99D50 /* TDCarInfoModel.m in Sources */,
+				84C519FE1CC89CC5004450FA /* GoodsViewController.m in Sources */,
 				18ED34461C3627B60085B250 /* ShopView0Controller.m in Sources */,
 				18EB1AF41C378A9E00791849 /* TDLoginViewController.m in Sources */,
 				18E4F0051CB9FB1A000C12FD /* MyOrderTableViewCell.m in Sources */,
@@ -1222,7 +1251,6 @@
 				847F9D161C50877D005ED278 /* TDDecoOrder.m in Sources */,
 				847F9D101C507174005ED278 /* TDOrderSearch.m in Sources */,
 				84345A7B1C3A3CCE0089DB45 /* TDCity.m in Sources */,
-				18EDC6B91C564E5B0068A655 /* LiveViewController.mm in Sources */,
 				18B932551BA6A8C50019279E /* TDHomeViewController.m in Sources */,
 				84EA42451CBDD8E900DFCBDA /* MyCouponTableViewController.m in Sources */,
 				182FC70D1C4FBE5E001978F5 /* TDCityInfo.m in Sources */,
@@ -1255,7 +1283,6 @@
 				18EC48181C54B67D0006D23C /* MyCamera.m in Sources */,
 				84EA424F1CBE23CA00DFCBDA /* CityTableViewController.m in Sources */,
 				848149081C32643500588564 /* DelegateViewController.m in Sources */,
-				84C701391C5379C6007FA60F /* MonitorViewController.mm in Sources */,
 				183EAA121BB92E450029ED79 /* TDNavigationViewController.m in Sources */,
 				18E4EFFF1CB9FA69000C12FD /* MyOrderTableViewController.m in Sources */,
 				18E8ED031C2FDB8100968CEB /* RightCarViewController.m in Sources */,
@@ -1423,6 +1450,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/fillPaintMaster/lib/Debug-iphoneos",
+					"$(PROJECT_DIR)/fillPaintMaster",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
@@ -1467,6 +1495,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/fillPaintMaster/lib/Release-iphoneos",
+					"$(PROJECT_DIR)/fillPaintMaster",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",

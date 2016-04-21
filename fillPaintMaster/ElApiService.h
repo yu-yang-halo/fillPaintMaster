@@ -27,7 +27,7 @@ static ElApiService* shareService=nil;
 
 typedef void (^ErrorCodeHandlerBlock)(NSString * ,NSString *);
 
-
+extern  const NSString* KEY_USER_TYPE;
 
 
 
@@ -50,6 +50,8 @@ typedef void (^ErrorCodeHandlerBlock)(NSString * ,NSString *);
 -(NSArray *)getDecorationList:(int)shopId;
 -(NSArray *)getCouponList:(int)shopId;
 -(NSArray *)getCityList;
+
+-(NSArray *)getCameraList:(int)shopId;
 
 -(NSArray *)getCarByCurrentUser;
 -(NSArray *)getGoodsList:(int)shopId;

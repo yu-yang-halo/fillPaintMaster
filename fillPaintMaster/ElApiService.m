@@ -16,6 +16,7 @@ const static NSString* WEBSERVICE_IP=@"112.124.106.131";
 const static int WEBSERVICE_PORT=9000;
 static  NSString* KEY_USERID=@"userID_KEY";
 static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
+const NSString* KEY_USER_TYPE=@"type_KEY";
 
 @interface ElApiService()
 @property(nonatomic,strong,readwrite) ErrorCodeHandlerBlock block;
@@ -92,12 +93,14 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
         NSString* userIdVal=[[[rootElement elementsForName:@"userId"] objectAtIndex:0] stringValue];
         NSString* secTokenVal=[[[rootElement elementsForName:@"secToken"] objectAtIndex:0] stringValue];
-        NSString* shopIdVal=[[[rootElement elementsForName:@"shopId"] objectAtIndex:0] stringValue];
+        NSString* typeVal=[[[rootElement elementsForName:@"type"] objectAtIndex:0] stringValue];
         
         NSLog(@"errorCode:%@, userId:%@ ,secToken:%@",errorCodeVal,userIdVal,secTokenVal);
         if([errorCodeVal isEqualToString:@"0"]){
             [[NSUserDefaults standardUserDefaults] setObject:userIdVal forKey:KEY_USERID];
             [[NSUserDefaults standardUserDefaults] setObject:secTokenVal forKey:KEY_SECTOKEN];
+            
+            [[NSUserDefaults standardUserDefaults] setObject:typeVal forKey:KEY_USER_TYPE];
             
             return YES;
         }else{
@@ -378,6 +381,43 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
         }
         
     }
+    return nil;
+}
+-(NSArray *)getCameraList:(int)shopId{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@getCameraList?senderId=%@&secToken=%@&shopId=%d",self.connect_header,userID,secToken,shopId];
+    
+    NSLog(@"getCameraList  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        
+        
+        if([errorCodeVal isEqualToString:@"0"]){
+            NSArray *cameraListNode=[rootElement elementsForName:@"cameraList"];
+            NSMutableArray *cameraList=[[NSMutableArray alloc] init];
+            
+            for (GDataXMLElement *element in cameraListNode) {
+                
+                CameraListType *cameraListType= [self parseTDCameraListTypeXML:element];
+                
+                [cameraList addObject:cameraListType];
+                
+            }
+            
+            return cameraList;
+        }else{
+            [self notificationErrorCode:errorCodeVal];
+        }
+        
+    }
+    
+    
     return nil;
 }
 
@@ -1498,6 +1538,17 @@ static  NSString* KEY_SECTOKEN=@"sectoken_KEY";
     tdOilInfo.shopId=[[[[element elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
     tdOilInfo.desc=[[[element elementsForName:@"desc"] objectAtIndex:0] stringValue];
     return tdOilInfo;
+}
+-(CameraListType *)parseTDCameraListTypeXML:(GDataXMLElement *)element{
+    CameraListType *cameraListType=[[CameraListType alloc] init];
+    cameraListType.cameraId=[[[[element elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+    cameraListType.name=[[[element elementsForName:@"name"] objectAtIndex:0] stringValue];
+    cameraListType.uid=[[[element elementsForName:@"uid"] objectAtIndex:0] stringValue];
+    cameraListType.account=[[[element elementsForName:@"account"] objectAtIndex:0] stringValue];
+    cameraListType.password=[[[element elementsForName:@"password"] objectAtIndex:0] stringValue];
+    cameraListType.shopId=[[[[element elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
+    
+    return cameraListType;
 }
 -(TDCityInfo *)parseTDCityInfoXML:(GDataXMLElement *)element{
     TDCityInfo *tdCityInfo=[[TDCityInfo alloc] init];

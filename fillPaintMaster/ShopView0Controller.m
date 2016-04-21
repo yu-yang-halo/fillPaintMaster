@@ -22,9 +22,9 @@
 {
    BMKMapView  *mapView;
    NSArray *shopInfos;
-    TDShopInfo *myShop;
-    int shopId;
-    My360ViewObject *viewObject;
+   TDShopInfo *myShop;
+   int shopId;
+   My360ViewObject *viewObject;
    
 }
 @property (retain, nonatomic) UIWebView *webView;
@@ -51,6 +51,8 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        
         shopInfos=[[ElApiService shareElApiService] getShopList];
+       
+        
         
         dispatch_async(dispatch_get_main_queue(), ^{
             for (TDShopInfo *shop in shopInfos) {

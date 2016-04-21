@@ -61,4 +61,16 @@
 
 @end
 
+@interface CameraListType : NSObject
+
+@property(nonatomic,assign) int cameraId;
+@property(nonatomic,strong) NSString *name;
+@property(nonatomic,strong) NSString *uid;
+@property(nonatomic,strong) NSString *account;
+@property(nonatomic,strong) NSString *password;
+@property(nonatomic,assign) int shopId;
+
+
+@end
+
 

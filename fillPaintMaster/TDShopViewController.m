@@ -49,8 +49,12 @@
     [s1 setTdShopVCDelegate:self];
     s1.view.frame=self.containerView.bounds;
     
-    [self.containerView addSubview:s0.view];
     [self.containerView addSubview:s1.view];
+    [self.containerView addSubview:s0.view];
+    
+
+    
+    
     [self.containerView bringSubviewToFront:s0.view];
 }
 
@@ -70,7 +74,7 @@
         if(sender.selected){
             [sender setSelected:NO];
             [self.btn1 setSelected:YES];
-           
+            
             [self.containerView bringSubviewToFront:s1.view];
             
         }else{
@@ -102,12 +106,12 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    [s0 viewWillAppear:animated];
     [s1 viewWillAppear:animated];
+    [s0 viewWillAppear:animated];
 }
 -(void)viewWillDisappear:(BOOL)animated{
-    [s0 viewWillDisappear:animated];
     [s1 viewWillDisappear:animated];
+    [s0 viewWillDisappear:animated];
 }
 /*
 #pragma mark - Navigation

@@ -23,7 +23,6 @@ static const float AD_HEIGHT=120;
 static const float TOP_SPACE=5;
 static const float LEFT_SPACE=15;
 static const float ROW_HEIGHT=40;
-#import "LiveViewController.h"
 #import <SDCycleScrollView/SDCycleScrollView.h>
 @interface TDHomeViewController ()<SDCycleScrollViewDelegate>{
     NSArray *imgItms;
@@ -56,7 +55,7 @@ static const float ROW_HEIGHT=40;
     
     
     
-    self.serviceItems=@[@"洗车美容",@"换油保养",@"钣金喷漆",@"手机探店",@"车险直销",@"产品超市",@"自助洗"];
+    self.serviceItems=@[@"洗车美容",@"换油保养",@"钣金喷漆",@"手机探店",@"车险直销",@"门店超市",@"自助洗"];
     imgItms=@[@"home_icon_hongbao",@"home_icon_recommend"];
     contentItms=@[@"领取优惠券和红包",@"热门推荐"];
 
@@ -251,14 +250,16 @@ static const float ROW_HEIGHT=40;
             /*
              车险直销
              */
-            
+        {
+             
+             }
             break;
         case 5:
             /*
-             产品超市
+             门店超市
              */
         {
-           
+            
         }
             break;
             

@@ -10,14 +10,10 @@
 #import <IOTCamera/AVIOCTRLDEFs.h>
 #import <IOTCamera/Camera.h>
 #import <IOTCamera/Monitor.h>
-
+#import "MyCamera.h"
 #import "CameraShowGLView.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-
-#import "MyCamera.h"
 #define MAX_IMG_BUFFER_SIZE	(1280*720*4)
-extern unsigned int _getTickCount();
-
 @interface MonitorViewController : UIViewController <MyCameraDelegate,MonitorTouchDelegate>
 {
 	unsigned short mCodecId;
@@ -28,12 +24,10 @@ extern unsigned int _getTickCount();
 
 	BOOL bStopShowCompletedLock;
 	
-
+    MyCamera *camera;
     Monitor *monitor;
 }
--(instancetype)initUIDS:(NSArray *)uids viewArr:(NSArray *)views;
--(void)beginShowVideos;
--(void)endShowVideos;
+-(instancetype)initUID:(NSString *)uid withPass:(NSString *)pass;
 -(void)recordCameraState:(UILabel *)label;
 @property (nonatomic, assign) BOOL bStopShowCompletedLock;
 @property (nonatomic, assign) unsigned short mCodecId;
@@ -41,15 +35,15 @@ extern unsigned int _getTickCount();
 @property (nonatomic, assign) CameraShowGLView *glView;
 @property CVPixelBufferPoolRef mPixelBufferPool;
 @property CVPixelBufferRef mPixelBuffer;
-
+@property (nonatomic, retain) MyCamera *camera;
 @property (nonatomic, retain) Monitor *monitor;
 @property (nonatomic, retain) NSString *videoUID;
 @property (nonatomic, retain) NSString *videoPass;
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollViewPortrait;
-
+@property(nonatomic,retain) NSString *UID;
 @property (nonatomic,retain) UIImage *image;
 -(void)stop;
 - (void)activeAudioSession:(NSInteger)selectedAudioMode;
 - (void)unactiveAudioSession;
 -(void)snapshot;
+-(void)playOrPause:(BOOL)playYN;
 @end
