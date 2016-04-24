@@ -44,12 +44,24 @@
 
 @interface TDBaseItem : NSObject
 @property(nonatomic,assign) int oilId;
+
 @property(nonatomic,assign) int decorationId;
+
+@property(nonatomic,assign) int metalplateId;
+
 @property(nonatomic,retain) NSString *name;
 @property(nonatomic,retain) NSString *desc;
 @property(nonatomic,assign) float price;
 @property(nonatomic,assign) int shopId;
 @property(nonatomic,assign) BOOL isAddYN;
+
+@property(nonatomic,strong) NSString *number;
+
+@property(nonatomic,assign) int count;
+
+@end
+
+@interface TDMetalplateInfo : TDBaseItem
 
 @end
 
@@ -60,6 +72,9 @@
 @interface TDOilInfo : TDBaseItem
 
 @end
+
+
+
 
 @interface CameraListType : NSObject
 

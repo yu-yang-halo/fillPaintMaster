@@ -10,6 +10,7 @@
 #import "TDAdView.h"
 #import "TDLoginViewController.h"
 #import "CarBeautyViewController.h"
+#import "TDPaintViewController.h"
 #import "YYButtonUtils.h"
 #import "ElApiService.h"
 #import "AppDelegate.h"
@@ -231,7 +232,8 @@ static const float ROW_HEIGHT=40;
             /*
              钣金喷漆
              */
-            UIViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"tdPaintVC"];
+            TDPaintViewController *vc=[storyBoard instantiateViewControllerWithIdentifier:@"tdPaintVC"];
+            [vc setCarInfos:carInfos];
             [self.tabBarController.navigationController pushViewController:vc animated:YES];
             
         }

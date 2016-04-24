@@ -77,7 +77,9 @@ const float ROW_HEIGHT_SECTION11=60;
 -(void)updateLabelView{
     totalPrice=0.0;
     if(_carBeautyType==CarBeautyType_paint){
-        
+        for (TDBaseItem *baseItem in _items) {
+            totalPrice+=baseItem.price*baseItem.count;
+        }
     }else{
         for (TDBaseItem *baseItem in _items) {
             totalPrice+=baseItem.price;
@@ -159,6 +161,26 @@ const float ROW_HEIGHT_SECTION11=60;
                     }
                 }
             }
+        }else if(_carBeautyType==CarBeautyType_paint){
+            
+            TDMetaOrder *metaOrder=[[TDMetaOrder alloc] init];
+            [metaOrder setType:TYPE_PAY_TOSHOP];
+            [metaOrder setState:STATE_ORDER_UNFINISHED];
+            
+            [metaOrder setCarId:carId];
+            [metaOrder setShopId:shopId];
+            [metaOrder setPrice:totalPrice];
+            [metaOrder setOrderTime:[TimeUtils createTimeHHMM:hhmm incre:incre]];
+            int metaOrderId=[[ElApiService shareElApiService] createMetaOrder:metaOrder];
+            
+            if(metaOrderId>0){
+                for (TDBaseItem *item in _items) {
+                    todoSuccess=[[ElApiService shareElApiService] createOilOrderNumber:metaOrderId oilId:item.metalplateId];
+                    if(!todoSuccess){
+                        break;
+                    }
+                }
+            }
         }
       
         
@@ -229,10 +251,15 @@ const float ROW_HEIGHT_SECTION11=60;
         }
         TDBaseItem *baseItem=[_items objectAtIndex:indexPath.row];
         
+        if(_carBeautyType==CarBeautyType_paint){
+            [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %.f元",baseItem.name,baseItem.price]];
+            
+        }else{
+            [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %.f元",baseItem.name,baseItem.price]];
+        }
+        
         
        
-        
-        [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %.f元",baseItem.name,baseItem.price]];
         
         
         [tableCell setSelectionStyle:UITableViewCellSelectionStyleNone];

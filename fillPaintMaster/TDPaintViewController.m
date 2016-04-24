@@ -30,7 +30,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initTitleView];
+    self.title=@"钣金喷漆";
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:nil];
     [self initButton];
     
     p0=[[PaintView0Controller alloc] init];
@@ -47,77 +48,55 @@
 }
 
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [p0 viewWillAppear:animated];
+    [p1 viewWillAppear:animated];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [p0 viewWillDisappear:animated];
+    [p1 viewWillDisappear:animated];
+}
+
 -(void)viewDidAppear:(BOOL)animated{
   
 }
 
 -(void)initButton{
-    [self.btn0 setSelected:YES];
-    [self.btn0 setTag:0];
+    [self.btn0 setSelected:NO];
+    [self.btn0 setTag:1];
     [self.btn0 addTarget:self action:@selector(switchView:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.btn1 setSelected:NO];
-    [self.btn1 setTag:1];
+    [self.btn1 setSelected:YES];
+    [self.btn1 setTag:2];
     [self.btn1 addTarget:self action:@selector(switchView:) forControlEvents:UIControlEventTouchUpInside];
     
 }
 -(void)switchView:(UIButton *)sender{
-    if(sender.tag==0){
+    if(sender.tag==2){
         if(sender.selected){
             [sender setSelected:NO];
-            [self.btn1 setSelected:YES];
+            [self.btn0 setSelected:YES];
             [self.containerView bringSubviewToFront:p1.view];
         }else{
             [sender setSelected:YES];
-            [self.btn1 setSelected:NO];
+            [self.btn0 setSelected:NO];
             [self.containerView bringSubviewToFront:p0.view];
         }
     }else{
         if(sender.selected){
             [sender setSelected:NO];
-            [self.btn0 setSelected:YES];
+            [self.btn1 setSelected:YES];
             [self.containerView bringSubviewToFront:p0.view];
         }else{
             [sender setSelected:YES];
-            [self.btn0 setSelected:NO];
+            [self.btn1 setSelected:NO];
             [self.containerView bringSubviewToFront:p1.view];
         }
     }
 }
 
--(void)initTitleView{
-    
-    UIButton *backBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
-    [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -50, 0, 0)];
-    [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *changeBtn=[[UIButton alloc] initWithFrame:CGRectMake(0,0, 70, 44)];
-     [changeBtn setTitle:@"合肥" forState:UIControlStateNormal];
-    [changeBtn setImage:[UIImage imageNamed:@"city_icon_location"] forState:UIControlStateNormal];
-   
-    [changeBtn addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
-      [YYButtonUtils RimageLeftTextRight:changeBtn];
-    
-    
-    UIView  *titleView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 44)];
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 24)];
-    UILabel *cphLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 150, 20)];
-    [titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [titleLabel setText:@"钣金喷漆"];
-    
-    [cphLabel setTextAlignment:NSTextAlignmentCenter];
-    [cphLabel setFont:[UIFont systemFontOfSize:10]];
-    [cphLabel setText:@"皖A PS826"];
-    
-    [titleView addSubview:titleLabel];
-    [titleView addSubview:cphLabel];
-    
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.titleView=titleView;
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:changeBtn];
-}
 -(void)change:(id)sender{
     TDLocationViewController *locationVC=[[TDLocationViewController alloc] init];
     [self presentViewController:locationVC animated:YES completion:^{

@@ -787,27 +787,11 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
 -(BOOL)createMetaOrder:(TDMetaOrder *)metaOrder{
     
     NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
-    if(metaOrder.type>0){
-        [appendHttpStr appendFormat:@"&type=%d",metaOrder.type];
-    }
-    if(metaOrder.state>0){
-        [appendHttpStr appendFormat:@"&state=%d",metaOrder.state];
-    }
-    if(metaOrder.payState>0){
-        [appendHttpStr appendFormat:@"&payState=%d",metaOrder.payState];
-    }
-    if(metaOrder.userId!=nil){
-        [appendHttpStr appendFormat:@"&userId=%@",metaOrder.userId];
-    }
+    
     if(metaOrder.carId>0){
         [appendHttpStr appendFormat:@"&carId=%d",metaOrder.carId];
     }
-    if(metaOrder.shopId>0){
-        [appendHttpStr appendFormat:@"&shopId=%d",metaOrder.shopId];
-    }
-    if(metaOrder.stationId>0){
-        [appendHttpStr appendFormat:@"&stationId=%d",metaOrder.stationId];
-    }
+   
     if(metaOrder.price>0){
         [appendHttpStr appendFormat:@"&price=%f",metaOrder.price];
     }
@@ -821,7 +805,7 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@createMetaOrder?senderId=%@&secToken=%@%@",self.connect_header,userID,secToken,appendHttpStr];
+    NSString *service=[NSString stringWithFormat:@"%@createMetaOrder?senderId=%@&secToken=%@&userId=%@&payState=%d&state=%d&type=%d&shopId=%d&stationId=%d%@",self.connect_header,userID,secToken,userID,metaOrder.payState,metaOrder.state,metaOrder.type,metaOrder.shopId,metaOrder.stationId,appendHttpStr];
     NSLog(@"createMetaOrder  service:%@",service);
     NSData *data=[self requestURLSync:service];
     
@@ -1741,7 +1725,7 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     tdMetalplateInfo.name=[[[element elementsForName:@"name"] objectAtIndex:0] stringValue];
     tdMetalplateInfo.price=[[[[element elementsForName:@"price"] objectAtIndex:0] stringValue] floatValue];
     tdMetalplateInfo.shopId=[[[[element elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
-    tdMetalplateInfo.number=[[[[element elementsForName:@"number"] objectAtIndex:0] stringValue] intValue];
+    tdMetalplateInfo.number=[[[element elementsForName:@"number"] objectAtIndex:0] stringValue];
     tdMetalplateInfo.desc=[[[element elementsForName:@"desc"] objectAtIndex:0] stringValue];
     return tdMetalplateInfo;
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaintView0Controller">
@@ -23,7 +23,6 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7R-Rv-yse">
                             <rect key="frame" x="2" y="1" width="52" height="47"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="47" id="39h-1w-3zE"/>
                                 <constraint firstAttribute="width" constant="52" id="j3V-fB-Bx4"/>
@@ -33,7 +32,6 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atd-K3-8AW">
                             <rect key="frame" x="62" y="7" width="138" height="34"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="138" id="1E7-bM-SDn"/>
                                 <constraint firstAttribute="height" constant="34" id="oOi-aF-e2P"/>
@@ -44,8 +42,7 @@
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLh-It-bYz">
                             <rect key="frame" x="232" y="7" width="80" height="34"/>
-                            <animations/>
-                            <color key="backgroundColor" red="0.71682453459999995" green="1" blue="0.60469191280000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.32629900348114005" green="0.25840776016452205" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="hFX-Rn-hY6"/>
                                 <constraint firstAttribute="height" constant="34" id="t3T-0i-kgb"/>
@@ -59,7 +56,6 @@
                             </connections>
                         </button>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="atd-K3-8AW" firstAttribute="leading" secondItem="u7R-Rv-yse" secondAttribute="trailing" constant="8" id="NPY-VD-MaB"/>
@@ -73,10 +69,8 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBd-0e-l4J">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                    <animations/>
                 </view>
             </subviews>
-            <animations/>
             <constraints>
                 <constraint firstItem="1eB-tk-byT" firstAttribute="top" secondItem="eBd-0e-l4J" secondAttribute="bottom" id="0oA-LV-uUh"/>
                 <constraint firstAttribute="trailing" secondItem="eBd-0e-l4J" secondAttribute="trailing" id="8hP-2e-KRL"/>

@@ -8,7 +8,6 @@
 #import "TDUser.h"
 #import "TDStationInfo.h"
 #import "TDShopInfo.h"
-#import "TDMetalplateInfo.h"
 #import "TDCouponInfo.h"
 #import "TDCityInfo.h"
 #import "TDCarInfo.h"

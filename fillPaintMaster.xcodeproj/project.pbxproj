@@ -17,7 +17,6 @@
 		18248FF61BBEB851008D3C36 /* TDBeautyTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18248FF41BBEB851008D3C36 /* TDBeautyTableViewCell2.xib */; };
 		182FC6FB1C4FACCD001978F5 /* TDStationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC6FA1C4FACCD001978F5 /* TDStationInfo.m */; };
 		182FC6FE1C4FAE93001978F5 /* TDShopInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC6FD1C4FAE93001978F5 /* TDShopInfo.m */; };
-		182FC7041C4FB822001978F5 /* TDMetalplateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC7031C4FB822001978F5 /* TDMetalplateInfo.m */; };
 		182FC70A1C4FBB84001978F5 /* TDCouponInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC7091C4FBB84001978F5 /* TDCouponInfo.m */; };
 		182FC70D1C4FBE5E001978F5 /* TDCityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC70C1C4FBE5E001978F5 /* TDCityInfo.m */; };
 		182FC7101C4FC200001978F5 /* TDGoodInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 182FC70F1C4FC200001978F5 /* TDGoodInfo.m */; };
@@ -196,8 +195,6 @@
 		182FC6FA1C4FACCD001978F5 /* TDStationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDStationInfo.m; sourceTree = "<group>"; };
 		182FC6FC1C4FAE93001978F5 /* TDShopInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDShopInfo.h; sourceTree = "<group>"; };
 		182FC6FD1C4FAE93001978F5 /* TDShopInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDShopInfo.m; sourceTree = "<group>"; };
-		182FC7021C4FB822001978F5 /* TDMetalplateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDMetalplateInfo.h; sourceTree = "<group>"; };
-		182FC7031C4FB822001978F5 /* TDMetalplateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDMetalplateInfo.m; sourceTree = "<group>"; };
 		182FC7081C4FBB84001978F5 /* TDCouponInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCouponInfo.h; sourceTree = "<group>"; };
 		182FC7091C4FBB84001978F5 /* TDCouponInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCouponInfo.m; sourceTree = "<group>"; };
 		182FC70B1C4FBE5E001978F5 /* TDCityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCityInfo.h; sourceTree = "<group>"; };
@@ -514,8 +511,6 @@
 				182FC6FA1C4FACCD001978F5 /* TDStationInfo.m */,
 				182FC6FC1C4FAE93001978F5 /* TDShopInfo.h */,
 				182FC6FD1C4FAE93001978F5 /* TDShopInfo.m */,
-				182FC7021C4FB822001978F5 /* TDMetalplateInfo.h */,
-				182FC7031C4FB822001978F5 /* TDMetalplateInfo.m */,
 				182FC7081C4FBB84001978F5 /* TDCouponInfo.h */,
 				182FC7091C4FBB84001978F5 /* TDCouponInfo.m */,
 				182FC70B1C4FBE5E001978F5 /* TDCityInfo.h */,
@@ -1301,7 +1296,6 @@
 				182FC70A1C4FBB84001978F5 /* TDCouponInfo.m in Sources */,
 				18E8A11F1BBA399E00FBD3F4 /* TimeUtils.m in Sources */,
 				18E4F00A1CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.m in Sources */,
-				182FC7041C4FB822001978F5 /* TDMetalplateInfo.m in Sources */,
 				18EB27B21C4E5E4E0085EDC4 /* ElApiService.m in Sources */,
 				18B9324F1BA6A8C50019279E /* main.m in Sources */,
 				182FC7101C4FC200001978F5 /* TDGoodInfo.m in Sources */,

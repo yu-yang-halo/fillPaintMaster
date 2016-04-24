@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface TDPaintViewController : UIViewController
+#import "HeaderUViewController.h"
+@interface TDPaintViewController : HeaderUViewController
 
 @end

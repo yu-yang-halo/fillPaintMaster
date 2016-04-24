@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TDPaintViewController.h"
 @interface PaintView0Controller : UIViewController<UIScrollViewDelegate>
 
-@property(nonatomic,weak) UIViewController *tdPaintVCDelegate;
+@property(nonatomic,weak) TDPaintViewController *tdPaintVCDelegate;
 
 @end

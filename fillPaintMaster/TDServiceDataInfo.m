@@ -28,6 +28,10 @@
 @implementation TDOilInfo
 
 @end
+
+@implementation TDMetalplateInfo
+
+@end
 @implementation CameraListType
 
 @end

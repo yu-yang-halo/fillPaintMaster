@@ -17,12 +17,15 @@
 #import "TDButtonView.h"
 #import "OrderReViewController.h"
 #import "OrderReViewController.h"
+#import "ElApiService.h"
+#import "Constants.h"
 const int PAGE_SIZE_NUM=6;
 
 @interface PaintView0Controller ()<OutOfViewLoadDelegate>{
     float offsetStartX;
     float offsetEndX;
      int  pageIndex;
+    int shopId;
     
     NSUInteger k1_number;
     NSUInteger qQ_number;
@@ -36,6 +39,14 @@ const int PAGE_SIZE_NUM=6;
     UIView *backCarView;
     UIView *topCarView;
     UIView *otherCarView;
+    
+    
+    NSArray *metalplateInfos;
+    NSMutableArray *selectMetals;
+    
+    NSMutableDictionary *selectedObj;
+    
+    NSDictionary  *strIntMapping;
     
 }
 @property (retain, nonatomic)  UIScrollView *scrollView;
@@ -53,13 +64,31 @@ const int PAGE_SIZE_NUM=6;
     [super viewDidLoad];
     
     
-    
+    shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
+    selectedObj=[NSMutableDictionary new];
+    strIntMapping=[self typeMapping];
     [self updateLabelView];
     
     [self initView];
-    
+    [self netDataGet];
 
 }
+
+-(void)netDataGet{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+        metalplateInfos=[[ElApiService shareElApiService] getMetalplateList:shopId];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+        });
+        
+    });
+}
+
+
+
 -(void)initViewLayout{
     self.scrollView.frame=self.containerView.bounds;
     [self.scrollView setContentSize:CGSizeMake(self.containerView.frame.size.width*PAGE_SIZE_NUM, self.containerView.frame.size.height)];
@@ -135,20 +164,53 @@ const int PAGE_SIZE_NUM=6;
 }
 
 -(void)setPaintItem:(int)posTag numbers:(int)nums{
-
-    
+    [selectedObj setObject:@(nums) forKey:@(posTag)];
 }
 -(void)setPaintItem:(int)posTag selected:(BOOL)selected{
+    if(selected){
+         [selectedObj setObject:@(1) forKey:@(posTag)];
+    }else{
+         [selectedObj setObject:@(0) forKey:@(posTag)];
+    }
+   
 }
 
--(NSMutableArray *)selectedItems{
-   
-    return nil;
+-(TDBaseItem *)getMetalInfo:(int)typeVal{
+    
+    TDBaseItem *info=nil;
+    for (TDBaseItem *metalInfo in metalplateInfos) {
+        
+        int type=[[strIntMapping objectForKey:metalInfo.number] intValue];
+        if(type==typeVal){
+            info=metalInfo;
+            break;
+        }
+    }
+    return info;
+    
 }
 
 -(void)updateLabelView{
+    selectMetals=[NSMutableArray new];
+    __block float totalPrice=0.0;
+    [selectedObj enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+       
+        TDBaseItem *item=[self getMetalInfo:[key intValue]];
+        if([obj intValue]>0&&item!=nil){
+           
+            [item setCount:[obj intValue]];
+            [selectMetals addObject:item];
+            totalPrice+=item.price*[obj intValue];
+        }
+        
+    }];
+    
+    
+    self.totalLabel.text=[NSString stringWithFormat:@"%.f元",totalPrice];
     
 }
+
+
 
 -(void)viewDidLayoutSubviews{
     [self initViewLayout];
@@ -190,12 +252,24 @@ const int PAGE_SIZE_NUM=6;
     
     
 }
+
+
+-(NSDictionary *)typeMapping{
+    NSDictionary *mapping=[NSDictionary
+                           dictionaryWithObjects:@[@(CAR_TYPE_AA),@(CAR_TYPE_A1),@(CAR_TYPE_A2),@(CAR_TYPE_BB),@(CAR_TYPE_B1),@(CAR_TYPE_B2),@(CAR_TYPE_C1),@(CAR_TYPE_C2),@(CAR_TYPE_D1),@(CAR_TYPE_D2),@(CAR_TYPE_E1),@(CAR_TYPE_E2),@(CAR_TYPE_F1),@(CAR_TYPE_F2),@(CAR_TYPE_J1),@(CAR_TYPE_J2),@(CAR_TYPE_HH),@(CAR_TYPE_II),@(CAR_TYPE_GG)]
+                        forKeys:@[@"A",@"A1",@"A2",@"B",@"B1",@"B2",@"C1",@"C2",@"D1",@"D2",@"E1",@"E2",@"F1",@"F2",@"J1",@"J2",@"H",@"I",@"G"]];
+    return mapping;
+}
+
+
 - (void)clickButton:(UIButton *)sender {
     if(sender.selected){
         [sender setSelected:NO];
     }else{
         [sender setSelected:YES];
     }
+    
+    
     
     [self setPaintItem:sender.tag selected:sender.selected];
     [self updateLabelView];
@@ -256,11 +330,13 @@ const int PAGE_SIZE_NUM=6;
 
 
 - (IBAction)orderCommit:(id)sender {
+    [self updateLabelView];
     
     UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     OrderReViewController *orderVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderVC"];
     [orderVC setCarBeautyType:CarBeautyType_paint];
-    [orderVC setItems:[self selectedItems]];
+    [orderVC setItems:selectMetals];
+    [orderVC setCarInfos:self.tdPaintVCDelegate.carInfos];
     
     [self.tdPaintVCDelegate.navigationController pushViewController:orderVC animated:YES];
     
