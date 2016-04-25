@@ -105,6 +105,8 @@ const int PAGE_SIZE_NUM=6;
 }
 -(void)initView{
     
+    self.orderButton.layer.cornerRadius=4;
+    
     self.scrollView=[[UIScrollView alloc] initWithFrame:self.containerView.bounds];
     
     

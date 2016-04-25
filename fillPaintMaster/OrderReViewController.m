@@ -175,7 +175,7 @@ const float ROW_HEIGHT_SECTION11=60;
             
             if(metaOrderId>0){
                 for (TDBaseItem *item in _items) {
-                    todoSuccess=[[ElApiService shareElApiService] createOilOrderNumber:metaOrderId oilId:item.metalplateId];
+                    todoSuccess=[[ElApiService shareElApiService] createMetaOrderNumber:metaOrderId metaId:item.metalplateId ordernum:item.count];
                     if(!todoSuccess){
                         break;
                     }

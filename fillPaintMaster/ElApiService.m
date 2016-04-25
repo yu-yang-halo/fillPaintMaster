@@ -784,7 +784,7 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     return NO;
 }
 
--(BOOL)createMetaOrder:(TDMetaOrder *)metaOrder{
+-(int)createMetaOrder:(TDMetaOrder *)metaOrder{
     
     NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
     
@@ -818,13 +818,13 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
         NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
         
         if([errorCodeVal isEqualToString:@"0"]){
-            return YES;
+            return [idVal intValue];
         }else{
             [self notificationErrorCode:errorCodeVal];
         }
         
     }
-    return NO;
+    return 0;
 }
 -(BOOL)delMetaOrder:(int)metaOrderId{
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
@@ -963,12 +963,12 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     return nil;
 }
 
--(BOOL)createMetaOrderNumber:(int)metaOrderId metaId:(int)metaId{
+-(BOOL)createMetaOrderNumber:(int)metaOrderId metaId:(int)metaId ordernum:(int)orderNum{
     
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@createMetaOrderNumber?senderId=%@&secToken=%@&metaOrderId=%d&metaId=%d",self.connect_header,userID,secToken,metaOrderId,metaId];
+    NSString *service=[NSString stringWithFormat:@"%@createMetaOrderNumber?senderId=%@&secToken=%@&metaOrderId=%d&metaId=%d&orderNum=%d",self.connect_header,userID,secToken,metaOrderId,metaId,orderNum];
     NSLog(@"createMetaOrderNumber  service:%@",service);
     NSData *data=[self requestURLSync:service];
     
@@ -993,9 +993,17 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@createMetaOrderImg?senderId=%@&secToken=%@&metaOrderId=%d&imgName=%@",self.connect_header,userID,secToken,metaOrderId,imgName];
+    NSString *service=[NSString stringWithFormat:@"%@createMetaOrderImg",self.connect_header];
     NSLog(@"createMetaOrderImg  service:%@",service);
-    NSData *data=[self requestURLSync:service];
+    
+    
+    NSMutableData *postBody=[[NSMutableData alloc] init];
+    
+    [postBody appendData:[[NSString stringWithFormat:@"senderId=%@&secToken=%@&metaOrderId=%d&imgName=%@",userID,secToken,metaOrderId,imgName] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    
+    NSData *data=[self requestURLSyncPOST:service postBody:postBody];
     
     if(data!=nil){
         GDataXMLElement *rootElement=[self getRootElementByData:data];
@@ -1778,6 +1786,32 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     GDataXMLDocument *doc=[[GDataXMLDocument alloc] initWithData:data options:0 error:nil];
     GDataXMLElement *rootElement=[doc rootElement];
     return [rootElement copy];
+}
+
+-(NSData *)requestURLSyncPOST:(NSString *)service postBody:(NSData *)postBody{
+    NSURL* url=[NSURL URLWithString:service];
+    NSMutableURLRequest* request=[NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval:12];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"text/xml" forHTTPHeaderField:@"Content-type"];
+    
+    [request setHTTPBody:postBody];
+    
+    NSURLResponse* response=nil;
+    NSError* error=nil;
+    NSData * data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if(data!=nil){
+        return data;
+    }else{
+        NSString *errorDescription=nil;
+        errorDescription=error.localizedDescription;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self notificationErrorCode:errorDescription];
+            
+        });
+    }
+    return nil;
 }
 
 -(NSData *)requestURLSync:(NSString *)service{
