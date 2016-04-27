@@ -14,8 +14,9 @@
 @property(nonatomic,retain) NSString *desc;
 @property(nonatomic,assign) BOOL isShow;
 @property(nonatomic,assign) BOOL isChange;
-@property(nonatomic,assign) BOOL price;
+@property(nonatomic,assign) float price;
 @property(nonatomic,assign) int shopId;
 @property(nonatomic,retain) NSString *src;
+@property(nonatomic,assign) int type;
 
 @end

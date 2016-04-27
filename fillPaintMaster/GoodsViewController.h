@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface GoodsViewController : UIViewController
+#import <JYSlideSegmentController/JYSlideSegmentController.h>
+@interface GoodsViewController : JYSlideSegmentController
 
 @end

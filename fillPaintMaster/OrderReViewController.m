@@ -17,6 +17,7 @@
 #import "ElApiService.h"
 #import "Constants.h"
 #import "TimeUtils.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 const float ROW_HEIGHT=50;
 const float ROW_HEIGHT_SECTION10=100;
 const float ROW_HEIGHT_SECTION11=60;
@@ -24,6 +25,7 @@ const float ROW_HEIGHT_SECTION11=60;
     NSArray *test;
     NSString *titleName;
     float totalPrice;
+    MBProgressHUD *hud;
 }
 @property (weak, nonatomic) IBOutlet UITableView *beautyItemTableView;
 
@@ -117,7 +119,8 @@ const float ROW_HEIGHT_SECTION11=60;
     
     NSLog(@"incre %d; hhmm %@ ; %@",incre,hhmm,[TimeUtils createTimeHHMM:hhmm incre:incre]);
     
-    
+    hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText=@"订单处理中";
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BOOL todoSuccess=NO;
@@ -185,6 +188,9 @@ const float ROW_HEIGHT_SECTION11=60;
       
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            if(hud!=nil){
+                [hud hide:YES];
+            }
             if(todoSuccess){
                 NSLog(@"success");
             }else{

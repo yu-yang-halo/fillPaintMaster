@@ -13,11 +13,13 @@
 #import "ElApiService.h"
 #import "Constants.h"
 #import "OrderSuccessViewController.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 @interface PaintView1Controller ()<AJPhotoPickerProtocol>{
     int type;
     
     NSArray *assets0;
     NSArray *assets1;
+    MBProgressHUD *hud;
 }
 @property (weak, nonatomic) IBOutlet UIButton *badCarPicBtn;
 @property (weak, nonatomic) IBOutlet UIButton *accidentPicBtn;
@@ -98,6 +100,8 @@
     int carId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_CAR_ID] intValue];
     int shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
     if([assets0 count]>0){
+        hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText=@"订单处理中";
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             TDMetaOrder *metaOrder=[[TDMetaOrder alloc] init];
             [metaOrder setType:TYPE_PAY_TOSHOP];
@@ -129,6 +133,9 @@
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                if(hud!=nil){
+                    [hud hide:YES];
+                }
                 if(todoSuccess){
                     NSLog(@"success");
                 }else{
@@ -141,7 +148,7 @@
                 
                 
                 
-                [self.navigationController pushViewController:orderSucVC animated:YES];
+                [self.tdPaintVCDelegate.navigationController pushViewController:orderSucVC animated:YES];
                 
             });
             

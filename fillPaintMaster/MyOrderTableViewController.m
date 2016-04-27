@@ -126,9 +126,7 @@
             
             if(metaOrderList!=nil){
                 for (TDMetaOrder *metaOrder in metaOrderList) {
-                    if(metaOrder.price<=0){
-                        continue;
-                    }
+                  
                     if(metaOrder.state==STATE_ORDER_CANCEL){
                         continue;
                     }
@@ -153,8 +151,12 @@
                         [orderInterface setNumlabel:[NSString stringWithFormat:@"数量:%d",[metaOrder.metaOrderNumber count]]];
                     }
                    
-                    
-                    [orderInterface setPriceLabel:[NSString stringWithFormat:@"总价:%.2f",metaOrder.price]];
+                    if(metaOrder.price<=0){
+                        [orderInterface setPriceLabel:@""];
+                    }else{
+                        [orderInterface setPriceLabel:[NSString stringWithFormat:@"总价:%.2f",metaOrder.price]];
+                    }
+                   
                     [orderClassArr addObject:orderInterface];
                     
                 }

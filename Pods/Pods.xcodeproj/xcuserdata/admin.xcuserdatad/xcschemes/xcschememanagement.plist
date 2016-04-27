@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JYSlideSegmentController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -39,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RBBAnimation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SDCycleScrollView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,17 +67,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>311592250C7A3D5FE1481AA2323D93FC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>351D334B3C0B49938E167678166C1A44</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>39E38B056EF6C485AB87B387CA64620C</key>
+		<key>394CBA356E240F6826943F5553EEC5A6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>476F607050F1AB81313EA290C11F1C2B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +92,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8AF0559ECF0522CAEB2C126ED8A3B6FC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8EBA2BF93F5D4DE3CF4597EA1AA5CC3D</key>
+		<key>7BB1805EB1E49ED1599C82193D796532</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -98,6 +103,21 @@
 			<true/>
 		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A02464B3F79138A984D7108886AF9420</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8426247BFC040AE7E03C2424A90DE4B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4454DE920DBBA4A68378C481873BDC7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1554,6 +1554,7 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     TDGoodInfo *tdGoodInfo=[[TDGoodInfo alloc] init];
     
     tdGoodInfo.goodId=[[[[element elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
+    tdGoodInfo.type=[[[[element elementsForName:@"type"] objectAtIndex:0] stringValue] intValue];
     tdGoodInfo.name=[[[element elementsForName:@"name"] objectAtIndex:0] stringValue];
     tdGoodInfo.desc=[[[element elementsForName:@"desc"] objectAtIndex:0] stringValue];
     
@@ -1793,7 +1794,6 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     NSMutableURLRequest* request=[NSMutableURLRequest requestWithURL:url];
     [request setTimeoutInterval:12];
     [request setHTTPMethod:@"POST"];
-    [request setValue:@"text/xml" forHTTPHeaderField:@"Content-type"];
     
     [request setHTTPBody:postBody];
     

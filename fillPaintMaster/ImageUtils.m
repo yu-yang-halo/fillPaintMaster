@@ -7,16 +7,20 @@
 //
 
 #import "ImageUtils.h"
-
+#import "WsqMD5Util.h"
 @implementation ImageUtils
 +(NSString *)encodeToBase64String:(UIImage *)image format:(NSString *)PNGorJPEG{
     if([PNGorJPEG isEqualToString:@"PNG"]){
-        return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+       
+        NSString *base64imageString=[UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+        return [WsqMD5Util encodeToPercentEscapeString:base64imageString];
     }else{
-        return [UIImageJPEGRepresentation(image,0) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+         NSString *base64imageString=[UIImageJPEGRepresentation(image,0) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+        return [WsqMD5Util encodeToPercentEscapeString:base64imageString];
     }
     
 }
+
 +(UIImage *)decodeBase64ToImage:(NSString *)strEncodeData{
     NSData *data=[[NSData alloc] initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
     return [UIImage imageWithData:data];

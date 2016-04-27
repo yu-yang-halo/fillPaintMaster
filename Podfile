@@ -8,3 +8,5 @@ pod 'SDCycleScrollView', '~> 1.62'
 pod 'BaiduMapKit'
 pod 'MJRefresh', '~> 3.1.0'
 pod 'MMPopupView', :head
+pod "JYSlideSegmentController", "~> 1.1.0"
+pod 'RBBAnimation', '0.4.0'

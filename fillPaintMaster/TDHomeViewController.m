@@ -18,6 +18,9 @@
 #import <UIView+Toast.h>
 #import "TDWebViewController.h"
 #import "Constants.h"
+#import "GoodsViewController.h"
+#import "GoodDataSourceViewController.h"
+#import <JYSlideSegmentController/JYSlideSegmentController.h>
 static const float ICON_WIDTH=45;
 static const float ICON_HEIGHT=80;
 static const float AD_HEIGHT=120;
@@ -31,6 +34,9 @@ static const float ROW_HEIGHT=40;
     MJRefreshNormalHeader *refreshHeader;
     NSArray *bannerList;
     NSArray *carInfos;
+    
+    NSArray *goodTypeList;
+    
 }
 @property(retain, nonatomic)  UIScrollView *tdScrollView;
 @property(retain, nonatomic)  UIView *containerView;
@@ -115,7 +121,7 @@ static const float ROW_HEIGHT=40;
         bannerList=[[ElApiService shareElApiService] getBannerList:3];
         TDUser *user=[[ElApiService shareElApiService] getUserInfo];
         carInfos=[[ElApiService shareElApiService] getCarByCurrentUser];
-        
+        goodTypeList=[[ElApiService shareElApiService] getGoodsType];
         
         
         NSMutableArray *imagesURLStrings=[[NSMutableArray alloc] init];
@@ -261,6 +267,23 @@ static const float ROW_HEIGHT=40;
              门店超市
              */
         {
+          
+            NSMutableArray *viewControllers=[[NSMutableArray alloc] init];
+            for(TDGoodsType *goodType in goodTypeList){
+                static int i=0;
+                i++;
+                GoodDataSourceViewController *gsVC=[[GoodDataSourceViewController alloc] init];
+                [gsVC setTitle:goodType.name];
+                [gsVC setClazzType:goodType.goodTypeId];
+                
+                
+             
+                [viewControllers addObject:gsVC];
+            }
+            GoodsViewController *goodVC=[[GoodsViewController alloc] initWithViewControllers:viewControllers];
+            [self.tabBarController.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+            
+            [self.tabBarController.navigationController pushViewController:goodVC animated:YES];
             
         }
             break;
