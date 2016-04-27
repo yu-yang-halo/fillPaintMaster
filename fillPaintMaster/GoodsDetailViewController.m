@@ -66,12 +66,12 @@
 
 -(void)execAnimation{
     RBBTweenAnimation *bounce = [RBBTweenAnimation animationWithKeyPath:@"position.y"];
-    bounce.fromValue = @(-3);
-    bounce.toValue = @(3);
+    bounce.fromValue = @(-6);
+    bounce.toValue = @(6);
     bounce.easing = RBBEasingFunctionEaseOutBounce;
     
     bounce.additive = YES;
-    bounce.duration = 0.8;
+    bounce.duration = 0.6;
     [cartButton.layer addAnimation:bounce forKey:@"Animation"];
 }
 

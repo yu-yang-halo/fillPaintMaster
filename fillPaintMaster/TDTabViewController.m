@@ -13,6 +13,7 @@
 #import "YYButtonUtils.h"
 #import "Constants.h"
 #import "ElApiService.h"
+#import "TDLoginViewController.h"
 float BUTTON_W=30;
 float BUTTON_H=49;
 
@@ -106,6 +107,9 @@ float BUTTON_H=49;
     [self.navigationController pushViewController:cityTableVC animated:YES];
     
     
+}
+-(void)toCompountPage{
+    [self click:activeBtn];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -212,6 +216,7 @@ float BUTTON_H=49;
     [self.view addSubview:barView];
     [self.tabBar setHidden:YES];
 }
+
 -(void)click:(UIButton *)sender{
    [sender setSelected:YES];
     if(sender==homeBtn){
@@ -271,7 +276,9 @@ float BUTTON_H=49;
         
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
        
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(exitToLogin:)];
+        
+        
         
         
     }else if(tagId==1){
@@ -301,7 +308,12 @@ float BUTTON_H=49;
     
 }
 
-
+-(void)exitToLogin:(id)sender{
+    TDLoginViewController *loginVC=[[TDLoginViewController alloc] init];
+    [self presentViewController:loginVC animated:YES completion:^{
+        
+    }];
+}
 
 
 - (void)didReceiveMemoryWarning {

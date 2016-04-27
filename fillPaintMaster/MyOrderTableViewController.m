@@ -223,7 +223,7 @@
     
     [cell.numLabel setText:ori.numlabel];
     
-    [cell.createTimeLabel setText:[NSString stringWithFormat:@"创建时间:%@",[TimeUtils normalShowTime:ori.createTimeLabel]]];
+    [cell.createTimeLabel setText:[NSString stringWithFormat:@"订单时间:%@",[TimeUtils normalShowTime:ori.createTimeLabel]]];
     [cell.totalPriceLabel setText:ori.priceLabel];
     
     if(ori.status==STATE_ORDER_FINISHED){

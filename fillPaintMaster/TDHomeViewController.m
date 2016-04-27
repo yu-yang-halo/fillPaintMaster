@@ -21,6 +21,7 @@
 #import "GoodsViewController.h"
 #import "GoodDataSourceViewController.h"
 #import <JYSlideSegmentController/JYSlideSegmentController.h>
+#import "TDTabViewController.h"
 static const float ICON_WIDTH=45;
 static const float ICON_HEIGHT=80;
 static const float AD_HEIGHT=120;
@@ -355,6 +356,10 @@ static const float ROW_HEIGHT=40;
     
     
     return tableViewCell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [(TDTabViewController *)self.tabBarController toCompountPage];
+    
 }
 
 #pragma mark SDCycleScrollViewDelegate

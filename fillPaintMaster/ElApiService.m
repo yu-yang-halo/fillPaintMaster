@@ -1426,7 +1426,9 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@createGoodsOrder?senderId=%@&secToken=%@&userId=%@&goodsInfo=%@&shopId=%d&price=%f&address=%@&name=%@&phone=%@",self.connect_header,userID,secToken,userID,goodsInfo,arg1,arg2,arg3,arg4,arg5];
+    
+    
+    NSString *service=[NSString stringWithFormat:@"%@createGoodsOrder?senderId=%@&secToken=%@&userId=%@&goodsInfo=%@&shopId=%d&price=%f&address=%@&name=%@&phone=%@",self.connect_header,userID,secToken,userID,goodsInfo,arg1,arg2,[WsqMD5Util encodeToPercentEscapeString:arg3],[WsqMD5Util encodeToPercentEscapeString:arg4],arg5];
     NSLog(@"createGoodsOrder  service:%@",service);
     NSData *data=[self requestURLSync:service];
     
@@ -1437,6 +1439,7 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
         NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
         
         if([errorCodeVal isEqualToString:@"0"]){
+            
             return YES;
         }else{
             [self notificationErrorCode:errorCodeVal];

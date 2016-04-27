@@ -11,6 +11,11 @@
 #import "GoodsTableCell.h"
 #import <UIView+Toast.h>
 #import "ElApiService.h"
+#import "OrderSuccessViewController.h"
+static const NSString *KEY_NAME=@"key_name";
+static const NSString *KEY_PHONE=@"key_phone";
+static const NSString *KEY_ADDRESS=@"key_address";
+
 @interface GoodsCartViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     NSArray *mycartClassList;
@@ -57,6 +62,16 @@
     self.nameTF.delegate=self;
     self.phoneTF.delegate=self;
     self.addressTF.delegate=self;
+    
+    NSString *name=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_NAME];
+    NSString *phone=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_PHONE];
+    NSString *address=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_ADDRESS];
+    
+    self.nameTF.text=(name==nil?@"":name);
+    self.phoneTF.text=(phone==nil?@"":phone);
+    self.addressTF.text=(address==nil?@"":address);
+    
+    
     self.commitOrderBtn.layer.cornerRadius=4;
     [self.commitOrderBtn addTarget:self action:@selector(beginCommitOrder:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -76,12 +91,47 @@
         [self.view makeToast:@"地址不能为空"];
     }else{
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-           
-            
-           // [[ElApiService shareElApiService] createGoodsOrder:@"" shopId:-1 price:totalPrice address:address name:name phone:phone];
-            
-        });
+        [[NSUserDefaults standardUserDefaults] setObject:name forKey:KEY_NAME];
+        [[NSUserDefaults standardUserDefaults] setObject:phone forKey:KEY_PHONE];
+        [[NSUserDefaults standardUserDefaults] setObject:address forKey:KEY_ADDRESS];
+        
+        
+        NSArray *commitDatas=[self getCommitDatas];
+        
+        if([commitDatas count]<=0||commitDatas==nil){
+            [self.view makeToast:@"请选择您的商品"];
+        }else{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                BOOL successYN=NO;
+                for(CommitDataBean *bean in commitDatas)
+                {
+                    successYN=[[ElApiService shareElApiService] createGoodsOrder:bean.data shopId:bean.shopId price:bean.totalPrice address:address name:name phone:phone];
+                    if(!successYN){
+                        continue;
+                    }
+                    
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if(successYN){
+                        NSLog(@"success");
+                    }else{
+                        NSLog(@"fail");
+                    }
+                    UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                    OrderSuccessViewController *orderSucVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderSucVC"];
+                    [orderSucVC setCarBeautyType:CarBeautyType_none];
+                    [orderSucVC setResultOK:successYN];
+                    
+                    
+                    [self.navigationController pushViewController:orderSucVC animated:YES];
+                });
+                
+                
+            });
+        }
+        
+        
         
     }
     
@@ -112,10 +162,10 @@
     }
     
     if(![data0 isEqualToString:@""]){
-        [data0 substringWithRange:NSMakeRange(0, data0.length-1)];
+       data0=[data0 substringWithRange:NSMakeRange(0, data0.length-1)];
     }
     if(![data1 isEqualToString:@""]){
-        [data1 substringWithRange:NSMakeRange(0, data1.length-1)];
+       data1=[data1 substringWithRange:NSMakeRange(0, data1.length-1)];
     }
     
     NSMutableArray *commitArrs=[NSMutableArray new];

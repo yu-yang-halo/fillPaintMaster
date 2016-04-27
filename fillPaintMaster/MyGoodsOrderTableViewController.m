@@ -91,7 +91,7 @@
     TDGoodsOrderListType *goodsOrder=[goodsOrderList objectAtIndex:indexPath.row];
     
     
-    [cell.createTimeLabel setText:[NSString stringWithFormat:@"创建时间:%@",[TimeUtils normalShowTime:goodsOrder.createTime]]];
+    [cell.createTimeLabel setText:[NSString stringWithFormat:@"订单时间:%@",[TimeUtils normalShowTime:goodsOrder.createTime]]];
     
     [cell.totalPriceLabel setText:[NSString stringWithFormat:@"总价:￥%.1f",goodsOrder.price]];
     

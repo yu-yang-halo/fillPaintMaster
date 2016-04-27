@@ -11,7 +11,8 @@
 typedef NS_ENUM(NSUInteger, CarBeautyType){
     CarBeautyType_beauty=5,
     CarBeautyType_oil=6,
-    CarBeautyType_paint=7
+    CarBeautyType_paint=7,
+    CarBeautyType_none=-1
 };
 
 @interface CarBeautyViewController : HeaderUViewController<UITableViewDataSource,UITableViewDelegate>

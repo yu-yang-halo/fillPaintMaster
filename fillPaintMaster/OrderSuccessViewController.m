@@ -32,21 +32,36 @@
         titleName=@"洗车美容";
     }else if(_carBeautyType==CarBeautyType_oil){
         titleName=@"换油保养";
-    }else{
+    }else if(_carBeautyType==CarBeautyType_paint){
         titleName=@"钣金喷漆";
+    }else{
+        titleName=@"商品订单";
     }
     self.title=titleName;
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
-    
-    if(_resultOK){
-        [self.resultLabel setText:@"预约成功\n请等待客服确认"];
-        [self.okImageView setHidden:NO];
+    if (_carBeautyType==-1) {
+        if(_resultOK){
+            [self.resultLabel setText:@"订单生成成功"];
+            [self.okImageView setHidden:NO];
+        }else{
+            [self.resultLabel setText:@"订单生成失败"];
+            [self.okImageView setHidden:YES];
+            [self.headerView setBackgroundColor:[UIColor redColor]];
+        }
+
     }else{
-        [self.resultLabel setText:@"对不起，预约失败"];
-        [self.okImageView setHidden:YES];
-        [self.headerView setBackgroundColor:[UIColor redColor]];
+        if(_resultOK){
+            [self.resultLabel setText:@"预约成功\n请等待客服确认"];
+            [self.okImageView setHidden:NO];
+        }else{
+            [self.resultLabel setText:@"对不起，预约失败"];
+            [self.okImageView setHidden:YES];
+            [self.headerView setBackgroundColor:[UIColor redColor]];
+        }
+
     }
+    
     
     [self.backHomeButton.layer setCornerRadius:4];
     self.detailTableView.delegate=self;

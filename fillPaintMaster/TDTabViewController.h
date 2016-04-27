@@ -21,6 +21,6 @@
 @interface TDTabViewController : UITabBarController
 
 @property(nonatomic,weak) id<MyTabHandlerDelegate> tabHandlerDelegate;
-
+-(void)toCompountPage;
 @end
 
