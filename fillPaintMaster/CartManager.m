@@ -12,7 +12,7 @@ static CartManager *instance;
 @interface CartManager (){
     
 }
-@property(nonatomic,strong,readwrite) NSMutableArray<CartManager *> *myCartClassList;
+@property(nonatomic,strong,readwrite) NSMutableArray<MyCartClass *> *myCartClassList;
 @end
 
 
@@ -25,7 +25,7 @@ static CartManager *instance;
     int pos=-1;
     for (int i=0;i<[_myCartClassList count];i++) {
         if([[_myCartClassList objectAtIndex:i] goodsId]==cartClass.goodsId){
-            [[_myCartClassList objectAtIndex:i] setCount:cartClass.count];
+            [(MyCartClass *)[_myCartClassList objectAtIndex:i] setCount:cartClass.count];
             pos=i;
         }
     }
