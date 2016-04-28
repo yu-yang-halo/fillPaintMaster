@@ -18,6 +18,7 @@
 #import "Constants.h"
 #import "TimeUtils.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <UIView+Toast.h>
 const float ROW_HEIGHT=50;
 const float ROW_HEIGHT_SECTION10=100;
 const float ROW_HEIGHT_SECTION11=60;
@@ -106,7 +107,12 @@ const float ROW_HEIGHT_SECTION11=60;
     
     
     if([_items count]>0){
-        [self commitMyOrder];
+        if([self.carInfos count]<=0){
+            [self.view makeToast:@"您还没有车牌号，请到设置中添加车牌号"];
+        }else{
+             [self commitMyOrder];
+        }
+       
     }
     
 }

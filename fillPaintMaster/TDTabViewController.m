@@ -126,6 +126,12 @@ float BUTTON_H=49;
        
         [self compareCity];
         
+        if(self.selectedIndex<4&&self.selectedIndex>=0){
+            [[self.viewControllers objectAtIndex:self.selectedIndex] viewWillAppear:animated];
+        }
+        
+        
+        
     }
     
 }

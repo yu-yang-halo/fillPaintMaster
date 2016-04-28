@@ -48,9 +48,7 @@ static CGFloat const kWindowHeight = 160.0f;
     [refreshHeader.lastUpdatedTimeLabel setHidden:YES];
     self.tableView.mj_header=refreshHeader;
     
-    // 马上进入刷新状态
-    [refreshHeader beginRefreshing];
-
+   
     
     
     
@@ -58,6 +56,11 @@ static CGFloat const kWindowHeight = 160.0f;
     [self.view addSubview:_tableView];
   
     
+}
+-(void)viewWillAppear:(BOOL)animated{
+    // 马上进入刷新状态
+    [refreshHeader beginRefreshing];
+
 }
 
 -(void)netDataGet{

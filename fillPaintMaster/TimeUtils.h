@@ -15,5 +15,5 @@
 +(BOOL)isOverTime:(NSString *)endTime;
 +(NSString *)newDate:(int)incre;
 +(NSString *)createTimeHHMM:(NSString *)hhmm incre:(int)incre;
-
++(NSString *)createTimeHHMM2:(NSString *)hhmm incre:(int)incre;
 @end

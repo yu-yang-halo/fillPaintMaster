@@ -36,6 +36,8 @@
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:carInfo.number style:UIBarButtonItemStylePlain target:self action:@selector(selectCar)];
         
         
+    }else{
+         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:KEY_CAR_ID];
     }
 }
 

@@ -99,6 +99,13 @@
 - (IBAction)orderCommit:(id)sender {
     int carId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_CAR_ID] intValue];
     int shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
+    
+    if(carId<=0){
+        [self.view makeToast:@"您还没有车牌号，请到设置中添加车牌号"];
+        return;
+    }
+    
+    
     if([assets0 count]>0){
         hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText=@"订单处理中";

@@ -93,8 +93,7 @@ static const float ROW_HEIGHT=40;
     [refreshHeader.lastUpdatedTimeLabel setHidden:YES];
      self.tdScrollView.mj_header=refreshHeader;
     
-    // 马上进入刷新状态
-    [refreshHeader beginRefreshing];
+   
     
    
     [_tdScrollView addSubview:_cycleScrollView];
@@ -115,7 +114,10 @@ static const float ROW_HEIGHT=40;
     
 
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    // 马上进入刷新状态
+    [refreshHeader beginRefreshing];
+}
 
 -(void)netDataGet{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -142,7 +144,9 @@ static const float ROW_HEIGHT=40;
             }
             
             if(user.shopId>0){
-                [[NSUserDefaults standardUserDefaults] setObject:@(user.shopId) forKey:@"shopId"];
+                [[NSUserDefaults standardUserDefaults] setObject:@(user.shopId) forKey:KEY_SHOP_ID];
+            }else{
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:KEY_SHOP_ID];
             }
             
             
@@ -202,9 +206,12 @@ static const float ROW_HEIGHT=40;
     
     if([shopIDObj intValue]<=0){
         
-        [self.view makeToast:@"请选择店铺"];
+        [self.view.window makeToast:@"请选择店铺"];
         
         return;
+    }
+    if([carInfos count]<=0){
+        [self.view.window makeToast:@"为了不影响您的订单提交，请添加车牌号"];
     }
     
     

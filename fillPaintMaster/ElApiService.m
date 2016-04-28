@@ -1374,6 +1374,11 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
             for (GDataXMLElement *element in orderStateListItems) {
                 
                 TDOrderStateType *tdOrderStateType=(TDOrderStateType *) [self parseTDOrderStateTypeXML:element];
+                if(incre==0){
+                    NSString *orderTime=[TimeUtils createTimeHHMM2:tdOrderStateType.orderTime incre:0];
+                    
+                    tdOrderStateType.isInvaild=[TimeUtils isOverTime:orderTime];
+                }
                 
                 [orderStateList addObject:tdOrderStateType];
                 

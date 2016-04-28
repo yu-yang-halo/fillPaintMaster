@@ -15,6 +15,7 @@
 #import "ElApiService.h"
 #import "Constants.h"
 #import "MyCollectionViewCell.h"
+
 @interface CarBeautyViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>{
     NSUInteger totalMoney;
     NSUInteger totalCount;
@@ -162,12 +163,6 @@
 
 -(void)selectTime:(UIButton *)sender{
     NSLog(@"tag %d  %@",sender.tag, sender.titleLabel.text);
-    if(sender.selected){
-        [sender setSelected:NO];
-    }else{
-        [sender setSelected:YES];
-    }
-    
     
     [[NSUserDefaults standardUserDefaults] setObject:sender.titleLabel.text forKey:KEY_SELECT_TIME];
     
@@ -273,16 +268,19 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
  
     MyCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MyCollectionViewCell" forIndexPath:indexPath];
-    
+   
     NSString *selectTime= [[NSUserDefaults standardUserDefaults] objectForKey:KEY_SELECT_TIME];
     
     TDOrderStateType *orderStateType=[dayOrderStates objectAtIndex:indexPath.row];
+    [cell.timeButton setTitle:orderStateType.orderTime forState:UIControlStateNormal];
+    
     if (orderStateType.isFull||orderStateType.isInvaild) {
-        [cell.timeButton setEnabled:NO];
+        [cell.timeButton setUserInteractionEnabled:NO];
         [cell.timeButton setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.1]];
+        [cell.timeButton setSelected:NO];
     }else{
         
-        [cell.timeButton setEnabled:YES];
+        [cell.timeButton setUserInteractionEnabled:YES];
         
         if([orderStateType.orderTime isEqualToString:selectTime]){
             [cell.timeButton setSelected:YES];
@@ -295,15 +293,12 @@
             [cell.timeButton setBackgroundColor:[UIColor clearColor]];
         }
         
-        
-        
-        [cell.timeButton setTitle:orderStateType.orderTime forState:UIControlStateNormal];
         [cell.timeButton addTarget:self action:@selector(selectTime:) forControlEvents:UIControlEventTouchUpInside];
-        
 
         
     }
     
+
     
     return cell;
 }

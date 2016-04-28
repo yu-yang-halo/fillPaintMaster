@@ -166,7 +166,7 @@
                         coor.latitude =shopInfo.latitude;
                         coor.longitude = shopInfo.longitude;
                         annotation.coordinate = coor;
-                        annotation.title =shopInfo.name;
+                        annotation.title =[NSString stringWithFormat:@"%@(点击绑定)",shopInfo.name];
                         [annotations addObject:annotation];
                     
                     
