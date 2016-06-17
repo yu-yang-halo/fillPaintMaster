@@ -12,6 +12,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <UIView+Toast.h>
 #import <MJRefresh/MJRefresh.h>
+#import "TDPromotionWebViewController.h"
 @interface TDActiveViewController (){
    
     NSArray *promotionList;
@@ -73,23 +74,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(promotionList!=nil){
        TDPromotionInfoType *promotion=[promotionList objectAtIndex:indexPath.row];
-        NSLog(@"select %@",promotion.src);
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
-        hud.labelText = @"领取中...";
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            BOOL isSUC=[[ElApiService shareElApiService] updCoupon:promotion.typeId];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-               
-                [hud hide:YES];
-                if(isSUC){
-                    [self.view makeToast:@"活动优惠券领取成功"];
-                }
-                
-            });
-            
-        });
+        TDPromotionWebViewController *tdPromotionWebVC=[[TDPromotionWebViewController alloc] init];
+        
+        tdPromotionWebVC.url=promotion.src;
+        tdPromotionWebVC.promotionId=promotion.typeId;
+        
+        [self.tabBarController.navigationController pushViewController:tdPromotionWebVC animated:YES];
         
     }
     

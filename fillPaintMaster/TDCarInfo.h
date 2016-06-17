@@ -13,4 +13,5 @@
 @property(nonatomic,assign) int type;
 @property(nonatomic,retain) NSString *number;
 @property(nonatomic,assign) int userId;
+@property(nonatomic,strong) NSString *model;
 @end

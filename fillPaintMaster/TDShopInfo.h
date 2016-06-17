@@ -19,5 +19,7 @@
 @property(nonatomic,strong) NSString *openTime;
 @property(nonatomic,strong) NSString *closeTime;
 
+@property(nonatomic,strong) NSString *icon;
+@property(nonatomic,strong) NSString *phone;
 
 @end

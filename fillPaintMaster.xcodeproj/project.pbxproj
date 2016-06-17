@@ -117,6 +117,8 @@
 		84345A7B1C3A3CCE0089DB45 /* TDCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A7A1C3A3CCE0089DB45 /* TDCity.m */; };
 		84345A7E1C3A3D8E0089DB45 /* TDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A7D1C3A3D8E0089DB45 /* TDUser.m */; };
 		84345A811C3A3E770089DB45 /* TDCarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A801C3A3E770089DB45 /* TDCarInfo.m */; };
+		8458AAFF1D10E65500CFD2A0 /* TDPromotionWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458AAFD1D10E65200CFD2A0 /* TDPromotionWebViewController.m */; };
+		8458AB001D10E65500CFD2A0 /* TDPromotionWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8458AAFE1D10E65200CFD2A0 /* TDPromotionWebViewController.xib */; };
 		845E484E1C3B589E00AAD5A5 /* TDUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E484D1C3B589E00AAD5A5 /* TDUserCenterViewController.m */; };
 		845E48521C3B94FC00AAD5A5 /* CoolNavi.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E48511C3B94FC00AAD5A5 /* CoolNavi.m */; };
 		84627A161CD0824B00790D42 /* GoodsCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84627A141CD0824B00790D42 /* GoodsCartViewController.m */; };
@@ -392,6 +394,9 @@
 		84345A7D1C3A3D8E0089DB45 /* TDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDUser.m; sourceTree = "<group>"; };
 		84345A7F1C3A3E770089DB45 /* TDCarInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCarInfo.h; sourceTree = "<group>"; };
 		84345A801C3A3E770089DB45 /* TDCarInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCarInfo.m; sourceTree = "<group>"; };
+		8458AAFC1D10E65200CFD2A0 /* TDPromotionWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDPromotionWebViewController.h; sourceTree = "<group>"; };
+		8458AAFD1D10E65200CFD2A0 /* TDPromotionWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDPromotionWebViewController.m; sourceTree = "<group>"; };
+		8458AAFE1D10E65200CFD2A0 /* TDPromotionWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDPromotionWebViewController.xib; sourceTree = "<group>"; };
 		845E484C1C3B589E00AAD5A5 /* TDUserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDUserCenterViewController.h; sourceTree = "<group>"; };
 		845E484D1C3B589E00AAD5A5 /* TDUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDUserCenterViewController.m; sourceTree = "<group>"; };
 		845E48501C3B94FC00AAD5A5 /* CoolNavi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoolNavi.h; sourceTree = "<group>"; };
@@ -730,6 +735,9 @@
 				18C014B21CC1D5E3006284F3 /* TDWebViewController.h */,
 				18C014B31CC1D5E3006284F3 /* TDWebViewController.m */,
 				18C014B41CC1D5E3006284F3 /* TDWebViewController.xib */,
+				8458AAFC1D10E65200CFD2A0 /* TDPromotionWebViewController.h */,
+				8458AAFD1D10E65200CFD2A0 /* TDPromotionWebViewController.m */,
+				8458AAFE1D10E65200CFD2A0 /* TDPromotionWebViewController.xib */,
 			);
 			name = webview;
 			sourceTree = "<group>";
@@ -1257,6 +1265,7 @@
 				18EB1AEF1C37759000791849 /* TDAlbumViewController.xib in Resources */,
 				18C014BC1CC1F2D4006284F3 /* MyCollectionViewCell.xib in Resources */,
 				18E9462D1C4119180047ADEA /* search.html in Resources */,
+				8458AB001D10E65500CFD2A0 /* TDPromotionWebViewController.xib in Resources */,
 				1803C32B1C36B37F003157F1 /* loc.png in Resources */,
 				18E8ED181C2FE39700968CEB /* OtherCarViewController.xib in Resources */,
 				18E8ED041C2FDB8100968CEB /* RightCarViewController.xib in Resources */,
@@ -1400,6 +1409,7 @@
 				84C5C58E1CCDB20200D8F235 /* AJTapDetectingView.m in Sources */,
 				84EA42451CBDD8E900DFCBDA /* MyCouponTableViewController.m in Sources */,
 				182FC70D1C4FBE5E001978F5 /* TDCityInfo.m in Sources */,
+				8458AAFF1D10E65500CFD2A0 /* TDPromotionWebViewController.m in Sources */,
 				847F9D0D1C5067D7005ED278 /* TDOilOrder.m in Sources */,
 				18E8ED171C2FE39700968CEB /* OtherCarViewController.m in Sources */,
 				18ED34421C3627020085B250 /* TDShopViewController.m in Sources */,

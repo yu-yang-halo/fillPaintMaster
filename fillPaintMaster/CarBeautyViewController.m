@@ -276,12 +276,14 @@
     
     if (orderStateType.isFull||orderStateType.isInvaild) {
         [cell.timeButton setUserInteractionEnabled:NO];
-        [cell.timeButton setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.1]];
+        [cell.timeButton setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:0.3]];
+        
+        [cell.timeButton setTitleColor:[UIColor colorWithWhite:0.5 alpha:0.7] forState:UIControlStateNormal];
         [cell.timeButton setSelected:NO];
     }else{
         
         [cell.timeButton setUserInteractionEnabled:YES];
-        
+         [cell.timeButton setTitleColor:[UIColor colorWithWhite:0.1 alpha:1] forState:UIControlStateNormal];
         if([orderStateType.orderTime isEqualToString:selectTime]){
             [cell.timeButton setSelected:YES];
         }else{

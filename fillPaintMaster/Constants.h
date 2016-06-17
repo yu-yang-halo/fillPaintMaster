@@ -60,7 +60,7 @@ static const NSString *KEY_SELECT_INCRE=@"select_order_incre";
 
 
 
-#define BTN_BG_COLOR [UIColor colorWithRed:82/255.0 green:73/255.0 blue:228/255.0 alpha:0.9]
+#define BTN_BG_COLOR [UIColor colorWithRed:82/255.0 green:73/255.0 blue:228/255.0 alpha:0.6]
 
 #define BTN_TIME_SELECTED_COLOR [UIColor colorWithRed:74/255.0 green:140/255.0 blue:23/255.0 alpha:1]
 

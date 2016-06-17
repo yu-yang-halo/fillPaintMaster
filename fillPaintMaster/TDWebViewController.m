@@ -28,7 +28,10 @@
      self.webView.delegate=self;
     [self.webView loadRequest:request];
     
-     self.title=@"广告详情";
+    if(self.title==nil){
+         self.title=@"广告详情";
+    }
+    
     
     hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"加载中...";

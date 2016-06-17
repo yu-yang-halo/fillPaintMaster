@@ -66,9 +66,10 @@ float BUTTON_H=49;
     
     [self initCustomView:0];
     
-    [self netDataGet];
+    
     
 }
+
 
 -(void)selectMode:(UIButton *)sender{
     if(sender.selected){
@@ -113,6 +114,7 @@ float BUTTON_H=49;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [self netDataGet];
     
     BOOL toDoorYN=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_TO_DOOR] boolValue];
     
@@ -262,15 +264,16 @@ float BUTTON_H=49;
             [locBtn setTitle:cityName forState:UIControlStateNormal];
         }
         
-        
-        
       
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:locBtn];
-        UIImageView *logo=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
-        CGRect framLayout=logo.frame;
-        //framLayout.origin.x=-30;
-        logo.frame=framLayout;
-        self.navigationItem.titleView=logo;
+        UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+        
+        UIImageView *logo=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+        logo.image=[UIImage imageNamed:@"logo3"];
+        
+        [view addSubview:logo];
+        
+        self.navigationItem.titleView=view;
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
     }else if(tagId==2){
         UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
@@ -282,7 +285,7 @@ float BUTTON_H=49;
         
         self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
        
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(exitToLogin:)];
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
         
         
         
@@ -310,15 +313,18 @@ float BUTTON_H=49;
         self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] initWithFrame:CGRectZero]];
         
     }
+    
+    if(tagId==2){
+        [self.navigationController.navigationBar setHidden:YES];
+    }else{
+        [self.navigationController.navigationBar setHidden:NO];
+    }
    
     
 }
 
 -(void)exitToLogin:(id)sender{
-    TDLoginViewController *loginVC=[[TDLoginViewController alloc] init];
-    [self presentViewController:loginVC animated:YES completion:^{
-        
-    }];
+    
 }
 
 

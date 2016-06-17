@@ -14,10 +14,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="160" height="118"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mGO-7T-IA5">
-                        <rect key="frame" x="0.0" y="27" width="65" height="65"/>
+                        <rect key="frame" x="0.0" y="25" width="65" height="70"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="65" id="ULh-cP-2ar"/>
-                            <constraint firstAttribute="height" constant="65" id="zgb-3W-ubK"/>
+                            <constraint firstAttribute="height" constant="70" id="zgb-3W-ubK"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvc-gd-gXd">
@@ -55,7 +55,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ket-oR-NZ2" secondAttribute="trailing" id="C6A-zx-BRc"/>
-                <constraint firstItem="mGO-7T-IA5" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="PfJ-gN-Wgo"/>
+                <constraint firstItem="mGO-7T-IA5" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="1" id="PfJ-gN-Wgo"/>
                 <constraint firstAttribute="trailing" secondItem="Pvc-gd-gXd" secondAttribute="trailing" id="RnM-J2-dqk"/>
                 <constraint firstAttribute="trailing" secondItem="XvM-uT-U5V" secondAttribute="trailing" id="TZm-DS-pj4"/>
                 <constraint firstAttribute="bottom" secondItem="ket-oR-NZ2" secondAttribute="bottom" constant="8" id="Yk1-5o-gY8"/>

@@ -43,30 +43,47 @@
     
 }
 -(void)addCar{
-    MMAlertView *mmAlertView=[[MMAlertView alloc] initWithInputTitle:@"添加车牌号" detail:@"" placeholder:@"例如:皖A 88888" handler:^(NSString *text) {
-        NSLog(@"text %@",text);
-        if([[text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]){
-            [self.view.window makeToast:@"车牌不能为空"];
+    MMAlertView *mmAlertView0=[[MMAlertView alloc] initWithInputTitle:@"输入车型号" detail:@"" placeholder:@"例如:奥迪 Q5" handler:^(NSString *carType) {
+        NSLog(@"型号 %@",carType);
+        if([[carType stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]){
+            [self.view.window makeToast:@"型号不能为空"];
         }else{
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+           
+            MMAlertView *mmAlertView=[[MMAlertView alloc] initWithInputTitle:@"添加车牌号" detail:@"" placeholder:@"例如:皖A 88888" handler:^(NSString *text) {
+                NSLog(@"text %@",text);
+                if([[text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]){
+                    [self.view.window makeToast:@"车牌不能为空"];
+                }else{
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        
+                        TDCarInfo *carInfo=[[TDCarInfo alloc] init];
+                        [carInfo setNumber:text];
+                        [carInfo setType:0];
+                        [carInfo setModel:carType];
+                        [[ElApiService shareElApiService] createCar:carInfo];
+                        
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self netDataGet];
+                        });
+                        
+                    });
+                }
+                
+                
+            }];
             
-                TDCarInfo *carInfo=[[TDCarInfo alloc] init];
-                [carInfo setNumber:text];
-                [carInfo setType:0];
-                
-                [[ElApiService shareElApiService] createCar:carInfo];
-                
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                     [self netDataGet];
-                });
-                
-            });
+            [mmAlertView show];
+            
+            
         }
-       
+        
         
     }];
-    [mmAlertView show];
+    
+    [mmAlertView0 show];
+    
+   
     
 }
 
@@ -113,7 +130,7 @@
     
     TDCarInfo *carinfo=[carList objectAtIndex:indexPath.row];
     
-    [cell.textLabel setText:carinfo.number];
+    [cell.textLabel setText:[NSString stringWithFormat:@"%@      %@",carinfo.number,carinfo.model]];
     
     return cell;
 }

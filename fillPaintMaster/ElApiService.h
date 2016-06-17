@@ -91,7 +91,11 @@ extern  const NSString* KEY_USER_TYPE;
 -(NSString *)getPromotionURL:(NSString *)imageName;
 -(NSString *)getGoodsURL:(NSString *)imageName shopId:(int)shopId;
 -(NSString *)getPanoramaURL:(NSString *)imageName shopId:(int)shopId;
-
+-(NSString *)getDecoItemURL:(int)itemId imageName:(NSString *)imageName;
+-(NSString *)getOilItemURL:(int)itemId imageName:(NSString *)imageName;
+-(NSString *)getMetaItemURL:(int)itemId imageName:(NSString *)imageName;
+-(NSString *)getShopPanoramaURL:(int)shopId imageName:(NSString *)imageName;
+-(NSString *)getCheXianURL;
 
 @end
 

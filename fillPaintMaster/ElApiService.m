@@ -73,6 +73,30 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     return panoramaURL;
 }
 
+-(NSString *)getDecoItemURL:(int)itemId imageName:(NSString *)imageName{
+    NSString *decoItemURL=[NSString stringWithFormat:@"http://%@/upload/server/deco/%d/%@",WEBSERVICE_IP,itemId,imageName];
+    return decoItemURL;
+}
+-(NSString *)getOilItemURL:(int)itemId imageName:(NSString *)imageName{
+    NSString *oilItemURL=[NSString stringWithFormat:@"http://%@/upload/server/oil/%d/%@",WEBSERVICE_IP,itemId,imageName];
+    return oilItemURL;
+}
+-(NSString *)getMetaItemURL:(int)itemId imageName:(NSString *)imageName{
+    NSString *metaItemURL=[NSString stringWithFormat:@"http://%@/upload/server/oil/%d/%@",WEBSERVICE_IP,itemId,imageName];
+    return metaItemURL;
+}
+-(NSString *)getShopPanoramaURL:(int)shopId imageName:(NSString *)imageName{
+    NSString *shopPanoramaURL=[NSString stringWithFormat:@"http://%@/kele/upload/panorama/%d/icon/%@",WEBSERVICE_IP,shopId,imageName];
+    return shopPanoramaURL;
+
+}
+-(NSString *)getCheXianURL{
+    NSString *cheXianURL=[NSString stringWithFormat:@"http://%@/kele/chexian.htm",WEBSERVICE_IP];
+    return cheXianURL;
+
+}
+
+
 
 /***********************************
  * webService API begin...
@@ -495,7 +519,7 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
-    NSString *service=[NSString stringWithFormat:@"%@createCar?senderId=%@&secToken=%@&userId=%@&type=%d&number=%@",self.connect_header,userID,secToken,userID,carInfo.type,[WsqMD5Util encodeToPercentEscapeString:carInfo.number]];
+    NSString *service=[NSString stringWithFormat:@"%@createCar?senderId=%@&secToken=%@&userId=%@&type=%d&number=%@&model=%@",self.connect_header,userID,secToken,userID,carInfo.type,[WsqMD5Util encodeToPercentEscapeString:carInfo.number],[WsqMD5Util encodeToPercentEscapeString:carInfo.model]];
     NSLog(@"createCar  service:%@",service);
     NSData *data=[self requestURLSync:service];
     if(data!=nil){
@@ -1526,6 +1550,8 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     tdShopInfo.panorama=[[[element elementsForName:@"panorama"] objectAtIndex:0] stringValue];
     tdShopInfo.openTime=[[[element elementsForName:@"openTime"] objectAtIndex:0] stringValue];
     tdShopInfo.closeTime=[[[element elementsForName:@"closeTime"] objectAtIndex:0] stringValue];
+    tdShopInfo.phone=[[[element elementsForName:@"phone"] objectAtIndex:0] stringValue];
+    tdShopInfo.icon=[[[element elementsForName:@"icon"] objectAtIndex:0] stringValue];
     
     return tdShopInfo;
 }
@@ -1705,6 +1731,7 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     tdCarInfo.carId=[[[[element elementsForName:@"id"] objectAtIndex:0] stringValue] intValue];
     tdCarInfo.type=[[[[element elementsForName:@"type"] objectAtIndex:0] stringValue] intValue];
     tdCarInfo.number=[[[element elementsForName:@"number"] objectAtIndex:0] stringValue];
+    tdCarInfo.model=[[[element elementsForName:@"model"] objectAtIndex:0] stringValue];
     tdCarInfo.userId=[[[[element elementsForName:@"userId"] objectAtIndex:0] stringValue] intValue];
     return tdCarInfo;
 }

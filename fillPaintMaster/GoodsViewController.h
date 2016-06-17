@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <JYSlideSegmentController/JYSlideSegmentController.h>
-@interface GoodsViewController : JYSlideSegmentController
-
+#import <HMSegmentedControl/HMSegmentedControl.h>
+#import "ElApiService.h"
+@interface GoodsViewController : UIViewController
+@property(nonatomic,strong) NSArray<TDGoodsType *> *goodsTypeList;
 @end

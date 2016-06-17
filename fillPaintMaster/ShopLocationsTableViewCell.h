@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *selectedStatusImageView;
+@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
+
 
 @end

@@ -12,12 +12,13 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    [self.timeButton.layer setBorderColor:[[UIColor grayColor] CGColor]];
+    
+    [self.timeButton.layer setBorderColor:[[UIColor colorWithWhite:0.7 alpha:0.3] CGColor]];
     [self.timeButton.layer setBorderWidth:1];
     [self.timeButton.layer setCornerRadius:1];
     
     [self.timeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.timeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    
     
 }
 

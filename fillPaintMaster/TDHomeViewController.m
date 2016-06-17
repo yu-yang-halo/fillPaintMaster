@@ -21,6 +21,7 @@
 #import "GoodsViewController.h"
 #import "GoodDataSourceViewController.h"
 #import <JYSlideSegmentController/JYSlideSegmentController.h>
+#import <SDCycleScrollView/SDCycleScrollView.h>
 #import "TDTabViewController.h"
 static const float ICON_WIDTH=45;
 static const float ICON_HEIGHT=80;
@@ -28,7 +29,7 @@ static const float AD_HEIGHT=120;
 static const float TOP_SPACE=5;
 static const float LEFT_SPACE=15;
 static const float ROW_HEIGHT=40;
-#import <SDCycleScrollView/SDCycleScrollView.h>
+
 @interface TDHomeViewController ()<SDCycleScrollViewDelegate>{
     NSArray *imgItms;
     NSArray *contentItms;
@@ -267,6 +268,15 @@ static const float ROW_HEIGHT=40;
              车险直销
              */
         {
+            TDWebViewController *webVC=[[TDWebViewController alloc] init];
+            
+            NSString *url=[[ElApiService shareElApiService] getCheXianURL];
+            
+            [webVC setUrl:url];
+            [webVC setTitle:@"车险直销"];
+            
+            [self.navigationItem.backBarButtonItem setTitle:@"返回"];
+            [self.navigationController pushViewController:webVC animated:YES];
              
              }
             break;
@@ -276,19 +286,9 @@ static const float ROW_HEIGHT=40;
              */
         {
           
-            NSMutableArray *viewControllers=[[NSMutableArray alloc] init];
-            for(TDGoodsType *goodType in goodTypeList){
-                static int i=0;
-                i++;
-                GoodDataSourceViewController *gsVC=[[GoodDataSourceViewController alloc] init];
-                [gsVC setTitle:goodType.name];
-                [gsVC setClazzType:goodType.goodTypeId];
-                
-                
-             
-                [viewControllers addObject:gsVC];
-            }
-            GoodsViewController *goodVC=[[GoodsViewController alloc] initWithViewControllers:viewControllers];
+            GoodsViewController *goodVC=[[GoodsViewController alloc] init];
+            [goodVC setGoodsTypeList:goodTypeList];
+            
             [self.tabBarController.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
             
             [self.tabBarController.navigationController pushViewController:goodVC animated:YES];

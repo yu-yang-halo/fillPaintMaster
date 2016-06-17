@@ -701,13 +701,122 @@
                     <view key="view" contentMode="scaleToFill" id="7Tf-7q-Y2f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8u-3t-YyF">
+                                <rect key="frame" x="0.0" y="64" width="320" height="406"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2z2-JN-aZy">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="udesk_im_default_user_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="Vcu-oz-NGU">
+                                                <rect key="frame" x="128" y="8" width="50" height="50"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b82-1m-hna">
+                                                <rect key="frame" x="111" y="82" width="84" height="30"/>
+                                                <state key="normal" title="退出应用">
+                                                    <color key="titleColor" red="0.98405035190000001" green="0.98405035190000001" blue="0.98405035190000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="telephone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chp-nC-U8S">
+                                                <rect key="frame" x="58" y="61" width="190" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.98405035190000001" green="0.98405035190000001" blue="0.98405035190000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6TQ-kq-m7s">
+                                                <rect key="frame" x="0.0" y="120" width="320" height="81"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rPM-cx-Q8A">
+                                                        <rect key="frame" x="171" y="7" width="148" height="68"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_personal_car" translatesAutoresizingMaskIntoConstraints="NO" id="lQf-rg-Hoi">
+                                                                <rect key="frame" x="18" y="22" width="34" height="30"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我的车库" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMh-0Z-n4M">
+                                                                <rect key="frame" x="60" y="13" width="75" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <color key="textColor" red="0.98405035190000001" green="0.98405035190000001" blue="0.98405035190000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="皖A PS000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hB-Bl-GJ1">
+                                                                <rect key="frame" x="60" y="39" width="75" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <color key="textColor" red="0.98405035190000001" green="0.98405035190000001" blue="0.98405035190000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </view>
+                                                    <view alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R6v-yL-RfF">
+                                                        <rect key="frame" x="160" y="19" width="1" height="44"/>
+                                                        <color key="backgroundColor" red="1" green="0.95138117830000002" blue="0.97834123019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WNe-Iw-heF">
+                                                        <rect key="frame" x="1" y="7" width="148" height="68"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_personal_coupon" translatesAutoresizingMaskIntoConstraints="NO" id="uVY-ux-h4P">
+                                                                <rect key="frame" x="18" y="22" width="34" height="30"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="优惠券" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIF-Cg-ax1">
+                                                                <rect key="frame" x="60" y="13" width="75" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <color key="textColor" red="0.98405035190000001" green="0.98405035190000001" blue="0.98405035190000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="口令红包" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6c-uE-Z0t">
+                                                                <rect key="frame" x="60" y="39" width="75" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <color key="textColor" red="0.98405035190000001" green="0.98405035190000001" blue="0.98405035190000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.10957239029255317" green="0.10957239029255317" blue="0.10957239029255317" alpha="0.10274875383435583" colorSpace="calibratedRGB"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="0.017155718074861936" blue="0.059328871878057909" alpha="0.80097296779141103" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="201" id="aZ0-AD-VYi"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Inx-RF-xX0">
+                                        <rect key="frame" x="0.0" y="201" width="320" height="205"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Inx-RF-xX0" firstAttribute="leading" secondItem="I8u-3t-YyF" secondAttribute="leading" id="3s8-23-IX0"/>
+                                    <constraint firstAttribute="bottom" secondItem="Inx-RF-xX0" secondAttribute="bottom" id="41t-Es-9wL"/>
+                                    <constraint firstAttribute="trailing" secondItem="2z2-JN-aZy" secondAttribute="trailing" id="G58-sk-tiQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Inx-RF-xX0" secondAttribute="trailing" id="eVH-ss-gFc"/>
+                                    <constraint firstItem="2z2-JN-aZy" firstAttribute="leading" secondItem="I8u-3t-YyF" secondAttribute="leading" id="m65-yf-GFs"/>
+                                    <constraint firstItem="2z2-JN-aZy" firstAttribute="top" secondItem="I8u-3t-YyF" secondAttribute="top" id="oHp-rB-6EK"/>
+                                    <constraint firstItem="Inx-RF-xX0" firstAttribute="top" secondItem="2z2-JN-aZy" secondAttribute="bottom" id="txj-0x-ncK"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="I8u-3t-YyF" secondAttribute="trailing" id="awc-JN-SHR"/>
+                            <constraint firstItem="I8u-3t-YyF" firstAttribute="top" secondItem="txc-PC-9Gc" secondAttribute="bottom" id="bUs-9o-PZQ"/>
+                            <constraint firstItem="I8u-3t-YyF" firstAttribute="leading" secondItem="7Tf-7q-Y2f" secondAttribute="leading" id="eXN-nk-CA4"/>
+                            <constraint firstItem="I8u-3t-YyF" firstAttribute="bottom" secondItem="lYZ-ql-N3X" secondAttribute="top" constant="-49" id="jZE-yh-mp3"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="GlE-nm-tee"/>
+                    <connections>
+                        <outlet property="backgroundView" destination="2z2-JN-aZy" id="jyF-jD-7Xj"/>
+                        <outlet property="carView" destination="rPM-cx-Q8A" id="RQe-80-Wvr"/>
+                        <outlet property="carnumberLabel" destination="3hB-Bl-GJ1" id="TlO-ZO-qjG"/>
+                        <outlet property="couponView" destination="WNe-Iw-heF" id="Fv3-tF-vYJ"/>
+                        <outlet property="exitButton" destination="b82-1m-hna" id="3eu-mX-XC5"/>
+                        <outlet property="tableView" destination="Inx-RF-xX0" id="aAG-TO-1nO"/>
+                        <outlet property="usernameLabel" destination="chp-nC-U8S" id="26c-NP-9bf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pUa-dZ-ZGE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-234" y="1207"/>
+            <point key="canvasLocation" x="-309" y="1202"/>
         </scene>
         <!--Item-->
         <scene sceneID="Cbm-3h-rJ0">
@@ -786,6 +895,9 @@
     <resources>
         <image name="btn_line" width="118" height="31"/>
         <image name="ck0" width="40" height="38"/>
+        <image name="icon_personal_car" width="99" height="99"/>
+        <image name="icon_personal_coupon" width="99" height="99"/>
         <image name="image_ok" width="83" height="79"/>
+        <image name="udesk_im_default_user_avatar" width="135" height="135"/>
     </resources>
 </document>

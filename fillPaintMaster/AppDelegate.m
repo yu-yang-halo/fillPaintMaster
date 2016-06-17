@@ -228,6 +228,10 @@ fetchCompletionHandler:
     
     [alertView show];
     
+    [self resetJPUSHBadge];
+}
+-(void)resetJPUSHBadge{
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     [JPUSHService resetBadge];
 }
 

@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HMSegmentedControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JYSlideSegmentController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,12 +72,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>351D334B3C0B49938E167678166C1A44</key>
+		<key>033BB4A8F27D0CF2828F55277865E7CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>394CBA356E240F6826943F5553EEC5A6</key>
+		<key>2AB49797D14D57FA43A345254AFB9F18</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>351D334B3C0B49938E167678166C1A44</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +102,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7BB1805EB1E49ED1599C82193D796532</key>
+		<key>89B073B3AF14377BCE533C1633D2EF87</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,22 +112,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>904FF3F20E5BF2A79B3C60DBA0EEC380</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A02464B3F79138A984D7108886AF9420</key>
+		<key>E06C193EC68CA21EABB750A96EA68FAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B8426247BFC040AE7E03C2424A90DE4B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F4454DE920DBBA4A68378C481873BDC7</key>
+		<key>EB41DB00611F5D9FD7374BDC8B480537</key>
 		<dict>
 			<key>primary</key>
 			<true/>

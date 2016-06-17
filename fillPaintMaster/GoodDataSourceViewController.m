@@ -82,10 +82,16 @@
     GoodsCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"goodsColllectionViewCell" forIndexPath:indexPath];
     TDGoodInfo *goodsInfo=[currentGoodsList objectAtIndex:indexPath.row];
     
+    NSArray * imageNames=[goodsInfo.src componentsSeparatedByString:@","];
+    NSString *imageName=nil;
+    if([imageNames count]>0){
+        imageName=[imageNames objectAtIndex:0];
+    }
+    
     cell.nameLabel.text=goodsInfo.name;
     cell.descLabel.text=goodsInfo.desc;
     cell.priceLabel.text=[NSString stringWithFormat:@"%.1f元",goodsInfo.price];
-    NSString *imageURL=[[ElApiService shareElApiService] getGoodsURL:goodsInfo.src shopId:goodsInfo.shopId];
+    NSString *imageURL=[[ElApiService shareElApiService] getGoodsURL:imageName shopId:goodsInfo.shopId];
     
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageURL]
                       placeholderImage:[UIImage imageNamed:@"icon_default"]];

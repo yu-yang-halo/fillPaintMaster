@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TDPromotionWebViewController">
+            <connections>
+                <outlet property="getPromotionButton" destination="iL0-Sr-R3f" id="Vhn-KV-Lvb"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="dAg-og-0rs" id="vna-h9-lpB"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iL0-Sr-R3f">
+                    <rect key="frame" x="82" y="519" width="156" height="41"/>
+                    <color key="backgroundColor" red="0.82881067154255317" green="0.33457714515969478" blue="0.1185718966632696" alpha="0.80097296779141103" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="156" id="HLJ-YN-sbX"/>
+                        <constraint firstAttribute="height" constant="41" id="Ipw-Cz-dH0"/>
+                    </constraints>
+                    <state key="normal" title="立即领取">
+                        <color key="titleColor" red="0.98405035190000001" green="0.98405035190000001" blue="0.98405035190000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAg-og-0rs">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="506"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                </webView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="iL0-Sr-R3f" secondAttribute="bottom" constant="8" id="Bot-p8-E1g"/>
+                <constraint firstItem="dAg-og-0rs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UnG-5d-F3h"/>
+                <constraint firstItem="iL0-Sr-R3f" firstAttribute="top" secondItem="dAg-og-0rs" secondAttribute="bottom" constant="13" id="XSW-up-oKK"/>
+                <constraint firstAttribute="trailing" secondItem="dAg-og-0rs" secondAttribute="trailing" id="ePS-XN-X9l"/>
+                <constraint firstItem="dAg-og-0rs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vFh-qW-x25"/>
+                <constraint firstItem="iL0-Sr-R3f" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zHY-aW-Vqm"/>
+            </constraints>
+            <point key="canvasLocation" x="367" y="298"/>
+        </view>
+    </objects>
+</document>

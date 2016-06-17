@@ -166,7 +166,8 @@
                         coor.latitude =shopInfo.latitude;
                         coor.longitude = shopInfo.longitude;
                         annotation.coordinate = coor;
-                        annotation.title =[NSString stringWithFormat:@"%@(点击绑定)",shopInfo.name];
+                        annotation.title =[NSString stringWithFormat:@"%@\n%@\n(点击绑定)",shopInfo.name,shopInfo
+                                           .desc];
                         [annotations addObject:annotation];
                     
                     
@@ -186,7 +187,9 @@
     
     NSMutableArray *temp=[[NSMutableArray alloc] init];
     for (TDShopInfo *shopInfo in allshops) {
-        
+        if(shopInfo.shopId==-1){
+            continue;
+        }
         if(shopInfo.cityId==cityId){
             [temp addObject:shopInfo];
         }
@@ -203,8 +206,40 @@
     if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
         
+        CGSize size=[annotation.title boundingRectWithSize:CGSizeMake(300, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+        
+        
+        
+        UIButton *backgroundView=[[UIButton alloc] initWithFrame:CGRectMake(0,0,size.width+60,size.height+30)];
+        
+        [backgroundView setBackgroundImage:[UIImage imageNamed:@"icon_dialog0"] forState:UIControlStateNormal];
+        
+        UIButton *paopaoView=[[UIButton alloc] initWithFrame:backgroundView.bounds];
+        
+        
+        
+        
+        UILabel* label=[[UILabel alloc] initWithFrame:CGRectMake(25,8,size.width+10,size.height)];
+        [label setTextAlignment:NSTextAlignmentCenter];
+        [label setNumberOfLines:0];
+        [label setFont:[UIFont systemFontOfSize:12]];
+        [label setText:annotation.title];
+        [label setTextColor:[UIColor blackColor]];
+        [label setUserInteractionEnabled:YES];
         //newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
         NSArray *shopIDSelectedArr=[self getShopId:annotation.coordinate];
+        
+        
+        paopaoView.tag=[shopIDSelectedArr[0] intValue];
+        
+        [backgroundView addSubview:label];
+        
+        [paopaoView addTarget:self action:@selector(switchShop:) forControlEvents:UIControlEventTouchUpInside];
+        [backgroundView addSubview:paopaoView];
+        
+        newAnnotationView.paopaoView=[[BMKActionPaopaoView alloc] initWithCustomView:backgroundView];
+        
+       
         newAnnotationView.tag=[shopIDSelectedArr[0] intValue];
         if([shopIDSelectedArr[1] boolValue]){
            
@@ -213,24 +248,28 @@
             newAnnotationView.image=[UIImage imageNamed:@"maker"];
         }
         
+        
+        
         return newAnnotationView;
     }
     return nil;
 }
+
+-(void)switchShop:(UIButton *)sender{
+    
+    if(user.shopId!=sender.tag){
+        
+        [self netDataGet:sender.tag];
+        
+    }
+
+}
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
-   // NSLog(@"didSelectAnnotationView %@",view);
+    NSLog(@"didSelectAnnotationView %@",view);
 }
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view{
     // NSLog(@"annotationViewForBubble %@ tag:%ld",view,view.tag);
     
-     [(BMKPinAnnotationView *)(view) setImage:[UIImage imageNamed:@"maker2"]];
-    
-    
-    if(user.shopId!=view.tag){
-        
-        [self netDataGet:view.tag];
-        
-    }
 }
 
 /*
@@ -248,12 +287,15 @@
     ShopLocationsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShopLocationsTableViewCell"];
     if(cell==nil){
         cell= [[[NSBundle mainBundle] loadNibNamed:@"ShopLocationsTableViewCell" owner:self options:nil] lastObject];
+        [cell setSelectedBackgroundView:[[UIView alloc] initWithFrame:CGRectZero]];
     }
     
     TDShopInfo *shopInfo=[shopInfos objectAtIndex:indexPath.row];
     
     [cell.nameLabel setText:shopInfo.name];
     [cell.descLabel setText:shopInfo.desc];
+    [cell.phoneButton setTitle:shopInfo.phone forState:UIControlStateNormal];
+    
     if(user.shopId==shopInfo.shopId){
         [cell.selectedStatusImageView setHighlighted:YES];
     }else{
