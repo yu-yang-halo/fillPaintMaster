@@ -10,30 +10,30 @@
 #import "CartManager.h"
 #import "GoodsTableCell.h"
 #import <UIView+Toast.h>
+#import <UIImageView+AFNetworking.h>
 #import "ElApiService.h"
 #import "OrderSuccessViewController.h"
-static const NSString *KEY_NAME=@"key_name";
-static const NSString *KEY_PHONE=@"key_phone";
-static const NSString *KEY_ADDRESS=@"key_address";
+#import "UserAddressManager.h"
+#import "MyAddressViewController.h"
 
-@interface GoodsCartViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface GoodsCartViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSArray *mycartClassList;
-    UITextField *firstResponderTF;
-    
-    
+       
     float totalPrice;
-    CGFloat kbHeight;
-    double  duration;
+   
+   
+    
+    NSString *name;
+    NSString *phone;
+    NSString *address;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UITextField *nameTF;
-@property (weak, nonatomic) IBOutlet UITextField *phoneTF;
 
-@property (weak, nonatomic) IBOutlet UITextField *addressTF;
 @property (weak, nonatomic) IBOutlet UIButton *checkAllButton;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *commitOrderBtn;
+@property (weak, nonatomic) IBOutlet UILabel *receivingInfoLabel;
 
 @end
 
@@ -43,10 +43,8 @@ static const NSString *KEY_ADDRESS=@"key_address";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title=@"我的购物车";
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"我的地址" style:UIBarButtonItemStylePlain target:self action:@selector(toAddress:)];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
 
     
@@ -59,29 +57,40 @@ static const NSString *KEY_ADDRESS=@"key_address";
     [self updateViewShow];
     
     
-    self.nameTF.delegate=self;
-    self.phoneTF.delegate=self;
-    self.addressTF.delegate=self;
-    
-    NSString *name=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_NAME];
-    NSString *phone=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_PHONE];
-    NSString *address=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_ADDRESS];
-    
-    self.nameTF.text=(name==nil?@"":name);
-    self.phoneTF.text=(phone==nil?@"":phone);
-    self.addressTF.text=(address==nil?@"":address);
-    
     
     self.commitOrderBtn.layer.cornerRadius=4;
     [self.commitOrderBtn addTarget:self action:@selector(beginCommitOrder:) forControlEvents:UIControlEventTouchUpInside];
     
+    UITapGestureRecognizer *tapGR=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toAddress2:)];
+   
+    
+    [_receivingInfoLabel addGestureRecognizer:tapGR];
+    
 }
+-(void)viewWillAppear:(BOOL)animated{
+    name=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_NAME];
+    phone=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_PHONE];
+    address=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_ADDRESS];
+    
+    if(name!=nil&&phone!=nil&&address!=nil){
+        _receivingInfoLabel.text=[NSString stringWithFormat:@"地址:%@\n收货人姓名:%@ 联系电话:%@",address,name,phone];
+    }
+    
+}
+
+-(void)toAddress:(id)sender{
+    MyAddressViewController *myAddressVC=[[MyAddressViewController alloc] init];
+    [self.navigationController pushViewController:myAddressVC animated:YES];
+    
+}
+-(void)toAddress2:(UIGestureRecognizer *)gr{
+    MyAddressViewController *myAddressVC=[[MyAddressViewController alloc] init];
+    [self.navigationController pushViewController:myAddressVC animated:YES];
+    
+}
+
 -(void)beginCommitOrder:(id)sender
 {
-    
-    NSString *name=_nameTF.text;
-    NSString *phone=_phoneTF.text;
-    NSString *address=_addressTF.text;
     
     if([name isEqualToString:@""]){
         [self.view makeToast:@"收货人姓名不能为空"];
@@ -228,7 +237,7 @@ static const NSString *KEY_ADDRESS=@"key_address";
         cell=[[[NSBundle mainBundle] loadNibNamed:@"GoodsTableCell" owner:self options:nil] lastObject];
     }
     MyCartClass *mycartClass=[mycartClassList objectAtIndex:indexPath.row];
-    cell.goodImageView.image=mycartClass.image;
+    [cell.goodImageView setImageWithURL:[NSURL URLWithString:mycartClass.imageUrl]];
     cell.nameLabel.text=mycartClass.goodInfo.name;
     cell.descLabel.text=mycartClass.goodInfo.desc;
     cell.countLabel.text=[NSString stringWithFormat:@"x%d",mycartClass.count];
@@ -257,59 +266,6 @@ static const NSString *KEY_ADDRESS=@"key_address";
         }
     }
     self.priceLabel.text=[NSString stringWithFormat:@"%.1f元",totalPrice];
-}
-
-#pragma mark UITextField delegate
--(void)autoLayoutSelfView{
-    if(kbHeight<=0||firstResponderTF==nil){
-        return;
-    }
-    CGFloat offset=0;
-    offset=kbHeight-(self.view.frame.size.height-firstResponderTF.frame.origin.y-firstResponderTF.frame.size.height);
-   
-    
-    
-    
-    offset=offset>0?offset+70:kbHeight-60;
-    
-    
-    [UIView animateWithDuration:duration animations:^{
-        CGRect frame=self.view.frame;
-        frame.origin.y=-offset;
-        
-        self.view.frame=frame;
-    }];
-}
-
--(void)keyBoardWillShow:(NSNotification *)notification{
-    kbHeight=[[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    duration=[[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    [self autoLayoutSelfView];
-}
-
--(void)keyBoardWillHide:(NSNotification *)notification{
-    
-    double duration2=[[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    [UIView animateWithDuration:duration2 animations:^{
-        CGRect frame=self.view.frame;
-        frame.origin.y=0;
-        self.view.frame=frame;
-    }];
-    
-    
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    
-    return YES;
-}
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    firstResponderTF=textField;
-    [self autoLayoutSelfView];
-    return YES;
 }
 
 

@@ -179,6 +179,9 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     if(tdUser.shopId>0){
         [appendHttpStr appendFormat:@"&shopId=%d",tdUser.shopId];
     }
+    if(tdUser.receivingInfo!=nil){
+        [appendHttpStr appendFormat:@"&receivingInfo=%@",[WsqMD5Util encodeToPercentEscapeString:tdUser.receivingInfo]];
+    }
 
     
     NSString *service=[NSString stringWithFormat:@"%@updUser?senderId=%@&secToken=%@&userId=%@&type=3%@",self.connect_header,userID,secToken,userID,appendHttpStr];
@@ -221,6 +224,10 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
             user.type=[[[[rootElement elementsForName:@"type"] objectAtIndex:0] stringValue] intValue];
             user.shopId=[[[[rootElement elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
             user.regTime=[[[rootElement elementsForName:@"regTime"] objectAtIndex:0] stringValue];
+          
+            user.receivingInfo=[[[rootElement elementsForName:@"receivingInfo"] objectAtIndex:0] stringValue];
+            user.receivingInfo=[WsqMD5Util decodeFromPercentEscapeString:user.receivingInfo];
+            
             
             return user;
         }else{
@@ -1563,6 +1570,7 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     tdOilInfo.price=[[[[element elementsForName:@"price"] objectAtIndex:0] stringValue] floatValue];
     tdOilInfo.shopId=[[[[element elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
     tdOilInfo.desc=[[[element elementsForName:@"desc"] objectAtIndex:0] stringValue];
+    tdOilInfo.src=[[[element elementsForName:@"src"] objectAtIndex:0] stringValue];
     return tdOilInfo;
 }
 -(CameraListType *)parseTDCameraListTypeXML:(GDataXMLElement *)element{
@@ -1597,6 +1605,9 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
      tdGoodInfo.shopId=[[[[element elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
     tdGoodInfo.isShow=[[[[element elementsForName:@"isShow"] objectAtIndex:0] stringValue] boolValue];
     tdGoodInfo.isChange=[[[[element elementsForName:@"isChange"] objectAtIndex:0] stringValue] boolValue];
+    
+    tdGoodInfo.href=[[[element elementsForName:@"href"] objectAtIndex:0] stringValue];
+    tdGoodInfo.isTop=[[[[element elementsForName:@"isTop"] objectAtIndex:0] stringValue] boolValue];
     return tdGoodInfo;
 }
 -(TDOilOrder *)parseTDOilOrderInfoXML:(GDataXMLElement *)element{
@@ -1743,6 +1754,7 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     tdDecorationInfo.price=[[[[element elementsForName:@"price"] objectAtIndex:0] stringValue] floatValue];
     tdDecorationInfo.shopId=[[[[element elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
     tdDecorationInfo.desc=[[[element elementsForName:@"desc"] objectAtIndex:0] stringValue];
+    tdDecorationInfo.src=[[[element elementsForName:@"src"] objectAtIndex:0] stringValue];
     return tdDecorationInfo;
 }
 -(TDCouponInfo *)parseTDCouponInfoXML:(GDataXMLElement *)element{

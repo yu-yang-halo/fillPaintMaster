@@ -17,7 +17,8 @@
 #import "ElApiService.h"
 #import "My360ViewObject.h"
 #import "PanoramaViewController.h"
-
+#import <BaiduMapAPI_Utils/BMKNavigation.h>
+#import "AppDelegate.h"
 @interface ShopView0Controller ()<BMKMapViewDelegate>
 {
    BMKMapView  *mapView;
@@ -82,6 +83,7 @@
     coor.longitude = myShop.longitude;
     annotation.coordinate = coor;
     annotation.title =myShop.name;
+    annotation.subtitle=myShop.desc;
    
     [mapView addAnnotation:annotation];
 }
@@ -137,14 +139,39 @@
         
         
         [viewObject.nameLabel setText:annotation.title];
+        [viewObject.descLabel setText:annotation.subtitle];
         
         newAnnotationView.paopaoView=[[BMKActionPaopaoView alloc] initWithCustomView:viewObject.m360View];
+        [newAnnotationView setSelected:YES animated:YES];
         
-        [viewObject.my360Button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+        
+        NSString *url=[[ElApiService shareElApiService] getShopPanoramaURL:myShop.shopId imageName:myShop.icon];
+        
+        [viewObject.my360Button setUserInteractionEnabled:YES];
+        [viewObject.my360Button sd_setImageWithURL:[NSURL URLWithString:url]];
+        [viewObject.gpsBtn addTarget:self action:@selector(navigateMap:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UITapGestureRecognizer *tapGR=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(click:)];
+        [viewObject.my360Button addGestureRecognizer:tapGR];
         
         return newAnnotationView;
     }
     return nil;
+}
+-(void)navigateMap:(id)sender{
+    BMKNaviPara *para=[[BMKNaviPara alloc] init];
+    BMKPlanNode *endP=[[BMKPlanNode alloc] init];
+    endP.pt=CLLocationCoordinate2DMake(myShop.latitude, myShop.longitude);
+    BMKPlanNode *startP=[[BMKPlanNode alloc] init];
+    
+    AppDelegate *appDelegate=[UIApplication sharedApplication].delegate;
+    
+    startP.pt=appDelegate.myLocation;
+    
+    para.startPoint=startP;
+    para.endPoint=endP;
+    [BMKNavigation openBaiduMapNavigation:para];
+    
 }
 
 -(void)click:(id)sender{

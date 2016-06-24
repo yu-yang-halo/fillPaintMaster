@@ -17,6 +17,7 @@ PODS:
   - BaiduMapKit (2.10.2)
   - CustomIOSAlertView (0.9.3)
   - HMSegmentedControl (1.5.2)
+  - JSONKit (1.4)
   - JYSlideSegmentController (1.1.0)
   - Masonry (1.0.0)
   - MBProgressHUD (0.9.2)
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - BaiduMapKit
   - CustomIOSAlertView (~> 0.9.3)
   - HMSegmentedControl
+  - JSONKit
   - JYSlideSegmentController (~> 1.1.0)
   - MBProgressHUD (~> 0.9.2)
   - MJRefresh (~> 3.1.0)
@@ -50,6 +52,7 @@ SPEC CHECKSUMS:
   BaiduMapKit: b1706a062597c70ec62a0cca93212cba1d3017e1
   CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
+  JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
   JYSlideSegmentController: b273d5087a2a0f877c3e969bedb3ade78b6aa0ea
   Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1

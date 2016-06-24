@@ -14,6 +14,7 @@
 #import "MyCouponTableViewController.h"
 #import "MyCarTableViewController.h"
 #import "TDLoginViewController.h"
+#import "UserAddressManager.h"
 static const float ROW_HEIGHT=60;
 static CGFloat const kWindowHeight = 160.0f;
 @interface TDUserCenterViewController (){
@@ -117,6 +118,8 @@ static CGFloat const kWindowHeight = 160.0f;
             _carnumberLabel.text=datas;
             
             _usernameLabel.text=user.loginName;
+            [UserAddressManager cacheUserInfoToLocal:user];
+            
             
     
             [_tableView reloadData];

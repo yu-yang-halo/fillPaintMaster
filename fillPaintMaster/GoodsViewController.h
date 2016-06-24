@@ -11,4 +11,6 @@
 #import "ElApiService.h"
 @interface GoodsViewController : UIViewController
 @property(nonatomic,strong) NSArray<TDGoodsType *> *goodsTypeList;
+@property(nonatomic,assign) int selectGoodTypeId;
+
 @end

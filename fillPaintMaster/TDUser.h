@@ -19,4 +19,7 @@
 @property(nonatomic,assign) int type;
 @property(nonatomic,assign) int shopId;
 
+@property(nonatomic,strong) NSString *receivingInfo;//name,phone,address
+@property(nonatomic,strong) NSString *head;
+
 @end

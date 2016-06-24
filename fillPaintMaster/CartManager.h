@@ -22,5 +22,5 @@
 @property(nonatomic,assign) int count;
 @property(nonatomic,strong) TDGoodInfo *goodInfo;
 @property(nonatomic,assign) BOOL checkYN;
-@property(nonatomic,strong) UIImage *image;
+@property(nonatomic,strong) NSString *imageUrl;
 @end

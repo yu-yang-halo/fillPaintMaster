@@ -10,14 +10,15 @@
 #import "ElApiService.h"
 #import "Constants.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <JSONKit/JSONKit.h>
 @interface PanoramaViewController ()<UIWebViewDelegate>
 {
-    NSString *webPath;
+   
     int shopId;
      MBProgressHUD *hud;
 }
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-
+@property(nonatomic,strong) NSMutableArray *imageWebPaths;
 @end
 
 @implementation PanoramaViewController
@@ -30,11 +31,18 @@
     
     shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
     
-    webPath=[[ElApiService shareElApiService] getPanoramaURL:_panorama shopId:shopId];
+    self.imageWebPaths=[NSMutableArray new];
+    NSArray *imageNames=[_panorama componentsSeparatedByString:@","];
+    for (NSString *imageName in imageNames) {
+        
+        NSString *webPath=[[ElApiService shareElApiService] getPanoramaURL:imageName shopId:shopId];
+        [_imageWebPaths addObject:webPath];
+        
+    }
     
-    NSLog(@"panorama http url:%@",webPath);
+    NSLog(@"panorama http url:%@",_imageWebPaths);
     
-    NSURL *url=[NSURL URLWithString:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"panorama/demo.html"]];
+    NSURL *url=[NSURL URLWithString:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"album/index.html"]];
     NSURLRequest *request=[NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
     
@@ -45,6 +53,8 @@
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     hud.labelText = @"加载中...";
+    
+    
     
     
 }
@@ -60,7 +70,16 @@
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [hud hide:YES];
-    [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"initImageURL('%@')",webPath]];
+    
+    CGFloat offsetHeight=[[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
+    
+    CGFloat scrollHeight=[[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+    
+    NSLog(@"offsetHeight %f  scrollHeight %f",offsetHeight,scrollHeight);
+    
+    
+    [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"loadImages(%@,%f)",[_imageWebPaths JSONString],scrollHeight]];
+    
     
 }
 /*

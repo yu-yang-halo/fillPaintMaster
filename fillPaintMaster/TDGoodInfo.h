@@ -18,5 +18,8 @@
 @property(nonatomic,assign) int shopId;
 @property(nonatomic,retain) NSString *src;
 @property(nonatomic,assign) int type;
+@property(nonatomic,retain) NSString *href;
+@property(nonatomic,assign) BOOL isTop;
+
 
 @end

@@ -58,6 +58,7 @@
 @property(nonatomic,strong) NSString *number;
 
 @property(nonatomic,assign) int count;
+@property(nonatomic,strong) NSString *src;
 
 @end
 

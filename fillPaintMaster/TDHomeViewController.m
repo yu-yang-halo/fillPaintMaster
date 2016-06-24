@@ -23,6 +23,10 @@
 #import <JYSlideSegmentController/JYSlideSegmentController.h>
 #import <SDCycleScrollView/SDCycleScrollView.h>
 #import "TDTabViewController.h"
+#import "UserAddressManager.h"
+#import "TDGoodInfo.h"
+#import "GoodsTopCollectionViewCell.h"
+
 static const float ICON_WIDTH=45;
 static const float ICON_HEIGHT=80;
 static const float AD_HEIGHT=120;
@@ -30,7 +34,8 @@ static const float TOP_SPACE=5;
 static const float LEFT_SPACE=15;
 static const float ROW_HEIGHT=40;
 
-@interface TDHomeViewController ()<SDCycleScrollViewDelegate>{
+
+@interface TDHomeViewController ()<SDCycleScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>{
     NSArray *imgItms;
     NSArray *contentItms;
     MJRefreshNormalHeader *refreshHeader;
@@ -38,6 +43,7 @@ static const float ROW_HEIGHT=40;
     NSArray *carInfos;
     
     NSArray *goodTypeList;
+    NSMutableArray *goodsList;
     
 }
 @property(retain, nonatomic)  UIScrollView *tdScrollView;
@@ -46,6 +52,8 @@ static const float ROW_HEIGHT=40;
 
 @property (retain, nonatomic)  SDCycleScrollView *cycleScrollView;
 @property(retain,nonatomic) NSArray *serviceItems;
+
+@property(nonatomic,strong) UICollectionView *collectionView;
 
 @end
 
@@ -60,7 +68,7 @@ static const float ROW_HEIGHT=40;
     
     _cycleScrollView.currentPageDotColor=[UIColor whiteColor];
     _cycleScrollView.pageDotColor=[UIColor colorWithWhite:1 alpha:0.4];
-    _cycleScrollView.autoScroll=NO;
+    _cycleScrollView.autoScroll=YES;
     
     
     
@@ -73,6 +81,8 @@ static const float ROW_HEIGHT=40;
     [self.containerView setBackgroundColor:[UIColor whiteColor]];
     
     self.tdScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0,64, self.view.frame.size.width,self.view.frame.size.height-64-49)];
+    
+   
     
     self.tableView=[[UITableView alloc] initWithFrame:CGRectMake(0,self.containerView.frame.origin.y+self.containerView.frame.size.height+TOP_SPACE*2, self.view.frame.size.width,ROW_HEIGHT*2)];
     self.tableView.rowHeight=ROW_HEIGHT;
@@ -111,7 +121,28 @@ static const float ROW_HEIGHT=40;
     }];
     
    
+    /**
+     *  热门商品
+     */
+    //创建一个layout布局类
+    UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
+    //设置布局方向为垂直流布局
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    layout.itemSize = CGSizeMake(158, 118);
+    layout.minimumInteritemSpacing=1;
+    layout.minimumLineSpacing=3;
+    // Do any additional setup after loading the view from its nib.
+    self.collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, _tableView.frame.origin.y+_tableView.frame.size.height+5, self.view.frame.size.width,0)collectionViewLayout:layout];
     
+    [self.collectionView setBackgroundColor:[UIColor clearColor]];
+    _collectionView.delegate=self;
+    _collectionView.dataSource=self;
+    
+    [_collectionView registerNib:[UINib nibWithNibName:@"GoodsTopCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"GoodHotTopCollectionCell"];
+    [_collectionView setBackgroundColor:[UIColor colorWithWhite:0.96 alpha:0.9]];
+    [_collectionView setScrollEnabled:NO];
+    
+    [_tdScrollView addSubview:_collectionView];
     
 
 }
@@ -125,7 +156,6 @@ static const float ROW_HEIGHT=40;
         bannerList=[[ElApiService shareElApiService] getBannerList:3];
         TDUser *user=[[ElApiService shareElApiService] getUserInfo];
         carInfos=[[ElApiService shareElApiService] getCarByCurrentUser];
-        goodTypeList=[[ElApiService shareElApiService] getGoodsType];
         
         
         NSMutableArray *imagesURLStrings=[[NSMutableArray alloc] init];
@@ -135,14 +165,13 @@ static const float ROW_HEIGHT=40;
                 NSString *imageUrl=[[ElApiService shareElApiService] getBannerURL:banner.imgName];
                 [imagesURLStrings addObject:imageUrl];
             }
-            
-            
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if([imagesURLStrings count]>0){
                  _cycleScrollView.imageURLStringsGroup = imagesURLStrings;
             }
+             [UserAddressManager cacheUserInfoToLocal:user];
             
             if(user.shopId>0){
                 [[NSUserDefaults standardUserDefaults] setObject:@(user.shopId) forKey:KEY_SHOP_ID];
@@ -152,11 +181,45 @@ static const float ROW_HEIGHT=40;
             
             
             [refreshHeader endRefreshing];
+            
+            [self hotGoodsTaskRequest];
+            
+            
           
         });
         
         
     });
+}
+
+-(void)hotGoodsTaskRequest{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        goodTypeList=[[ElApiService shareElApiService] getGoodsType];
+        NSArray *allGoodsList=[[ElApiService shareElApiService] getGoodsList:-2];
+        goodsList=[NSMutableArray new];
+        
+        for (TDGoodInfo *goodInfo in allGoodsList){
+            if(goodInfo.isTop){
+                [goodsList addObject:goodInfo];
+            }
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            int size=[goodsList count];
+            int rows=(size%2==0?size/2:size/2+1);
+            
+            CGRect frame=_collectionView.frame;
+            frame.size.height=rows*118;
+            
+            _collectionView.frame=frame;
+            
+            [self.tdScrollView setContentSize:CGSizeMake(self.view.frame.size.width, _collectionView.frame.origin.y+_collectionView.frame.size.height)];
+            
+            
+            [_collectionView reloadData];
+        });
+    });
+
 }
 
 
@@ -299,7 +362,7 @@ static const float ROW_HEIGHT=40;
     }
 }
 -(void)viewDidLayoutSubviews{
-  self.tdScrollView.contentSize=CGSizeMake(self.view.frame.size.width,400);
+   //self.tdScrollView.contentSize=CGSizeMake(self.view.frame.size.width,400);
 }
 
 -(CGRect)createCGRect:(int)row col:(int)col{
@@ -381,6 +444,51 @@ static const float ROW_HEIGHT=40;
     [self.navigationItem.backBarButtonItem setTitle:@"返回"];
     [self.navigationController pushViewController:webVC animated:YES];
 }
+
+#pragma mark UICollectionView Delegate
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if(goodsList!=nil){
+        return [goodsList count];
+    }
+    return 0;
+}
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    GoodsTopCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"GoodHotTopCollectionCell" forIndexPath:indexPath];
+    TDGoodInfo *goodsInfo=[goodsList objectAtIndex:indexPath.row];
+    
+    NSArray * imageNames=[goodsInfo.src componentsSeparatedByString:@","];
+    NSString *imageName=nil;
+    if([imageNames count]>0){
+        imageName=[imageNames objectAtIndex:0];
+    }
+    
+    cell.nameLabel.text=goodsInfo.name;
+    cell.priceLabel.text=[NSString stringWithFormat:@"%.1f元",goodsInfo.price];
+    NSString *imageURL=[[ElApiService shareElApiService] getGoodsURL:imageName shopId:goodsInfo.shopId];
+    
+    [cell.goodImageVIew sd_setImageWithURL:[NSURL URLWithString:imageURL]
+                      placeholderImage:[UIImage imageNamed:@"icon_default"]];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+     TDGoodInfo *goodsInfo=[goodsList objectAtIndex:indexPath.row];
+    
+    
+    GoodsViewController *goodVC=[[GoodsViewController alloc] init];
+    [goodVC setGoodsTypeList:goodTypeList];
+    [goodVC setSelectGoodTypeId:goodsInfo.type];
+    
+    [self.tabBarController.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+    
+    [self.tabBarController.navigationController pushViewController:goodVC animated:YES];
+}
+
 
 
 @end

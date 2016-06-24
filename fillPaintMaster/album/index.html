@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Galleria Classic Theme</title>
+
+        <style>
+
+            /* Demo styles */
+            html,body{background:#000;margin:0;}
+            body{solid #000;}
+            h1{font-size:12px;font-weight:normal;color:#ddd;margin:0;}
+            p{margin:0 0 20px}
+            a {color:#22BCB9;text-decoration:none;}
+            .cred{margin-top:20px;font-size:11px;}
+
+            /* This rule is read by Galleria to define the gallery height: */
+
+            #galleria{height:400px}
+
+        </style>
+
+        <!-- load jQuery -->
+        <script src="js/jquery-2.2.4.min.js"></script>
+
+        <!-- load Galleria -->
+        <script src="js/galleria-1.4.2.min.js"></script>
+
+    </head>
+<body>
+
+
+        <div id="galleria">
+
+        </div>
+
+
+    </body>
+
+<script>
+    
+
+              
+              
+              function loadImages(imageArrs,height){
+                  $("#galleria").height(height)
+                  $("#galleria").empty();
+                  
+                  for(var i=0;i<imageArrs.length;i++){
+                      var htmlElement="<a href='"+imageArrs[i]+"'> <img src='"+imageArrs[i]+"' data-big='"+imageArrs[i]+"'></img> </a>";
+                      $("#galleria").append(htmlElement);
+                  }
+                  
+                  Galleria.loadTheme('galleria.classic.min.js');
+                  
+                  // Initialize Galleria
+                  Galleria.run('#galleria');
+                  
+              }    
+
+
+
+
+
+    </script>
+</html>

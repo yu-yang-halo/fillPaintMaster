@@ -56,6 +56,18 @@
     [self initView];
     
     [self netDataGet];
+    
+}
+-(int)segmentIndex{
+    int segmentIndex=0;
+    for (int i=0;i<[_goodsTypeList count];i++) {
+        if([[_goodsTypeList objectAtIndex:i] goodTypeId]==_selectGoodTypeId){
+            segmentIndex=i;
+            break;
+        }
+    }
+    [_segmentedControl setSelectedSegmentIndex:segmentIndex];
+    return segmentIndex;
 }
 
 -(void)initView{
@@ -72,8 +84,10 @@
     [_segmentedControl setSelectionIndicatorLocation:(HMSegmentedControlSelectionIndicatorLocationDown)];
     [_segmentedControl setSelectionIndicatorColor:[UIColor whiteColor]];
     [_segmentedControl setSelectionIndicatorHeight:2];
+    
     [_segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:14]}];
     [_segmentedControl setSectionTitles:_typeStrs];
+   
     [self.view addSubview:_segmentedControl];
     
     
@@ -146,6 +160,7 @@
     
     
 }
+
 -(void)execAnimation{
     RBBTweenAnimation *bounce = [RBBTweenAnimation animationWithKeyPath:@"position.y"];
     bounce.fromValue = @(-3);
@@ -162,7 +177,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            [self reloadGoodsData:0];
+            [self reloadGoodsData:[self segmentIndex]];
         });
     });
 }

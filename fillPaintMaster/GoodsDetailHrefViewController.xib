@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GoodsDetailHrefViewController">
+            <connections>
+                <outlet property="addToCartButton" destination="4MV-9E-rEh" id="eUH-mL-3b7"/>
+                <outlet property="payForButton" destination="tc7-oP-sE8" id="d4Q-Y8-2tS"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="G0g-aR-TVR" id="dVJ-F2-ASS"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" alpha="0.64999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tc7-oP-sE8">
+                    <rect key="frame" x="15" y="523" width="136" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.021099393040000001" blue="0.045892547280000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="6gJ-wb-UjP"/>
+                        <constraint firstAttribute="width" constant="136" id="jup-eL-0gP"/>
+                    </constraints>
+                    <state key="normal" title="立即购买">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4MV-9E-rEh">
+                    <rect key="frame" x="169" y="523" width="136" height="40"/>
+                    <color key="backgroundColor" red="0.94053703079999995" green="0.51399692860000001" blue="0.070244918840000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="136" id="9Hq-UL-svz"/>
+                        <constraint firstAttribute="height" constant="40" id="b7C-jZ-JeX"/>
+                    </constraints>
+                    <state key="normal" title="加入购物车">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0g-aR-TVR">
+                    <rect key="frame" x="0.0" y="64" width="320" height="454"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                </webView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="G0g-aR-TVR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1Fd-sc-IJ5"/>
+                <constraint firstAttribute="trailing" secondItem="4MV-9E-rEh" secondAttribute="trailing" constant="15" id="CnS-fy-7SF"/>
+                <constraint firstItem="G0g-aR-TVR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="OkI-qp-jcX"/>
+                <constraint firstItem="tc7-oP-sE8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="VF6-rM-VNV"/>
+                <constraint firstItem="4MV-9E-rEh" firstAttribute="top" secondItem="G0g-aR-TVR" secondAttribute="bottom" constant="5" id="aFL-eX-Ved"/>
+                <constraint firstAttribute="trailing" secondItem="G0g-aR-TVR" secondAttribute="trailing" id="c6u-db-NDP"/>
+                <constraint firstAttribute="bottom" secondItem="tc7-oP-sE8" secondAttribute="bottom" constant="5" id="dQr-93-zlK"/>
+                <constraint firstAttribute="bottom" secondItem="4MV-9E-rEh" secondAttribute="bottom" constant="5" id="zEg-Z6-7YD"/>
+            </constraints>
+            <point key="canvasLocation" x="256" y="221"/>
+        </view>
+    </objects>
+</document>

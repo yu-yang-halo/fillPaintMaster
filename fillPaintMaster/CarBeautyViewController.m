@@ -15,7 +15,7 @@
 #import "ElApiService.h"
 #import "Constants.h"
 #import "MyCollectionViewCell.h"
-
+#import "WashOilDetailViewController.h"
 @interface CarBeautyViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>{
     NSUInteger totalMoney;
     NSUInteger totalCount;
@@ -76,7 +76,7 @@
     layout.minimumLineSpacing=5;
     [self.timeCollectionView setCollectionViewLayout:layout];
    
-    [self.beautyItemTableView setRowHeight:90];
+    [self.beautyItemTableView setRowHeight:50];
     [self.beautyItemTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     self.beautyItemTableView.delegate=self;
     self.beautyItemTableView.dataSource=self;
@@ -204,14 +204,36 @@
     
     TDBaseItem *item=[carItems objectAtIndex:indexPath.row];
     
-    [tableCell.contentLabel setText:[NSString stringWithFormat:@"%@   %.f元",item.name,item.price] ];
-    [tableCell.descLabel setText:item.desc];
+    [tableCell.contentLabel setText:[NSString stringWithFormat:@"%@",item.name] ];
+    [tableCell.priceLabel setText:[NSString stringWithFormat:@"%.f元",item.price]];
     [tableCell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [tableCell.addOrRemoveBtn setSelected:item.isAddYN];
     [tableCell.addOrRemoveBtn setTag:indexPath.row];
     [tableCell.addOrRemoveBtn addTarget:self action:@selector(addOrRemoveCart:) forControlEvents:UIControlEventTouchUpInside];
     return tableCell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    TDBaseItem *item=[carItems objectAtIndex:indexPath.row];
+    
+    WashOilDetailViewController *washOilDetailVC=[[WashOilDetailViewController alloc] init];
+    washOilDetailVC.desc=item.desc;
+    washOilDetailVC.type=_carBeautyType;
+    
+    if (_carBeautyType==CarBeautyType_beauty) {
+        washOilDetailVC.itemId=item.decorationId;
+    }else if (_carBeautyType==CarBeautyType_oil){
+        washOilDetailVC.itemId=item.oilId;
+    }
+    washOilDetailVC.src=item.src;
+    washOilDetailVC.title=item.name;
+    washOilDetailVC.pos=indexPath.row;
+    
+    [self.navigationController pushViewController:washOilDetailVC animated:YES];
+    
+}
+
+
 -(void)addOrRemoveCart:(UIButton *)sender{
     TDBaseItem *item=[carItems objectAtIndex:sender.tag];
     if(item.isAddYN){

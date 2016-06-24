@@ -11,6 +11,6 @@
 @interface TDBeautyTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addOrRemoveBtn;
-@property (weak, nonatomic) IBOutlet UILabel *descLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 @end

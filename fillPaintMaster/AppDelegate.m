@@ -121,6 +121,8 @@ static BOOL isProduction = YES;
     
     CLLocation *location=[[CLLocation alloc] initWithLatitude:userLocation.location.coordinate.latitude longitude:userLocation.location.coordinate.longitude];
     
+    self.myLocation=CLLocationCoordinate2DMake(lat, lgt);
+    
     
     
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {

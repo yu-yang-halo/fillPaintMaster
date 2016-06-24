@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JSONKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JYSlideSegmentController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,12 +77,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>033BB4A8F27D0CF2828F55277865E7CC</key>
+		<key>2AB49797D14D57FA43A345254AFB9F18</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2AB49797D14D57FA43A345254AFB9F18</key>
+		<key>33BE9A0C1C358293F544B38AFBA6EC6A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,6 +97,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4E521140C89B68EF943C46F49EB6C442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
 		<dict>
 			<key>primary</key>
@@ -102,7 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>89B073B3AF14377BCE533C1633D2EF87</key>
+		<key>6C73A84E04CC155C9B8A4940F129A1B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6D4F2261DF54FA0514D5FB26AB82D2A2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,22 +127,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>904FF3F20E5BF2A79B3C60DBA0EEC380</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E06C193EC68CA21EABB750A96EA68FAB</key>
+		<key>E421B7471C420C1C227C435C434E45A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EB41DB00611F5D9FD7374BDC8B480537</key>
+		<key>F8AEC1EBAF27455817F8C5D635FF3507</key>
 		<dict>
 			<key>primary</key>
 			<true/>

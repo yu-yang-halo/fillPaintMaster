@@ -131,6 +131,18 @@
 		847F9D131C507CF3005ED278 /* TDMetaOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F9D121C507CF3005ED278 /* TDMetaOrder.m */; };
 		847F9D161C50877D005ED278 /* TDDecoOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F9D151C50877D005ED278 /* TDDecoOrder.m */; };
 		847F9D1B1C50BBD8005ED278 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F9D191C50ACB5005ED278 /* libxml2.dylib */; };
+		8480D8301D1B90D000A9A548 /* UserAddressManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8480D82F1D1B90D000A9A548 /* UserAddressManager.m */; };
+		8480D8341D1BA62200A9A548 /* MyAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8480D8321D1BA62200A9A548 /* MyAddressViewController.m */; };
+		8480D8351D1BA62300A9A548 /* MyAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8480D8331D1BA62200A9A548 /* MyAddressViewController.xib */; };
+		8480D8391D1BC52A00A9A548 /* GoodsDetailHrefViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8480D8371D1BC52A00A9A548 /* GoodsDetailHrefViewController.m */; };
+		8480D83A1D1BC52A00A9A548 /* GoodsDetailHrefViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8480D8381D1BC52A00A9A548 /* GoodsDetailHrefViewController.xib */; };
+		8480D83E1D1BD0B800A9A548 /* GoodsTopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8480D83C1D1BD0B800A9A548 /* GoodsTopCollectionViewCell.m */; };
+		8480D83F1D1BD0B800A9A548 /* GoodsTopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8480D83D1D1BD0B800A9A548 /* GoodsTopCollectionViewCell.xib */; };
+		8480D8411D1CC59500A9A548 /* album in Resources */ = {isa = PBXBuildFile; fileRef = 8480D8401D1CC59400A9A548 /* album */; };
+		8480D8451D1CE61F00A9A548 /* WashOilDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8480D8431D1CE61F00A9A548 /* WashOilDetailViewController.m */; };
+		8480D8461D1CE61F00A9A548 /* WashOilDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8480D8441D1CE61F00A9A548 /* WashOilDetailViewController.xib */; };
+		8480D84A1D1CF90300A9A548 /* WashOilTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8480D8481D1CF90200A9A548 /* WashOilTableViewCell.m */; };
+		8480D84B1D1CF90300A9A548 /* WashOilTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8480D8491D1CF90200A9A548 /* WashOilTableViewCell.xib */; };
 		848149081C32643500588564 /* DelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848149071C32643500588564 /* DelegateViewController.m */; };
 		8481490D1C326DFB00588564 /* TDButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8481490C1C326DFB00588564 /* TDButtonView.m */; };
 		84C519F71CC870B3004450FA /* MonitorViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 84C519F61CC870B3004450FA /* MonitorViewController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -183,6 +195,7 @@
 		84C701781C5385DF007FA60F /* libIOTCAPIs_ALL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701751C5385DE007FA60F /* libIOTCAPIs_ALL.a */; };
 		84C701791C5385DF007FA60F /* libIOTCAPIs_ALLT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C701761C5385DE007FA60F /* libIOTCAPIs_ALLT.a */; };
 		84C7017B1C5387ED007FA60F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7017A1C5387ED007FA60F /* CoreMedia.framework */; };
+		84DA99C91D17D6F8001642E8 /* PaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DA99C81D17D6F8001642E8 /* PaddingLabel.m */; };
 		84EA42401CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA423E1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.m */; };
 		84EA42411CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EA423F1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.xib */; };
 		84EA42451CBDD8E900DFCBDA /* MyCouponTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA42431CBDD8E900DFCBDA /* MyCouponTableViewController.m */; };
@@ -419,6 +432,24 @@
 		847F9D151C50877D005ED278 /* TDDecoOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDecoOrder.m; sourceTree = "<group>"; };
 		847F9D171C50AA78005ED278 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		847F9D191C50ACB5005ED278 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		8480D82E1D1B90CF00A9A548 /* UserAddressManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressManager.h; sourceTree = "<group>"; };
+		8480D82F1D1B90D000A9A548 /* UserAddressManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressManager.m; sourceTree = "<group>"; };
+		8480D8311D1BA62200A9A548 /* MyAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAddressViewController.h; sourceTree = "<group>"; };
+		8480D8321D1BA62200A9A548 /* MyAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAddressViewController.m; sourceTree = "<group>"; };
+		8480D8331D1BA62200A9A548 /* MyAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyAddressViewController.xib; sourceTree = "<group>"; };
+		8480D8361D1BC52A00A9A548 /* GoodsDetailHrefViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailHrefViewController.h; sourceTree = "<group>"; };
+		8480D8371D1BC52A00A9A548 /* GoodsDetailHrefViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailHrefViewController.m; sourceTree = "<group>"; };
+		8480D8381D1BC52A00A9A548 /* GoodsDetailHrefViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailHrefViewController.xib; sourceTree = "<group>"; };
+		8480D83B1D1BD0B800A9A548 /* GoodsTopCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsTopCollectionViewCell.h; sourceTree = "<group>"; };
+		8480D83C1D1BD0B800A9A548 /* GoodsTopCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsTopCollectionViewCell.m; sourceTree = "<group>"; };
+		8480D83D1D1BD0B800A9A548 /* GoodsTopCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsTopCollectionViewCell.xib; sourceTree = "<group>"; };
+		8480D8401D1CC59400A9A548 /* album */ = {isa = PBXFileReference; lastKnownFileType = folder; path = album; sourceTree = "<group>"; };
+		8480D8421D1CE61E00A9A548 /* WashOilDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashOilDetailViewController.h; sourceTree = "<group>"; };
+		8480D8431D1CE61F00A9A548 /* WashOilDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashOilDetailViewController.m; sourceTree = "<group>"; };
+		8480D8441D1CE61F00A9A548 /* WashOilDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WashOilDetailViewController.xib; sourceTree = "<group>"; };
+		8480D8471D1CF90200A9A548 /* WashOilTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WashOilTableViewCell.h; sourceTree = "<group>"; };
+		8480D8481D1CF90200A9A548 /* WashOilTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WashOilTableViewCell.m; sourceTree = "<group>"; };
+		8480D8491D1CF90200A9A548 /* WashOilTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WashOilTableViewCell.xib; sourceTree = "<group>"; };
 		848149061C32643500588564 /* DelegateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateViewController.h; sourceTree = "<group>"; };
 		848149071C32643500588564 /* DelegateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateViewController.m; sourceTree = "<group>"; };
 		8481490B1C326DFB00588564 /* TDButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDButtonView.h; sourceTree = "<group>"; };
@@ -496,6 +527,8 @@
 		84C701751C5385DE007FA60F /* libIOTCAPIs_ALL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIOTCAPIs_ALL.a; sourceTree = "<group>"; };
 		84C701761C5385DE007FA60F /* libIOTCAPIs_ALLT.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIOTCAPIs_ALLT.a; sourceTree = "<group>"; };
 		84C7017A1C5387ED007FA60F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		84DA99C71D17D6F8001642E8 /* PaddingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddingLabel.h; sourceTree = "<group>"; };
+		84DA99C81D17D6F8001642E8 /* PaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddingLabel.m; sourceTree = "<group>"; };
 		84EA423D1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGoodsOrderTableViewController.h; sourceTree = "<group>"; };
 		84EA423E1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGoodsOrderTableViewController.m; sourceTree = "<group>"; };
 		84EA423F1CBDD4C400DFCBDA /* MyGoodsOrderTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyGoodsOrderTableViewController.xib; sourceTree = "<group>"; };
@@ -633,6 +666,8 @@
 				18E809BC1BC248DF00712C43 /* TDTableViewCell1.h */,
 				18E809BD1BC248DF00712C43 /* TDTableViewCell1.m */,
 				18E809BE1BC248DF00712C43 /* TDTableViewCell1.xib */,
+				84DA99C71D17D6F8001642E8 /* PaddingLabel.h */,
+				84DA99C81D17D6F8001642E8 /* PaddingLabel.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -825,6 +860,12 @@
 				18E8A11A1BBA207800FBD3F4 /* CarBeautyViewController.m */,
 				18C014BD1CC31078006284F3 /* HeaderUViewController.h */,
 				18C014BE1CC31078006284F3 /* HeaderUViewController.m */,
+				8480D8421D1CE61E00A9A548 /* WashOilDetailViewController.h */,
+				8480D8431D1CE61F00A9A548 /* WashOilDetailViewController.m */,
+				8480D8441D1CE61F00A9A548 /* WashOilDetailViewController.xib */,
+				8480D8471D1CF90200A9A548 /* WashOilTableViewCell.h */,
+				8480D8481D1CF90200A9A548 /* WashOilTableViewCell.m */,
+				8480D8491D1CF90200A9A548 /* WashOilTableViewCell.xib */,
 			);
 			name = CarBeauty;
 			sourceTree = "<group>";
@@ -836,6 +877,8 @@
 				18E8A11E1BBA399E00FBD3F4 /* TimeUtils.m */,
 				18EB79F31C51072200BA0C26 /* YYButtonUtils.h */,
 				18EB79F41C51072200BA0C26 /* YYButtonUtils.m */,
+				8480D82E1D1B90CF00A9A548 /* UserAddressManager.h */,
+				8480D82F1D1B90D000A9A548 /* UserAddressManager.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -907,6 +950,7 @@
 		18ED343F1C3624930085B250 /* shop */ = {
 			isa = PBXGroup;
 			children = (
+				8480D8401D1CC59400A9A548 /* album */,
 				18ED34401C3627020085B250 /* TDShopViewController.h */,
 				18ED34411C3627020085B250 /* TDShopViewController.m */,
 				18ED34431C3627B60085B250 /* ShopView0Controller.h */,
@@ -1031,6 +1075,15 @@
 				84627A1B1CD09A7900790D42 /* GoodsTableCell.h */,
 				84627A1C1CD09A7900790D42 /* GoodsTableCell.m */,
 				84627A1D1CD09A7900790D42 /* GoodsTableCell.xib */,
+				8480D8311D1BA62200A9A548 /* MyAddressViewController.h */,
+				8480D8321D1BA62200A9A548 /* MyAddressViewController.m */,
+				8480D8331D1BA62200A9A548 /* MyAddressViewController.xib */,
+				8480D8361D1BC52A00A9A548 /* GoodsDetailHrefViewController.h */,
+				8480D8371D1BC52A00A9A548 /* GoodsDetailHrefViewController.m */,
+				8480D8381D1BC52A00A9A548 /* GoodsDetailHrefViewController.xib */,
+				8480D83B1D1BD0B800A9A548 /* GoodsTopCollectionViewCell.h */,
+				8480D83C1D1BD0B800A9A548 /* GoodsTopCollectionViewCell.m */,
+				8480D83D1D1BD0B800A9A548 /* GoodsTopCollectionViewCell.xib */,
 			);
 			name = goods;
 			sourceTree = "<group>";
@@ -1257,6 +1310,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8480D8411D1CC59500A9A548 /* album in Resources */,
+				8480D8461D1CE61F00A9A548 /* WashOilDetailViewController.xib in Resources */,
 				18EB1AFA1C37934600791849 /* TDIdCodeViewController.xib in Resources */,
 				84EA42461CBDD8E900DFCBDA /* MyCouponTableViewController.xib in Resources */,
 				18E8ECFF1C2FC43200968CEB /* LeftCarViewController.xib in Resources */,
@@ -1303,12 +1358,16 @@
 				188D71941CC3954A0075A3B0 /* PanoramaViewController.xib in Resources */,
 				84C7013B1C5379C6007FA60F /* DirectDisplayShader.vsh in Resources */,
 				18B9325A1BA6A8C50019279E /* Assets.xcassets in Resources */,
+				8480D83F1D1BD0B800A9A548 /* GoodsTopCollectionViewCell.xib in Resources */,
 				18E4F0061CB9FB1A000C12FD /* MyOrderTableViewCell.xib in Resources */,
+				8480D83A1D1BC52A00A9A548 /* GoodsDetailHrefViewController.xib in Resources */,
 				84C519FF1CC89CC6004450FA /* GoodsViewController.xib in Resources */,
 				84C5C5981CCF16BC00D8F235 /* GoodDataSourceViewController.xib in Resources */,
 				18EE55821C41FB1C00A99D50 /* CarInfoView.xib in Resources */,
 				18E4F0001CB9FA69000C12FD /* MyOrderTableViewController.xib in Resources */,
+				8480D84B1D1CF90300A9A548 /* WashOilTableViewCell.xib in Resources */,
 				18ED34471C3627B60085B250 /* ShopView0Controller.xib in Resources */,
+				8480D8351D1BA62300A9A548 /* MyAddressViewController.xib in Resources */,
 				188D718F1CC394FD0075A3B0 /* panorama in Resources */,
 				84C5C5A21CCF67BC00D8F235 /* GoodsDetailViewController.xib in Resources */,
 				1803C3201C36598D003157F1 /* panoroma.html in Resources */,
@@ -1387,11 +1446,13 @@
 				18EFC0071C4689F90068DA68 /* TDStoreViewController.m in Sources */,
 				18EB27B31C4E5E4E0085EDC4 /* GDataXMLNode.m in Sources */,
 				847F9D131C507CF3005ED278 /* TDMetaOrder.m in Sources */,
+				8480D84A1D1CF90300A9A548 /* WashOilTableViewCell.m in Sources */,
 				18E8ED0D1C2FE15A00968CEB /* BackCarViewController.m in Sources */,
 				18E8A11B1BBA207800FBD3F4 /* CarBeautyViewController.m in Sources */,
 				18E8ED081C2FDD4200968CEB /* FrontCarViewController.m in Sources */,
 				8481490D1C326DFB00588564 /* TDButtonView.m in Sources */,
 				84C519F71CC870B3004450FA /* MonitorViewController.mm in Sources */,
+				84DA99C91D17D6F8001642E8 /* PaddingLabel.m in Sources */,
 				1836FEC91C7953EA009028D9 /* TDPromotionInfoType.m in Sources */,
 				18EE55851C42075A00A99D50 /* TDCarInfoModel.m in Sources */,
 				84C519FE1CC89CC5004450FA /* GoodsViewController.m in Sources */,
@@ -1404,7 +1465,9 @@
 				18E809C31BC255CD00712C43 /* OrderSuccessViewController.m in Sources */,
 				847F9D161C50877D005ED278 /* TDDecoOrder.m in Sources */,
 				847F9D101C507174005ED278 /* TDOrderSearch.m in Sources */,
+				8480D83E1D1BD0B800A9A548 /* GoodsTopCollectionViewCell.m in Sources */,
 				84345A7B1C3A3CCE0089DB45 /* TDCity.m in Sources */,
+				8480D8451D1CE61F00A9A548 /* WashOilDetailViewController.m in Sources */,
 				18B932551BA6A8C50019279E /* TDHomeViewController.m in Sources */,
 				84C5C58E1CCDB20200D8F235 /* AJTapDetectingView.m in Sources */,
 				84EA42451CBDD8E900DFCBDA /* MyCouponTableViewController.m in Sources */,
@@ -1424,6 +1487,7 @@
 				84C5C59C1CCF376E00D8F235 /* GoodsCollectionViewCell.m in Sources */,
 				18E809BA1BC230D200712C43 /* TDTableViewCell0.m in Sources */,
 				18E946311C41195B0047ADEA /* TDSearchViewController.m in Sources */,
+				8480D8391D1BC52A00A9A548 /* GoodsDetailHrefViewController.m in Sources */,
 				18E8A1231BBA468600FBD3F4 /* TDBeautyTableViewCell.m in Sources */,
 				845E484E1C3B589E00AAD5A5 /* TDUserCenterViewController.m in Sources */,
 				18EBC4A21C47BC5F00AFFC1A /* TDActiveViewController.m in Sources */,
@@ -1464,6 +1528,7 @@
 				18C014B51CC1D5E3006284F3 /* TDWebViewController.m in Sources */,
 				182FC6FB1C4FACCD001978F5 /* TDStationInfo.m in Sources */,
 				84C5C5841CCDB20200D8F235 /* AJPhotoGroupCell.m in Sources */,
+				8480D8341D1BA62200A9A548 /* MyAddressViewController.m in Sources */,
 				182FC70A1C4FBB84001978F5 /* TDCouponInfo.m in Sources */,
 				84C5C58B1CCDB20200D8F235 /* AJPhotoBrowserViewController.m in Sources */,
 				18E8A11F1BBA399E00FBD3F4 /* TimeUtils.m in Sources */,
@@ -1476,6 +1541,7 @@
 				84C5C5891CCDB20200D8F235 /* AJPhotoPickerViewController.m in Sources */,
 				84345A811C3A3E770089DB45 /* TDCarInfo.m in Sources */,
 				84627A1A1CD08D1000790D42 /* CartManager.m in Sources */,
+				8480D8301D1B90D000A9A548 /* UserAddressManager.m in Sources */,
 				84C5C5851CCDB20200D8F235 /* AJPhotoGroupView.m in Sources */,
 				18E8ECFE1C2FC43200968CEB /* LeftCarViewController.m in Sources */,
 				84C5C5971CCF16BC00D8F235 /* GoodDataSourceViewController.m in Sources */,

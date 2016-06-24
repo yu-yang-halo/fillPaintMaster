@@ -184,13 +184,16 @@ unsigned int _getTickCount() {
         [self.camera sendIOCtrlToChannel:0 Type:IOTYPE_USER_IPCAM_GET_TIMEZONE_REQ Data:(char *)&s3 DataSize:sizeof(s3)];
         
     }else{
-        [camera setDelegate2:nil];
-        [self.camera stopShow:0];
-        [self waitStopShowCompleted:DEF_WAIT4STOPSHOW_TIME];
-        [self.camera stopSoundToDevice:0];
-        [self.camera stopSoundToPhone:0];
-        [self.camera disconnect];
-        [self unactiveAudioSession];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [camera setDelegate2:nil];
+            [self.camera stopShow:0];
+            [self waitStopShowCompleted:DEF_WAIT4STOPSHOW_TIME];
+            [self.camera stopSoundToDevice:0];
+            [self.camera stopSoundToPhone:0];
+            [self.camera disconnect];
+            [self unactiveAudioSession];
+        });
+        
     }
 }
 

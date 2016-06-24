@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GoodHotTopCollectionCell" id="gTV-IL-0wX" customClass="GoodsTopCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="158" height="118"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="158" height="118"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hot" translatesAutoresizingMaskIntoConstraints="NO" id="mHe-0Y-sGm">
+                        <rect key="frame" x="0.0" y="0.0" width="33" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="gWW-YQ-MDL"/>
+                            <constraint firstAttribute="width" constant="33" id="nGl-Ho-L1J"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wL9-dA-i7M">
+                        <rect key="frame" x="3" y="49" width="78" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="78" id="8h2-gw-6PJ"/>
+                            <constraint firstAttribute="height" constant="21" id="XHY-Df-2NN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.16682596409574468" green="0.16682596409574468" blue="0.16682596409574468" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVn-4H-acc">
+                        <rect key="frame" x="8" y="89" width="73" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="73" id="X7x-Xu-Byi"/>
+                            <constraint firstAttribute="height" constant="21" id="yYJ-zF-WGw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.021099393040000001" blue="0.045892547280000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B7o-iW-dxx">
+                        <rect key="frame" x="89" y="26" width="69" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="69" id="5LZ-Uv-hBz"/>
+                            <constraint firstAttribute="height" constant="70" id="kNQ-pV-1cp"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="wL9-dA-i7M" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="3" id="AfL-xE-VZ3"/>
+                <constraint firstAttribute="trailing" secondItem="B7o-iW-dxx" secondAttribute="trailing" id="EqM-Il-Tt1"/>
+                <constraint firstItem="mHe-0Y-sGm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JXX-3A-25x"/>
+                <constraint firstItem="B7o-iW-dxx" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="2" id="KDU-PI-CHh"/>
+                <constraint firstItem="mHe-0Y-sGm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="PXW-I1-xqd"/>
+                <constraint firstAttribute="bottom" secondItem="lVn-4H-acc" secondAttribute="bottom" constant="8" id="U1c-DR-qWM"/>
+                <constraint firstItem="lVn-4H-acc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Ykz-1s-Edj"/>
+                <constraint firstItem="wL9-dA-i7M" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="jXI-wR-PAA"/>
+            </constraints>
+            <size key="customSize" width="241" height="189"/>
+            <connections>
+                <outlet property="goodImageVIew" destination="B7o-iW-dxx" id="3TZ-HQ-vsg"/>
+                <outlet property="hotImageView" destination="mHe-0Y-sGm" id="inW-ab-l00"/>
+                <outlet property="nameLabel" destination="wL9-dA-i7M" id="Lx9-zZ-mp4"/>
+                <outlet property="priceLabel" destination="lVn-4H-acc" id="sME-mg-Bcs"/>
+            </connections>
+            <point key="canvasLocation" x="453" y="311"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="hot" width="172" height="150"/>
+    </resources>
+</document>

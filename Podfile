@@ -11,3 +11,4 @@ pod 'MMPopupView', :head
 pod "JYSlideSegmentController", "~> 1.1.0"
 pod 'RBBAnimation', '0.4.0'
 pod 'HMSegmentedControl'
+pod 'JSONKit'
