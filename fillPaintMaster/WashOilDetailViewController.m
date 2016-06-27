@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *itemButton;
 
 @property(nonatomic,strong) NSMutableArray *weburls;
-
+@property(nonatomic,strong) NSMutableDictionary *dic;
 @end
 
 @implementation WashOilDetailViewController
@@ -32,7 +32,7 @@
     [self.itemButton addTarget:self action:@selector(toBuyItem:) forControlEvents:UIControlEventTouchUpInside];
     
     self.weburls=[NSMutableArray new];
-
+    self.dic=[NSMutableDictionary new];
     NSArray *imageNames=[_src componentsSeparatedByString:@","];
     for (NSString *imageName in imageNames) {
         if(_type==CarBeautyType_beauty){
@@ -46,11 +46,6 @@
       
       
     }
-    
-    
-
-    
-    
     
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
@@ -87,19 +82,42 @@
     
     
     CGRect frame=cell.frame;
-    frame.size.height=[self scaleHeight:cell.cellImageView.image];
+    frame.size.height=[self scaleHeight:cell.cellImageView.image index:indexPath.row];
     
     cell.frame=frame;
+    
+    if (!imageNetLoadCompleteYN) {
+        if([self netImageDataLoadComplete]){
+            imageNetLoadCompleteYN=YES;
+            [_tableView reloadData];
+        }
+    }
     
     return cell;
 }
 
--(CGFloat)scaleHeight:(UIImage *)image{
+
+
+-(CGFloat)scaleHeight:(UIImage *)image index:(int)index{
     if(image.size.height==0||image.size.width==0){
-        return 10;
+        return 380;
     }
+    [_dic setObject:@(1) forKey:@(index)];
     CGFloat scaleH=image.size.height*_tableView.frame.size.width/image.size.width;
+    
     return scaleH;
+}
+
+-(BOOL)netImageDataLoadComplete{
+    NSLog(@"dic count %d",[[_dic allValues] count]);
+    if ([[_dic allValues] count]==[_weburls count]) {
+        
+        return YES;
+    }else{
+        
+        return NO;
+    }
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

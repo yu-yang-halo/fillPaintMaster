@@ -18,6 +18,16 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>HMSegmentedControl.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+		<key>JSONKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
 		<key>JYSlideSegmentController.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -88,7 +98,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>2AB49797D14D57FA43A345254AFB9F18</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>311592250C7A3D5FE1481AA2323D93FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>33BE9A0C1C358293F544B38AFBA6EC6A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -113,6 +133,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4E521140C89B68EF943C46F49EB6C442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
 		<dict>
 			<key>primary</key>
@@ -129,6 +154,16 @@
 			<true/>
 		</dict>
 		<key>6A51F1035521F9C5D78E4D3366B0BD41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6C73A84E04CC155C9B8A4940F129A1B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6D4F2261DF54FA0514D5FB26AB82D2A2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -168,12 +203,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>E421B7471C420C1C227C435C434E45A9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>F4454DE920DBBA4A68378C481873BDC7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>F4732A103964A95B268BF7A047DBDED9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F8AEC1EBAF27455817F8C5D635FF3507</key>
 		<dict>
 			<key>primary</key>
 			<true/>

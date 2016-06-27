@@ -13,11 +13,7 @@
 - (void)awakeFromNib {
     // Initialization code
 }
--(void)layoutSubviews{
-    [super layoutSubviews];
-    
-    NSLog(@"layoutSubViews....");
-}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

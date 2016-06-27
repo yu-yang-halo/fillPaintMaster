@@ -2199,6 +2199,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 51655FE9AD874D00BB4D26C1B0D0BD3E /* JSONKit.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/JSONKit/JSONKit-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -2579,6 +2581,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 51655FE9AD874D00BB4D26C1B0D0BD3E /* JSONKit.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/JSONKit/JSONKit-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
