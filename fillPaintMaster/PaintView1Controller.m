@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIView *container0;
 @property (weak, nonatomic) IBOutlet UIView *container1;
 
+@property (weak, nonatomic) IBOutlet UILabel *telephoneLabel;
 
 
 
@@ -41,9 +42,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    UITapGestureRecognizer *tapGR=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(phoneCall:)];
+    [_telephoneLabel setUserInteractionEnabled:YES];
+    [_telephoneLabel addGestureRecognizer:tapGR];
     
     
+}
+-(void)phoneCall:(UIGestureRecognizer *)gr{
+    UILabel *label=(UILabel *)gr.view;
+    NSString *phone=label.text;
     
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phone]]];
+
 }
 -(void)beginPhotoPicker{
     AJPhotoPickerViewController *picker = [[AJPhotoPickerViewController alloc] init];

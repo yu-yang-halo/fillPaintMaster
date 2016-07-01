@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D57D0A0323298F83C6867BC1'
+               BlueprintIdentifier = 'B3C683026BFB62681820757E'
                BlueprintName = 'JYSlideSegmentController'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libJYSlideSegmentController.a'>

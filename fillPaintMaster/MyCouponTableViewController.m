@@ -11,8 +11,7 @@
 #import "ElApiService.h"
 #import "TimeUtils.h"
 #import <MJRefresh/MJRefresh.h>
-static const int COUPON_TYPE_DISCOUNT=0;
-static const int COUPON_TYPE_PRICE=1;
+#import "Constants.h"
 @interface MyCouponTableViewController ()
 {
      NSArray *couponInfoList;

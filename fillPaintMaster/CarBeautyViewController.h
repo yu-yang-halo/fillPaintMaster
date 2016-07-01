@@ -17,6 +17,6 @@ typedef NS_ENUM(NSUInteger, CarBeautyType){
 
 @interface CarBeautyViewController : HeaderUViewController<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,assign) CarBeautyType carBeautyType;
-
+-(void)reDrawItemView:(int)index onlyAdd:(BOOL)onlyAdd;
 
 @end

@@ -19,6 +19,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *j1Btn;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *label0;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+
+@property (weak, nonatomic) IBOutlet UILabel *label3;
+
+@property (weak, nonatomic) IBOutlet UILabel *label4;
+
 @end
 
 @implementation LeftCarViewController
@@ -42,7 +51,13 @@
     [self.e1Btn addTarget:self.viewDelegate action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.f1Btn addTarget:self.viewDelegate action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.j1Btn addTarget:self.viewDelegate action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+
+    
 }
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

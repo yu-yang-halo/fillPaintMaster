@@ -49,8 +49,6 @@
 		18E4F0001CB9FA69000C12FD /* MyOrderTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E4EFFE1CB9FA69000C12FD /* MyOrderTableViewController.xib */; };
 		18E4F0051CB9FB1A000C12FD /* MyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4F0031CB9FB1A000C12FD /* MyOrderTableViewCell.m */; };
 		18E4F0061CB9FB1A000C12FD /* MyOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E4F0041CB9FB1A000C12FD /* MyOrderTableViewCell.xib */; };
-		18E4F00A1CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4F0081CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.m */; };
-		18E4F00B1CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E4F0091CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.xib */; };
 		18E4F00F1CBA0307000C12FD /* MyCouponTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4F00D1CBA0307000C12FD /* MyCouponTableViewCell.m */; };
 		18E4F0101CBA0307000C12FD /* MyCouponTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E4F00E1CBA0307000C12FD /* MyCouponTableViewCell.xib */; };
 		18E809BA1BC230D200712C43 /* TDTableViewCell0.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E809B81BC230D200712C43 /* TDTableViewCell0.m */; };
@@ -114,6 +112,8 @@
 		18F612F71C53B21300238F12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F612F61C53B21300238F12 /* CoreGraphics.framework */; };
 		840FEE401CB61DAC0056C7BE /* TDServiceDataInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 840FEE3F1CB61DAC0056C7BE /* TDServiceDataInfo.m */; };
 		840FEE981CB8D8EA0056C7BE /* errorCodePlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 840FEE971CB8D8E90056C7BE /* errorCodePlist.plist */; };
+		841D0BE61D262FC8005F9222 /* MyGoodsOrderItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D0BE41D262FC7005F9222 /* MyGoodsOrderItemCell.m */; };
+		841D0BE71D262FC8005F9222 /* MyGoodsOrderItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841D0BE51D262FC7005F9222 /* MyGoodsOrderItemCell.xib */; };
 		84345A7B1C3A3CCE0089DB45 /* TDCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A7A1C3A3CCE0089DB45 /* TDCity.m */; };
 		84345A7E1C3A3D8E0089DB45 /* TDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A7D1C3A3D8E0089DB45 /* TDUser.m */; };
 		84345A811C3A3E770089DB45 /* TDCarInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84345A801C3A3E770089DB45 /* TDCarInfo.m */; };
@@ -293,9 +293,6 @@
 		18E4F0021CB9FB1A000C12FD /* MyOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderTableViewCell.h; sourceTree = "<group>"; };
 		18E4F0031CB9FB1A000C12FD /* MyOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderTableViewCell.m; sourceTree = "<group>"; };
 		18E4F0041CB9FB1A000C12FD /* MyOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderTableViewCell.xib; sourceTree = "<group>"; };
-		18E4F0071CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGoodsOrderTableViewCell.h; sourceTree = "<group>"; };
-		18E4F0081CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGoodsOrderTableViewCell.m; sourceTree = "<group>"; };
-		18E4F0091CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyGoodsOrderTableViewCell.xib; sourceTree = "<group>"; };
 		18E4F00C1CBA0307000C12FD /* MyCouponTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCouponTableViewCell.h; sourceTree = "<group>"; };
 		18E4F00D1CBA0307000C12FD /* MyCouponTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCouponTableViewCell.m; sourceTree = "<group>"; };
 		18E4F00E1CBA0307000C12FD /* MyCouponTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCouponTableViewCell.xib; sourceTree = "<group>"; };
@@ -401,6 +398,9 @@
 		840FEE911CB8A3D80056C7BE /* BaiduMapAPI_Map.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Map.framework; path = ../../Downloads/BaiduMap_IOSSDK_v2.10.2_Lib/BaiduMapAPI_Map.framework; sourceTree = "<group>"; };
 		840FEE921CB8A3D80056C7BE /* BaiduMapAPI_Utils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Utils.framework; path = ../../Downloads/BaiduMap_IOSSDK_v2.10.2_Lib/BaiduMapAPI_Utils.framework; sourceTree = "<group>"; };
 		840FEE971CB8D8E90056C7BE /* errorCodePlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = errorCodePlist.plist; sourceTree = "<group>"; };
+		841D0BE31D262FC7005F9222 /* MyGoodsOrderItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGoodsOrderItemCell.h; sourceTree = "<group>"; };
+		841D0BE41D262FC7005F9222 /* MyGoodsOrderItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGoodsOrderItemCell.m; sourceTree = "<group>"; };
+		841D0BE51D262FC7005F9222 /* MyGoodsOrderItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyGoodsOrderItemCell.xib; sourceTree = "<group>"; };
 		84345A791C3A3CCE0089DB45 /* TDCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDCity.h; sourceTree = "<group>"; };
 		84345A7A1C3A3CCE0089DB45 /* TDCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDCity.m; sourceTree = "<group>"; };
 		84345A7C1C3A3D8E0089DB45 /* TDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDUser.h; sourceTree = "<group>"; };
@@ -819,9 +819,6 @@
 				18E4F0021CB9FB1A000C12FD /* MyOrderTableViewCell.h */,
 				18E4F0031CB9FB1A000C12FD /* MyOrderTableViewCell.m */,
 				18E4F0041CB9FB1A000C12FD /* MyOrderTableViewCell.xib */,
-				18E4F0071CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.h */,
-				18E4F0081CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.m */,
-				18E4F0091CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.xib */,
 				18E4F00C1CBA0307000C12FD /* MyCouponTableViewCell.h */,
 				18E4F00D1CBA0307000C12FD /* MyCouponTableViewCell.m */,
 				18E4F00E1CBA0307000C12FD /* MyCouponTableViewCell.xib */,
@@ -831,6 +828,9 @@
 				188D71841CC34C3C0075A3B0 /* DescriptionTableViewCell.h */,
 				188D71851CC34C3C0075A3B0 /* DescriptionTableViewCell.m */,
 				188D71861CC34C3C0075A3B0 /* DescriptionTableViewCell.xib */,
+				841D0BE31D262FC7005F9222 /* MyGoodsOrderItemCell.h */,
+				841D0BE41D262FC7005F9222 /* MyGoodsOrderItemCell.m */,
+				841D0BE51D262FC7005F9222 /* MyGoodsOrderItemCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1326,13 +1326,13 @@
 				18E8ED041C2FDB8100968CEB /* RightCarViewController.xib in Resources */,
 				1803C3281C36A67F003157F1 /* location.html in Resources */,
 				84C7013A1C5379C6007FA60F /* DirectDisplayShader.fsh in Resources */,
-				18E4F00B1CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.xib in Resources */,
 				18EB1AF51C378A9E00791849 /* TDLoginViewController.xib in Resources */,
 				18ED344C1C3627C60085B250 /* ShopView1Controller.xib in Resources */,
 				18C014B61CC1D5E3006284F3 /* TDWebViewController.xib in Resources */,
 				84EA42501CBE23CA00DFCBDA /* CityTableViewController.xib in Resources */,
 				18E809C01BC248DF00712C43 /* TDTableViewCell1.xib in Resources */,
 				18E946291C40FDE50047ADEA /* area.plist in Resources */,
+				841D0BE71D262FC8005F9222 /* MyGoodsOrderItemCell.xib in Resources */,
 				18EBC4A81C47BEB100AFFC1A /* TDActiveTableViewCell.xib in Resources */,
 				18E946321C41195B0047ADEA /* TDSearchViewController.xib in Resources */,
 				18E809DB1BC2AD2800712C43 /* PaintView1Controller.xib in Resources */,
@@ -1532,13 +1532,13 @@
 				182FC70A1C4FBB84001978F5 /* TDCouponInfo.m in Sources */,
 				84C5C58B1CCDB20200D8F235 /* AJPhotoBrowserViewController.m in Sources */,
 				18E8A11F1BBA399E00FBD3F4 /* TimeUtils.m in Sources */,
-				18E4F00A1CB9FEF5000C12FD /* MyGoodsOrderTableViewCell.m in Sources */,
 				18EB27B21C4E5E4E0085EDC4 /* ElApiService.m in Sources */,
 				18B9324F1BA6A8C50019279E /* main.m in Sources */,
 				182FC7101C4FC200001978F5 /* TDGoodInfo.m in Sources */,
 				84C5C5A11CCF67BC00D8F235 /* GoodsDetailViewController.m in Sources */,
 				84C701371C5379C6007FA60F /* CameraShowGLView.m in Sources */,
 				84C5C5891CCDB20200D8F235 /* AJPhotoPickerViewController.m in Sources */,
+				841D0BE61D262FC8005F9222 /* MyGoodsOrderItemCell.m in Sources */,
 				84345A811C3A3E770089DB45 /* TDCarInfo.m in Sources */,
 				84627A1A1CD08D1000790D42 /* CartManager.m in Sources */,
 				8480D8301D1B90D000A9A548 /* UserAddressManager.m in Sources */,

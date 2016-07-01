@@ -315,9 +315,9 @@ float BUTTON_H=49;
     }
     
     if(tagId==2){
-        [self.navigationController.navigationBar setHidden:YES];
+        [self.navigationController setNavigationBarHidden:YES];
     }else{
-        [self.navigationController.navigationBar setHidden:NO];
+        [self.navigationController setNavigationBarHidden:NO];
     }
    
     

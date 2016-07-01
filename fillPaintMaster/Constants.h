@@ -43,6 +43,15 @@ static const int STATE_ORDER_CANCEL=3;//取消
 
 static const int SEARCH_SHOP=1;//搜索类型 按店搜索
 static const int SEARCH_USER=2;//搜索类型 按用户搜索
+//优惠券 type 和 orderType
+static const int COUPON_TYPE_DISCOUNT=0;
+static const int COUPON_TYPE_PRICE=1;
+
+static const int ORDER_TYPE_ALL=0;
+static const int ORDER_TYPE_DECO=1;
+static const int ORDER_TYPE_OIL=2;
+static const int ORDER_TYPE_METE=3;
+
 
 
 

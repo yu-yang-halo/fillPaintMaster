@@ -421,14 +421,21 @@ static const float ROW_HEIGHT=40;
         tableViewCell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"tableViewCell"];
     }
     tableViewCell.textLabel.text=[contentItms objectAtIndex:indexPath.section];
-    [tableViewCell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    
+    if(indexPath.section==0){
+        [tableViewCell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    }
+    
     [tableViewCell.imageView setImage:[UIImage imageNamed:[imgItms objectAtIndex:indexPath.section]]];
     
     
     return tableViewCell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [(TDTabViewController *)self.tabBarController toCompountPage];
+    if(indexPath.section==0){
+        [(TDTabViewController *)self.tabBarController toCompountPage];
+    }
+    
     
 }
 

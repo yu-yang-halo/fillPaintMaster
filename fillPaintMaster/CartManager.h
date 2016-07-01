@@ -12,15 +12,19 @@
 @class MyCartClass;
 @interface CartManager : NSObject
 +(instancetype)defaultManager;
-@property(nonatomic,strong,readonly) NSMutableArray *myCartClassList;
 -(void)addGoodsToCart:(MyCartClass *)cartClass;
--(void)clearCartClassList;
+//-(void)clearCartClassList;
+-(NSArray *)getMyCartClassList;
+-(void)saveMyCartClassToDisk;
+-(NSArray *)getMyCartClassFromDisk;
+-(void)saveMyCartClassToDisk:(NSMutableArray *)datas;
 @end
 
-@interface MyCartClass :NSObject
+@interface MyCartClass :NSObject<NSCoding>
 @property(nonatomic,assign) int goodsId;
 @property(nonatomic,assign) int count;
 @property(nonatomic,strong) TDGoodInfo *goodInfo;
 @property(nonatomic,assign) BOOL checkYN;
 @property(nonatomic,strong) NSString *imageUrl;
 @end
+

@@ -19,6 +19,7 @@
 #import "TimeUtils.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <UIView+Toast.h>
+#import "TimeUtils.h"
 const float ROW_HEIGHT=50;
 const float ROW_HEIGHT_SECTION10=100;
 const float ROW_HEIGHT_SECTION11=60;
@@ -27,27 +28,40 @@ const float ROW_HEIGHT_SECTION11=60;
     NSString *titleName;
     float totalPrice;
     MBProgressHUD *hud;
+    int payIndex;
+    int couponIndex;
+    int shopId;
+    int orderType;
 }
 @property (weak, nonatomic) IBOutlet UITableView *beautyItemTableView;
 
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *favourableLabel;
 @property (weak, nonatomic) IBOutlet UIButton *commitOrderBtn;
-
+@property(nonatomic,strong) NSArray *payTypes;
+@property(nonatomic,strong) NSMutableArray *couponInfos;
 @end
 
 @implementation OrderReViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    orderType=-2;
     if(_carBeautyType==CarBeautyType_beauty){
         titleName=@"洗车美容";
+        orderType=ORDER_TYPE_DECO;
     }else if(_carBeautyType==CarBeautyType_oil){
         titleName=@"换油保养";
+         orderType=ORDER_TYPE_OIL;
     }else{
         titleName=@"钣金喷漆";
+        orderType=ORDER_TYPE_METE;
     }
+    shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
+    self.payTypes=@[@"在线支付",@"到店支付"];
+    couponIndex=-1;
+    payIndex=0;
+    
     self.title=titleName;
     
     
@@ -55,12 +69,37 @@ const float ROW_HEIGHT_SECTION11=60;
     [self initButton];
     [self updateLabelView];
     
+    
+    [self dataRequestTask];
 }
 -(void)initButton{
     [self.commitOrderBtn.layer setCornerRadius:4];
     [self.commitOrderBtn setBackgroundColor:BTN_BG_COLOR];
     
 }
+
+-(void)dataRequestTask{
+    self.couponInfos=[NSMutableArray new];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       
+       NSArray *allCoupons=[[ElApiService shareElApiService] getCouponList:shopId];
+       
+        
+        for (TDCouponInfo *info in allCoupons) {
+            if(![TimeUtils isOverTime:info.endTime]&&!info.isUsed){
+                if(info.orderType==ORDER_TYPE_ALL||info.orderType==orderType){
+                    [_couponInfos addObject:info];
+                }
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+        });
+        
+    });
+}
+
 -(void)initBeautyItemTableView{
     
     
@@ -73,9 +112,6 @@ const float ROW_HEIGHT_SECTION11=60;
     [self.beautyItemTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     self.beautyItemTableView.delegate=self;
     self.beautyItemTableView.dataSource=self;
-    
-    
-    
 }
 -(void)updateLabelView{
     totalPrice=0.0;
@@ -88,9 +124,29 @@ const float ROW_HEIGHT_SECTION11=60;
             totalPrice+=baseItem.price;
         }
     }
+    float couponPrice=0;
+    
+    if(couponIndex>=0){
+        TDCouponInfo *couponInfo=[_couponInfos objectAtIndex:couponIndex];
+        if(couponInfo.type==COUPON_TYPE_DISCOUNT){
+            totalPrice=totalPrice*couponInfo.discount/10.0;
+            couponPrice=totalPrice*(1-couponInfo.discount/10.0);
+            
+        }else{
+            totalPrice=totalPrice-couponInfo.price;
+            couponPrice=couponInfo.price;
+            if(totalPrice<0){
+                totalPrice=0;
+            }
+        }
+    }
+    
     
     [self.totalLabel setText:[NSString stringWithFormat:@"%.f元",totalPrice]];
-    if(totalPrice<=0){
+    
+    [self.favourableLabel setText:[NSString stringWithFormat:@"已优惠%.f元",couponPrice]];
+    
+    if([_items count]<=0){
         [self.commitOrderBtn setBackgroundColor:[UIColor grayColor]];
         [self.commitOrderBtn setEnabled:NO];
         
@@ -98,6 +154,8 @@ const float ROW_HEIGHT_SECTION11=60;
         [self.commitOrderBtn setBackgroundColor:BTN_BG_COLOR];
         [self.commitOrderBtn setEnabled:YES];
     }
+    
+    
     
 }
 
@@ -117,9 +175,14 @@ const float ROW_HEIGHT_SECTION11=60;
     
 }
 -(void)commitMyOrder{
+    int couponId=0;
+    if(couponIndex>=0){
+        TDCouponInfo *couponInfo=[_couponInfos objectAtIndex:couponIndex];
+        couponId=couponInfo.couponId;
+    }
     
     int carId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_CAR_ID] intValue];
-    int shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
+//    int shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
     int incre=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SELECT_INCRE] intValue];
     NSString *hhmm=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SELECT_TIME];
     
@@ -135,6 +198,7 @@ const float ROW_HEIGHT_SECTION11=60;
             [decoOrder setType:TYPE_PAY_TOSHOP];
             [decoOrder setState:STATE_ORDER_UNFINISHED];
       
+            [decoOrder setCouponId:couponId];
             [decoOrder setCarId:carId];
             [decoOrder setShopId:shopId];
             [decoOrder setPrice:totalPrice];
@@ -155,7 +219,7 @@ const float ROW_HEIGHT_SECTION11=60;
             TDOilOrder *oilOrder=[[TDOilOrder alloc] init];
             [oilOrder setType:TYPE_PAY_TOSHOP];
             [oilOrder setState:STATE_ORDER_UNFINISHED];
-            
+            [oilOrder setCouponId:couponId];
             [oilOrder setCarId:carId];
             [oilOrder setShopId:shopId];
             [oilOrder setPrice:totalPrice];
@@ -175,7 +239,7 @@ const float ROW_HEIGHT_SECTION11=60;
             TDMetaOrder *metaOrder=[[TDMetaOrder alloc] init];
             [metaOrder setType:TYPE_PAY_TOSHOP];
             [metaOrder setState:STATE_ORDER_UNFINISHED];
-            
+            [metaOrder setCouponId:couponId];
             [metaOrder setCarId:carId];
             [metaOrder setShopId:shopId];
             [metaOrder setPrice:totalPrice];
@@ -226,7 +290,7 @@ const float ROW_HEIGHT_SECTION11=60;
     if(section==0){
         return [self.items count];
     }else if(section==1){
-        return 2;
+        return 1;
     }else{
         return 2;
     }
@@ -321,16 +385,40 @@ const float ROW_HEIGHT_SECTION11=60;
         
         if(indexPath.row==0){
             [tableCell.contentLabel setText:@"支付方式"];
-            [tableCell.offerTypeLabel setText:@"到店支付"];
+            [tableCell.offerTypeLabel setText:_payTypes[payIndex]];
         }else{
-            [tableCell.contentLabel setText:@"使用i码"];
-            [tableCell.offerTypeLabel setText:@""];
+            [tableCell.contentLabel setText:@"使用优惠券"];
+            NSString *str;
+            if(couponIndex<0){
+                str=@"";
+            }else{
+                TDCouponInfo *couponInfo=[_couponInfos objectAtIndex:couponIndex];
+                if(couponInfo.type==COUPON_TYPE_DISCOUNT){
+                    str=[NSString stringWithFormat:@"%.1f折优惠",couponInfo.discount];
+                }else{
+                    str=[NSString stringWithFormat:@"抵扣%.1f",couponInfo.price];
+                }
+                
+            }
+            
+            [self updateLabelView];
+            
+            [tableCell.offerTypeLabel setText:str];
         }
        
         
         return tableCell;
     }
     return nil;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section==2){
+        if(indexPath.row==0){
+            [self selectPayForType];
+        }else{
+            [self selectCouponItem];
+        }
+    }
 }
 -(void)switchView:(UISwitch *)sender{
     
@@ -340,4 +428,61 @@ const float ROW_HEIGHT_SECTION11=60;
      [self updateLabelView];
     [_beautyItemTableView reloadData];
 }
+-(void)selectCouponItem{
+    
+    if(_couponInfos==nil||[_couponInfos count]<=0){
+        [self.view makeToast:@"没有可用的优惠券"];
+        return;
+    }
+    
+    MMPopupCompletionBlock completeBlock=^(MMPopupView *view, BOOL complete) {
+        NSLog(@"view %@,complete %d",view,complete);
+    };
+    MMPopupItemHandler block=^(NSInteger index) {
+        couponIndex=index;
+        [_beautyItemTableView reloadData];
+    };
+    NSMutableArray *items=[NSMutableArray new];
+    for (int i=0;i<[_couponInfos count];i++) {
+        TDCouponInfo *info=_couponInfos[i];
+        NSString *desc=@"";
+        if(info.type==COUPON_TYPE_DISCOUNT){
+            desc=[NSString stringWithFormat:@"%.1f折优惠",info.discount];
+        }else{
+            desc=[NSString stringWithFormat:@"抵扣%.1f",info.price];
+        }
+        if(i==couponIndex){
+            [items addObject:MMItemMake(desc, MMItemTypeHighlight,block)];
+        }else{
+            [items addObject:MMItemMake(desc, MMItemTypeNormal,block)];
+        }
+        
+    }
+    MMSheetView *sheetView=[[MMSheetView alloc] initWithTitle:@"选择优惠券" items:items];
+    [sheetView showWithBlock:completeBlock];
+}
+
+
+-(void)selectPayForType{
+    
+    MMPopupCompletionBlock completeBlock=^(MMPopupView *view, BOOL complete) {
+        NSLog(@"view %@,complete %d",view,complete);
+    };
+    MMPopupItemHandler block=^(NSInteger index) {
+        payIndex=index;
+        [_beautyItemTableView reloadData];
+    };
+    NSMutableArray *items=[NSMutableArray new];
+    for (int i=0;i<[_payTypes count];i++) {
+        if(i==payIndex){
+            [items addObject:MMItemMake(_payTypes[i], MMItemTypeHighlight,block)];
+        }else{
+            [items addObject:MMItemMake(_payTypes[i], MMItemTypeNormal,block)];
+        }
+        
+    }
+    MMSheetView *sheetView=[[MMSheetView alloc] initWithTitle:@"支付类型" items:items];
+    [sheetView showWithBlock:completeBlock];
+}
+
 @end

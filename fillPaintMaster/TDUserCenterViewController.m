@@ -15,6 +15,11 @@
 #import "MyCarTableViewController.h"
 #import "TDLoginViewController.h"
 #import "UserAddressManager.h"
+#import "MyAddressViewController.h"
+#import <UIColor+uiGradients.h>
+#import <UIView+Toast.h>
+#import "GoodsCartViewController.h"
+#import "CartManager.h"
 static const float ROW_HEIGHT=60;
 static CGFloat const kWindowHeight = 160.0f;
 @interface TDUserCenterViewController (){
@@ -37,8 +42,8 @@ static CGFloat const kWindowHeight = 160.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    items=@[@"我的订单",@"我的商品订单",@"我的预约"];
-   itemsIcons=@[@"my_icon_input",@"my_icon_set",@"my_icon_zixun"];
+    items=@[@"我的订单",@"我的商品订单",@"我的预约",@"收货地址",@"我的购物车"];
+   itemsIcons=@[@"my_icon_input",@"my_icon_set",@"my_icon_zixun",@"my_icon_message",@"icon_cart_item"];
 
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
@@ -56,6 +61,10 @@ static CGFloat const kWindowHeight = 160.0f;
     [refreshHeader.lastUpdatedTimeLabel setHidden:YES];
     self.tableView.mj_header=refreshHeader;
     
+    [_exitButton.layer setCornerRadius:3];
+    [_exitButton.layer setBorderWidth:1];
+    [_exitButton.layer setBorderColor:[[UIColor colorWithWhite:0.9 alpha:1] CGColor]];
+    
     [self.exitButton addTarget:self action:@selector(exitApp:) forControlEvents:UIControlEventTouchUpInside];
     
     UITapGestureRecognizer *tapGR=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toCoupon:)];
@@ -66,7 +75,17 @@ static CGFloat const kWindowHeight = 160.0f;
     [tapGR2 setNumberOfTapsRequired:1];
     
     [self.carView addGestureRecognizer:tapGR2];
+    
 
+    UIColor *startColor=[UIColor yellowColor];
+    UIColor *endColor=[UIColor redColor];
+    CAGradientLayer *gradient=[CAGradientLayer layer];
+    gradient.frame=_backgroundView.bounds;
+    gradient.startPoint=CGPointMake(0,0);
+    gradient.endPoint=CGPointMake(1,1);
+    gradient.colors=@[(id)[startColor CGColor],(id)[endColor CGColor]];
+
+    [_backgroundView.layer insertSublayer:gradient atIndex:0];
     
 }
 -(void)toCoupon:(UIGestureRecognizer *)gr{
@@ -88,13 +107,13 @@ static CGFloat const kWindowHeight = 160.0f;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self.navigationController.navigationBar setHidden:YES];
+   [self.navigationController setNavigationBarHidden:YES];
     // 马上进入刷新状态
     [refreshHeader beginRefreshing];
     
 }
 -(void)viewWillDisappear:(BOOL)animated{
-    [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 -(void)netDataGet{
@@ -185,10 +204,22 @@ static CGFloat const kWindowHeight = 160.0f;
         [self.navigationItem.backBarButtonItem setTitle:@"返回"];
         [self.tabBarController.navigationController pushViewController:goodsOrderTableVC animated:YES];
     }else if(indexPath.row==3){
-        
+        MyAddressViewController *addressVC=[[MyAddressViewController alloc] init];
+        [self.navigationItem.backBarButtonItem setTitle:@"返回"];
+        [self.tabBarController.navigationController pushViewController:addressVC animated:YES];
        
-    }else if(indexPath.row==-1){
-       
+    }else if(indexPath.row==4){
+        NSArray *mycartClassList=[[CartManager defaultManager] getMyCartClassList];
+        if([mycartClassList count]<=0){
+            [self.view.window makeToast:@"您的购物车还没有任何的商品~"];
+        }else{
+            
+            GoodsCartViewController *goodsCartVC=[[GoodsCartViewController alloc] init];
+            [self.navigationItem.backBarButtonItem setTitle:@"返回"];
+            [self.tabBarController.navigationController pushViewController:goodsCartVC animated:YES];
+        }
+     
+
     }
 }
 

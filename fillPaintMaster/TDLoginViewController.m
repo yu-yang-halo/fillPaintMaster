@@ -23,6 +23,7 @@ const NSString *KEY_PASSWORD=@"KEY_PASSWORD";
 - (IBAction)fogetPass:(id)sender;
 - (IBAction)registerUser:(id)sender;
 - (IBAction)clickBack:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
 
@@ -43,6 +44,15 @@ const NSString *KEY_PASSWORD=@"KEY_PASSWORD";
         [self.passwordTxtField setText:pass];
     }
     
+    [self versionInfoInit];
+    
+}
+-(void)versionInfoInit{
+    NSDictionary *infoDictionary=[[NSBundle mainBundle] infoDictionary];
+    NSString *app_Version=[infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    NSString *app_build=[infoDictionary objectForKey:@"CFBundleVersion"];
+    
+    [_versionLabel setText:[NSString stringWithFormat:@"v%@",app_Version]];
     
     
 }

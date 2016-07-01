@@ -10,6 +10,7 @@
                 <outlet property="accountTxtField" destination="I84-9N-CB8" id="4MX-nr-biP"/>
                 <outlet property="loginButton" destination="0Xs-it-u7q" id="wi6-ht-syx"/>
                 <outlet property="passwordTxtField" destination="1PB-vD-8xh" id="YUy-UG-E3q"/>
+                <outlet property="versionLabel" destination="Tvw-3d-jeJ" id="dhw-jM-8Gv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -89,12 +90,24 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tvw-3d-jeJ">
+                    <rect key="frame" x="110" y="539" width="100" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="B2P-8Z-gVh"/>
+                        <constraint firstAttribute="width" constant="100" id="znz-mK-yWH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.55440699800531923" green="0.55440699800531923" blue="0.55440699800531923" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="oNb-eF-IyI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Asr-CF-led"/>
                 <constraint firstAttribute="trailing" secondItem="6pe-y2-OeB" secondAttribute="trailing" id="L9h-QY-Gjk"/>
+                <constraint firstAttribute="bottom" secondItem="Tvw-3d-jeJ" secondAttribute="bottom" constant="8" id="NkE-XU-SFW"/>
                 <constraint firstItem="oNb-eF-IyI" firstAttribute="top" secondItem="I84-9N-CB8" secondAttribute="bottom" constant="-46" id="SdN-Gm-HQd"/>
+                <constraint firstItem="Tvw-3d-jeJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XJE-YO-FVm"/>
                 <constraint firstItem="1PB-vD-8xh" firstAttribute="leading" secondItem="oNb-eF-IyI" secondAttribute="trailing" constant="-252" id="cFZ-dX-6DC"/>
                 <constraint firstItem="1PB-vD-8xh" firstAttribute="top" secondItem="oNb-eF-IyI" secondAttribute="bottom" constant="-49" id="fpZ-A2-BMi"/>
                 <constraint firstItem="oNb-eF-IyI" firstAttribute="top" secondItem="6pe-y2-OeB" secondAttribute="bottom" constant="32" id="lgy-sc-sA3"/>

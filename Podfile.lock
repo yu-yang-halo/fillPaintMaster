@@ -16,6 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - BaiduMapKit (2.10.2)
   - CustomIOSAlertView (0.9.3)
+  - DCKeyValueObjectMapping (1.5)
   - HMSegmentedControl (1.5.2)
   - JSONKit (1.4)
   - JYSlideSegmentController (1.1.0)
@@ -31,11 +32,13 @@ PODS:
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - Toast (3.0)
+  - UIColor+uiGradients (0.1.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - BaiduMapKit
   - CustomIOSAlertView (~> 0.9.3)
+  - DCKeyValueObjectMapping (~> 1.5)
   - HMSegmentedControl
   - JSONKit
   - JYSlideSegmentController (~> 1.1.0)
@@ -46,11 +49,13 @@ DEPENDENCIES:
   - SDCycleScrollView (~> 1.62)
   - SDWebImage
   - Toast (~> 3.0)
+  - UIColor+uiGradients
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   BaiduMapKit: b1706a062597c70ec62a0cca93212cba1d3017e1
   CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
+  DCKeyValueObjectMapping: c2eb5a6529da100b2e49ef6a599663578051f077
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
   JYSlideSegmentController: b273d5087a2a0f877c3e969bedb3ade78b6aa0ea
@@ -62,5 +67,6 @@ SPEC CHECKSUMS:
   SDCycleScrollView: ae016cb4cc4036523917f146ede6f7b11d408f6a
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   Toast: 32c59229abfcf41850162b83bb9259dc84372473
+  UIColor+uiGradients: 0e540aa2d8c75254aaebb6c92f20c1aa43be5f05
 
 COCOAPODS: 0.39.0

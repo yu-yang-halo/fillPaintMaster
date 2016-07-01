@@ -14,4 +14,5 @@
 @property(nonatomic,assign) int pos;
 @property(nonatomic,assign) int itemId;
 @property(nonatomic,assign) CarBeautyType type;
+@property(nonatomic,weak) CarBeautyViewController *vcDelegate;
 @end

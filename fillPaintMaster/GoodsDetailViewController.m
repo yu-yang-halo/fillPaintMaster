@@ -130,7 +130,7 @@
 
 -(void)goMyCart:(UIButton *)sender{
     
-    if([[[CartManager defaultManager] myCartClassList] count]>0){
+    if([[[CartManager defaultManager] getMyCartClassList] count]>0){
         GoodsCartViewController *goodsCartVC=[[GoodsCartViewController alloc] init];
         [self.navigationController pushViewController:goodsCartVC animated:YES];
     }else{

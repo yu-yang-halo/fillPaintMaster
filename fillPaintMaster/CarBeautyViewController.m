@@ -15,6 +15,7 @@
 #import "ElApiService.h"
 #import "Constants.h"
 #import "MyCollectionViewCell.h"
+#import <UIView+Toast.h>
 #import "WashOilDetailViewController.h"
 @interface CarBeautyViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>{
     NSUInteger totalMoney;
@@ -147,9 +148,17 @@
     
     
     [self.orderBtn addTarget:self action:@selector(orderDetail:) forControlEvents:UIControlEventTouchUpInside];
+    
+     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:KEY_SELECT_TIME];
 }
 
 -(void)orderDetail:(id)sender{
+    
+    NSString *selectTime=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SELECT_TIME];
+    if(selectTime==nil||[selectTime isEqualToString:@""]){
+        [self.view makeToast:@"请选择预约时间"];
+        return;
+    }
     
     UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     OrderReViewController *orderVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderVC"];
@@ -158,6 +167,7 @@
     [orderVC setCarInfos:self.carInfos];
     
     [self.navigationController pushViewController:orderVC animated:YES];
+    
 
 }
 
@@ -216,6 +226,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TDBaseItem *item=[carItems objectAtIndex:indexPath.row];
     
+    NSArray *images=[item.src componentsSeparatedByString:@","];
+    
+    if(images==nil||[images count]<=0){
+        [self.view makeToast:@"暂无详情数据"];
+        return;
+    }
+    
     WashOilDetailViewController *washOilDetailVC=[[WashOilDetailViewController alloc] init];
     washOilDetailVC.desc=item.desc;
     washOilDetailVC.type=_carBeautyType;
@@ -228,25 +245,27 @@
     washOilDetailVC.src=item.src;
     washOilDetailVC.title=item.name;
     washOilDetailVC.pos=indexPath.row;
+    washOilDetailVC.vcDelegate=self;
     
     [self.navigationController pushViewController:washOilDetailVC animated:YES];
     
 }
 
-
--(void)addOrRemoveCart:(UIButton *)sender{
-    TDBaseItem *item=[carItems objectAtIndex:sender.tag];
-    if(item.isAddYN){
-        [item setIsAddYN:NO];
-    }else{
+-(void)reDrawItemView:(int)index onlyAdd:(BOOL)onlyAdd{
+    TDBaseItem *item=[carItems objectAtIndex:index];
+    if(onlyAdd){
         [item setIsAddYN:YES];
+    }else{
+        if(item.isAddYN){
+            [item setIsAddYN:NO];
+        }else{
+            [item setIsAddYN:YES];
+        }
     }
-    [sender setSelected:item.isAddYN];
-    
     int val=item.price;
     
-    if(sender.selected){
-       
+    if(item.isAddYN){
+        
         totalMoney+=val;
         totalCount++;
         
@@ -254,25 +273,29 @@
         totalMoney-=val;
         totalCount--;
     }
-
+    
     if(totalMoney>0){
         [self.orderBtn setEnabled:YES];
         [self.orderBtn setBackgroundColor:BTN_BG_COLOR];
         [self.moneyLabel setTextColor:[UIColor blackColor]];
         [self.moneyLabel setText:[NSString stringWithFormat:@"¥ %d元",totalMoney]];
-       
+        
         [self.cartBtn setTitle:[NSString stringWithFormat:@"%d",totalCount] forState:UIControlStateNormal];
     }else{
         [self.orderBtn setEnabled:NO];
-         [self.orderBtn setBackgroundColor:[UIColor grayColor]];
+        [self.orderBtn setBackgroundColor:[UIColor grayColor]];
         [self.moneyLabel setTextColor:[UIColor grayColor]];
         [self.moneyLabel setText:@"0元"];
         
         [self.cartBtn setTitle:@"0" forState:UIControlStateNormal];
         
     }
-   
     
+    [_beautyItemTableView reloadData];
+}
+
+-(void)addOrRemoveCart:(UIButton *)sender{
+    [self reDrawItemView:sender.tag onlyAdd:NO];
     NSLog(@"addOrRemoveCart index %d",sender.tag);
     
 }
@@ -292,6 +315,8 @@
     MyCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MyCollectionViewCell" forIndexPath:indexPath];
    
     NSString *selectTime= [[NSUserDefaults standardUserDefaults] objectForKey:KEY_SELECT_TIME];
+    
+    
     
     TDOrderStateType *orderStateType=[dayOrderStates objectAtIndex:indexPath.row];
     [cell.timeButton setTitle:orderStateType.orderTime forState:UIControlStateNormal];

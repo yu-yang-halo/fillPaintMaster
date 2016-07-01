@@ -53,7 +53,8 @@
 }
 
 -(void)toBuyItem:(id)sender{
-    
+    [_vcDelegate reDrawItemView:_pos onlyAdd:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

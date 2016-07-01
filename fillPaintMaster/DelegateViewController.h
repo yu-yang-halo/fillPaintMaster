@@ -11,7 +11,7 @@
 
 - (void)clickButton:(UIButton *)sender;
 - (void)clickView:(id)sender;
-
+- (void)clickLabel:(id)sender;
 @end
 
 @interface DelegateViewController : UIViewController

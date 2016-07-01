@@ -18,7 +18,7 @@
 
 @interface GoodsCartViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
-    NSArray *mycartClassList;
+    NSMutableArray *mycartClassList;
        
     float totalPrice;
    
@@ -52,7 +52,7 @@
     self.tableView.tableFooterView=[[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
-    mycartClassList=[[CartManager defaultManager] myCartClassList];
+    mycartClassList=[[[CartManager defaultManager] getMyCartClassList] mutableCopy];
     [_checkAllButton addTarget:self action:@selector(selectedAllGoods:) forControlEvents:UIControlEventTouchUpInside];
     [self updateViewShow];
     
@@ -124,6 +124,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if(successYN){
                         NSLog(@"success");
+                        [self clearCartData];
                     }else{
                         NSLog(@"fail");
                     }
@@ -251,6 +252,46 @@
     
     return cell;
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return YES;
+}
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"commitEditingStyle....");
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [mycartClassList removeObjectAtIndex:indexPath.row];
+        
+        [[CartManager defaultManager] saveMyCartClassToDisk:mycartClassList];
+        
+         [self updateViewShow];
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    
+}
+
+-(void)clearCartData{
+   
+    for(int i=0;i<[mycartClassList count];i++){
+        if([mycartClassList[i] checkYN]){
+            [mycartClassList removeObjectAtIndex:i];
+            i--;
+        }
+     }
+    NSLog(@"leave now list data:::%@",mycartClassList);
+    
+    [[CartManager defaultManager] saveMyCartClassToDisk:mycartClassList];
+    
+
+}
+
+
+
+
 -(void)checkOne:(UIButton *)sender{
    [sender setSelected:!sender.selected];
     

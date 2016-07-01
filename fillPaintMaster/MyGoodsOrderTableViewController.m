@@ -7,11 +7,11 @@
 //
 
 #import "MyGoodsOrderTableViewController.h"
-#import "MyGoodsOrderTableViewCell.h"
 #import "ElApiService.h"
 #import "TimeUtils.h"
 #import <MJRefresh/MJRefresh.h>
-
+#import "MyGoodsOrderItemCell.h"
+#import <UIImageView+WebCache.h>
 @interface MyGoodsOrderTableViewController ()
 {
     NSArray *goodsOrderList;
@@ -25,7 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
       self.title=@"我的商品订单";
-     [self.tableView setRowHeight:138];
     refreshHeader=[MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
         [self netDataGet];
@@ -33,6 +32,9 @@
     [refreshHeader.lastUpdatedTimeLabel setHidden:YES];
     self.tableView.mj_header=refreshHeader;
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
+    self.tableView.contentInset=UIEdgeInsetsMake(0, 0,-20,0);
+    
     
     // 马上进入刷新状态
     [refreshHeader beginRefreshing];
@@ -69,79 +71,100 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     if(goodsOrderList!=nil){
         return [goodsOrderList count];
     }
     return 0;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    if(goodsOrderList!=nil){
+        TDGoodsOrderListType *item=[goodsOrderList objectAtIndex:section];
+        NSArray *infos=[self detailContent:item.goodsInfo];
+        
+        return [infos count];
+    }
+    return 0;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MyGoodsOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyGoodsOrderTableViewCell"];
+    TDGoodsOrderListType *item=[goodsOrderList objectAtIndex:indexPath.section];
+    NSArray *infos=[self detailContent:item.goodsInfo];
+    
+    
+    MyGoodsOrderItemCell *cell=[tableView dequeueReusableCellWithIdentifier:@"MyGoodsOrderItem"];
     if(cell==nil){
-        cell= [[[NSBundle mainBundle] loadNibNamed:@"MyGoodsOrderTableViewCell" owner:self options:nil] lastObject];
+        cell=[[[NSBundle mainBundle] loadNibNamed:@"MyGoodsOrderItemCell" owner:nil options:nil] lastObject];
+        
+    }
+    TDGoodInfo *goodsInfo=[infos objectAtIndex:indexPath.row];
+    
+    NSArray * imageNames=[goodsInfo.src componentsSeparatedByString:@","];
+    NSString *imageName=nil;
+    if([imageNames count]>0){
+        imageName=[imageNames objectAtIndex:0];
     }
     
-    TDGoodsOrderListType *goodsOrder=[goodsOrderList objectAtIndex:indexPath.row];
+    NSString *imageURL=[[ElApiService shareElApiService] getGoodsURL:imageName shopId:goodsInfo.shopId];
     
+    [cell.itemImageView sd_setImageWithURL:[NSURL URLWithString:imageURL]
+                          placeholderImage:[UIImage imageNamed:@"icon_default"]];
     
-    [cell.createTimeLabel setText:[NSString stringWithFormat:@"订单时间:%@",[TimeUtils normalShowTime:goodsOrder.createTime]]];
-    
-    [cell.totalPriceLabel setText:[NSString stringWithFormat:@"总价:￥%.1f",goodsOrder.price]];
-    
-    [cell.detailLabel setText:[self detailContent:goodsOrder.goodsInfo]];
-    
-    [cell.detailLabel setNumberOfLines:4];
+    [cell.descLabel setText:goodsInfo.desc];
+    [cell.priceLabel setText:[NSString stringWithFormat:@"￥%.1f",goodsInfo.price]];
 
     
     return cell;
 }
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *bgView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
+    
+    [bgView setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:0.7]];
+    
+    return bgView;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell=[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return  cell.frame.size.height;
+}
 
--(NSString *)detailContent:(NSString *)goodsInfo{
+-(NSArray *)detailContent:(NSString *)goodsInfoStr{
     
-    NSArray* groupItems=[goodsInfo componentsSeparatedByString:@","];
+    NSArray* groupItems=[goodsInfoStr componentsSeparatedByString:@","];
     
     
-    NSMutableString *detailContentStr=[[NSMutableString alloc] init];
+    NSMutableArray *detailGoodinfos=[[NSMutableArray alloc] init];
     
     for (NSString *childItem in  groupItems) {
         NSArray *idWithNums=[childItem componentsSeparatedByString:@"+"];
         
         if([idWithNums count]==2){
             int goodId=[[idWithNums objectAtIndex:0] intValue];
+            TDGoodInfo *goodInfo=[self findGoodInfoById:goodId];
             
-            
-            [detailContentStr appendFormat:[NSString stringWithFormat:@"%@ x%@\n",[self findGoodNameById:goodId],[idWithNums objectAtIndex:1]]];
-            
-            
+            [goodInfo setPayNumber:[[idWithNums objectAtIndex:1] intValue]];
+            [detailGoodinfos addObject:goodInfo];
         }
         
         
     }
     
-    return detailContentStr;
-    
-    
+    return detailGoodinfos;
 }
 
--(NSString *)findGoodNameById:(int)goodsId{
-    NSString *goodName=@"";
+-(TDGoodInfo *)findGoodInfoById:(int)goodsId{
+    TDGoodInfo *mgoodInfo=nil;
     for (TDGoodInfo *goodInfo in goodsList) {
         if(goodInfo.goodId==goodsId){
-            goodName=goodInfo.name;
+            mgoodInfo=goodInfo;
             break;
         }
         
     }
-    return goodName;
+    return mgoodInfo;
 }
-
 
 
 /*

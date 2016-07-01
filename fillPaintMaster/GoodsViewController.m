@@ -42,8 +42,7 @@
     // Do any additional setup after loading the view from its nib.
     self.title=@"门店超市";
     
-    [[CartManager defaultManager] clearCartClassList];
-    
+   
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     cartButton=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 44)];
     [cartButton setImage:[UIImage imageNamed:@"cart6"] forState:UIControlStateNormal];
@@ -151,7 +150,7 @@
     
     [self execAnimation];
     
-    if([[[CartManager defaultManager] myCartClassList] count]>0){
+    if([[[CartManager defaultManager] getMyCartClassList] count]>0){
         GoodsCartViewController *goodsCartVC=[[GoodsCartViewController alloc] init];
         [self.navigationController pushViewController:goodsCartVC animated:YES];
     }else{

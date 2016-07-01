@@ -1,0 +1,1 @@
+../../../UIColor+uiGradients/UIG/Classes/UIColor+uiGradients.h

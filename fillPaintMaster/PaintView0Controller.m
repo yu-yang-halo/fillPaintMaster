@@ -270,13 +270,14 @@ const int PAGE_SIZE_NUM=6;
     }else{
         [sender setSelected:YES];
     }
-    
-    
-    
     [self setPaintItem:sender.tag selected:sender.selected];
     [self updateLabelView];
     NSLog(@"sender tag:%d",sender.tag);
 }
+
+
+
+
 #pragma mark delegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)_scrollView{
     //NSLog(@"scrollViewWillBeginDragging %@",_scrollView);

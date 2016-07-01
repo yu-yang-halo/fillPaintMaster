@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TDGoodInfo : NSObject
+@interface TDGoodInfo : NSObject<NSCoding>
 @property(nonatomic,assign) int goodId;
 @property(nonatomic,retain) NSString *name;
 @property(nonatomic,retain) NSString *desc;
@@ -21,5 +21,6 @@
 @property(nonatomic,retain) NSString *href;
 @property(nonatomic,assign) BOOL isTop;
 
+@property(nonatomic,assign) int payNumber;
 
 @end

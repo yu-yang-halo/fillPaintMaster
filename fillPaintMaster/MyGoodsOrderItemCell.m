@@ -1,14 +1,14 @@
 //
-//  MyGoodsOrderTableViewCell.m
+//  MyGoodsOrderItemCell.m
 //  fillPaintMaster
 //
-//  Created by apple on 16/4/10.
+//  Created by admin on 16/7/1.
 //  Copyright © 2016年 LZTech. All rights reserved.
 //
 
-#import "MyGoodsOrderTableViewCell.h"
+#import "MyGoodsOrderItemCell.h"
 
-@implementation MyGoodsOrderTableViewCell
+@implementation MyGoodsOrderItemCell
 
 - (void)awakeFromNib {
     // Initialization code
