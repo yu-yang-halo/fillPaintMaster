@@ -159,6 +159,9 @@ done:
 
 +(NSString *)decodeFromPercentEscapeString:(NSString *)input
 {
+    if(input==nil){
+        return @"";
+    }
     NSMutableString *outputStr = [NSMutableString stringWithString:input];
     [outputStr replaceOccurrencesOfString:@"+"
                                withString:@" "

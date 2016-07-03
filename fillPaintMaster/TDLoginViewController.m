@@ -12,6 +12,7 @@
 #import "ElApiService.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "JPUSHService.h"
+#import "UserAddressManager.h"
 const NSString *KEY_USERNAME=@"KEY_USERNAME";
 const NSString *KEY_PASSWORD=@"KEY_PASSWORD";
 
@@ -95,6 +96,8 @@ const NSString *KEY_PASSWORD=@"KEY_PASSWORD";
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hide:YES];
                 if(resultYN){
+                    
+                    [UserAddressManager cacheName:nil phone:nil address:nil];
                     
                     NSString *type=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USER_TYPE];
                     

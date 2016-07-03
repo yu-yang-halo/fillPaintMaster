@@ -13,7 +13,8 @@ const NSString *KEY_ADDRESS=@"key_address";
 @implementation UserAddressManager
 +(void)cacheUserInfoToLocal:(TDUser *)user{
     NSString *receivingInfo=user.receivingInfo;
-    if(receivingInfo==nil){
+    if(receivingInfo==nil||[receivingInfo isEqualToString:@""]){
+        [self cacheName:nil phone:nil address:nil];
         return;
     }
     NSArray *namePhoneAddress=[receivingInfo componentsSeparatedByString:@","];
