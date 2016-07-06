@@ -20,6 +20,8 @@
 #import <UIView+Toast.h>
 #import "GoodsCartViewController.h"
 #import "CartManager.h"
+#import "MessageManager.h"
+#import "MessageViewController.h"
 static const float ROW_HEIGHT=60;
 static CGFloat const kWindowHeight = 160.0f;
 @interface TDUserCenterViewController (){
@@ -42,8 +44,8 @@ static CGFloat const kWindowHeight = 160.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    items=@[@"我的订单",@"我的商品订单",@"我的预约",@"收货地址",@"我的购物车"];
-   itemsIcons=@[@"my_icon_input",@"my_icon_set",@"my_icon_zixun",@"my_icon_message",@"icon_cart_item"];
+    items=@[@"我的订单",@"我的商品订单",@"我的预约",@"收货地址",@"我的购物车",@"消息"];
+   itemsIcons=@[@"my_icon_input",@"my_icon_set",@"my_icon_zixun",@"my_icon_address",@"icon_cart_item",@"my_icon_message"];
 
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
@@ -220,6 +222,15 @@ static CGFloat const kWindowHeight = 160.0f;
         }
      
 
+    }else if(indexPath.row==5){
+        NSArray *msgList=[MessageManager getJPMessageArray];
+        if(msgList==nil||[msgList count]<=0){
+            [self.view.window makeToast:@"暂时还没有最新消息"];
+        }else{
+            MessageViewController *messageVC=[[MessageViewController alloc] init];
+            [self.navigationItem.backBarButtonItem setTitle:@"返回"];
+            [self.tabBarController.navigationController pushViewController:messageVC animated:YES];
+        }
     }
 }
 

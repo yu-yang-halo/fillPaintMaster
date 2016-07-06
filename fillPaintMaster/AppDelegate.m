@@ -14,7 +14,7 @@
 #import <BaiduMapAPI_Location/BMKLocationService.h>
 #import "Constants.h"
 #import "JPUSHService.h"
-
+#import "MessageManager.h"
 static NSString *appKey = @"37f80ead0f33c60dcbf3c034";
 static NSString *channel = @"Publish channel";
 static BOOL isProduction = YES;
@@ -86,7 +86,6 @@ static BOOL isProduction = YES;
             advertisingIdentifier:nil];
     
     
-
     
     return YES;
 }
@@ -168,6 +167,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
  
     NSLog(@"%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
     [JPUSHService registerDeviceToken:deviceToken];
+    
+    
 }
 
 - (void)application:(UIApplication *)application
@@ -201,6 +202,7 @@ forLocalNotification:(UILocalNotification *)notification
 handleActionWithIdentifier:(NSString *)identifier
 forRemoteNotification:(NSDictionary *)userInfo
   completionHandler:(void (^)())completionHandler {
+    NSLog(@"handleActionWithIdentifier...");
 }
 #endif
 
@@ -210,6 +212,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"收到通知0:%@", [self logDic:userInfo]);
     NSString *alertMessage=[[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     [self popupMessage:alertMessage];
+    JPMessage *jpmsg=[[JPMessage alloc] init];
+    [jpmsg setMsgContent:alertMessage];
+    [MessageManager addJPMessage:jpmsg];
+    
+    
 }
 
 - (void)application:(UIApplication *)application
@@ -221,6 +228,14 @@ fetchCompletionHandler:
     NSString *alertMessage=[[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     [self popupMessage:alertMessage];
     completionHandler(UIBackgroundFetchResultNewData);
+    
+    
+    JPMessage *jpmsg=[[JPMessage alloc] init];
+    [jpmsg setMsgContent:alertMessage];
+    [MessageManager addJPMessage:jpmsg];
+    
+    
+
 }
 
 -(void)popupMessage:(NSString *)alertMessage{

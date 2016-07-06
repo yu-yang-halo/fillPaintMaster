@@ -126,6 +126,9 @@
 		84627A1A1CD08D1000790D42 /* CartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84627A191CD08D0F00790D42 /* CartManager.m */; };
 		84627A1E1CD09A7900790D42 /* GoodsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84627A1C1CD09A7900790D42 /* GoodsTableCell.m */; };
 		84627A1F1CD09A7900790D42 /* GoodsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84627A1D1CD09A7900790D42 /* GoodsTableCell.xib */; };
+		846C36681D2CB70500857730 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C36671D2CB70500857730 /* MessageManager.m */; };
+		846C366C1D2CCD1300857730 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C366A1D2CCD1300857730 /* MessageViewController.m */; };
+		846C366D1D2CCD1300857730 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C366B1D2CCD1300857730 /* MessageViewController.xib */; };
 		847F9D0D1C5067D7005ED278 /* TDOilOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F9D0C1C5067D7005ED278 /* TDOilOrder.m */; };
 		847F9D101C507174005ED278 /* TDOrderSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F9D0F1C507174005ED278 /* TDOrderSearch.m */; };
 		847F9D131C507CF3005ED278 /* TDMetaOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F9D121C507CF3005ED278 /* TDMetaOrder.m */; };
@@ -422,6 +425,11 @@
 		84627A1B1CD09A7900790D42 /* GoodsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsTableCell.h; sourceTree = "<group>"; };
 		84627A1C1CD09A7900790D42 /* GoodsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsTableCell.m; sourceTree = "<group>"; };
 		84627A1D1CD09A7900790D42 /* GoodsTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsTableCell.xib; sourceTree = "<group>"; };
+		846C36661D2CB70500857730 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
+		846C36671D2CB70500857730 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
+		846C36691D2CCD1300857730 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		846C366A1D2CCD1300857730 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		846C366B1D2CCD1300857730 /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
 		847F9D0B1C5067D7005ED278 /* TDOilOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDOilOrder.h; sourceTree = "<group>"; };
 		847F9D0C1C5067D7005ED278 /* TDOilOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDOilOrder.m; sourceTree = "<group>"; };
 		847F9D0E1C507174005ED278 /* TDOrderSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDOrderSearch.h; sourceTree = "<group>"; };
@@ -879,6 +887,8 @@
 				18EB79F41C51072200BA0C26 /* YYButtonUtils.m */,
 				8480D82E1D1B90CF00A9A548 /* UserAddressManager.h */,
 				8480D82F1D1B90D000A9A548 /* UserAddressManager.m */,
+				846C36661D2CB70500857730 /* MessageManager.h */,
+				846C36671D2CB70500857730 /* MessageManager.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -1024,6 +1034,9 @@
 				18EFC0061C4689F90068DA68 /* TDStoreViewController.m */,
 				18EBC4A01C47BC5F00AFFC1A /* TDActiveViewController.h */,
 				18EBC4A11C47BC5F00AFFC1A /* TDActiveViewController.m */,
+				846C36691D2CCD1300857730 /* MessageViewController.h */,
+				846C366A1D2CCD1300857730 /* MessageViewController.m */,
+				846C366B1D2CCD1300857730 /* MessageViewController.xib */,
 			);
 			name = main;
 			sourceTree = "<group>";
@@ -1342,6 +1355,7 @@
 				18EE55801C41F4A400A99D50 /* TDCarInfoViewController.xib in Resources */,
 				18E8ED091C2FDD4200968CEB /* FrontCarViewController.xib in Resources */,
 				18EB27AC1C4E5C930085EDC4 /* carwsapi.wsdl in Resources */,
+				846C366D1D2CCD1300857730 /* MessageViewController.xib in Resources */,
 				18B932811BA6A9540019279E /* InfoPlist.strings in Resources */,
 				84C5C58A1CCDB20200D8F235 /* BoPhotoPicker.bundle in Resources */,
 				18E809BB1BC230D200712C43 /* TDTableViewCell0.xib in Resources */,
@@ -1521,12 +1535,14 @@
 				840FEE401CB61DAC0056C7BE /* TDServiceDataInfo.m in Sources */,
 				18E809D51BC2A9C900712C43 /* PaintView0Controller.m in Sources */,
 				18EE557F1C41F4A400A99D50 /* TDCarInfoViewController.m in Sources */,
+				846C366C1D2CCD1300857730 /* MessageViewController.m in Sources */,
 				188D71931CC3954A0075A3B0 /* PanoramaViewController.m in Sources */,
 				18E946211C40FAF20047ADEA /* TDLocationViewController.m in Sources */,
 				84C5C5931CCE165D00D8F235 /* ImageUtils.m in Sources */,
 				188D718B1CC388B50075A3B0 /* My360ViewObject.m in Sources */,
 				18C014B51CC1D5E3006284F3 /* TDWebViewController.m in Sources */,
 				182FC6FB1C4FACCD001978F5 /* TDStationInfo.m in Sources */,
+				846C36681D2CB70500857730 /* MessageManager.m in Sources */,
 				84C5C5841CCDB20200D8F235 /* AJPhotoGroupCell.m in Sources */,
 				8480D8341D1BA62200A9A548 /* MyAddressViewController.m in Sources */,
 				182FC70A1C4FBB84001978F5 /* TDCouponInfo.m in Sources */,
