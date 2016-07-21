@@ -30,7 +30,8 @@
 @property(nonatomic,strong) NSString *createTime;
 @property(nonatomic,assign) int userId;
 @property(nonatomic,assign) int shopId;
-@property(nonatomic,assign) float price;
+@property(nonatomic,assign) int realShopId;
+@property(nonatomic,strong) NSString *price;
 @property(nonatomic,strong) NSString *address;
 @property(nonatomic,strong) NSString *name;
 @property(nonatomic,strong) NSString *phone;
@@ -38,7 +39,7 @@
 @property(nonatomic,strong) NSString *processTime;
 @property(nonatomic,strong) NSString *expressName;
 @property(nonatomic,strong) NSString *expressWaybill;
-
+@property(nonatomic,strong) NSString *tradeNo;
 
 @end
 
@@ -88,5 +89,11 @@
 
 
 @end
+@interface AlipayInfoType : NSObject
 
+@property(nonatomic,strong) NSString *aliPid;
+@property(nonatomic,strong) NSString *aliKey;
+@property(nonatomic,strong) NSString *sellerEmail;
+
+@end
 

@@ -26,7 +26,7 @@
 #import "UserAddressManager.h"
 #import "TDGoodInfo.h"
 #import "GoodsTopCollectionViewCell.h"
-
+#import "DecimalCaculateUtils.h"
 static const float ICON_WIDTH=45;
 static const float ICON_HEIGHT=80;
 static const float AD_HEIGHT=120;
@@ -474,7 +474,8 @@ static const float ROW_HEIGHT=40;
     }
     
     cell.nameLabel.text=goodsInfo.name;
-    cell.priceLabel.text=[NSString stringWithFormat:@"%.1f元",goodsInfo.price];
+    
+    cell.priceLabel.text=[DecimalCaculateUtils showDecimalFloat:goodsInfo.price];
     NSString *imageURL=[[ElApiService shareElApiService] getGoodsURL:imageName shopId:goodsInfo.shopId];
     
     [cell.goodImageVIew sd_setImageWithURL:[NSURL URLWithString:imageURL]

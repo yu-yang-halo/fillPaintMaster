@@ -15,14 +15,16 @@
 #import "OrderSuccessViewController.h"
 #import "UserAddressManager.h"
 #import "MyAddressViewController.h"
-
+#import "Constants.h"
+#import "AlibabaPay.h"
+#import "DecimalCaculateUtils.h"
 @interface GoodsCartViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *mycartClassList;
        
-    float totalPrice;
+    NSString *totalPrice;
    
-   
+    int shopId;
     
     NSString *name;
     NSString *phone;
@@ -46,6 +48,7 @@
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"我的地址" style:UIBarButtonItemStylePlain target:self action:@selector(toAddress:)];
     
     
+    shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
 
     
     self.tableView.rowHeight=128;
@@ -65,6 +68,8 @@
    
     
     [_receivingInfoLabel addGestureRecognizer:tapGR];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payResultCallback) name:notification_alipay_refresh object:nil];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -112,30 +117,87 @@
         }else{
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 BOOL successYN=NO;
+                int size=[commitDatas count];
+                NSString *out_trade_no=@"";
+                NSMutableString *descontent=[NSMutableString new];
+                int index=0;
                 for(CommitDataBean *bean in commitDatas)
                 {
-                    successYN=[[ElApiService shareElApiService] createGoodsOrder:bean.data shopId:bean.shopId price:bean.totalPrice address:address name:name phone:phone];
-                    if(!successYN){
-                        continue;
+                    if(size==1){
+                        NSArray *retObj=[[ElApiService shareElApiService] createGoodsOrder:bean.data shopId:bean.shopId price:bean.totalPrice.floatValue address:address name:name phone:phone desContent:@"0" realShopId:shopId];
+                        
+                        if(retObj!=nil&&[retObj count]==2){
+                            out_trade_no=retObj[1];
+                        }
+                    }else{
+                        if(index<size-1){
+                            NSArray *retObj=[[ElApiService shareElApiService] createGoodsOrder:bean.data shopId:bean.shopId price:bean.totalPrice.floatValue address:address name:name phone:phone desContent:@"" realShopId:shopId];
+                            if(retObj!=nil&&[retObj count]==2){
+                                if(index==size-2){
+                                    [descontent appendString:retObj[0]];
+                                }else{
+                                    [descontent appendFormat:@"%@,",retObj[0]];
+                                }
+                            }
+
+                         }else{
+                              NSArray *retObj=[[ElApiService shareElApiService] createGoodsOrder:bean.data shopId:bean.shopId price:bean.totalPrice.floatValue address:address name:name phone:phone desContent:descontent realShopId:shopId];
+                              if(retObj!=nil&&[retObj count]==2){
+                                 out_trade_no=retObj[1];
+                               }
+                         }
                     }
-                    
+                    index++;
                 }
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if(successYN){
-                        NSLog(@"success");
-                        [self clearCartData];
+                Product *product=[[Product alloc] init];
+                product.subject=@"客乐养车坊";
+                product.body=@"商品订单";
+                product.price=totalPrice.floatValue;
+                product.orderId=out_trade_no;
+                
+                
+                AlipayInfoType *alipayInfo=[[ElApiService shareElApiService] getAlipayByShopId:-1];
+               
+                AlibabaPay *alibabPay=[[AlibabaPay alloc] initPartner:alipayInfo.aliPid seller:alipayInfo.sellerEmail];
+                
+                NSString *content=[alibabPay getTradInfo:product];
+                
+                NSString *sign=[[ElApiService shareElApiService] signContent:-1 content:content];
+                product.sign=sign;
+               
+                [alibabPay aliPay:product callback:^(NSDictionary *resultDic) {
+                   
+                    NSLog(@"resultDic %@",resultDic);
+                    id  resultStatus=[resultDic objectForKey:@"resultStatus"];
+                    if([resultStatus intValue]==9000){
+                        [self.view.window makeToast:@"支付成功"];
+                        
                     }else{
-                        NSLog(@"fail");
+                        [self.view.window makeToast:@"支付失败"];
+                        
                     }
-                    UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                    OrderSuccessViewController *orderSucVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderSucVC"];
-                    [orderSucVC setCarBeautyType:CarBeautyType_none];
-                    [orderSucVC setResultOK:successYN];
+                    [self payResultCallback];
                     
-                    
-                    [self.navigationController pushViewController:orderSucVC animated:YES];
-                });
+                }];
+                
+                
+                
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    if(successYN){
+//                        NSLog(@"success");
+//                        [self clearCartData];
+//                    }else{
+//                        NSLog(@"fail");
+//                    }
+//                    UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//                    OrderSuccessViewController *orderSucVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderSucVC"];
+//                    [orderSucVC setCarBeautyType:CarBeautyType_none];
+//                    [orderSucVC setResultOK:successYN];
+//                    
+//                    
+//                    [self.navigationController pushViewController:orderSucVC animated:YES];
+//                });
                 
                 
             });
@@ -146,26 +208,43 @@
     }
     
 }
-
+-(void)payResultCallback{
+    [self clearCartData];
+    /** 支付成功逻辑处理 **/
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 -(NSArray<CommitDataBean *> *)getCommitDatas{
     CommitDataBean *bean0=[[CommitDataBean alloc] init];
     CommitDataBean *bean1=[[CommitDataBean alloc] init];
     NSMutableString *data0=[NSMutableString new];
     NSMutableString *data1=[NSMutableString new];
-    float totalPrice0=0.0;
-    float totalPrice1=0.0;
+    NSString *totalPrice0=@"0.0";
+    NSString *totalPrice1=@"0.0";
     for (MyCartClass *mycartClass in mycartClassList) {
         if(mycartClass.checkYN){
             if(mycartClass.goodInfo.shopId==-1){
                 [data0 appendString:[NSString stringWithFormat:@"%d+%d,",mycartClass.goodsId,mycartClass.count]];
                 bean0.shopId=-1;
-                totalPrice0+=mycartClass.count*mycartClass.goodInfo.price;
+                
+                NSString *temp=[DecimalCaculateUtils mutiplyWithA:[NSString stringWithFormat:@"%d",mycartClass.count] andB:[NSString stringWithFormat:@"%f",mycartClass.goodInfo.price]];
+                
+                totalPrice0=[DecimalCaculateUtils addWithA:totalPrice0 andB:temp];
+                
+                NSLog(@"totalPrice0 %@ temp %@",totalPrice0,temp);
+                
                 
             }else{
                 [data1 appendString:[NSString stringWithFormat:@"%d+%d,",mycartClass.goodsId,mycartClass.count]];
                 bean1.shopId=mycartClass.goodInfo.shopId;
-                totalPrice1+=mycartClass.count*mycartClass.goodInfo.price;
+                
+                NSString *temp=[DecimalCaculateUtils mutiplyWithA:[NSString stringWithFormat:@"%d",mycartClass.count] andB:[NSString stringWithFormat:@"%f",mycartClass.goodInfo.price]];
+                
+                totalPrice1=[DecimalCaculateUtils addWithA:totalPrice1 andB:temp];
+                
+                NSLog(@"totalPrice1 %@ temp %@",totalPrice0,temp);
+
+                
             }
         
         }
@@ -209,7 +288,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:notification_alipay_refresh object:nil];
 }
 
 /*
@@ -242,7 +321,8 @@
     cell.nameLabel.text=mycartClass.goodInfo.name;
     cell.descLabel.text=mycartClass.goodInfo.desc;
     cell.countLabel.text=[NSString stringWithFormat:@"x%d",mycartClass.count];
-    cell.priceLabel.text=[NSString stringWithFormat:@"%.1f元",mycartClass.goodInfo.price];
+    
+    cell.priceLabel.text=[DecimalCaculateUtils showDecimalFloat:mycartClass.goodInfo.price];
     
     cell.checkBtn.tag=indexPath.row;
     
@@ -300,13 +380,15 @@
 }
 
 -(void)updateViewShow{
-    totalPrice=0.0;
+    totalPrice=@"0.0";
     for (MyCartClass * cartClass in mycartClassList) {
         if(cartClass.checkYN){
-            totalPrice+=(cartClass.count*cartClass.goodInfo.price);
+            NSString *temp=[DecimalCaculateUtils mutiplyWithA:[NSString stringWithFormat:@"%d",cartClass.count] andB:[NSString stringWithFormat:@"%f",cartClass.goodInfo.price]];
+            
+            totalPrice=[DecimalCaculateUtils addWithA:totalPrice andB:temp];
         }
     }
-    self.priceLabel.text=[NSString stringWithFormat:@"%.1f元",totalPrice];
+    self.priceLabel.text=[DecimalCaculateUtils showDecimalString:totalPrice];
 }
 
 

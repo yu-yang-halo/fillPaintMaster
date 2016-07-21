@@ -16,6 +16,7 @@
 #import <SDCycleScrollView/SDCycleScrollView.h>
 #import "PaddingLabel.h"
 #import "GoodsDetailHrefViewController.h"
+#import "DecimalCaculateUtils.h"
 @interface GoodsDetailViewController (){
     UIButton *cartButton;
 }
@@ -54,9 +55,9 @@
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithCustomView:cartButton];
     [cartButton addTarget:self action:@selector(goMyCart:) forControlEvents:UIControlEventTouchUpInside];
     self.descLabel.text=_goodInfo.desc;
-    self.priceLabel.text=[NSString stringWithFormat:@"%.1f元",_goodInfo.price];
+    self.priceLabel.text= [DecimalCaculateUtils showDecimalFloat:_goodInfo.price];
     
-    
+
     [self initView];
     
     

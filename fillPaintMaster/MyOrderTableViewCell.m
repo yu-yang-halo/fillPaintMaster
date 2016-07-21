@@ -16,6 +16,8 @@
     [self.cancelButton.layer setBorderColor:[[UIColor redColor] CGColor]];
     [self.cancelButton.layer setBorderWidth:1];
     
+    [self.payButton.layer setBorderColor:[[UIColor redColor] CGColor]];
+    [self.payButton.layer setBorderWidth:1];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

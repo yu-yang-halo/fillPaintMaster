@@ -36,3 +36,6 @@
 
 @end
 
+@implementation AlipayInfoType
+
+@end

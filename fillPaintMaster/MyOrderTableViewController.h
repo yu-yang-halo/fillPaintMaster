@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MyOrderTableViewController : UITableViewController
-@property(nonatomic,assign) int type;
+@interface MyOrderTableViewController : UIViewController
 @end
 
 
@@ -18,8 +16,13 @@
 @property(nonatomic,assign) int orderType;
 @property(nonatomic,assign) int orderId;
 @property(nonatomic,assign) int status;
+@property(nonatomic,assign) int payStatus;
 @property(nonatomic,strong) NSString *numlabel;
 @property(nonatomic,strong) NSString *priceLabel;
 @property(nonatomic,strong) NSString *createTimeLabel;
+
+@property(nonatomic,strong) NSString *trade_no;
+@property(nonatomic,assign) float payPrice;
+@property(nonatomic,assign) int shopId;
 
 @end

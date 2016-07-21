@@ -20,18 +20,24 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <UIView+Toast.h>
 #import "TimeUtils.h"
+#import "DecimalCaculateUtils.h"
+
+#import "AlibabaPay.h"
+
 const float ROW_HEIGHT=50;
-const float ROW_HEIGHT_SECTION10=100;
-const float ROW_HEIGHT_SECTION11=60;
+const float ROW_HEIGHT_SECTION10=0;
+const float ROW_HEIGHT_SECTION11=0;
 @interface OrderReViewController (){
     NSArray *test;
     NSString *titleName;
-    float totalPrice;
+    NSString *totalPrice;
     MBProgressHUD *hud;
     int payIndex;
     int couponIndex;
     int shopId;
     int orderType;
+    AlipayInfoType *alipayInfoType;
+    AlibabaPay     *alibabaPay;
 }
 @property (weak, nonatomic) IBOutlet UITableView *beautyItemTableView;
 
@@ -50,17 +56,20 @@ const float ROW_HEIGHT_SECTION11=60;
     if(_carBeautyType==CarBeautyType_beauty){
         titleName=@"洗车美容";
         orderType=ORDER_TYPE_DECO;
+         payIndex=0;
     }else if(_carBeautyType==CarBeautyType_oil){
         titleName=@"换油保养";
          orderType=ORDER_TYPE_OIL;
+         payIndex=0;
     }else{
         titleName=@"钣金喷漆";
         orderType=ORDER_TYPE_METE;
+        payIndex=1;
     }
     shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
     self.payTypes=@[@"在线支付",@"到店支付"];
     couponIndex=-1;
-    payIndex=0;
+    
     
     self.title=titleName;
     
@@ -71,6 +80,10 @@ const float ROW_HEIGHT_SECTION11=60;
     
     
     [self dataRequestTask];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payResultCallback) name:notification_alipay_refresh object:nil];
+    
+
 }
 -(void)initButton{
     [self.commitOrderBtn.layer setCornerRadius:4];
@@ -93,8 +106,13 @@ const float ROW_HEIGHT_SECTION11=60;
             }
         }
         
+        alipayInfoType=[[ElApiService shareElApiService] getAlipayByShopId:shopId];
+        
+        
+        
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            alibabaPay=[[AlibabaPay alloc] initPartner:alipayInfoType.aliPid seller:alipayInfoType.sellerEmail];
         });
         
     });
@@ -114,37 +132,45 @@ const float ROW_HEIGHT_SECTION11=60;
     self.beautyItemTableView.dataSource=self;
 }
 -(void)updateLabelView{
-    totalPrice=0.0;
+    totalPrice=@"0.0";
     if(_carBeautyType==CarBeautyType_paint){
         for (TDBaseItem *baseItem in _items) {
-            totalPrice+=baseItem.price*baseItem.count;
+            
+            NSString *temp=[DecimalCaculateUtils mutiplyWithA:[NSString stringWithFormat:@"%f",baseItem.price] andB:[NSString stringWithFormat:@"%d",baseItem.count]];
+            
+            totalPrice=[DecimalCaculateUtils addWithA:totalPrice andB:temp];
+            
+            
         }
     }else{
         for (TDBaseItem *baseItem in _items) {
-            totalPrice+=baseItem.price;
+            totalPrice=[DecimalCaculateUtils addWithA:totalPrice andB:[NSString stringWithFormat:@"%f",baseItem.price]];
         }
     }
-    float couponPrice=0;
+    NSString *couponPrice=@"0.0";
     
     if(couponIndex>=0){
         TDCouponInfo *couponInfo=[_couponInfos objectAtIndex:couponIndex];
         if(couponInfo.type==COUPON_TYPE_DISCOUNT){
-            totalPrice=totalPrice*couponInfo.discount/10.0;
-            couponPrice=totalPrice*(1-couponInfo.discount/10.0);
+            NSString *t1=[DecimalCaculateUtils divideWithA:[NSString stringWithFormat:@"%f",couponInfo.discount] andB:[NSString stringWithFormat:@"%f",10.0]];
+            NSString *realTotalPrice=[DecimalCaculateUtils mutiplyWithA:totalPrice andB:t1];
+            couponPrice=[DecimalCaculateUtils divideWithA:totalPrice andB:realTotalPrice];
+            totalPrice=realTotalPrice;
             
         }else{
-            totalPrice=totalPrice-couponInfo.price;
-            couponPrice=couponInfo.price;
-            if(totalPrice<0){
-                totalPrice=0;
+            totalPrice=[DecimalCaculateUtils divideWithA:totalPrice andB:[NSString stringWithFormat:@"%f",couponInfo.price]];
+            
+            couponPrice=[DecimalCaculateUtils decimalFloat:couponInfo.price];
+            if([totalPrice floatValue]<0){
+                totalPrice=@"0";
             }
         }
     }
     
     
-    [self.totalLabel setText:[NSString stringWithFormat:@"%.f元",totalPrice]];
+    [self.totalLabel setText:[DecimalCaculateUtils showDecimalString:totalPrice]];
     
-    [self.favourableLabel setText:[NSString stringWithFormat:@"已优惠%.f元",couponPrice]];
+    [self.favourableLabel setText:[NSString stringWithFormat:@"已优惠%@元",couponPrice]];
     
     if([_items count]<=0){
         [self.commitOrderBtn setBackgroundColor:[UIColor grayColor]];
@@ -192,7 +218,10 @@ const float ROW_HEIGHT_SECTION11=60;
     hud.labelText=@"订单处理中";
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BOOL todoSuccess=NO;
+        
+        Product *product=[[Product alloc] init];
+        BOOL successYN=NO;
+        
         if(_carBeautyType==CarBeautyType_beauty){
             TDDecoOrder *decoOrder=[[TDDecoOrder alloc] init];
             [decoOrder setType:TYPE_PAY_TOSHOP];
@@ -201,18 +230,29 @@ const float ROW_HEIGHT_SECTION11=60;
             [decoOrder setCouponId:couponId];
             [decoOrder setCarId:carId];
             [decoOrder setShopId:shopId];
-            [decoOrder setPrice:totalPrice];
+            [decoOrder setPrice:[totalPrice floatValue]];
             [decoOrder setOrderTime:[TimeUtils createTimeHHMM:hhmm incre:incre]];
-            int decoOrderId=[[ElApiService shareElApiService] createDecoOrder:decoOrder];
+            NSArray *retObjArr=[[ElApiService shareElApiService] createDecoOrder:decoOrder];
             
-            if(decoOrderId>0){
-                
+            if(retObjArr!=nil&&[retObjArr count]==2){
+                int decoOrderId=[retObjArr[0] intValue];
+                NSMutableString *desc=[NSMutableString new];
                 for (TDBaseItem *item in _items) {
-                    todoSuccess=[[ElApiService shareElApiService] createDecoOrderNumber:decoOrderId decoId:item.decorationId];
-                    if(todoSuccess){
-                        break;
-                    }
+                    [[ElApiService shareElApiService] createDecoOrderNumber:decoOrderId decoId:item.decorationId];
+                    [desc appendFormat:@"%@\n",item.name];
                 }
+                product.subject=@"汽车美容";
+                product.body=desc;
+                product.orderId=retObjArr[1];
+                product.price=totalPrice.floatValue;
+                
+                NSString *content=[alibabaPay getTradInfo:product];
+                
+                NSString *sign=[[ElApiService shareElApiService] signContent:shopId content:content];
+                
+                product.sign=sign;
+                successYN=YES;
+                
             }
             
         }else if (_carBeautyType==CarBeautyType_oil){
@@ -222,17 +262,30 @@ const float ROW_HEIGHT_SECTION11=60;
             [oilOrder setCouponId:couponId];
             [oilOrder setCarId:carId];
             [oilOrder setShopId:shopId];
-            [oilOrder setPrice:totalPrice];
+            [oilOrder setPrice:[totalPrice floatValue]];
             [oilOrder setOrderTime:[TimeUtils createTimeHHMM:hhmm incre:incre]];
-            int oilOrderId=[[ElApiService shareElApiService] createOilOrder:oilOrder];
+             NSArray *retObjArr=[[ElApiService shareElApiService] createOilOrder:oilOrder];
             
-            if(oilOrderId>0){
+            if(retObjArr!=nil&&[retObjArr count]==2){
+                int oilOrderId=[retObjArr[0] intValue];
+                NSMutableString *desc=[NSMutableString new];
                 for (TDBaseItem *item in _items) {
-                    todoSuccess=[[ElApiService shareElApiService] createOilOrderNumber:oilOrderId oilId:item.oilId];
-                    if(!todoSuccess){
-                        break;
-                    }
+                    [desc appendFormat:@"%@\n",item.name];
+                    
+                    [[ElApiService shareElApiService] createOilOrderNumber:oilOrderId oilId:item.oilId];
                 }
+                
+                product.subject=@"换油保养";
+                product.body=desc;
+                product.orderId=retObjArr[1];
+                product.price=totalPrice.floatValue;
+                
+                NSString *content=[alibabaPay getTradInfo:product];
+                
+                NSString *sign=[[ElApiService shareElApiService] signContent:shopId content:content];
+                
+                product.sign=sign;
+                successYN=YES;
             }
         }else if(_carBeautyType==CarBeautyType_paint){
             
@@ -242,46 +295,70 @@ const float ROW_HEIGHT_SECTION11=60;
             [metaOrder setCouponId:couponId];
             [metaOrder setCarId:carId];
             [metaOrder setShopId:shopId];
-            [metaOrder setPrice:totalPrice];
+            [metaOrder setPrice:[totalPrice floatValue]];
             [metaOrder setOrderTime:[TimeUtils createTimeHHMM:hhmm incre:incre]];
-            int metaOrderId=[[ElApiService shareElApiService] createMetaOrder:metaOrder];
+             NSArray *retObjArr=[[ElApiService shareElApiService] createMetaOrder:metaOrder];
             
-            if(metaOrderId>0){
+            if(retObjArr!=nil&&[retObjArr count]==2){
+                int metaOrderId=[retObjArr[0] intValue];
                 for (TDBaseItem *item in _items) {
-                    todoSuccess=[[ElApiService shareElApiService] createMetaOrderNumber:metaOrderId metaId:item.metalplateId ordernum:item.count];
-                    if(!todoSuccess){
-                        break;
-                    }
+                   successYN=[[ElApiService shareElApiService] createMetaOrderNumber:metaOrderId metaId:item.metalplateId ordernum:item.count];
+                   if(!successYN){
+                       break;
+                   }
+                    
                 }
             }
         }
+        
+        
+        
+        
       
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if(hud!=nil){
                 [hud hide:YES];
             }
-            if(todoSuccess){
-                NSLog(@"success");
-            }else{
-                  NSLog(@"fail");
-            }
-            UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            OrderSuccessViewController *orderSucVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderSucVC"];
-            [orderSucVC setCarBeautyType:_carBeautyType];
-            [orderSucVC setResultOK:todoSuccess];
-            [orderSucVC setItems:_items];
-            
-            
-            [self.navigationController pushViewController:orderSucVC animated:YES];
+            if(_carBeautyType!=CarBeautyType_paint&&successYN){
+                [alibabaPay aliPay:product callback:^(NSDictionary *resultDic) {
+                    NSLog(@"resultDic %@",resultDic);
+                    id  resultStatus=[resultDic objectForKey:@"resultStatus"];
+                    if([resultStatus intValue]==9000){
+                        [self.view.window makeToast:@"支付成功"];
+                       
+                    }else{
+                        [self.view.window makeToast:@"支付失败"];
+                        
+                    }
+                     [self payResultCallback];
 
+                }];
+                
+            }
+
+            if(_carBeautyType==CarBeautyType_paint){
+                
+                UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                OrderSuccessViewController *orderSucVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderSucVC"];
+                [orderSucVC setCarBeautyType:_carBeautyType];
+                [orderSucVC setResultOK:successYN];
+                [orderSucVC setItems:_items];
+                
+                
+                [self.navigationController pushViewController:orderSucVC animated:YES];
+
+            }
         });
     });
 }
-
+-(void)payResultCallback{
+    /** 支付成功逻辑处理 **/
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:notification_alipay_refresh object:nil];
 }
 
 #pragma mark delegate
@@ -290,18 +367,24 @@ const float ROW_HEIGHT_SECTION11=60;
     if(section==0){
         return [self.items count];
     }else if(section==1){
-        return 1;
+        return 0;
     }else{
         return 2;
     }
     
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     // Default is 1 if not implemented
     return 3;
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.0001;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 20;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
    if(indexPath.section==1){
         if(indexPath.row==0){
@@ -328,15 +411,12 @@ const float ROW_HEIGHT_SECTION11=60;
         TDBaseItem *baseItem=[_items objectAtIndex:indexPath.row];
         
         if(_carBeautyType==CarBeautyType_paint){
-            [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %.f元",baseItem.name,baseItem.price]];
+            [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %@元",baseItem.name,[DecimalCaculateUtils decimalFloat:baseItem.price]]];
             
         }else{
-            [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %.f元",baseItem.name,baseItem.price]];
+            [tableCell.itemLabel setText:[NSString stringWithFormat:@"%@   %@元",baseItem.name,[DecimalCaculateUtils decimalFloat:baseItem.price]]];
         }
-        
-        
-       
-        
+    
         
         [tableCell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [tableCell.delBtn setTag:indexPath.row];
@@ -394,9 +474,9 @@ const float ROW_HEIGHT_SECTION11=60;
             }else{
                 TDCouponInfo *couponInfo=[_couponInfos objectAtIndex:couponIndex];
                 if(couponInfo.type==COUPON_TYPE_DISCOUNT){
-                    str=[NSString stringWithFormat:@"%.1f折优惠",couponInfo.discount];
+                    str=[NSString stringWithFormat:@"%@折优惠",[DecimalCaculateUtils decimalFloat:couponInfo.discount]];
                 }else{
-                    str=[NSString stringWithFormat:@"抵扣%.1f",couponInfo.price];
+                    str=[NSString stringWithFormat:@"抵扣%@",[DecimalCaculateUtils decimalFloat:couponInfo.price]];
                 }
                 
             }
@@ -412,12 +492,15 @@ const float ROW_HEIGHT_SECTION11=60;
     return nil;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section==2){
-        if(indexPath.row==0){
-            [self selectPayForType];
-        }else{
-            [self selectCouponItem];
+    if(_carBeautyType!=CarBeautyType_paint){
+        if(indexPath.section==2){
+            if(indexPath.row==0){
+                [self selectPayForType];
+            }else{
+                [self selectCouponItem];
+            }
         }
+ 
     }
 }
 -(void)switchView:(UISwitch *)sender{
@@ -447,9 +530,9 @@ const float ROW_HEIGHT_SECTION11=60;
         TDCouponInfo *info=_couponInfos[i];
         NSString *desc=@"";
         if(info.type==COUPON_TYPE_DISCOUNT){
-            desc=[NSString stringWithFormat:@"%.1f折优惠",info.discount];
+            desc=[NSString stringWithFormat:@"%@折优惠",[DecimalCaculateUtils decimalFloat:info.discount]];
         }else{
-            desc=[NSString stringWithFormat:@"抵扣%.1f",info.price];
+            desc=[NSString stringWithFormat:@"抵扣%@",[DecimalCaculateUtils decimalFloat:info.price]];
         }
         if(i==couponIndex){
             [items addObject:MMItemMake(desc, MMItemTypeHighlight,block)];

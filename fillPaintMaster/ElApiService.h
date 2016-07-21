@@ -54,18 +54,18 @@ extern  const NSString* KEY_USER_TYPE;
 
 -(NSArray *)getCarByCurrentUser;
 -(NSArray *)getGoodsList:(int)shopId;
--(int)createOilOrder:(TDOilOrder *)oilOrder;
+-(NSArray *)createOilOrder:(TDOilOrder *)oilOrder;
 -(BOOL)delOilOrder:(int)oilOrderId;
 -(BOOL)updOilOrder:(TDOilOrder *)oilOrder;
 -(NSArray *)getOilOrderList:(TDOrderSearch *)orderSearch;
 -(BOOL)createOilOrderNumber:(int)oilOrderId oilId:(int)oilId;
--(int)createMetaOrder:(TDMetaOrder *)metaOrder;
+-(NSArray *)createMetaOrder:(TDMetaOrder *)metaOrder;
 -(BOOL)delMetaOrder:(int)metaOrderId;
 -(BOOL)updMetaOrder:(TDMetaOrder *)metaOrder;
 -(NSArray *)getMetaOrderList:(TDOrderSearch *)orderSearch;
 -(BOOL)createMetaOrderNumber:(int)metaOrderId metaId:(int)metaId ordernum:(int)orderNum;
 -(BOOL)createMetaOrderImg:(int)metaOrderId imgName:(NSString *)imgName;
--(int)createDecoOrder:(TDDecoOrder *)decoOrder;
+-(NSArray *)createDecoOrder:(TDDecoOrder *)decoOrder;
 -(BOOL)delDecoOrder:(int)decoOrderId;
 -(BOOL)updDecoOrder:(TDDecoOrder *)decoOrder;
 -(NSArray *)getDecoOrderList:(TDOrderSearch *)orderSearch;
@@ -74,13 +74,13 @@ extern  const NSString* KEY_USER_TYPE;
 -(NSArray *)getPromotionList:(int)maxNum;
 -(NSArray *)getDayOrderStateList:(int)shopId searchType:(int)searchType incre:(int)incre;
 -(NSArray *)getGoodsType;
--(BOOL)createGoodsOrder:(NSString *)goodsInfo shopId:(int)arg1 price:(float)arg2 address:(NSString *)arg3 name:(NSString *)arg4 phone:(NSString *)arg5;
+-(NSArray *)createGoodsOrder:(NSString *)goodsInfo shopId:(int)arg1 price:(float)arg2 address:(NSString *)arg3 name:(NSString *)arg4 phone:(NSString *)arg5 desContent:(NSString *)arg6 realShopId:(int)arg7;
 -(BOOL)updCoupon:(int)promotionId;
 
 -(NSArray *)getGoodsOrderList:(TDOrderSearch *)orderSearch;
 -(BOOL)createCar:(TDCarInfo *)carInfo;
 -(BOOL)delCar:(int)carId;
-
+-(BOOL)updGoodsOrder:(int)gOrderId state:(int)state;
 
 
 
@@ -96,6 +96,13 @@ extern  const NSString* KEY_USER_TYPE;
 -(NSString *)getMetaItemURL:(int)itemId imageName:(NSString *)imageName;
 -(NSString *)getShopPanoramaURL:(int)shopId imageName:(NSString *)imageName;
 -(NSString *)getCheXianURL;
+
+/*
+ * signContent
+ */
+-(NSString *)signContent:(int)shopId content:(NSString *)content;
+-(AlipayInfoType *)getAlipayByShopId:(int)shopId;
+
 
 @end
 

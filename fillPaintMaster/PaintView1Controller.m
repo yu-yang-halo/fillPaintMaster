@@ -126,10 +126,12 @@
             
             [metaOrder setCarId:carId];
             [metaOrder setShopId:shopId];
+            int metaOrderId=0;
             
-            int metaOrderId=[[ElApiService shareElApiService] createMetaOrder:metaOrder];
+            NSArray *retObjArr=[[ElApiService shareElApiService] createMetaOrder:metaOrder];
             BOOL todoSuccess=NO;
-            if(metaOrderId>0){
+            if(retObjArr!=nil&&[retObjArr count]==2){
+                metaOrderId=[retObjArr[0] intValue];
                 for (ALAsset *asset in assets0) {
                    NSString *encodeImageString=[ImageUtils encodeToBase64String:[UIImage imageWithCGImage:asset.thumbnail] format:@"PNG"];
                    todoSuccess=[[ElApiService shareElApiService] createMetaOrderImg:metaOrderId imgName:encodeImageString];

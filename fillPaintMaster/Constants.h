@@ -41,6 +41,13 @@ static const int STATE_ORDER_FINISHED=1;//已经完成
 static const int STATE_ORDER_WAIT=2;//等待客服确认
 static const int STATE_ORDER_CANCEL=3;//取消
 
+static const int GOOD_STATE_ORDER_NO_DELIVE=0;//未发货
+static const int GOOD_STATE_ORDER_DELIVE=1;//已发货
+static const int GOOD_STATE_ORDER_NO_PAY=2;//未支付
+static const int GOOD_STATE_ORDER_PAY=3;//已支付
+static const int GOOD_STATE_ORDER_CANCEL=4;//已取消
+
+
 static const int SEARCH_SHOP=1;//搜索类型 按店搜索
 static const int SEARCH_USER=2;//搜索类型 按用户搜索
 //优惠券 type 和 orderType
@@ -66,8 +73,7 @@ static const NSString *KEY_CAR_ID=@"carId";
 
 static const NSString *KEY_SELECT_TIME=@"select_order_time";
 static const NSString *KEY_SELECT_INCRE=@"select_order_incre";
-
-
+static const NSString *notification_alipay_refresh=@"notification_alipay";
 
 #define BTN_BG_COLOR [UIColor colorWithRed:82/255.0 green:73/255.0 blue:228/255.0 alpha:0.6]
 

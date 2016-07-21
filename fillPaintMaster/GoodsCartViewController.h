@@ -14,6 +14,6 @@
 
 @interface CommitDataBean : NSObject
 @property(nonatomic,strong) NSString *data;
-@property(nonatomic,assign) float totalPrice;
+@property(nonatomic,strong) NSString *totalPrice;
 @property(nonatomic,assign) int shopId;
 @end

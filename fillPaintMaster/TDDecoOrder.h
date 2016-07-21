@@ -22,7 +22,7 @@
 @property(nonatomic,retain) NSString *finishTime;
 @property(nonatomic,assign) float price;
 @property(nonatomic,assign) int couponId;
-
+@property(nonatomic,retain) NSString *tradeNo;
 @property(nonatomic,retain) NSArray *decoOrderNumber;
 @end
 @interface DecoOrderNumber : NSObject

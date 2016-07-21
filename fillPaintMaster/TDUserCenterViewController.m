@@ -44,8 +44,8 @@ static CGFloat const kWindowHeight = 160.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    items=@[@"我的订单",@"我的商品订单",@"我的预约",@"收货地址",@"我的购物车",@"消息"];
-   itemsIcons=@[@"my_icon_input",@"my_icon_set",@"my_icon_zixun",@"my_icon_address",@"icon_cart_item",@"my_icon_message"];
+    items=@[@"我的订单",@"我的商品订单",@"收货地址",@"我的购物车",@"消息"];
+   itemsIcons=@[@"my_icon_input",@"my_icon_set",@"my_icon_address",@"icon_cart_item",@"my_icon_message"];
 
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
@@ -192,25 +192,19 @@ static CGFloat const kWindowHeight = 160.0f;
     
     if(indexPath.row==0){
         MyOrderTableViewController *myOrderTableVC=[[MyOrderTableViewController alloc] init];
-        [myOrderTableVC setType:0];
         [self.navigationItem.backBarButtonItem setTitle:@"返回"];
         
-        [self.tabBarController.navigationController pushViewController:myOrderTableVC animated:YES];
-    }else if(indexPath.row==2){
-        MyOrderTableViewController *myOrderTableVC=[[MyOrderTableViewController alloc] init];
-        [myOrderTableVC setType:1];
-        [self.navigationItem.backBarButtonItem setTitle:@"返回"];
         [self.tabBarController.navigationController pushViewController:myOrderTableVC animated:YES];
     }else if(indexPath.row==1){
         MyGoodsOrderTableViewController *goodsOrderTableVC=[[MyGoodsOrderTableViewController alloc] init];
         [self.navigationItem.backBarButtonItem setTitle:@"返回"];
         [self.tabBarController.navigationController pushViewController:goodsOrderTableVC animated:YES];
-    }else if(indexPath.row==3){
+    }else if(indexPath.row==2){
         MyAddressViewController *addressVC=[[MyAddressViewController alloc] init];
         [self.navigationItem.backBarButtonItem setTitle:@"返回"];
         [self.tabBarController.navigationController pushViewController:addressVC animated:YES];
        
-    }else if(indexPath.row==4){
+    }else if(indexPath.row==3){
         NSArray *mycartClassList=[[CartManager defaultManager] getMyCartClassList];
         if([mycartClassList count]<=0){
             [self.view.window makeToast:@"您的购物车还没有任何的商品~"];
@@ -222,7 +216,7 @@ static CGFloat const kWindowHeight = 160.0f;
         }
      
 
-    }else if(indexPath.row==5){
+    }else if(indexPath.row==4){
         NSArray *msgList=[MessageManager getJPMessageArray];
         if(msgList==nil||[msgList count]<=0){
             [self.view.window makeToast:@"暂时还没有最新消息"];

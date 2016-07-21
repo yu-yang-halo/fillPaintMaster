@@ -17,6 +17,7 @@
 #import "GoodsCollectionViewCell.h"
 #import <SDWebImage/SDWebImageManager.h>
 #import "GoodsDetailViewController.h"
+#import "DecimalCaculateUtils.h"
 @interface GoodsViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
     int shopId;
@@ -209,7 +210,8 @@
     
     cell.nameLabel.text=goodsInfo.name;
     cell.descLabel.text=goodsInfo.desc;
-    cell.priceLabel.text=[NSString stringWithFormat:@"%.1f元",goodsInfo.price];
+ 
+    cell.priceLabel.text=[DecimalCaculateUtils showDecimalFloat:goodsInfo.price];
     NSString *imageURL=[[ElApiService shareElApiService] getGoodsURL:imageName shopId:goodsInfo.shopId];
     
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageURL]

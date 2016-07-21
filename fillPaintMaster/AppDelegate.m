@@ -10,11 +10,13 @@
 #import "ElApiService.h"
 #import <IOTCamera/Camera.h>
 #import <BaiduMapAPI_Base/BMKMapManager.h>
-#import <UIView+Toast.h>
 #import <BaiduMapAPI_Location/BMKLocationService.h>
 #import "Constants.h"
 #import "JPUSHService.h"
 #import "MessageManager.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import <UIView+Toast.h>
+#import "MyOrderTableViewController.h"
 static NSString *appKey = @"37f80ead0f33c60dcbf3c034";
 static NSString *channel = @"Publish channel";
 static BOOL isProduction = YES;
@@ -137,6 +139,50 @@ static BOOL isProduction = YES;
     
 }
 
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            id  resultStatus=[resultDic objectForKey:@"resultStatus"];
+            if([resultStatus intValue]==9000){
+                [self.window makeToast:@"支付成功"];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:notification_alipay_refresh object:@(YES)];
+            }else{
+                [self.window makeToast:@"支付失败"];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:notification_alipay_refresh object:@(NO)];
+            }
+            
+            
+        }];
+    }
+    return YES;
+}
+
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            id  resultStatus=[resultDic objectForKey:@"resultStatus"];
+            if([resultStatus intValue]==9000){
+                [self.window makeToast:@"支付成功"];
+                  [[NSNotificationCenter defaultCenter] postNotificationName:notification_alipay_refresh object:@(YES)];
+            }else{
+                [self.window makeToast:@"支付失败"];
+                  [[NSNotificationCenter defaultCenter] postNotificationName:notification_alipay_refresh object:@(NO)];
+            }
+            
+        }];
+    }
+    return YES;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

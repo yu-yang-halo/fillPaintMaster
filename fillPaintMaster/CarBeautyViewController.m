@@ -17,8 +17,9 @@
 #import "MyCollectionViewCell.h"
 #import <UIView+Toast.h>
 #import "WashOilDetailViewController.h"
+#import "DecimalCaculateUtils.h"
 @interface CarBeautyViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>{
-    NSUInteger totalMoney;
+    NSString *totalMoney;
     NSUInteger totalCount;
     
     NSString *titleName;
@@ -52,6 +53,7 @@
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:nil];
     
     shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
+    totalMoney=@"0.0";
    
     if(_carBeautyType==CarBeautyType_beauty){
         titleName=@"洗车美容";
@@ -215,7 +217,11 @@
     TDBaseItem *item=[carItems objectAtIndex:indexPath.row];
     
     [tableCell.contentLabel setText:[NSString stringWithFormat:@"%@",item.name] ];
-    [tableCell.priceLabel setText:[NSString stringWithFormat:@"%.f元",item.price]];
+    
+    [tableCell.priceLabel setText:[DecimalCaculateUtils showDecimalFloat:item.price]];
+    
+   
+    
     [tableCell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [tableCell.addOrRemoveBtn setSelected:item.isAddYN];
     [tableCell.addOrRemoveBtn setTag:indexPath.row];
@@ -253,8 +259,10 @@
 
 -(void)reDrawItemView:(int)index onlyAdd:(BOOL)onlyAdd{
     TDBaseItem *item=[carItems objectAtIndex:index];
-    if(onlyAdd){
-        [item setIsAddYN:YES];
+    if(onlyAdd&&item.isAddYN==YES){
+        return;
+    }else if(onlyAdd&&item.isAddYN==NO){
+       [item setIsAddYN:YES];
     }else{
         if(item.isAddYN){
             [item setIsAddYN:NO];
@@ -262,15 +270,16 @@
             [item setIsAddYN:YES];
         }
     }
-    int val=item.price;
+    float val=item.price;
     
     if(item.isAddYN){
         
-        totalMoney+=val;
+    
+        totalMoney=[DecimalCaculateUtils addWithA:totalMoney andB:[NSString stringWithFormat:@"%f",val]];
         totalCount++;
         
     }else{
-        totalMoney-=val;
+        totalMoney=[DecimalCaculateUtils subtractWithA:totalMoney andB:[NSString stringWithFormat:@"%f",val]];
         totalCount--;
     }
     
@@ -278,7 +287,8 @@
         [self.orderBtn setEnabled:YES];
         [self.orderBtn setBackgroundColor:BTN_BG_COLOR];
         [self.moneyLabel setTextColor:[UIColor blackColor]];
-        [self.moneyLabel setText:[NSString stringWithFormat:@"¥ %d元",totalMoney]];
+    
+        [self.moneyLabel setText:[DecimalCaculateUtils showDecimalString:totalMoney]];
         
         [self.cartBtn setTitle:[NSString stringWithFormat:@"%d",totalCount] forState:UIControlStateNormal];
     }else{

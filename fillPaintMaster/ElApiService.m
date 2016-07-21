@@ -10,7 +10,7 @@
 #import "GDataXMLNode.h"
 #import "WsqMD5Util.h"
 #import "TimeUtils.h"
-
+#import "DecimalCaculateUtils.h"
 const static int DEFAULT_TIME_OUT=11;
 const static NSString* WEBSERVICE_IP=@"112.124.106.131";
 const static int WEBSERVICE_PORT=9000;
@@ -609,7 +609,71 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     }
     return nil;
 }
--(int)createOilOrder:(TDOilOrder *)oilOrder{
+//############支付功能相关 start ################
+-(NSString *)signContent:(int)shopId content:(NSString *)content{
+    
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@signContent?senderId=%@&secToken=%@&shopId=%d&content=%@",self.connect_header,userID,secToken,shopId,[WsqMD5Util encodeToPercentEscapeString:content]];
+    NSLog(@"signContent  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        if([errorCodeVal isEqualToString:@"0"]){
+            NSString* signVal=[[[rootElement elementsForName:@"sign"] objectAtIndex:0] stringValue];
+
+            return signVal;
+        }else{
+            [self notificationErrorCode:errorCodeVal];
+        }
+        
+    }
+    return nil;
+}
+-(AlipayInfoType *)getAlipayByShopId:(int)shopId{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    NSString *service=[NSString stringWithFormat:@"%@getAlipayByShopId?senderId=%@&secToken=%@&shopId=%d",self.connect_header,userID,secToken,shopId];
+    NSLog(@"getAlipayByShopId  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        if([errorCodeVal isEqualToString:@"0"]){
+            
+           GDataXMLElement  *alipayInfoNode=[[rootElement elementsForName:@"alipayInfo"] objectAtIndex:0];
+            
+           NSString* aliPid=[[[alipayInfoNode elementsForName:@"aliPid"] objectAtIndex:0] stringValue];
+           NSString* aliKey= [[[alipayInfoNode elementsForName:@"aliKey"] objectAtIndex:0] stringValue];
+           NSString* sellerEmail= [[[alipayInfoNode elementsForName:@"sellerEmail"] objectAtIndex:0] stringValue];
+            
+            AlipayInfoType *obj=[[AlipayInfoType alloc] init];
+            obj.aliPid=aliPid;
+            obj.aliKey=aliKey;
+            obj.sellerEmail=sellerEmail;
+            
+            return obj;
+            
+        }else{
+            [self notificationErrorCode:errorCodeVal];
+        }
+        
+    }
+    return nil;
+}
+
+
+//############支付功能相关  end  ################
+
+
+
+-(NSArray *)createOilOrder:(TDOilOrder *)oilOrder{
     
     NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
    
@@ -618,7 +682,7 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     }
    
     if(oilOrder.price>0){
-        [appendHttpStr appendFormat:@"&price=%f",oilOrder.price];
+        [appendHttpStr appendFormat:@"&price=%@",[DecimalCaculateUtils decimalFloat:oilOrder.price]];
     }
     if(oilOrder.couponId>0){
         [appendHttpStr appendFormat:@"&couponId=%d",oilOrder.couponId];
@@ -641,15 +705,15 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
         NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
         NSString* createTimeVal=[[[rootElement elementsForName:@"createTime"] objectAtIndex:0] stringValue];
         NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
-        
+         NSString* trade_no_Val=[[[rootElement elementsForName:@"sign"] objectAtIndex:0] stringValue];
         if([errorCodeVal isEqualToString:@"0"]){
-            return [idVal intValue];
+            return @[idVal,trade_no_Val];
         }else{
             [self notificationErrorCode:errorCodeVal];
         }
         
     }
-    return -1;
+    return nil;
 }
 -(BOOL)delOilOrder:(int)oilOrderId{
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
@@ -815,16 +879,17 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     return NO;
 }
 
--(int)createMetaOrder:(TDMetaOrder *)metaOrder{
+-(NSArray *)createMetaOrder:(TDMetaOrder *)metaOrder{
     
     NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
     
     if(metaOrder.carId>0){
         [appendHttpStr appendFormat:@"&carId=%d",metaOrder.carId];
     }
+    
    
     if(metaOrder.price>0){
-        [appendHttpStr appendFormat:@"&price=%f",metaOrder.price];
+        [appendHttpStr appendFormat:@"&price=%@",[DecimalCaculateUtils decimalFloat:metaOrder.price]];
     }
     if(metaOrder.couponId>0){
         [appendHttpStr appendFormat:@"&couponId=%d",metaOrder.couponId];
@@ -847,15 +912,15 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
         NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
        
         NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
-        
+       
         if([errorCodeVal isEqualToString:@"0"]){
-            return [idVal intValue];
+            return @[idVal,@""];
         }else{
             [self notificationErrorCode:errorCodeVal];
         }
         
     }
-    return 0;
+    return nil;
 }
 -(BOOL)delMetaOrder:(int)metaOrderId{
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
@@ -1054,7 +1119,7 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
 }
 
 
--(int)createDecoOrder:(TDDecoOrder *)decoOrder{
+-(NSArray *)createDecoOrder:(TDDecoOrder *)decoOrder{
     
     NSMutableString *appendHttpStr=[[NSMutableString alloc] init];
     
@@ -1063,7 +1128,7 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     }
    
     if(decoOrder.price>0){
-        [appendHttpStr appendFormat:@"&price=%f",decoOrder.price];
+        [appendHttpStr appendFormat:@"&price=%@",[DecimalCaculateUtils decimalFloat:decoOrder.price]];
     }
     if(decoOrder.couponId>0){
         [appendHttpStr appendFormat:@"&couponId=%d",decoOrder.couponId];
@@ -1088,15 +1153,18 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
         NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
         
         NSString* createTimeVal=[[[rootElement elementsForName:@"createTime"] objectAtIndex:0] stringValue];
+        NSString* trade_no_Val=[[[rootElement elementsForName:@"sign"] objectAtIndex:0] stringValue];
+        
         
         if([errorCodeVal isEqualToString:@"0"]){
-            return [idVal intValue];
+           
+            return @[idVal,trade_no_Val];
         }else{
             [self notificationErrorCode:errorCodeVal];
         }
         
     }
-    return -1;
+    return nil;
 }
 -(BOOL)delDecoOrder:(int)decoOrderId{
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
@@ -1458,14 +1526,47 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     return nil;
 }
 
--(BOOL)createGoodsOrder:(NSString *)goodsInfo shopId:(int)arg1 price:(float)arg2 address:(NSString *)arg3 name:(NSString *)arg4 phone:(NSString *)arg5{
+-(NSArray *)createGoodsOrder:(NSString *)goodsInfo shopId:(int)arg1 price:(float)arg2 address:(NSString *)arg3 name:(NSString *)arg4 phone:(NSString *)arg5 desContent:(NSString *)arg6 realShopId:(int)arg7{
     NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
     NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
     
     
     
-    NSString *service=[NSString stringWithFormat:@"%@createGoodsOrder?senderId=%@&secToken=%@&userId=%@&goodsInfo=%@&shopId=%d&price=%f&address=%@&name=%@&phone=%@",self.connect_header,userID,secToken,userID,goodsInfo,arg1,arg2,[WsqMD5Util encodeToPercentEscapeString:arg3],[WsqMD5Util encodeToPercentEscapeString:arg4],arg5];
+    NSMutableString *service=[NSMutableString stringWithFormat:@"%@createGoodsOrder?senderId=%@&secToken=%@&userId=%@&goodsInfo=%@&shopId=%d&price=%@&address=%@&name=%@&phone=%@&realShopId=%d",self.connect_header,userID,secToken,userID,goodsInfo,arg1,[DecimalCaculateUtils decimalFloat:arg2],[WsqMD5Util encodeToPercentEscapeString:arg3],[WsqMD5Util encodeToPercentEscapeString:arg4],arg5,arg7];
+    
+    if(arg6!=nil&&![arg6 isEqualToString:@""]){
+        [service appendFormat:@"&desContent=%@",arg6];
+    }
+    
     NSLog(@"createGoodsOrder  service:%@",service);
+    NSData *data=[self requestURLSync:service];
+    
+    if(data!=nil){
+        GDataXMLElement *rootElement=[self getRootElementByData:data];
+        
+        NSString* errorCodeVal=[[[rootElement elementsForName:@"errorCode"] objectAtIndex:0] stringValue];
+        NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
+        NSString* signVal=[[[rootElement elementsForName:@"sign"] objectAtIndex:0] stringValue];
+        if(signVal==nil){
+            signVal=@"";
+        }
+        NSString* idVal=[[[rootElement elementsForName:@"id"] objectAtIndex:0] stringValue];
+        if([errorCodeVal isEqualToString:@"0"]){
+            
+            return @[idVal,signVal];
+        }else{
+            [self notificationErrorCode:errorCodeVal];
+        }
+    }
+    
+    return nil;
+}
+-(BOOL)updGoodsOrder:(int)gOrderId state:(int)state{
+    NSString *userID=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USERID];
+    NSString *secToken=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SECTOKEN];
+    
+    NSString *service=[NSString stringWithFormat:@"%@updGoodsOrder?senderId=%@&secToken=%@&id=%d&state=%d&expressName=iosxxx&expressWaybill=xxx",self.connect_header,userID,secToken,gOrderId,state];
+    NSLog(@"updGoodsOrder  service:%@",service);
     NSData *data=[self requestURLSync:service];
     
     if(data!=nil){
@@ -1475,12 +1576,12 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
         NSString* errorMsgVal=[[[rootElement elementsForName:@"errorMsg"] objectAtIndex:0] stringValue];
         
         if([errorCodeVal isEqualToString:@"0"]){
-            
             return YES;
         }else{
             [self notificationErrorCode:errorCodeVal];
         }
     }
+    
     
     return NO;
 }
@@ -1626,7 +1727,9 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     tdOilOrder.stationId=[[[[element elementsForName:@"stationId"] objectAtIndex:0] stringValue] intValue];
     tdOilOrder.price=[[[[element elementsForName:@"price"] objectAtIndex:0] stringValue] floatValue];
     tdOilOrder.couponId=[[[[element elementsForName:@"couponId"] objectAtIndex:0] stringValue] intValue];
-    
+
+    tdOilOrder.tradeNo=[[[element elementsForName:@"tradeNo"] objectAtIndex:0] stringValue];
+  
     NSArray *oilOrderNumberListNode=[element elementsForName:@"oilOrderNumber"];
     NSMutableArray *oilOrderNumberArr=[[NSMutableArray alloc] init];
     
@@ -1698,9 +1801,12 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     tdGoodsOrderListType.expressWaybill=[[[element elementsForName:@"expressWaybill"] objectAtIndex:0] stringValue];
      tdGoodsOrderListType.userId=[[[[element elementsForName:@"userId"] objectAtIndex:0] stringValue] intValue];
     tdGoodsOrderListType.shopId=[[[[element elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
-    tdGoodsOrderListType.price=[[[[element elementsForName:@"price"] objectAtIndex:0] stringValue] floatValue];
+
+    tdGoodsOrderListType.price=[[[element elementsForName:@"price"] objectAtIndex:0] stringValue];
+    
     tdGoodsOrderListType.state=[[[[element elementsForName:@"state"] objectAtIndex:0] stringValue] intValue];
- 
+    
+    tdGoodsOrderListType.tradeNo=[[[element elementsForName:@"tradeNo"] objectAtIndex:0] stringValue];
     return tdGoodsOrderListType;
 }
 
@@ -1720,6 +1826,8 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     tdDecoOrder.stationId=[[[[element elementsForName:@"stationId"] objectAtIndex:0] stringValue] intValue];
     tdDecoOrder.price=[[[[element elementsForName:@"price"] objectAtIndex:0] stringValue] floatValue];
     tdDecoOrder.couponId=[[[[element elementsForName:@"couponId"] objectAtIndex:0] stringValue] intValue];
+    
+    tdDecoOrder.tradeNo=[[[element elementsForName:@"tradeNo"] objectAtIndex:0] stringValue];
     
     NSArray *decoOrderNumberListNode=[element elementsForName:@"decoOrderNumber"];
     NSMutableArray *decoOrderNumberArr=[[NSMutableArray alloc] init];
