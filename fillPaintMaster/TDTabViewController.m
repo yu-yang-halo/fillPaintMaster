@@ -143,21 +143,32 @@ float BUTTON_H=49;
  */
 -(void)compareCity{
     NSString *latlgtCityName=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_LATLGT_CITYNAME];
+    
+    NSString *cityName=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_CITY_NAME];
     NSString *findCityName=nil;
-    for(TDCityInfo *cityInfo in cityList){
-        if([cityInfo.name isEqualToString:latlgtCityName]||[latlgtCityName isEqualToString:[NSString stringWithFormat:@"%@市",cityInfo.name]]){
-            
-            findCityName=latlgtCityName;
-            [[NSUserDefaults standardUserDefaults] setObject:@(cityInfo.cityId) forKey:KEY_CITY_ID];
-            [[NSUserDefaults standardUserDefaults] setObject:findCityName forKey:KEY_CITY_NAME];
-            
-            break;
+    if(cityName==nil){
+        
+        for(TDCityInfo *cityInfo in cityList){
+            if([cityInfo.name isEqualToString:latlgtCityName]||[latlgtCityName isEqualToString:[NSString stringWithFormat:@"%@市",cityInfo.name]]){
+                
+                findCityName=latlgtCityName;
+                [[NSUserDefaults standardUserDefaults] setObject:@(cityInfo.cityId) forKey:KEY_CITY_ID];
+                [[NSUserDefaults standardUserDefaults] setObject:findCityName forKey:KEY_CITY_NAME];
+                
+                break;
+            }
         }
+        if(findCityName==nil){
+            findCityName=latlgtCityName;
+            [[NSUserDefaults standardUserDefaults] setObject:@(-1) forKey:KEY_CITY_ID];
+        }
+
+        
+    }else{
+        findCityName=cityName;
     }
-    if(findCityName==nil){
-        findCityName=latlgtCityName;
-        [[NSUserDefaults standardUserDefaults] setObject:@(-1) forKey:KEY_CITY_ID];
-    }
+    
+    
     [locBtn setTitle:findCityName forState:UIControlStateNormal];
 }
 

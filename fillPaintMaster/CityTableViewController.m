@@ -118,9 +118,7 @@
     
     NSString *citname=city.name;
     
-    if(![citname myContainsString:@"市"]){
-        citname=[NSString stringWithFormat:@"%@市",city.name];
-    }
+ 
     
     [[NSUserDefaults standardUserDefaults] setObject:@(city.cityId) forKey:KEY_CITY_ID];
     [[NSUserDefaults standardUserDefaults] setObject:citname forKey:KEY_CITY_NAME];
