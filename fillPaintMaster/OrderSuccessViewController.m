@@ -12,6 +12,7 @@
 #import "ElApiService.h"
 #import "TDTabViewController.h"
 #import "DescriptionTableViewCell.h"
+#import "DecimalCaculateUtils.h"
 @interface OrderSuccessViewController ()<UITableViewDataSource,UITableViewDelegate>{
     NSString *titleName;
 }
@@ -100,7 +101,8 @@
     TDBaseItem *baseItem=[_items objectAtIndex:indexPath.row];
     
     [cell.nameLabel setText:baseItem.name];
-    [cell.priceLabel setText:[NSString stringWithFormat:@"%.1f元",baseItem.price]];
+    [cell.priceLabel setText:[NSString stringWithFormat:@"%@元",[DecimalCaculateUtils decimalFloat:baseItem.price]]];
+    
     
     return cell;
 }

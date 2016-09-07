@@ -173,11 +173,14 @@ static const float ROW_HEIGHT=40;
             }
              [UserAddressManager cacheUserInfoToLocal:user];
             
+
+            
             if(user.shopId>0){
                 [[NSUserDefaults standardUserDefaults] setObject:@(user.shopId) forKey:KEY_SHOP_ID];
             }else{
                 [[NSUserDefaults standardUserDefaults] setObject:nil forKey:KEY_SHOP_ID];
             }
+            
             
             
             [refreshHeader endRefreshing];

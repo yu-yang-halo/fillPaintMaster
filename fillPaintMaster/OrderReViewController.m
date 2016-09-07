@@ -53,19 +53,35 @@ const float ROW_HEIGHT_SECTION11=0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     orderType=-2;
+    NSString *typeVal=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USER_TYPE];
+    
+    if([typeVal intValue]==5){
+        payIndex=1;
+    }else{
+        payIndex=0;
+    }
     if(_carBeautyType==CarBeautyType_beauty){
         titleName=@"洗车美容";
         orderType=ORDER_TYPE_DECO;
-         payIndex=0;
+    
     }else if(_carBeautyType==CarBeautyType_oil){
         titleName=@"换油保养";
-         orderType=ORDER_TYPE_OIL;
-         payIndex=0;
+        orderType=ORDER_TYPE_OIL;
+    
     }else{
         titleName=@"钣金喷漆";
         orderType=ORDER_TYPE_METE;
         payIndex=1;
     }
+    
+    
+   
+   
+    
+    
+    
+    
+    
     shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
     self.payTypes=@[@"在线支付",@"到店支付"];
     couponIndex=-1;
@@ -224,7 +240,7 @@ const float ROW_HEIGHT_SECTION11=0;
         
         if(_carBeautyType==CarBeautyType_beauty){
             TDDecoOrder *decoOrder=[[TDDecoOrder alloc] init];
-            [decoOrder setType:TYPE_PAY_TOSHOP];
+            [decoOrder setType:payIndex];
             [decoOrder setState:STATE_ORDER_UNFINISHED];
       
             [decoOrder setCouponId:couponId];
@@ -257,7 +273,7 @@ const float ROW_HEIGHT_SECTION11=0;
             
         }else if (_carBeautyType==CarBeautyType_oil){
             TDOilOrder *oilOrder=[[TDOilOrder alloc] init];
-            [oilOrder setType:TYPE_PAY_TOSHOP];
+            [oilOrder setType:payIndex];
             [oilOrder setState:STATE_ORDER_UNFINISHED];
             [oilOrder setCouponId:couponId];
             [oilOrder setCarId:carId];
@@ -290,7 +306,7 @@ const float ROW_HEIGHT_SECTION11=0;
         }else if(_carBeautyType==CarBeautyType_paint){
             
             TDMetaOrder *metaOrder=[[TDMetaOrder alloc] init];
-            [metaOrder setType:TYPE_PAY_TOSHOP];
+            [metaOrder setType:payIndex];
             [metaOrder setState:STATE_ORDER_UNFINISHED];
             [metaOrder setCouponId:couponId];
             [metaOrder setCarId:carId];
@@ -320,34 +336,36 @@ const float ROW_HEIGHT_SECTION11=0;
             if(hud!=nil){
                 [hud hide:YES];
             }
-            if(_carBeautyType!=CarBeautyType_paint&&successYN){
-                [alibabaPay aliPay:product callback:^(NSDictionary *resultDic) {
-                    NSLog(@"resultDic %@",resultDic);
-                    id  resultStatus=[resultDic objectForKey:@"resultStatus"];
-                    if([resultStatus intValue]==9000){
-                        [self.view.window makeToast:@"支付成功"];
-                       
-                    }else{
-                        [self.view.window makeToast:@"支付失败"];
+            
+            if(successYN){
+                
+                if(payIndex==0){
+                    [alibabaPay aliPay:product callback:^(NSDictionary *resultDic) {
+                        NSLog(@"resultDic %@",resultDic);
+                        id  resultStatus=[resultDic objectForKey:@"resultStatus"];
+                        if([resultStatus intValue]==9000){
+                            [self.view.window makeToast:@"支付成功"];
+                            
+                        }else{
+                            [self.view.window makeToast:@"支付失败"];
+                            
+                        }
+                        [self payResultCallback];
                         
-                    }
-                     [self payResultCallback];
-
-                }];
+                    }];
+                }else{
+                    UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                    OrderSuccessViewController *orderSucVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderSucVC"];
+                    [orderSucVC setCarBeautyType:_carBeautyType];
+                    [orderSucVC setResultOK:successYN];
+                    [orderSucVC setItems:_items];
+                    
+                    
+                    [self.navigationController pushViewController:orderSucVC animated:YES];
+                }
                 
-            }
-
-            if(_carBeautyType==CarBeautyType_paint){
-                
-                UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                OrderSuccessViewController *orderSucVC=[storyBoard instantiateViewControllerWithIdentifier:@"orderSucVC"];
-                [orderSucVC setCarBeautyType:_carBeautyType];
-                [orderSucVC setResultOK:successYN];
-                [orderSucVC setItems:_items];
-                
-                
-                [self.navigationController pushViewController:orderSucVC animated:YES];
-
+            }else{
+                [self.view.window makeToast:@"创建订单失败，请重试"];
             }
         });
     });
