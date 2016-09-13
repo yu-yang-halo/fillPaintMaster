@@ -55,9 +55,12 @@ const float ROW_HEIGHT_SECTION11=0;
     orderType=-2;
     NSString *typeVal=[[NSUserDefaults standardUserDefaults] objectForKey:KEY_USER_TYPE];
     
+   
     if([typeVal intValue]==5){
+        self.payTypes=@[@"在线支付",@"到店支付"];
         payIndex=1;
     }else{
+        self.payTypes=@[@"在线支付"];
         payIndex=0;
     }
     if(_carBeautyType==CarBeautyType_beauty){
@@ -83,7 +86,7 @@ const float ROW_HEIGHT_SECTION11=0;
     
     
     shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
-    self.payTypes=@[@"在线支付",@"到店支付"];
+    
     couponIndex=-1;
     
     

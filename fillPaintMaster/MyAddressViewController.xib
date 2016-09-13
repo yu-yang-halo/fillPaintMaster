@@ -11,6 +11,7 @@
                 <outlet property="addressLabel" destination="LBy-lT-1La" id="NgR-gy-4S0"/>
                 <outlet property="nameLabel" destination="bYt-EH-Eqw" id="Vbq-BZ-MIR"/>
                 <outlet property="phoneLabel" destination="lgx-hM-ec4" id="2Y5-Up-4vZ"/>
+                <outlet property="shopNameLable" destination="DZT-YG-xVl" id="HgH-eK-DnU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -75,18 +76,30 @@
                             </attributedString>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                         </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZT-YG-xVl">
+                            <rect key="frame" x="11" y="438" width="299" height="58"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="58" id="9lw-qN-mhT"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.47835979055851063" green="0.47835979055851063" blue="0.47835979055851063" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="bYt-EH-Eqw" firstAttribute="leading" secondItem="lgx-hM-ec4" secondAttribute="leading" id="429-vO-YhH"/>
+                        <constraint firstItem="DZT-YG-xVl" firstAttribute="leading" secondItem="1x7-2S-QuE" secondAttribute="leading" constant="11" id="4wb-4m-OeM"/>
                         <constraint firstItem="2o8-Sq-DtM" firstAttribute="top" secondItem="uWU-PL-KPK" secondAttribute="bottom" constant="24" id="E8t-S2-vMJ"/>
                         <constraint firstItem="rF8-4U-v4M" firstAttribute="leading" secondItem="uWU-PL-KPK" secondAttribute="leading" id="Gud-PM-t6Q"/>
                         <constraint firstItem="lgx-hM-ec4" firstAttribute="top" secondItem="bYt-EH-Eqw" secondAttribute="bottom" constant="18" id="KNZ-pQ-VcV"/>
                         <constraint firstItem="uWU-PL-KPK" firstAttribute="leading" secondItem="2o8-Sq-DtM" secondAttribute="leading" id="R9A-lG-OFJ"/>
+                        <constraint firstAttribute="trailing" secondItem="DZT-YG-xVl" secondAttribute="trailing" constant="10" id="TSN-Lu-80L"/>
                         <constraint firstItem="2o8-Sq-DtM" firstAttribute="trailing" secondItem="uWU-PL-KPK" secondAttribute="trailing" id="TVU-6g-VGf"/>
                         <constraint firstAttribute="trailing" secondItem="LBy-lT-1La" secondAttribute="trailing" constant="10" id="W1O-cp-4pn"/>
                         <constraint firstItem="rF8-4U-v4M" firstAttribute="top" secondItem="1x7-2S-QuE" secondAttribute="top" constant="10" id="XHe-2F-IaL"/>
                         <constraint firstItem="bYt-EH-Eqw" firstAttribute="leading" secondItem="rF8-4U-v4M" secondAttribute="trailing" constant="1" id="eCu-jl-0Nb"/>
+                        <constraint firstAttribute="bottom" secondItem="DZT-YG-xVl" secondAttribute="bottom" constant="8" id="feV-9J-Z2e"/>
                         <constraint firstItem="rF8-4U-v4M" firstAttribute="trailing" secondItem="uWU-PL-KPK" secondAttribute="trailing" id="fr8-NE-KQ5"/>
                         <constraint firstItem="bYt-EH-Eqw" firstAttribute="top" secondItem="1x7-2S-QuE" secondAttribute="topMargin" id="g1D-PX-V0A"/>
                         <constraint firstItem="rF8-4U-v4M" firstAttribute="leading" secondItem="1x7-2S-QuE" secondAttribute="leading" constant="11" id="hLW-tq-cH2"/>

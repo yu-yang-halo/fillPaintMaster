@@ -1801,6 +1801,8 @@ const NSString* KEY_USER_TYPE=@"type_KEY";
     tdGoodsOrderListType.expressWaybill=[[[element elementsForName:@"expressWaybill"] objectAtIndex:0] stringValue];
      tdGoodsOrderListType.userId=[[[[element elementsForName:@"userId"] objectAtIndex:0] stringValue] intValue];
     tdGoodsOrderListType.shopId=[[[[element elementsForName:@"shopId"] objectAtIndex:0] stringValue] intValue];
+    
+    tdGoodsOrderListType.realShopId=[[[[element elementsForName:@"realShopId"] objectAtIndex:0] stringValue] intValue];
 
     tdGoodsOrderListType.price=[[[element elementsForName:@"price"] objectAtIndex:0] stringValue];
     

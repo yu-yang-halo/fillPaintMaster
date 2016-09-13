@@ -17,6 +17,7 @@
 #import <HMSegmentedControl/HMSegmentedControl.h>
 #import "DecimalCaculateUtils.h"
 #import "AlibabaPay.h"
+#import "AppDelegate.h"
 @interface MyOrderTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *orderClassArr;
@@ -317,6 +318,21 @@
     [cell.totalPriceLabel setText:ori.priceLabel];
     
     [cell.statusLabel setText:_titles[filterType]];
+    
+    
+    AppDelegate *delegate=[UIApplication sharedApplication].delegate;
+    TDShopInfo *shopInfo=[delegate findShopInfo:ori.shopId];
+    
+    
+    if(shopInfo!=nil&&shopInfo.shopId!=-1){
+        [cell.shopNameLabel setText:[NSString stringWithFormat:@"服务店铺:%@",shopInfo.name]];
+    }else{
+        [cell.shopNameLabel setText:@""];
+
+    }
+    
+
+    
     
     BOOL isOverTime=[TimeUtils isOverTime:ori.createTimeLabel];
     

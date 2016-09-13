@@ -30,7 +30,16 @@ static BOOL isProduction = YES;
 
 @implementation AppDelegate
 
-
+-(TDShopInfo *)findShopInfo:(int)shopId{
+    TDShopInfo *_mshopInfo=nil;
+    for(TDShopInfo *info in _shoplist){
+        if(info.shopId==shopId){
+            _mshopInfo=info;
+            break;
+        }
+    }
+    return _mshopInfo;
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     

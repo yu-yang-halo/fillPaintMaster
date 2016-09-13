@@ -9,6 +9,8 @@
 #import "MyAddressViewController.h"
 #import "UserAddressManager.h"
 #import "ElApiService.h"
+#import "AppDelegate.h"
+#import "Constants.h"
 @interface MyAddressViewController ()<UITextFieldDelegate,UITextViewDelegate>{
     UITextView *firstResponderTF;
     CGFloat kbHeight;
@@ -17,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameLabel;
 @property (weak, nonatomic) IBOutlet UITextField *phoneLabel;
 @property (weak, nonatomic) IBOutlet UITextView *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *shopNameLable;
 
 @end
 
@@ -30,6 +33,9 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
+    
+    int  shopId=[[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SHOP_ID] intValue];
+    
     _nameLabel.delegate=self;
     _phoneLabel.delegate=self;
     _addressLabel.delegate=self;
@@ -38,6 +44,14 @@
     _addressLabel.layer.borderWidth=1;
     _addressLabel.layer.cornerRadius=3;
     
+    
+    AppDelegate *delegate=[UIApplication sharedApplication].delegate;
+    TDShopInfo *shopInfo=[delegate findShopInfo:shopId];
+    
+     
+    if(shopInfo!=nil&&shopInfo.shopId!=-1){
+        [_shopNameLable setText:[NSString stringWithFormat:@"服务店铺:%@\n%@",shopInfo.name,shopInfo.desc]];
+    }
     
     
 }

@@ -22,6 +22,7 @@
 #import "CartManager.h"
 #import "MessageManager.h"
 #import "MessageViewController.h"
+#import "AppDelegate.h"
 static const float ROW_HEIGHT=60;
 static CGFloat const kWindowHeight = 160.0f;
 @interface TDUserCenterViewController (){
@@ -122,8 +123,15 @@ static CGFloat const kWindowHeight = 160.0f;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         TDUser *user=[[ElApiService shareElApiService] getUserInfo];
         NSArray *carInfos=[[ElApiService shareElApiService] getCarByCurrentUser];
+        NSArray *shopInfos=[[ElApiService shareElApiService] getShopList];
+        
+
     
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            AppDelegate *delegate=[UIApplication sharedApplication].delegate;
+            
+            delegate.shoplist=shopInfos;
             
             NSString *datas=@"";
             if(carInfos!=nil&&[carInfos count]>0){

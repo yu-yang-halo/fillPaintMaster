@@ -69,7 +69,7 @@
                 <outlet property="payNumberLabel" destination="9qQ-2X-1AQ" id="T0H-id-OL8"/>
                 <outlet property="priceLabel" destination="VRI-yc-nqG" id="l8j-cE-gTJ"/>
             </connections>
-            <point key="canvasLocation" x="161.5" y="269"/>
+            <point key="canvasLocation" x="100.5" y="232"/>
         </tableViewCell>
     </objects>
 </document>

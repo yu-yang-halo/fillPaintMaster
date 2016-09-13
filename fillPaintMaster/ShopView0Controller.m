@@ -51,11 +51,11 @@
 -(void)netDataGet{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        
-        shopInfos=[[ElApiService shareElApiService] getShopList];
-       
-        
-        
+        AppDelegate *delegate=[UIApplication sharedApplication].delegate;
+        shopInfos=delegate.shoplist;
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
             for (TDShopInfo *shop in shopInfos) {
                 if(shop.shopId==shopId){
                     myShop=shop;

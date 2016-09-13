@@ -16,6 +16,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "Constants.h"
 #import "ShopLocationsTableViewCell.h"
+#import "AppDelegate.h"
 
 @interface TDStoreViewController ()<BMKMapViewDelegate,MyTabHandlerDelegate>
 {
@@ -141,6 +142,9 @@
         shopInfos=[[ElApiService shareElApiService] getShopList];
         
         shopInfos=[self filterShopInfoList:shopInfos];
+        
+        
+        
         
         
         dispatch_async(dispatch_get_main_queue(), ^{

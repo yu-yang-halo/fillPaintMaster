@@ -17,6 +17,7 @@
 #import "AlibabaPay.h"
 #import "Constants.h"
 #import <UIView+Toast.h>
+#import "AppDelegate.h"
 @interface MyGoodsOrderTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *goodsOrderList;
@@ -331,17 +332,42 @@
     [titleLabel setFont:[UIFont systemFontOfSize:12]];
     [titleLabel setTextColor:[UIColor colorWithWhite:0.6 alpha:0.9]];
     
-    UILabel *totalPriceLabel=[[UILabel alloc] initWithFrame:CGRectMake(titleLabel.frame.origin.x+titleLabel.frame.size.width+2, (50-30)/2, 160, 30)];
+    
+    
+    
+    UILabel *totalPriceLabel=[[UILabel alloc] initWithFrame:CGRectMake(titleLabel.frame.origin.x+titleLabel.frame.size.width+2, (50-30)/2, 80, 30)];
     [totalPriceLabel setFont:[UIFont systemFontOfSize:12]];
     [totalPriceLabel setTextColor:[UIColor redColor]];
     
+    CGFloat x_p=totalPriceLabel.frame.origin.x+totalPriceLabel.frame.size.width;
+    CGFloat width=self.view.frame.size.width-x_p;
+    UILabel *shopNameLabel=[[UILabel alloc] initWithFrame:CGRectMake(x_p, (50-30)/2, width, 30)];
+    [shopNameLabel setFont:[UIFont systemFontOfSize:10]];
+    [shopNameLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.5]];
+    
+
+
+    
     [headerBgView addSubview:titleLabel];
     [headerBgView addSubview:totalPriceLabel];
+    [headerBgView addSubview:shopNameLabel];
+
     
     TDGoodsOrderListType *orderObj=[goodsOrderList objectAtIndex:section];
 
     
     [totalPriceLabel setText:[DecimalCaculateUtils showDecimalString:orderObj.price]];
+    
+    
+    AppDelegate *delegate=[UIApplication sharedApplication].delegate;
+    TDShopInfo *shopInfo=[delegate findShopInfo:orderObj.realShopId];
+    
+    if(shopInfo!=nil&&shopInfo.shopId!=-1){
+        [shopNameLabel setText:[NSString stringWithFormat:@"服务店铺:%@",shopInfo.name]];
+    }else{
+        [shopNameLabel setText:@""];
+    }
+
     
     
     return headerBgView;
